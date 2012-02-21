@@ -1,0 +1,33 @@
+
+				This is a help file about GNU/tools(cc,as,ld,...) 
+					usage on GNU/Linux.
+
+## compiler option
+> gcc -o main.o -c main.c    # compile and assemble, but do not link  (option -c)
+> gcc -o main.S -S main.c    # compile only; do not assemble or link  (option -S)
+> gcc -E main.c              # pre-process only, (option -E)
+> gcc -o main main.c         # compile ELF file (no option)
+> ./testtools
+
+> gcc -o main.o -c main.c
+> gcc -o sub.o -c sub.c
+> gcc -o testtools main.o sub.o
+> ./testtools
+
+## linker option
+> gcc -v -o testtools main.o sub.o     # Display the programs invoked by the compiler (option -v)
+> gcc -v -nostartfiles -o testtools main.o sub.o
+> gcc -v -nostdlib -o testtools main.o sub.o
+
+> gcc -static -o testtools_static main.o sub.o   # static link
+
+> gcc -o sub.o -c sub.c
+> gcc -shared -o libsub.a sub.o                  # create shared lib (libsub.a)
+> gcc -o main.o -c main.c                        # compile main.c
+> gcc -o testtools main.o -lsub                 
+  /usr/bin/ld: cannot find -lsub
+  collect2: ld returned 1 exit status
+> gcc -L. -o testtools main.o -lsub
+> ./testtools
+
+## about more infomation for cc,as,ld, please use "man gcc" ..

@@ -1,0 +1,79 @@
+/*
+ * 
+ * 	Copyleft (C) 2009,2010 HackerFellowship. All lefts reserved
+ * 	H. F. G. fU9ANg <bb.newlife@gmail.com>
+
+ * 	This is a help file about Data structure.
+ * 	MLB!HH! (May Lord Bless! Happy Hacking!)
+
+ * 	This program is free software; you can redistribute it and/or 
+ * 	modify it under the terms of the GNU Lesser General Public 
+ * 	License as published by the Free Software Foundataion; either
+ * 	version 2 of the License, or (at your option) any later version.
+
+ * 	You should have read the GNU General Public License before start "RTFSC".
+ * 	If not,see <http://www.gnu.org/licenses/> 
+ *
+ */
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+单向链表的插入
+             head                 pt
+        |+++++++++++++|     |+++++++++++++|     |+++++++++++++|     |+++++++++++++|     |+++++++++++++|
+        | data | next | --> | data | next | --> | data | next | --> | data | next | --> | data | next | -->NULL
+        |+++++++++++++|     |+++++++++++++|     |+++++++++++++|     |+++++++++++++|     |+++++++++++++|
+                                   |                   ^
+                                   |       inote       |
+                                   |  |+++++++++++++|  |
+                                   -->| data | next |---
+                                      |+++++++++++++|
+
+C-code:
+inote = (struct type *)(malloc(sizeof(struct type));
+inote->next = pt-next;
+pt->next = inote;
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+单向链表的删除				                   
+             head                 pt	       |     inote     |
+        |+++++++++++++|     |+++++++++++++|    ||+++++++++++++||    |+++++++++++++|     |+++++++++++++|
+        | data | next | --> | data | next | -->|| data | next ||--> | data | next | --> | data | next | -->NULL
+        |+++++++++++++|     |+++++++++++++|    ||+++++++++++++||    |+++++++++++++|     |+++++++++++++|
+					       |	       |
+C-code:                                        |               |
+inote = pt->next;
+pt->next = inote-next;
+free(inote);
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+双向链表的插入:
+             head                 pt
+        |+++++++++++++| --> |+++++++++++++| --> |+++++++++++++| --> |+++++++++++++| --> |+++++++++++++|
+NULL <--|pre|data|next|     |pre|data|next|     |pre|data|next|     |pre|data|next|     |pre|data|next| -->NULL
+        |+++++++++++++| <-- |+++++++++++++| <-- |+++++++++++++| <-- |+++++++++++++| <-- |+++++++++++++|
+                                  | ^                 ^ |
+                                  | |      inote      | |
+                                  | --|+++++++++++++|-- |
+                                  |   |pre|data|next|   |
+                                  | ->|+++++++++++++|<- |
+C-code:
+inote = (struct type *)(malloc(sizeof(struct type));
+inode->next = pt->next;
+pt->next = inode;
+inode->pre = inode->next->pre;
+inode->next->pre = inode;
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+双向链表的删除      			                           
+             head                 pt           |     inote     |
+        |+++++++++++++| --> |+++++++++++++| -->||+++++++++++++||--> |+++++++++++++| --> |+++++++++++++|
+NULL <--|pre|data|next|     |pre|data|next|    ||pre|data|next||    |pre|data|next|     |pre|data|next| -->NULL
+        |+++++++++++++| <-- |+++++++++++++| <--||+++++++++++++||<-- |+++++++++++++| <-- |+++++++++++++|
+					       |               |
+C-code:					       |               |
+inote = pt->next;
+pt->next = inote-next;
+inote->next->pre = inote->pre;
+free(inote);
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
