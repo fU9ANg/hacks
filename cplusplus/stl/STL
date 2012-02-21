@@ -1,0 +1,55 @@
+
+ +-------------------------+-----------------------------+---------------------------------+----------+
+ |                         |     Sequence containers     |      Associative containers     |          |
+ +-------------------------+-----------------------------+---------------------------------+----------+
+ | Headers                 | <vector> | <deque> | <list> |      <set>     |      <map>     | <bitset> |
+ +-------------------------+-----------------------------+---------------------------------+----------+
+ | Members                 |  vector  |  deque  |  list  | set | multiset | map | multimap |  bitset  |
+ +-------------------------+-----------------------------+---------------------------------+----------+
+ |           | constructor |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    Yes   |
+ |           | destructor  |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    --    |
+ |           | operator=   |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    Yes   |
+ +-------------------------+-----------------------------+---------------------------------+----------+
+ |           | begin       |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    --    |
+ | iterators | end         |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    --    |
+ |           | rbegin      |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    --    |
+ |           | rend        |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    --    |
+ +-------------------------+-----------------------------+---------------------------------+----------+
+ |           | size        |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    Yes   |
+ | capacity  | max_size    |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    --    |
+ |           | empty       |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    --    |
+ |           | resize      |   Yes    |   Yes   |  Yes   | --  |   --     | --  |   --     |    --    |
+ +-------------------------+-----------------------------+---------------------------------+----------+
+ |           | front       |   Yes    |   Yes   |  Yes   | --  |   --     | --  |   --     |    --    |
+ | element   | back        |   Yes    |   Yes   |  Yes   | --  |   --     | --  |   --     |    --    |
+ | access    | operator[]  |   Yes    |   Yes   |  --    | --  |   --     | Yes |   --     |    Yes   |
+ |           | at          |   Yes    |   Yes   |  --    | --  |   --     | --  |   --     |    --    |
+ +-------------------------+-----------------------------+---------------------------------+----------+
+ |           | assign      |   Yes    |   Yes   |  Yes   | --  |   --     | --  |   --     |    --    |
+ |           | insert      |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    --    |
+ |           | erase       |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    --    |
+ |           | swap        |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    --    |
+ | Modifiers | clear       |   Yes    |   Yes   |  Yes   | Yes |   Yes    | Yes |   Yes    |    --    |
+ |           | push_front  |   --     |   Yes   |  Yes   | --  |   --     | --  |   --     |    --    |
+ |           | pop_front   |   --     |   Yes   |  Yes   | --  |   --     | --  |   --     |    --    |
+ |           | push_back   |   Yes    |   Yes   |  Yes   | --  |   --     | --  |   --     |    --    |
+ |           | pop_back    |   Yes    |   Yes   |  Yes   | --  |   --     | --  |   --     |    --    |
+ +-------------------------+-----------------------------+---------------------------------+----------+
+ |           | key_comp    |   --     |   --    |  --    | Yes |   Yes    | Yes |   Yes    |    --    |
+ | Observers | value_comp  |   --     |   --    |  --    | Yes |   Yes    | Yes |   Yes    |    --    |
+ +-------------------------+-----------------------------+---------------------------------+----------+
+ |           | find        |   --     |   --    |  --    | Yes |   Yes    | Yes |   Yes    |    --    |
+ |           | count       |   --     |   --    |  --    | Yes |   Yes    | Yes |   Yes    |    Yes   |
+ | Operations| lower_bound |   --     |   --    |  --    | Yes |   Yes    | Yes |   Yes    |    --    |
+ |           | upper_bound |   --     |   --    |  --    | Yes |   Yes    | Yes |   Yes    |    --    |
+ |           | equal_range |   --     |   --    |  --    | Yes |   Yes    | Yes |   Yes    |    --    |
+ +-------------------------+-----------------------------+---------------------------------+----------+
+ |                         |          |         | splice  \    |          |     |          | set      |
+ |                         |          |         | remove   \   |          |     |          | reset    |
+ |                         |          |         | remove_if |  |          |     |          | flip     |
+ |     unique memebers     | capacity |         | unique    |  |          |     |          | to_ulong |
+ |                         | reserve  |         | merge     /  |          |     |          | to_string|
+ |                         |          |         | sort     /   |          |     |          | test     |
+ |                         |          |         | reverse |    |          |     |          | any/none |
+ +-------------------------+------------------------------+--------------------------------+----------+
+

@@ -17,10 +17,10 @@ public:
     d2Vector (int, int);
     int     getX (void);    // inline
     int     getY (void);    // inline
-    int     XX (void);      // overload
-    void    XX (int);       // overload
-    int     YY (void);      // overload
-    void    YY (int);       // overload
+    int     XX (void);      // accessors (overload function)
+    void    XX (int);       // mutators  (overload function)
+    int     YY (void);      // accessors (overload function)
+    void    YY (int);       // mutators  (overload function)
 };
 
 d2Vector :: d2Vector (void)
