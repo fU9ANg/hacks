@@ -37,7 +37,7 @@ int any (char *s1, char *s2)
     return (-1);
 }
 
-int getline (char *s, int max)
+int get_line (char *s, int max)
 {
     int  i=0;
     char c;
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
     char line[MAXLEN], *p=NULL;
     int  l=0, num=0;
 
-    while ((l=getline(line, MAXLEN)) > 0) {
+    while ((l=get_line(line, MAXLEN)) > 0) {
         num++;
         printf ("line:%-2d, first location=%3d\n", num, any (line, "string"));
     }

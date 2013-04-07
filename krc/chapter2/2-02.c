@@ -23,7 +23,7 @@ join (char d[], char s[])
 }
 
 int
-getline (char d[], int max)
+get_line (char d[], int max)
 {
     int  i;
     char c;
@@ -84,7 +84,7 @@ main ()
     char line [MAXLEN];
     char tmp1 [MAXLEN], *tmp2=NULL, *tmp3=NULL, *tmp4=NULL;
 
-    while ((l=getline (line, MAXLEN))>0) {
+    while ((l=get_line (line, MAXLEN))>0) {
         if ((strrchr (line, '\n')) && (tmp2==NULL)) {
             if ((l>max) && (tmp3==NULL)) {
                 max=l;

@@ -8,7 +8,7 @@
 /* Question: `What do you think of the word 'f**king', and why?' */
 /* Answer  : `That's my favorite word.' */
 int
-getline (char d[], int max)
+get_line (char d[], int max)
 {
     int  i;
     char c;
@@ -36,7 +36,7 @@ main ()
     int  l, i=0, n;
     char line [MAXLEN], *p=NULL;
 
-    while ((l=getline (line, MAXLEN))>0) {
+    while ((l=get_line (line, MAXLEN))>0) {
         p=&line[0];
         i=0;
         n=0;
