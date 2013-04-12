@@ -1,0 +1,16 @@
+div#logo {
+	display: block;
+}
+
+.menulink {
+	font-size: 9pt;
+	background: #990000;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+a.menulink,a.menulink:active,a.menulink:link,a.menulink:visited,a.menulink:hover {
+	background: #990000;
+	color: #ffffff;
+	text-decoration: none;
+}

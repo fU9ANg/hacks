@@ -1,0 +1,25 @@
+emacs TAB&空格缩进配置、命令
+来源: ChinaUnix博客 　日期： 2009.07.03 15:02　(共有0条评论) 我要评论
+ 
+
+最近在使用emacs（不是xemacs,不是gtk-emacs)编写C程序，碰到的前辈同样遇到的问题：缩进用TAB还是空格的问题。
+默认情况下emacs是使用TAB的，下面的配置语句可设定所有遇到TAB的地方都使用适当个数的空格缩进（写到配置文件~/.emacs中）：
+(setq-default indent-tabs-mode  nil)
+另外还认识了两个命令：
+M-x tabify 将所有超过两个的连接空格使用TAB替换掉。
+M-x untabify 将所有TAB使用适当个数的空格替换掉。
+emacs 功能强大，现在越用越顺手了。
+本人的使用感觉，它只是个简单的编译器，还是一个带强大编译功能的强大的开发IDE。
+在网上搜索了半天没有找到答案，硬是去看了点emacs英文手册才搞定的，看来还是有问题查手册啊。
+emacs 在Mark Set 间跳转快捷键：
+C-u C-@ 在本缓冲区中根据Mark Set的顺序依次向后跳转。
+C-x C-@ 在全局中根据Mark Set的顺序依次向后跳转。
+使用imenu命令跳转到当前文件中的函数：
+M-x imenu RET
+* 清理代码中的不必要的空格和TAB
+如果代码文件最后面，或者行尾有很多的不必要的空格，并且你就是完美主义
+者，有洁癖，那么可以使用 whitespace-buffer 看一下当前buffer中有哪些“垃圾”。如果要清理，简单的使用 whitespace-cleanup 就可以了。
+# Emacs替换^M
+遇到用Emacs打开的文件都有^M, 这个应该是Mac机产生的换行符(这样的代码看起来会死人的),以为简单的m-x repl RET s RET在输入^M替换一下就可以,但是很快发现,这个办法根本不行, ^M这个根本不是输入的研究了一下, 终于找到了办法:
+1.C-x RET c undecided-unix RET C-x C-w RET y
+2.M-S 

@@ -1,0 +1,1880 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<!-- dir="LTR" -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link rel="top" href="http://www.freebsdchina.org/forum/index.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" title="FreeBSD China">
+<link rel="search" href="http://www.freebsdchina.org/forum/search.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" title="搜索">
+<link rel="help" href="http://www.freebsdchina.org/forum/faq.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" title="常见问题">
+<link rel="author" href="http://www.freebsdchina.org/forum/memberlist.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" title="会员列表">
+<link rel="prev" href="http://www.freebsdchina.org/forum/viewtopic.php?t=37658&amp;view=previous&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="阅读上一个主题">
+<link rel="next" href="http://www.freebsdchina.org/forum/viewtopic.php?t=37658&amp;view=next&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="阅读下一个主题">
+<link rel="up" href="http://www.freebsdchina.org/forum/viewforum.php?f=77&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="应用天地">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=32&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="历史-文化-设计-实现">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=33&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="安装-配置-优化-安全">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=34&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="中文-桌面-开发-调试">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=82&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="社区公告">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=27&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="技术交流">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=65&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="初学指南">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=77&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="应用天地">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=68&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="编程天地">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=64&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="内核开发技术">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=58&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="设备驱动">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=3&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="休闲话题">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=69&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="软件发布">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=46&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="站长信箱">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=81&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="旧社区公告">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=50&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="中文文档计划">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=51&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="Chinese Ports 讨论">
+<link rel="chapter forum" href="http://www.freebsdchina.org/forum/viewforum.php?f=80&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" title="iPhone 开发频道">
+
+<title>[原创]emacs23指南 - FreeBSD China</title>
+<link rel="stylesheet" href="emacs-config_files/default_headbar.css" type="text/css">
+<link rel="stylesheet" href="emacs-config_files/subFreeBSD.css" type="text/css">
+<!-- base href="http://www.freebsdchina.org/forum/" -->
+</head><body link="#006699" text="#000000" vlink="#5493b4" bgcolor="#e5e5e5">
+
+<div id="logo" style="width: 99%; height: 40px;">
+        <a class="menulink" href="http://www.freebsdchina.org/"><img id="logo" src="emacs-config_files/logo_new.gif" alt="The FreeBSD China Community, 3,885 octets" style="float: left;" height="40" width="270" border="0"></a>
+        <div id="menu" style="margin: 20px 0pt 0pt; padding: 0pt 0pt 0pt 20px; background: rgb(153, 0, 0) url(/images/delta.gif) no-repeat scroll left center; text-align: right; -moz-background-clip: border; -moz-background-origin: padding; -moz-background-inline-policy: continuous; height: 20px; float: right;">
+        <span class="menulink" style="margin: 0pt 7px 0pt 0pt; padding: 0pt; line-height: 20px;">
+                <a class="menulink" href="http://www.freebsdchina.org/index.php">首页</a> |
+                <a class="menulink" href="http://wiki.freebsdchina.org/">Wiki</a> |
+                <a class="menulink" href="http://www.freebsdchina.org/index.php?open=1">中文论坛</a> |
+                <a class="menulink" href="http://www.freebsdchina.org/index.php?open=2">精华文章</a> |
+                <a class="menulink" href="http://www.freebsdchina.org/index.php?open=3">注册会员</a> |
+                <a class="menulink" href="http://www.freebsdchina.org/about/index.php?open=3">关于我们</a>
+        </span>
+        </div>
+</div>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td bgcolor="#ff6600"><img src="emacs-config_files/none.gif" alt="" height="1" width="760" border="0"></td>
+	</tr>
+</tbody></table>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td><img src="emacs-config_files/none.gif" alt="" height="4" width="760" border="0"></td>
+	</tr>
+</tbody></table>
+
+<a name="top"></a>
+
+<table width="100%" align="center" border="0" cellpadding="10" cellspacing="0">
+	<tbody><tr>
+		<td class="bodyline">
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody><tr>
+					<td valign="middle" width="100%" align="center">
+						<table border="0" cellpadding="2" cellspacing="0">
+							<tbody><tr>
+						<td nowrap="nowrap" valign="top" align="center"><span class="mainmenu">&nbsp;<a href="http://www.freebsdchina.org/forum/faq.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" class="mainmenu"><img src="emacs-config_files/icon_mini_faq.gif" alt="常见问题" height="13" hspace="3" width="12" border="0">常见问题</a>&nbsp; &nbsp;<a href="http://www.freebsdchina.org/forum/search.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" class="mainmenu"><img src="emacs-config_files/icon_mini_search.gif" alt="搜索" height="13" hspace="3" width="12" border="0">搜索</a>&nbsp; &nbsp;<a href="http://www.freebsdchina.org/forum/memberlist.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" class="mainmenu"><img src="emacs-config_files/icon_mini_members.gif" alt="会员列表" height="13" hspace="3" width="12" border="0">会员列表</a>&nbsp; &nbsp;<a href="http://www.freebsdchina.org/forum/groupcp.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" class="mainmenu"><img src="emacs-config_files/icon_mini_groups.gif" alt="团队" height="13" hspace="3" width="12" border="0">团队</a>&nbsp;
+						&nbsp;<a href="http://www.freebsdchina.org/forum/profile.php?mode=register&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" class="mainmenu"><img src="emacs-config_files/icon_mini_register.gif" alt="注册" height="13" hspace="3" width="12" border="0">注册</a>&nbsp;
+						</span>&nbsp;<span class="mainmenu">&nbsp;<a href="http://www.freebsdchina.org/forum/profile.php?mode=editprofile&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" class="mainmenu"><img src="emacs-config_files/icon_mini_profile.gif" alt="个人资料" height="13" hspace="3" width="12" border="0">个人资料</a>&nbsp; &nbsp;<a href="http://www.freebsdchina.org/forum/privmsg.php?folder=inbox&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" class="mainmenu"><img src="emacs-config_files/icon_mini_message.gif" alt="登录查看您的站内信件" height="13" hspace="3" width="12" border="0">登录查看您的站内信件</a>&nbsp; &nbsp;<a href="http://www.freebsdchina.org/forum/login.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" class="mainmenu"><img src="emacs-config_files/icon_mini_login.gif" alt="登录" height="13" hspace="3" width="12" border="0">登录</a>&nbsp;</span></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+			</tbody></table>
+		<br>
+
+
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+  <tbody><tr>
+	<td colspan="2" valign="bottom" align="left"><a class="maintitle" href="http://www.freebsdchina.org/forum/viewtopic.php?t=37658&amp;start=0&amp;postdays=0&amp;postorder=asc&amp;highlight=&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4">[原创]emacs23指南</a><br>
+	  <span class="gensmall"><b></b><br>
+	  &nbsp; </span></td>
+  </tr>
+</tbody></table>
+
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+  <tbody><tr>
+	<td nowrap="nowrap" valign="bottom" align="left"><span class="nav"><a href="http://www.freebsdchina.org/forum/posting.php?mode=newtopic&amp;f=77&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/post.gif" alt="发表新文章" align="middle" border="0"></a>&nbsp;&nbsp;&nbsp;<a href="http://www.freebsdchina.org/forum/posting.php?mode=reply&amp;t=37658&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/reply-locked.gif" alt="这个论题已经被锁定，您不能发表、回复或者编辑文章。" align="middle" border="0"></a></span></td>
+	<td valign="middle" width="100%" align="left"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="http://www.freebsdchina.org/forum/index.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" class="nav">FreeBSD China</a>
+	  -&gt; <a href="http://www.freebsdchina.org/forum/viewforum.php?f=77&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" class="nav">应用天地</a></span></td>
+  </tr>
+</tbody></table>
+
+<table class="forumline" width="100%" border="0" cellpadding="3" cellspacing="1">
+	<tbody><tr align="right">
+		<td class="catHead" colspan="2" height="28"><span class="nav"><a href="http://www.freebsdchina.org/forum/viewtopic.php?t=37658&amp;view=previous&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" class="nav">阅读上一个主题</a> :: <a href="http://www.freebsdchina.org/forum/viewtopic.php?t=37658&amp;view=next&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" class="nav">阅读下一个主题</a> &nbsp;</span></td>
+	</tr>
+	
+	<tr>
+		<th class="thLeft" height="26" nowrap="nowrap" width="150">作者</th>
+		<th class="thRight" nowrap="nowrap">留言</th>
+	</tr>
+	<tr>
+		<td class="row1" valign="top" width="150" align="left"><span class="name"><a name="202499"></a><b>Fixend</b></span><br><span class="postdetails">老妖<br><br><br>注册时间: 2006-11-11<br>文章: 1186<br>来自: 广州</span><br></td>
+		<td class="row1" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202499&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202499"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sun 2007-09-02 16:23:48<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: [原创]emacs23指南</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202499&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">1. 先安装tiff, ungif, xpm, jpeg, png, gtk, ncurses的开发包。
+<br>
+
+<br>
+2. 下载emacs23的代码
+<br>
+</span><table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>代码:</b></span></td>	</tr>	<tr>	  <td class="code">cvs -z3 -d:pserver:anonymous@cvs.savannah.gnu.org:/sources/emacs co -r emacs-unicode-2 emacs</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+3. </span><table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>代码:</b></span></td>	</tr>	<tr>	  <td class="code">$./configure
+--enable-font-backend --with-xft --with-freetype --with-gtk --with-xpm
+--with-gif --with-tiff --with-png --with-jpeg
+<br>
+$make bootstrap
+<br>
+$make
+<br>
+$su
+<br>
+#make install
+<br>
+#exit
+<br>
+</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+4. 安装wqy字体，在emacs下面wqy中文字体的效果比较好，当然你也可以用微软雅黑，我是桌面用微软雅黑，emacs用wqy。字体设置记得要添加到/etc/X11/xorg.conf中。
+<br>
+英文用dejavu sans mono字体，不要用雅黑的英文字体，雅黑的英文是非等宽字体，在其他软件中打开这些写好的代码会变形(字体的间距变了)。
+<br>
+
+<br>
+5. ~/.Xresources中添加
+<br>
+</span><table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>代码:</b></span></td>	</tr>	<tr>	  <td class="code">Emacs.FontBackend: xft
+<br>
+Xft.antialias: 1
+<br>
+Xft.hinting: 1
+<br>
+Xft.hintstyle: hintfull
+<br>
+Xft.rgba: rgb
+<br>
+</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+然后
+<br>
+</span><table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>代码:</b></span></td>	</tr>	<tr>	  <td class="code">
+<br>
+$xrdb -load ~/.Xresources
+<br>
+</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+6. 到www.xref-tech.com下载xref的1.x版，1.x版是免费的，2.x则要收费。
+<br>
+xref按f8有补全功能
+<br>
+
+<br>
+7. 到sf.net下载ecb, cedet, 解压代码, make all，
+<br>
+然后复制整个目录到/usr/local/share/emacs/site-lisp里面，并将目录改名为ecb, cedet。
+<br>
+
+<br>
+8. 安装cscope，网上下载xcscope.el，放到/usr/local/share/emacs/site-lisp
+<br>
+
+<br>
+9. 网上下载redo.el, 放到/usr/local/share/emacs/site-lisp
+<br>
+
+<br>
+10. 网上下载emacs-goodies-el，将里面的emacs-goodies-el目录放到/usr/local/share/emacs/site-lisp</span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row1" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a> <a href="mailto:Fixend@Gmail.com"><img src="emacs-config_files/icon_email.gif" alt="发送电子邮件" title="发送电子邮件" border="0"></a>    <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="top" width="150" align="left"><span class="name"><a name="202500"></a><b>Fixend</b></span><br><span class="postdetails">老妖<br><br><br>注册时间: 2006-11-11<br>文章: 1186<br>来自: 广州</span><br></td>
+		<td class="row2" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202500&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202500"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sun 2007-09-02 16:25:08<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202500&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">我的.emacs文件
+<br>
+</span><table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>代码:</b></span></td>	</tr>	<tr>	  <td class="code">
+<br>
+;; 字体设置
+<br>
+;; --------------------------------------------------------------------------
+<br>
+;; 定义字体集
+<br>
+(create-fontset-from-fontset-spec
+<br>
+&nbsp;"-*-dejavu sans mono-medium-r-normal--13-*-*-*-*-*-fontset-fixend")
+<br>
+
+<br>
+;; 设置默认字体
+<br>
+(set-default-font "fontset-fixend")
+<br>
+
+<br>
+;; 新建frame时也应用字体设置
+<br>
+(setq default-frame-alist
+<br>
+&nbsp; &nbsp; &nbsp; (append
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;'((font . "fontset-fixend")) default-frame-alist))
+<br>
+
+<br>
+;; 设置中文字体
+<br>
+(set-fontset-font
+<br>
+&nbsp;"fontset-default" nil
+<br>
+&nbsp;"-*-wenquanyi bitmap song-medium-*-normal--12-*-*-*-*-*-iso10646-1"
+<br>
+&nbsp;nil 'prepend)
+<br>
+
+<br>
+(set-fontset-font
+<br>
+&nbsp;"fontset-fixend" 'kana
+<br>
+&nbsp;"-*-wenquanyi bitmap song-medium-*-normal--12-*-*-*-*-*-iso10646-1"
+<br>
+&nbsp;nil 'prepend)
+<br>
+
+<br>
+(set-fontset-font
+<br>
+&nbsp;"fontset-fixend" 'han
+<br>
+&nbsp;"-*-wenquanyi bitmap song-medium-*-normal--12-*-*-*-*-*-iso10646-1"
+<br>
+&nbsp;nil 'prepend)
+<br>
+
+<br>
+(set-fontset-font
+<br>
+&nbsp;"fontset-fixend" 'cjk-misc
+<br>
+&nbsp;"-*-wenquanyi bitmap song-medium-*-normal--12-*-*-*-*-*-iso10646-1"
+<br>
+&nbsp;nil 'prepend)
+<br>
+
+<br>
+;; 屏幕设置
+<br>
+;; --------------------------------------------------------------------------
+<br>
+;; 全屏
+<br>
+(defun my-fullscreen ()
+<br>
+&nbsp; (interactive)
+<br>
+&nbsp; (x-send-client-message
+<br>
+&nbsp; &nbsp;nil 0 nil "_NET_WM_STATE" 32
+<br>
+&nbsp; &nbsp;'(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+<br>
+
+<br>
+;; 水平最大化
+<br>
+(defun my-maximized-horz ()
+<br>
+&nbsp; (interactive)
+<br>
+&nbsp; (x-send-client-message
+<br>
+&nbsp; &nbsp;nil 0 nil "_NET_WM_STATE" 32
+<br>
+&nbsp; &nbsp;'(1 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
+<br>
+
+<br>
+;; 垂直最大化
+<br>
+(defun my-maximized-vert ()
+<br>
+&nbsp; (interactive)
+<br>
+&nbsp; (x-send-client-message
+<br>
+&nbsp; &nbsp;nil 0 nil "_NET_WM_STATE" 32
+<br>
+&nbsp; &nbsp;'(1 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
+<br>
+
+<br>
+;; 最大化
+<br>
+(defun my-maximized ()
+<br>
+&nbsp;(my-maximized-vert)
+<br>
+&nbsp;(my-maximized-horz))
+<br>
+
+<br>
+;; 启动时最大化
+<br>
+(cond 
+<br>
+&nbsp;((eq window-system 'x)
+<br>
+&nbsp; (my-maximized)
+<br>
+&nbsp;)
+<br>
+)
+<br>
+
+<br>
+;; 插件设置
+<br>
+;; --------------------------------------------------------------------------
+<br>
+;; el文件装载路径
+<br>
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/")
+<br>
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
+<br>
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/ecb/")
+<br>
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/emacs-goodies-el/")
+<br>
+
+<br>
+;; 如果在x-windows中, 另一个条件为(not window-system)
+<br>
+(cond ((eq window-system 'x)
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;;; 设置界面风格
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;(require 'color-theme)
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;(color-theme-classic)))
+<br>
+
+<br>
+;; 启用cedet
+<br>
+(load-file "/usr/local/share/emacs/site-lisp/cedet/common/cedet.el")
+<br>
+(semantic-load-enable-code-helpers)
+<br>
+;; (semantic-load-enable-guady-code-helpers)
+<br>
+
+<br>
+;; 启用tabbar标签插件
+<br>
+(require 'tabbar)
+<br>
+(tabbar-mode t)
+<br>
+
+<br>
+;; 设置ecb
+<br>
+(cond 
+<br>
+&nbsp;((eq window-system 'x)
+<br>
+&nbsp; (require 'ecb)
+<br>
+&nbsp; (setq ecb-auto-activate t
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;ecb-auto-compatibility-check nil 
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;ecb-version-check nil
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;ecb-tip-of-the-day nil)
+<br>
+&nbsp; (setq ecb-source-path 
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;(quote 
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp; ("/home/fixend/c"
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; "/home/fixend/cpp"
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; "/home/fixend/cc"
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; "/home/fixend"))) ; ecb代码路径
+<br>
+&nbsp;)
+<br>
+)
+<br>
+
+<br>
+;; 设置xref
+<br>
+;; Xrefactory configuration part ;;
+<br>
+(defvar xref-current-project nil) ;; can be also "my_project_name"
+<br>
+(defvar xref-key-binding 'global) ;; can be also 'local or 'none
+<br>
+(setq load-path (cons "/usr/local/share/xref/emacs" load-path))
+<br>
+(setq exec-path (cons "/usr/local/share/xref" exec-path))
+<br>
+(load "xrefactory")
+<br>
+;; end of Xrefactory configuration part ;;
+<br>
+(message "xrefactory loaded")
+<br>
+
+<br>
+;; 启用xcscope
+<br>
+(require 'xcscope)
+<br>
+
+<br>
+;; 加入会话功能
+<br>
+(require 'session)
+<br>
+(add-hook 'after-init-hook 'session-initialize)
+<br>
+(load "desktop")
+<br>
+(desktop-save-mode) 
+<br>
+
+<br>
+;; 启用ibuffer
+<br>
+(require 'ibuffer)
+<br>
+
+<br>
+;; 启用redo
+<br>
+(require 'redo)
+<br>
+(global-set-key ( kbd "C-.") 'redo) 
+<br>
+
+<br>
+;; 启用dired-x
+<br>
+(require 'dired-x)
+<br>
+
+<br>
+;; 补全，提示
+<br>
+;; --------------------------------------------------------------------------
+<br>
+;; 补全优先级
+<br>
+(autoload 'senator-try-expand-semantic "senator")
+<br>
+(setq hippie-expand-try-functions-list
+<br>
+&nbsp; &nbsp;&nbsp; '(
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;senator-try-expand-sematic
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;try-expand-dabbrev
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;try-expand-dabbrev-visible
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;try-expand-dabbrev-all-buffers
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;try-expand-dabbrev-from-kill
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;try-complete-file-name-partially
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;try-complete-file-name
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;try-expand-all-abbrevs
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;try-expand-list
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;try-expand-line
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;try-complete-lisp-symbol-partially
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;try-complete-lisp-symbol)) 
+<br>
+
+<br>
+;; gdb和shell设置
+<br>
+;; --------------------------------------------------------------------------
+<br>
+;; 非交互式编译
+<br>
+(defun do-compile ()
+<br>
+&nbsp; "Save buffers and start compile"
+<br>
+&nbsp; (interactive)
+<br>
+&nbsp; (save-some-buffers t)
+<br>
+&nbsp; (setq compilation-read-command nil)
+<br>
+&nbsp; (compile compile-command)
+<br>
+&nbsp; (setq compilation-read-command t)) 
+<br>
+
+<br>
+;; shell,gdb退出后，自动关闭该buffer
+<br>
+(defun kill-buffer-on-exit (process state)
+<br>
+&nbsp; (message "%s" state)
+<br>
+&nbsp; (if (or
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;(string-match "exited abnormally with code.*" state)
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;(string-match "finished" state))
+<br>
+&nbsp; &nbsp; &nbsp; (kill-buffer (current-buffer)))) 
+<br>
+
+<br>
+(defun sg-mode-hook-func ()
+<br>
+&nbsp; (set-process-sentinel 
+<br>
+&nbsp; &nbsp;(get-buffer-process (current-buffer)) 
+<br>
+&nbsp; &nbsp;'kill-buffer-on-exit))
+<br>
+(add-hook 'shell-mode-hook 'sg-mode-hook-func)
+<br>
+(add-hook 'gdb-mode-hook 'sg-mode-hook-func)
+<br>
+
+<br>
+;; 跳转设置
+<br>
+;; --------------------------------------------------------------------------
+<br>
+;; 跳转函数，类似vi的f键
+<br>
+(defun wy-go-to-char (n char)
+<br>
+&nbsp; "Move forward to Nth occurence of CHAR.
+<br>
+Typing `wy-go-to-char-key' again will move forwad to the next Nth
+<br>
+occurence of CHAR."
+<br>
+&nbsp; (interactive "p\ncGo to char: ")
+<br>
+&nbsp; (search-forward (string char) nil nil n)
+<br>
+&nbsp; (while (char-equal (read-char)
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;char)
+<br>
+&nbsp; &nbsp; (search-forward (string char) nil nil n))
+<br>
+&nbsp; (setq unread-command-events (list last-input-event)))
+<br>
+
+<br>
+(define-key global-map (kbd "C-c a") 'wy-go-to-char)
+<br>
+
+<br>
+;; 普通设置
+<br>
+;; --------------------------------------------------------------------------
+<br>
+(cua-mode '(t nil (cua-base)))&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 启动cua复制粘贴模式
+<br>
+(tool-bar-mode nil)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;; 去丢工具栏
+<br>
+(column-number-mode t)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 显示列号
+<br>
+(global-font-lock-mode t)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;; 语法高亮
+<br>
+(show-paren-mode t)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;; 显示括号匹配
+<br>
+(transient-mark-mode t)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;; 高亮被选择的区域
+<br>
+(mouse-avoidance-mode 'animate)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;; 鼠标指针自动避开光标
+<br>
+
+<br>
+(setq inhibit-splash-screen t)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 禁止开机画面
+<br>
+(setq make-backup-files nil)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 不产生备份文件
+<br>
+(setq visible-bell t)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;; 关闭喇叭
+<br>
+(setq kill-whole-line t)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 在行首C-k时，同时删除该行
+<br>
+(setq x-select-enable-clipboard t)&nbsp; &nbsp; &nbsp; &nbsp; ; 支持emacs和外部程序的复制粘贴
+<br>
+(setq default-major-mode 'text-mode)&nbsp; &nbsp; &nbsp; ; 一打开就启用text模式
+<br>
+(setq default-tab-width 4)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 设置tab长度
+<br>
+(setq default-fill-column 80)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;; 设置默认列数
+<br>
+(setq-default indent-tabs-mode nil)&nbsp; &nbsp; &nbsp; &nbsp;; 用空格代替tab
+<br>
+(setq kill-ring-max 200)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 设置删除纪录
+<br>
+(setq require-final-newline t)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 文件必须以空行结束
+<br>
+(setq show-paren-style 'parentheses)&nbsp; &nbsp; &nbsp; ; 设置括号匹配的方式
+<br>
+(setq dired-recursive-deletes t)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 可以递归地删除目录
+<br>
+(setq dired-recursive-copies t)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;; 可以递归地进行目录拷贝
+<br>
+(setq bookmark-default-file "~/.emacs.d/.emacs.bmk")&nbsp; ; 书签文件的路径及文件名
+<br>(setq bookmark-save-flag t)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;;
+自动保存/读取书签
+<br>
+
+<br>
+;; 改变 Emacs 固执的要你回答 yes 的行为。按 y 或空格键表示 yes，n 表示 no
+<br>
+(fset 'yes-or-no-p 'y-or-n-p)
+<br>
+
+<br>
+;; 解决emacs shell显示问题
+<br>
+(setq ansi-color-for-comint-mode t)
+<br>
+(customize-group 'ansi-colors)
+<br>
+(kill-this-buffer) ; 关闭设置所产生的定制窗口
+<br>
+
+<br>
+;; c-mode设置
+<br>
+;; --------------------------------------------------------------------------
+<br>
+;; c-mode公共设置
+<br>
+(defun my-c-mode-common-hook ()
+<br>
+&nbsp; (setq default-tab-width 4)
+<br>
+&nbsp; (setq tab-width 4)
+<br>
+&nbsp; (setq c-basic-offset 4)
+<br>
+&nbsp; (hs-minor-mode t))
+<br>
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+<br>
+
+<br>
+;; C语言设置
+<br>
+(defun my-c-mode-hook ()
+<br>
+&nbsp; (c-set-style "cc-mode"))
+<br>
+(add-hook 'c-mode-hook 'my-c-mode-hook)
+<br>
+
+<br>
+;; C++设置
+<br>
+(defun my-c++-mode-hook ()
+<br>
+&nbsp; (c-set-style "stroustrup"))
+<br>
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+<br>
+
+<br>
+;; 快捷键设置
+<br>
+;; --------------------------------------------------------------------------
+<br>(global-set-key [f1] 'shell)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ;
+进入shell
+<br>(global-set-key [C-f9] 'gdb)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ;
+调试
+<br>
+(setq compile-command "make -f Makefile")&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;; 编译
+<br>
+(global-set-key [f9] 'do-compile)
+<br>(global-set-key [f10] 'speedbar)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 启动/关闭speedbar
+<br>
+
+<br>
+(global-set-key (kbd "M-\[") 'hs-hide-block)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 隐藏块
+<br>
+(global-set-key (kbd "M-\]") 'hs-show-block)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 显示块
+<br>
+(global-set-key [C-f12] 'comment-or-uncomment-region)&nbsp; &nbsp; &nbsp;; 注释 / 取消注释
+<br>
+(global-set-key [f12] 'c-indent-line-or-region)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;; 格式化代码
+<br>
+
+<br>
+(global-set-key (kbd "C-`") 'ecb-goto-window-sources)&nbsp; &nbsp; &nbsp;; 切换到ecb sources窗口
+<br>
+(global-set-key [C-tab] 'other-window)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 切换窗口
+<br>
+(global-set-key [M-return] 'delete-other-windows)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;; 关闭其他窗口
+<br>
+(global-set-key "\C-xk" 'kill-this-buffer)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 关闭当前buffer
+<br>
+(global-set-key (kbd "s-SPC") 'set-mark-command)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ; 改变set mark键
+<br>
+
+<br>
+;; 补全命令
+<br>
+(global-set-key [M-/] 'hippie-expand)
+<br>
+(global-set-key "\C-\\" 'semantic-ia-complete-symbol-menu)
+<br>
+
+<br>
+;; 显示buffer列表
+<br>
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+<br>
+
+<br>
+;; 跳转到当前目录的Dired
+<br>
+(global-set-key "\C-x\C-j" 'dired-jump)
+<br>
+
+<br>
+;; 跳转到寄存器指定的位置
+<br>
+(global-set-key "\C-xj" 'jump-to-register)
+<br>
+
+<br>
+;; 跳转到全局定义
+<br>
+(global-set-key "\C-xg" 'cscope-find-global-definition-no-prompting)
+<br>
+
+<br>
+;; emacs自动生成的设置
+<br>
+;; --------------------------------------------------------------------------
+<br>
+(custom-set-variables
+<br>
+&nbsp;;; custom-set-variables was added by Custom.
+<br>
+&nbsp;;; If you edit it by hand, you could mess it up, so be careful.
+<br>
+&nbsp;;; Your init file should contain only one such instance.
+<br>
+&nbsp;;; If there is more than one, they won't work right.
+<br>
+&nbsp;)
+<br>
+
+<br>
+(custom-set-faces
+<br>
+&nbsp;;; custom-set-faces was added by Custom.
+<br>
+&nbsp;;; If you edit it by hand, you could mess it up, so be careful.
+<br>
+&nbsp;;; Your init file should contain only one such instance.
+<br>
+&nbsp;;; If there is more than one, they won't work right.
+<br>
+&nbsp;)
+<br>
+
+<br>
+</td>	</tr></tbody></table><span class="postbody"></span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row2" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a> <a href="mailto:Fixend@Gmail.com"><img src="emacs-config_files/icon_email.gif" alt="发送电子邮件" title="发送电子邮件" border="0"></a>    <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="top" width="150" align="left"><span class="name"><a name="202501"></a><b>Fixend</b></span><br><span class="postdetails">老妖<br><br><br>注册时间: 2006-11-11<br>文章: 1186<br>来自: 广州</span><br></td>
+		<td class="row1" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202501&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202501"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sun 2007-09-02 16:58:21<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202501&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">命令速查
+<br>
+
+<br>
+</span><table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>代码:</b></span></td>	</tr>	<tr>	  <td class="code">
+<br>
+程序
+<br>
+C-x C-z 挂起程序
+<br>
+C-c C-x 退出程序
+<br>
+C-c k&nbsp; &nbsp;关闭buffer
+<br>
+C-l&nbsp; &nbsp; &nbsp;重画屏幕
+<br>
+C-g&nbsp; &nbsp; &nbsp;结束命令，或者假死中恢复，也可以按3次ESC
+<br>
+
+<br>
+文件
+<br>
+C-x C-s 保存
+<br>
+C-x C-w 另存为
+<br>
+C-x C-f 打开文件
+<br>
+C-x C-r 只读方式打开
+<br>
+C-x C-v 读入另外一个文件代替当前buffer的文件
+<br>
+C-x s&nbsp; &nbsp;保存所有
+<br>
+C-x i&nbsp; &nbsp;将文件的内容插入
+<br>
+M-x revert-buffer&nbsp; &nbsp; 恢复到原始状态
+<br>
+
+<br>
+跳转
+<br>
+前/后&nbsp; &nbsp; &nbsp;单位
+<br>
+C-f/b&nbsp; &nbsp; 字
+<br>
+M-f/b&nbsp; &nbsp; 词
+<br>
+C-a/e&nbsp; &nbsp; 行内
+<br>
+M-a/e&nbsp; &nbsp; 句
+<br>
+M-&lt;/&gt;&nbsp; &nbsp; 文档
+<br>
+C-p/n&nbsp; &nbsp; 行间
+<br>
+M-{/}&nbsp; &nbsp; 段落
+<br>
+C-x ]/[&nbsp; 页
+<br>
+C-x C-x&nbsp; 文件内，mark之间
+<br>
+
+<br>
+M-g g&nbsp; 跳到指定行
+<br>
+M-x goto-char 跳到指定字符
+<br>
+
+<br>
+编辑
+<br>
+M-u&nbsp; &nbsp; &nbsp; &nbsp;后面单词变为大写
+<br>
+M-l&nbsp; &nbsp; &nbsp; &nbsp;后面单词变为小写
+<br>
+M-c&nbsp; &nbsp; &nbsp; &nbsp;后面单词的首字母变大写
+<br>
+M-/&nbsp; &nbsp; &nbsp; &nbsp;补全
+<br>
+C-j&nbsp; &nbsp; &nbsp; &nbsp;从当前位置分成两行,相当于RET + tab
+<br>
+M-(&nbsp; &nbsp; &nbsp; &nbsp;插入()
+<br>
+C-q tab&nbsp; &nbsp;插入tab
+<br>
+C-q C-m&nbsp; &nbsp;插入^M
+<br>
+M-;&nbsp; &nbsp; &nbsp; &nbsp;插入注释
+<br>
+C-o&nbsp; &nbsp; &nbsp; &nbsp;回车
+<br>
+
+<br>
+删除
+<br>
+M-d&nbsp; &nbsp;后一词
+<br>
+C-d&nbsp; &nbsp;后一字
+<br>
+M-del 前一词
+<br>
+M-k&nbsp; &nbsp;到句尾
+<br>
+M-\&nbsp; &nbsp;前面的所有空白
+<br>
+M-z&nbsp; &nbsp;删到指定字母处
+<br>
+C-k&nbsp; &nbsp;删除到行尾
+<br>
+
+<br>
+文本换位
+<br>
+C-t&nbsp; &nbsp; &nbsp; &nbsp; 字符
+<br>
+M-t&nbsp; &nbsp; &nbsp; &nbsp; 单词
+<br>
+C-x C-t&nbsp; &nbsp; 行
+<br>
+M-x transpose-* 其他命令
+<br>
+
+<br>
+撤销
+<br>
+C-/
+<br>
+C-x u
+<br>
+C-_
+<br>
+C-z
+<br>
+
+<br>
+重做
+<br>
+C-g M-x undo 
+<br>
+C-g C-/
+<br>
+C-g C-z
+<br>
+C-g C-_
+<br>
+
+<br>
+粘贴
+<br>
+C-y
+<br>
+C-v
+<br>
+
+<br>
+tab/空格转换
+<br>
+M-x tabify
+<br>
+M-x untabify
+<br>
+
+<br>
+让选择的区块自动对齐
+<br>
+M-x indent-region
+<br>
+
+<br>
+其他命令
+<br>
+C-u &lt;数字&gt; &lt;命令&gt; 重复命令n次
+<br>
+M-&lt;数字&gt;&nbsp; &nbsp;&lt;命令&gt; 同上
+<br>
+M-!&nbsp; &nbsp; &nbsp;运行shell命令
+<br>
+C-u M-! 执行一条外部命令，并输出到光标位置
+<br>
+M-x cd&nbsp; 改变工作目录
+<br>
+M-x pwd 当前工作目录
+<br>
+
+<br>
+C-\ 启动输入法
+<br>
+M-` 菜单
+<br>
+F10 菜单
+<br>
+M-x eval-buffer 在.emacs的buffer中运行，重新加载emacs配置
+<br>
+
+<br>
+查找替换
+<br>
+----------------------------------------------------------------------
+<br>
+C-r 向上查找
+<br>
+C-s 向下查找
+<br>
+C-s C-w 向下查找，光标位置的单词作为查找字符串
+<br>
+C-s C-y 向下查找，光标位置到行尾作为查找字符串
+<br>
+C-s RET &lt;查找字符串&gt; RET&nbsp; &nbsp;非递增查找
+<br>
+C-s RET C-w&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 不受换行、空格、标点影响
+<br>
+C-M-s&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 正则式向下查找
+<br>
+用向上查找命令就将上面命令的s替换为r
+<br>
+
+<br>
+M-%&nbsp; &nbsp;替换
+<br>
+C-M-% 正则式替换
+<br>
+&nbsp;y 替换当前的字符串并移动到下一个字符串 
+<br>
+&nbsp;n 不替换当前字符串，直接移动到下一个字符串
+<br>
+&nbsp;! 进行全局替换，并要求不再显示 
+<br>
+&nbsp;. 替换当前字符串，然后退出查找替换操作
+<br>
+&nbsp;q 退出查找替换操作，光标定位到操作开始时的位置
+<br>
+
+<br>
+其他命令
+<br>
+M-x replace-*
+<br>
+M-x search-*
+<br>
+
+<br>
+窗口
+<br>
+C-x 0 关掉当前窗口
+<br>
+C-x 1 关掉其他窗口
+<br>
+C-x o 切换窗口
+<br>
+C-x 2 水平两分窗口
+<br>
+C-x 3 垂直两分窗口
+<br>
+C-x 5 2 新frame
+<br>
+
+<br>
+buffer
+<br>
+C-x C-b&nbsp; &nbsp; &nbsp; &nbsp; 查看
+<br>
+C-x b&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 切换
+<br>
+C-x C-q&nbsp; &nbsp; &nbsp; &nbsp; 设为只读
+<br>
+C-x k&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 删除
+<br>
+C-x left/right 切换
+<br>
+
+<br>
+翻页
+<br>
+C-v 下一页
+<br>
+M-v 上一页
+<br>
+
+<br>
+选择
+<br>
+M-h&nbsp; &nbsp; &nbsp;选择段落
+<br>
+C-x h&nbsp; &nbsp;全部选择
+<br>
+
+<br>
+普通区块
+<br>
+C-SPC&nbsp; &nbsp;M-x set-mark-command 单个位置set mark
+<br>
+C-@&nbsp; &nbsp; &nbsp;同上
+<br>
+M-@&nbsp; &nbsp; &nbsp;对word进行set Mark
+<br>
+M-w&nbsp; &nbsp; &nbsp;先set Mark，移到光标，M-w就可以复制
+<br>
+C-w&nbsp; &nbsp; &nbsp;剪切
+<br>
+
+<br>
+矩形区块
+<br>
+用这些快捷键要先关闭cua-mode
+<br>
+C-x r t&nbsp; &nbsp; &nbsp; 用串填充矩形区域
+<br>
+C-x r o&nbsp; &nbsp; &nbsp; 插入空白的矩形区域
+<br>
+C-x r y&nbsp; &nbsp; &nbsp; 插入之前删除的矩形区域, 粘贴时，矩形左上角对齐光标
+<br>
+C-x r k&nbsp; &nbsp; &nbsp; 删除矩形区域
+<br>
+C-x r c&nbsp; &nbsp; &nbsp; 将当前矩形区域清空
+<br>
+
+<br>
+寄存器
+<br>
+----------------------------------------------------------------------
+<br>
+光标位置和窗口状态
+<br>
+C-x r SPC &lt;寄存器名&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;存贮光标位置
+<br>
+C-x r w &lt;寄存器名&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;保存当前窗口状态
+<br>
+C-x r f &lt;寄存器名&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;保存所有窗口状态
+<br>
+C-x r j &lt;寄存器名&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;光标跳转
+<br>
+
+<br>
+文本和数字
+<br>
+C-x r s &lt;寄存器名&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;将连续区块拷贝到寄存器中
+<br>
+C-x r r &lt;寄存器名&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;将矩形区块拷贝到寄存器中
+<br>
+C-u &lt;数字&gt; C-x r n &lt;寄存器名&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;将数字拷贝到寄存器中
+<br>
+C-x r i &lt;寄存器名&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;在缓冲区中插入寄存器内容
+<br>
+M-x view-register&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;查看寄存器内容
+<br>
+M-x list-registers&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 查看寄存器列表
+<br>
+
+<br>
+宏模式
+<br>
+C-x (&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 开始一个宏的定义
+<br>
+C-x )&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 结束一个宏的定义
+<br>
+C-x e&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 执行宏
+<br>
+M-x name-last-kbd-macro&nbsp; 给最后一个宏命名
+<br>
+M-x insert-kbd-macro&nbsp; &nbsp; &nbsp;在当前文件中插入一个已定义并命名过的宏
+<br>
+
+<br>
+书签
+<br>
+C-x r m &lt;name&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;设置书签
+<br>
+C-x r b &lt;name&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;跳转到书签
+<br>
+C-x r l&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 书签列表
+<br>
+M-x bookmark-delete&nbsp; &nbsp; &nbsp; 删除书签
+<br>
+M-x bookmark-load&nbsp; &nbsp; &nbsp; &nbsp; 读取存储书签文件
+<br>
+M-x bookmark-save&nbsp; &nbsp; &nbsp; &nbsp; 保存到文件
+<br>
+
+<br>
+目录模式
+<br>
+----------------------------------------------------------------------
+<br>
+C-x d&nbsp; &nbsp; &nbsp;M-x dired&nbsp; &nbsp; &nbsp;启动目录模式
+<br>
+C-x C-d&nbsp; &nbsp;简单目录
+<br>
+h&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;帮助
+<br>
+?&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;简单帮助
+<br>
+请参考http://www.emacs.cn/Doc/Dired
+<br>
+
+<br>
+帮助
+<br>
+C-h k&nbsp; &nbsp; 显示你将按下的键执行的function. 
+<br>
+C-h f&nbsp; &nbsp; 列出function的功能说明。
+<br>
+C-h b&nbsp; &nbsp; 列出目前所有的快捷键。
+<br>
+C-h m&nbsp; &nbsp;列出目前的mode的特殊说明. 
+<br>
+C-c C-h 列出以C-c 开头的所有快捷键. 
+<br>
+</td>	</tr></tbody></table><span class="postbody"></span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row1" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a> <a href="mailto:Fixend@Gmail.com"><img src="emacs-config_files/icon_email.gif" alt="发送电子邮件" title="发送电子邮件" border="0"></a>    <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="top" width="150" align="left"><span class="name"><a name="202502"></a><b>kemean</b></span><br><span class="postdetails">半仙<br><br><br>注册时间: 2007-02-11<br>文章: 176<br></span><br></td>
+		<td class="row2" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202502&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202502"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sun 2007-09-02 17:22:32<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202502&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">占个位置先,慢慢看.</span><span class="postsign"><br>_________________<br>MSN:   <a href="mailto:bob.xb.li@hotmail.com">bob.xb.li@hotmail.com</a>   希望和大家多多交流</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row2" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=27728&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=27728&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a>     <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="top" width="150" align="left"><span class="name"><a name="202505"></a><b>Fixend</b></span><br><span class="postdetails">老妖<br><br><br>注册时间: 2006-11-11<br>文章: 1186<br>来自: 广州</span><br></td>
+		<td class="row1" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202505&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202505"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sun 2007-09-02 17:54:41<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202505&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">效果
+<br>
+<img src="emacs-config_files/29642_070902175216.html" border="0">
+<br>
+
+<br>
+
+<br>
+中文效果
+<br>
+<img src="emacs-config_files/29642_070902175250.html" border="0"></span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row1" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a> <a href="mailto:Fixend@Gmail.com"><img src="emacs-config_files/icon_email.gif" alt="发送电子邮件" title="发送电子邮件" border="0"></a>    <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="top" width="150" align="left"><span class="name"><a name="202506"></a><b>zp阿土</b></span><br><span class="postdetails">半仙<br><br><br>注册时间: 2003-12-26<br>文章: 172<br>来自: 西安</span><br></td>
+		<td class="row2" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202506&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202506"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sun 2007-09-02 20:11:58<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202506&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">终于搞定了
+<br>
+参考 参考</span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row2" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=6026&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=6026&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a> <a href="mailto:GhostZP10@hotmail.com"><img src="emacs-config_files/icon_email.gif" alt="发送电子邮件" title="发送电子邮件" border="0"></a>    <a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=6026&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_msnm.gif" alt="MSN Messenger" title="MSN Messenger" border="0"></a><script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="top" width="150" align="left"><span class="name"><a name="202629"></a><b>paranonia</b></span><br><span class="postdetails">半仙<br><br><br>注册时间: 2006-08-14<br>文章: 1<br></span><br></td>
+		<td class="row1" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202629&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202629"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Wed 2007-09-05 10:44:07<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202629&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">很有参考价值的文章,谢谢了!</span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row1" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=23987&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=23987&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a>     <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="top" width="150" align="left"><span class="name"><a name="202676"></a><b>acaimin</b></span><br><span class="postdetails">半仙<br><br><br>注册时间: 2006-11-16<br>文章: 42<br>来自: 海南</span><br></td>
+		<td class="row2" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202676&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202676"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Thu 2007-09-06 09:18:49<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202676&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">我也觉得非常好。。。。这个我看不懂。。。能说一下吗：
+<br>
+</span><table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>引用:</b></span></td>	</tr>	<tr>	  <td class="quote">1. 先安装tiff, ungif, xpm, jpeg, png, gtk, ncurses的开发包。 </td>	</tr></tbody></table><span class="postbody">
+<br>
+我在编译自己的emacs23的时候，就没有这一步啊啊。。。可是也能编译并安装了。。新手总是处处疑惑。。</span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row2" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=25990&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=25990&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a>     <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="top" width="150" align="left"><span class="name"><a name="202736"></a><b>Fixend</b></span><br><span class="postdetails">老妖<br><br><br>注册时间: 2006-11-11<br>文章: 1186<br>来自: 广州</span><br></td>
+		<td class="row1" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202736&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202736"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Thu 2007-09-06 21:34:18<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202736&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody"></span><table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>acaimin 写到:</b></span></td>	</tr>	<tr>	  <td class="quote">我也觉得非常好。。。。这个我看不懂。。。能说一下吗：
+<br>
+<table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>引用:</b></span></td>	</tr>	<tr>	  <td class="quote">1. 先安装tiff, ungif, xpm, jpeg, png, gtk, ncurses的开发包。 </td>	</tr></tbody></table><span class="postbody">
+<br>
+我在编译自己的emacs23的时候，就没有这一步啊啊。。。可是也能编译并安装了。。新手总是处处疑惑。。</span></td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+有些包不是必须的，如果没有安装也不会编译出错，只是有些功能不能用。
+<br>
+比如xpm没装上，工具栏的图标就只有黑白色。gtk没装上，你就不能有好看的图形界面。
+<br>
+
+<br>
+如果你之前用ports来make过东西，这些包很可能已经装上了。ports会自动处理依赖关系。</span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row1" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a> <a href="mailto:Fixend@Gmail.com"><img src="emacs-config_files/icon_email.gif" alt="发送电子邮件" title="发送电子邮件" border="0"></a>    <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="top" width="150" align="left"><span class="name"><a name="202835"></a><b>rolltech</b></span><br><span class="postdetails">道童<br><img src="emacs-config_files/1383097811486c4d586aa77.html" alt="" border="0"><br><br>注册时间: 2007-08-21<br>文章: 283<br></span><br></td>
+		<td class="row2" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202835&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202835"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sat 2007-09-08 00:22:13<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202835&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">我想把emacs装成这样:不管是在x11下，还是在终端、虚拟终端下，启动的emacs都是非gui的，不要emacs -nw,该怎么配置呢？
+<br>
+（因为我发现emacs在3种条件下启动后，绑定的快捷键不一样，烦！）</span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row2" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=32260&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=32260&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a>     <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="top" width="150" align="left"><span class="name"><a name="202839"></a><b>Fixend</b></span><br><span class="postdetails">老妖<br><br><br>注册时间: 2006-11-11<br>文章: 1186<br>来自: 广州</span><br></td>
+		<td class="row1" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202839&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202839"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sat 2007-09-08 09:18:59<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202839&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody"></span><table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>rolltech 写到:</b></span></td>	</tr>	<tr>	  <td class="quote">我想把emacs装成这样:不管是在x11下，还是在终端、虚拟终端下，启动的emacs都是非gui的，不要emacs -nw,该怎么配置呢？
+<br>
+（因为我发现emacs在3种条件下启动后，绑定的快捷键不一样，烦！）</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+最简单的方式：
+<br>
+如果你用csh，在.cshrc中添加
+<br>
+alias emacs 'emacs -nw'
+<br>
+
+<br>
+如果你用bash，在.bashrc中添加
+<br>
+alias emacs='emacs -nw'
+<br>
+
+<br>
+非gui的emacs不太好用，非gui下面我用zila的，和emacs的快捷键差不多，功能简单些，启动快。</span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row1" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a> <a href="mailto:Fixend@Gmail.com"><img src="emacs-config_files/icon_email.gif" alt="发送电子邮件" title="发送电子邮件" border="0"></a>    <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="top" width="150" align="left"><span class="name"><a name="202847"></a><b>rolltech</b></span><br><span class="postdetails">道童<br><img src="emacs-config_files/1383097811486c4d586aa77.html" alt="" border="0"><br><br>注册时间: 2007-08-21<br>文章: 283<br></span><br></td>
+		<td class="row2" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202847&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202847"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sat 2007-09-08 14:22:42<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202847&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">zila?没听说过，到要试试，不喜欢gui的emacs,是因为太难看了，要gui还不如kwrite</span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row2" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=32260&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=32260&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a>     <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="top" width="150" align="left"><span class="name"><a name="202875"></a><b>fender</b></span><br><span class="postdetails">半仙<br><img src="emacs-config_files/19199695924a02bf6122f24.jpg" alt="" border="0"><br><br>注册时间: 2007-03-16<br>文章: 102<br></span><br></td>
+		<td class="row1" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202875&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202875"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sun 2007-09-09 14:45:01<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202875&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">emacs能用中文的楷体显示吗？？？
+<br>
+
+<br>
+我想中文用楷体
+<br>
+
+<br>
+英文用等宽字体</span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row1" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=28638&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=28638&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a>     <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="top" width="150" align="left"><span class="name"><a name="202880"></a><b>Fixend</b></span><br><span class="postdetails">老妖<br><br><br>注册时间: 2006-11-11<br>文章: 1186<br>来自: 广州</span><br></td>
+		<td class="row2" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202880&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202880"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sun 2007-09-09 19:14:20<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202880&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody"></span><table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>fender 写到:</b></span></td>	</tr>	<tr>	  <td class="quote">emacs能用中文的楷体显示吗？？？
+<br>
+
+<br>
+我想中文用楷体
+<br>
+
+<br>
+英文用等宽字体</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+<a href="http://hi.baidu.com/laona/blog/item/1bdd8202d202ae0f4bfb51be.html" target="_blank">http://hi.baidu.com/laona/blog/item/1bdd8202d202ae0f4bfb51be.html</a></span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row2" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row2" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a> <a href="mailto:Fixend@Gmail.com"><img src="emacs-config_files/icon_email.gif" alt="发送电子邮件" title="发送电子邮件" border="0"></a>    <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="top" width="150" align="left"><span class="name"><a name="202881"></a><b>Fixend</b></span><br><span class="postdetails">老妖<br><br><br>注册时间: 2006-11-11<br>文章: 1186<br>来自: 广州</span><br></td>
+		<td class="row1" height="28" valign="top" width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td width="100%"><a href="http://www.freebsdchina.org/forum/viewtopic.php?p=202881&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4#202881"><img src="emacs-config_files/icon_minipost.gif" alt="文章" title="文章" height="9" width="12" border="0"></a><span class="postdetails">发表于: Sun 2007-09-09 19:14:44<span class="gen">&nbsp;</span>&nbsp; &nbsp;发表主题: </span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.freebsdchina.org/forum/posting.php?mode=quote&amp;p=202881&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_quote.gif" alt="引用并回复" title="引用并回复" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody"></span><table width="90%" align="center" border="0" cellpadding="3" cellspacing="1"><tbody><tr> 	  <td><span class="genmed"><b>rolltech 写到:</b></span></td>	</tr>	<tr>	  <td class="quote">zila?没听说过，到要试试，不喜欢gui的emacs,是因为太难看了，要gui还不如kwrite</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+改改就不难看了。</span><span class="postsign"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="row1" valign="middle" width="150" align="left"><span class="nav"><a href="#top" class="nav">返回页首</a></span></td>
+		<td class="row1" height="28" nowrap="nowrap" valign="bottom" width="100%"><table width="18" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td nowrap="nowrap" valign="middle"><a href="http://www.freebsdchina.org/forum/profile.php?mode=viewprofile&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_profile.gif" alt="阅览会员资料" title="阅览会员资料" border="0"></a> <a href="http://www.freebsdchina.org/forum/privmsg.php?mode=post&amp;u=25892&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/icon_pm.gif" alt="发送站内信件" title="发送站内信件" border="0"></a> <a href="mailto:Fixend@Gmail.com"><img src="emacs-config_files/icon_email.gif" alt="发送电子邮件" title="发送电子邮件" border="0"></a>    <script language="JavaScript" type="text/javascript"><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--></script></td><td>&nbsp;</td><td nowrap="nowrap" valign="top"><div style="position: relative;"><div style="position: absolute;"></div><div style="position: absolute; left: 3px; top: -1px;"></div></div><noscript></noscript></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="emacs-config_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr align="center">
+		<td class="catBottom" colspan="2" height="28"><table border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr><form method="post" action="viewtopic.php?t=37658&amp;start=0&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"></form>
+				<td align="center"><span class="gensmall">从以前的文章开始显示: <select name="postdays"><option value="0" selected="selected">所有文章</option><option value="1">1 天内</option><option value="7">7 天内</option><option value="14">2 星期内</option><option value="30">1 月内</option><option value="90">3 月内</option><option value="180">6 月内</option><option value="364">1 年内</option></select>&nbsp;<select name="postorder"><option value="asc" selected="selected">最旧的文章</option><option value="desc">最新的文章</option></select>&nbsp;<input value="转跳" class="liteoption" name="submit" type="submit"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table>
+
+<table width="100%" align="center" border="0" cellpadding="2" cellspacing="2">
+  <tbody><tr>
+	<td nowrap="nowrap" valign="middle" align="left"><span class="nav"><a href="http://www.freebsdchina.org/forum/posting.php?mode=newtopic&amp;f=77&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/post.gif" alt="发表新文章" align="middle" border="0"></a>&nbsp;&nbsp;&nbsp;<a href="http://www.freebsdchina.org/forum/posting.php?mode=reply&amp;t=37658&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4"><img src="emacs-config_files/reply-locked.gif" alt="这个论题已经被锁定，您不能发表、回复或者编辑文章。" align="middle" border="0"></a></span></td>
+	<td valign="middle" width="100%" align="left"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="http://www.freebsdchina.org/forum/index.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" class="nav">FreeBSD China</a>
+	  -&gt; <a href="http://www.freebsdchina.org/forum/viewforum.php?f=77&amp;sid=b5f2b3df99ae3f7167fb46548525dbb4" class="nav">应用天地</a></span></td>
+	<td nowrap="nowrap" valign="top" align="right"><span class="gensmall">论坛时间为 北京时间</span><br><span class="nav"></span>
+	  </td>
+  </tr>
+  <tr>
+	<td colspan="3" align="left"><span class="nav">第<b>1</b>页/共<b>1</b>页</span></td>
+  </tr>
+</tbody></table>
+
+<table width="100%" align="center" border="0" cellspacing="2">
+  <tbody><tr>
+	<td nowrap="nowrap" valign="top" width="40%" align="left"><span class="gensmall"></span><br>
+	  &nbsp;<br>
+	  </td>
+	<td nowrap="nowrap" valign="top" align="right">
+<form method="get" name="jumpbox" action="viewforum.php?sid=b5f2b3df99ae3f7167fb46548525dbb4" onsubmit="if(document.jumpbox.f.value == -1){return false;}"><table border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td nowrap="nowrap"><span class="gensmall">转跳到:&nbsp;<select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ forms['jumpbox'].submit() }"><option value="-1">选择一个版面</option><option value="-1">&nbsp;</option><option value="-1">精华文档</option><option value="-1">----------------</option><option value="32">历史-文化-设计-实现</option><option value="33">安装-配置-优化-安全</option><option value="34">中文-桌面-开发-调试</option><option value="-1">&nbsp;</option><option value="-1">社区论坛</option><option value="-1">----------------</option><option value="82">社区公告</option><option value="27">技术交流</option><option value="65">初学指南</option><option value="77" selected="selected">应用天地</option><option value="68">编程天地</option><option value="64">内核开发技术</option><option value="58">设备驱动</option><option value="3">休闲话题</option><option value="69">软件发布</option><option value="46">站长信箱</option><option value="81">旧社区公告</option><option value="-1">&nbsp;</option><option value="-1">FreeBSD中文计划</option><option value="-1">----------------</option><option value="50">中文文档计划</option><option value="51">Chinese Ports 讨论</option><option value="-1">&nbsp;</option><option value="-1">Mac开发者社区(MacGeeks.cn)</option><option value="-1">----------------</option><option value="80">iPhone 开发频道</option></select><input name="sid" value="b5f2b3df99ae3f7167fb46548525dbb4" type="hidden">&nbsp;<input value="转跳" class="liteoption" type="submit"></span></td>
+	</tr>
+</tbody></table></form>
+
+<span class="gensmall">您<b>不能</b>发布新主题<br>您<b>不能</b>在这个论坛回复主题<br>您<b>不能</b>在这个论坛编辑自己的文章<br>您<b>不能</b>在这个论坛删除自己的文章<br>您<b>不能</b>在这个论坛发表投票<br></span></td>
+  </tr>
+</tbody></table>
+
+
+<div align="center"><span class="copyright"><br><br>
+<!--
+	We request you retain the full copyright notice below including the link to www.phpbb.com.
+	This not only gives respect to the large amount of time given freely by the developers
+	but also helps build interest, traffic and use of phpBB 2.0. If you cannot (for good
+	reason) retain the full copyright we request you at least leave in place the
+	Powered by phpBB line, with phpBB linked to www.phpbb.com. If you refuse
+	to include even this then support on our forums may be affected.
+
+	The phpBB Group : 2002
+// -->
+Powered by <a href="http://www.os.org.cn/phpBB2023cc/" target="_blank" class="copyright">phpBB 2023cc</a> © 2003 <a href="http://www.os.org.cn/" target="_blank" class="copyright">Opensource Steps</a>; © 2003-2009 <a href="http://www.freebsd.org.cn/" target="_blank" class="copyright">The FreeBSD Simplified Chinese Project</a><br>
+Powered by <a href="http://www.phpbb.com/" target="_phpbb" class="copyright">phpBB</a> © 2001, 2005 phpBB Group<br></span></div>
+		</td>
+	</tr>
+</tbody></table>
+
+<table width="760" align="center" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td><img src="emacs-config_files/none.gif" alt="" height="8" width="760" border="0"></td>
+	</tr>
+</tbody></table>
+
+<table width="100%" align="center" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td valign="top" width="100%" align="left" bgcolor="#cccccc">
+			<table width="100%" cellpadding="4" cellspacing="1">
+				<tbody><tr>
+					<td class="gensmall" bgcolor="#f3f3f3">
+						The FreeBSD China Project 网站:
+						<a href="http://www.freebsd.org.cn/">中文计划网站</a>
+						<a href="http://www.freebsdchina.org/">社区网站</a>
+						<br>
+						The FreeBSD China Project 版权所有 (C) 1999 - 2003
+						<a href="http://www.freebsdchina.org/forum/about/design.php">网页设计版权</a>
+						<a href="http://www.freebsdchina.org/forum/about/owners.php">著作权和商标</a>
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="emacs-config_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6882014-4");
+pageTracker._setDomainName(".freebsdchina.org");
+pageTracker._trackPageview();
+} catch(err) </script>
+</body></html>
