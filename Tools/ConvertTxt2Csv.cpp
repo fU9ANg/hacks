@@ -25,74 +25,173 @@ typedef struct sFlags
 
 sFlags flags;
 
-void printTitleVector (void);
-void printKVMap (void);
-void clearKVMap (void);
+void outTitleVector (void);
+void outKvMap (map<string,string>* pMap);
 void outKvTable (void);
+void outCommon  (void);
+int  getLine (FILE* f, string& line);
+bool ConvertCsvToTxt (string line);
+bool ConvertTxtToCsv (string line);
 
 typedef vector<string> TitleVector;
-//typedef map<string, string>* KeyValueMap;
 typedef map<int, map<string, string>> KeyValueTable;
+
+string STR_IMPORT("import flash.utils.Dictionary;\n");
+string STR_VAR1("var ");
+string STR_VAR2(":Dictionary = new Dictionary();\n");
 
 TitleVector titleVector;
 TitleVector titleVector2;
-TitleVector* pTitleVector;
-//KeyValueMap kvMap;
+TitleVector* pTitleVector = &titleVector;
 map<string, string> kvMap;
 KeyValueTable kvTable;
 int isUpdateTitle = 1;
-string strIndex;
+string strIndex = "";
 FILE* fo = NULL;
 
 #define ISCSVFILE  strstr (strArgv.c_str(), ".csv")
 #define ISTXTFILE  strstr (strArgv.c_str(), ".txt")
+#define BUFF_SIZE  1024
+
+string strArgv, dstName;
 
 int isFirstLine  = 1;
-int iRecord = 1;
+int isArrayName  = 1;
+int iRecord = 0;
+int idxArray = 0;
+
 bool ConvertCsvToTxt (string line)
 {
-	cout << "in ConvertCsvToTxt" << endl;
-	getchar();
-	char Line[1024];
+	char Line[BUFF_SIZE];
 	unsigned int idex = 0;
 
-	memset (Line, 0x00, sizeof (Line));
-	strncpy (Line, line.c_str(), line.size());
+	(void) memset (Line, 0x00, sizeof (Line));
+#ifdef _WIN32
+	(void) strncpy_s (Line, line.c_str(), line.size());
+#else
+	(void) strncpy (Line, line.c_str(), line.size());
+#endif
 
-// 	if (isFirstLine == 1)
-// 	{
-		char* tokenPtr = strtok (Line, ",");
-		while (tokenPtr != NULL)
+	if (isArrayName == 1)
+	{
+		flags.sArrayName = "";
+		unsigned int i;
+		if ((i = line.find(',')) <= line.size())
+			flags.sArrayName += line.substr(0, i);
+		else
+			flags.sArrayName += line;
+		isArrayName = 0;
+		return (true);
+	}
+	// process format "'xxkjdfk,skdfjksdkfjskf', 1, 100" ->
+	// "'xxkjdfk skdfjksdkfjskf', 1, 100"
+	unsigned int ii;
+	unsigned int inTheString = 0;
+	unsigned int iflags = 0;
+	char         cChar;
+	for (ii=0; ii<line.size(); ii++)
+	{
+		if (inTheString == 0)
 		{
-			cout << "tokenPtr: " << tokenPtr << endl;
-			string sName(tokenPtr);
-			if (isFirstLine == 1)
+			if (line[ii] == '\'' ||\
+				line[ii] == '\"' ||\
+				line[ii] == '('  ||\
+				line[ii] == '{'  ||\
+				line[ii] == '[')
 			{
-				titleVector.push_back (sName);
+				if (iflags == 0) {
+					cChar = line[ii];
+					inTheString = 1;
+					iflags = 1;
+				}
 			}
-			else
-				kvMap.insert(pair<string, string>(titleVector[idex++], tokenPtr));
-			tokenPtr = strtok (NULL, ",");
-		}
-
-		if (isFirstLine == 1)
-		{
-			isFirstLine = 0;
 		}
 		else
 		{
-			kvTable.insert (pair<int, map<string, string>>(iRecord, kvMap));
-			kvMap.clear ();
+			if (line[ii] == '\'' ||\
+				line[ii] == '\"' ||\
+				line[ii] == ')'  ||\
+				line[ii] == '}'  ||\
+				line[ii] == ']')
+			{
+				if ((cChar == '(' && line[ii] == ')') ||\
+					(cChar == '[' && line[ii] == ']') ||\
+					(cChar == '{' && line[ii] == '}') ||\
+					(cChar == line[ii])) {
+						inTheString = 0;
+						iflags = 0;
+				}
+			}
 		}
-		
-		return true;
-		getchar();
-// 	}
-// 	else
-// 	{
-// 		// TODO:
-// 		return false;
-// 	}
+
+		if (line[ii] == ',' && inTheString == 1)
+			line[ii] = ' ';
+	}
+// 	cout << "process: line - " << line << endl;
+// 	getchar();
+	// split string format is "xxx,xxx,xxx,xxxxx"
+	char token[BUFF_SIZE];
+	unsigned int i = 0;
+	int  j = 0;
+	(void) memset (token, 0x00, sizeof (token));
+	for (i=0; i<line.size(); )
+	{
+		if (line[i] == ',')
+		{
+			if (token[0] == 0x00) {
+				idex++;
+				i++;
+				j = 0;
+				continue;
+			}
+			if (isFirstLine == 1)
+				titleVector.push_back(token);
+			else
+			{
+				// set field id to index of array
+				if (titleVector[idex] == "id")
+					idxArray = atoi (token);
+				kvMap.insert(pair<string,string>(titleVector[idex++], token));
+			}
+			(void) memset (token, 0x00, sizeof (token));
+			j = -1;
+		}
+		else
+		{
+			token[j] = line[i];
+		}
+
+		i++;
+		j++;
+	}
+	if (token[0] != 0x00)
+	{
+		if (isFirstLine == 1)
+			titleVector.push_back(token);
+		else
+		{
+			// set field id to index of array
+			if (titleVector[idex] == "id")
+				idxArray = atoi (token);
+			kvMap.insert(pair<string,string>(titleVector[idex++], token));
+		}
+	}
+
+
+	if (isFirstLine == 1)
+	{
+		isFirstLine = 0;
+	}
+	else
+	{
+		iRecord++;
+		kvTable.insert (pair<int, map<string, string>> \
+			(idxArray ? idxArray : iRecord, kvMap));
+		kvMap.clear ();
+	}
+
+//
+	return (true);
 }
 
 bool ConvertTxtToCsv (string line)
@@ -102,27 +201,14 @@ bool ConvertTxtToCsv (string line)
 
 	unsigned int iPos;
 
-// 	cout << "ConvertTxtToCsv\n" << line << endl;
-// 	getchar();
-
-	//flags.iBegin = 1;
 	if ((flags.iBegin == 0) && (!flags.sArrayName.empty()))
 	{
-		cout << "here: " << line << endl;
-		/*
-		cout << "[: " << line.find ('[') << " " << line.size() << endl;
-		cout << "]: " << line.find (']') << " " << line.size() << endl;
-		cout << "=: " << line.find ('=') << " " << line.size() << endl;
-		cout << "{: " << line.find ('{') << " " << line.size() << endl;
-		*/
 		if ((line.find ('[') < line.size()) &&
 			(line.find (']') < line.size()) &&
 			(line.find ('=') < line.size()) &&
 			(line.find ('{') < line.size()))
 		{
 			strIndex = line.substr(line.find('[')+1, line.find(']')-line.find('[')-1);
-			cout << "HRER" << " strIndex= " << strIndex <<":"<< endl;
-			//kvMap = new map<string, string>;
 			flags.iBegin = 1;
 			return (true);
 		}
@@ -133,7 +219,6 @@ bool ConvertTxtToCsv (string line)
 			(line.find (';') <=line.size()))
 		{
 			flags.iBegin = 0;
-			cout << "--------------------" << endl;
 			if (titleVector.size() > titleVector2.size())
 			{
 				pTitleVector = &titleVector;
@@ -146,38 +231,27 @@ bool ConvertTxtToCsv (string line)
 				isUpdateTitle = 1;
 				titleVector.clear();
 			}
-			cout << "insert_index:" << atoi(strIndex.c_str()) << endl;
+			
 			kvTable.insert(pair<int, map<string, string>>(atoi(strIndex.c_str()), kvMap));
+// 			cout << "}; kvTable.size(): " << kvTable.size() << endl;
+// 			getchar();
 			kvMap.clear();
 			strIndex.clear();
-			//printTitleVector();
-			//printKVMap();
-			//clearKVMap();
 			return (true);
 		}
 
-		if ((iPos = line.find (':')) > line.size())
-		{
-			return (true);
-		}
+		if ((iPos = line.find (':')) > line.size()) return (true);
 
 		strName = line.substr(0, iPos);
-		if ((iPos = line.find (':') + 1) > line.size())
-		{
-			return (true);
-		}
+		if ((iPos = line.find (':') + 1) > line.size()) return (true);
+
 		strValue = line.substr(iPos, line.size() - iPos);
 
 		if ((iPos = strValue.find(',')+1) == strValue.size())
 		{
-			cout << "size:" << strValue.size()<< endl;
 			strValue[strValue.size()-1] = 0x00;
 			strValue.resize(strValue.size()-1);
-			cout << "size:" << strValue.size()<< endl;
 		}
-		
-		//cout << "Name:" << strName << endl;
-		//cout << "Value:" << strValue << endl;
 		
 		if (isUpdateTitle == 1)
 		{
@@ -187,9 +261,20 @@ bool ConvertTxtToCsv (string line)
 		{
 			titleVector2.push_back(strName);
 		}
-		//kvMap->insert (pair<string, string>(strName, strValue));
+		// replace value ',' to ' £¬' of strValue (please fixme)
+		string searchString (",");
+		string replaceString (" ");
+
+		string::size_type pos = 0;
+		while ((pos = strValue.find(searchString, pos)) != string::npos) {
+			strValue.replace(pos, searchString.size(), replaceString);
+			pos++;
+		}
+// 		cout << "strName1: " << strName << endl;
+// 		cout << "strValue1:" << strValue << endl;
+// 		getchar();
+
 		kvMap.insert(pair<string,string>(strName,strValue));
-		//cout << "insert Map " << "Name: " << strName << "Value: " << strValue << endl;
 		
 
 		return (true);
@@ -197,90 +282,102 @@ bool ConvertTxtToCsv (string line)
 	else
 	{
 		//
-		if ((iPos = line.find (':')) > line.size())
-		{
-			return (true);
-		}
+		if ((iPos = line.find (':')) > line.size()) return (true);
 
 		strName = line.substr(4, iPos - 4);
 		if (!strName.empty())
 		{
 			flags.sArrayName = strName;
-			cout << flags.sArrayName << " ,,,,, " \
-				<< strName << endl;
 			return (true);
 		}
 	}
 
 	return (false);
 }
-#if 1
+
 void outKvMap (map<string,string>* pMap)
 {
 	TitleVector::iterator itVec;
 	map<string,string>::iterator itMap;
 	string sName;
-	//for (itVec = titleVector.begin(); itVec != titleVector.end(); itVec++)
+	unsigned int iMapCount = 0;
+
 	for (itVec = pTitleVector->begin(); itVec != pTitleVector->end(); itVec++)
 	{
-#if 1
 		itMap = pMap->find (*itVec);
 		if (itMap != pMap->end())
 		{
-			sName = itMap->second;
+			iMapCount++;
 			if (ISTXTFILE)
+			{
+				sName = itMap->second;
 				fwrite (sName.c_str(), sName.size(), 1, fo);
-			cout << itMap->second;
-			if ((itVec+1) != pTitleVector->end())
+			}
+
+			if (ISCSVFILE)
 			{
-				cout << ",";
+				sName = itMap->first;
+				sName += ":";
+				sName += itMap->second;
+				fwrite (sName.c_str(), sName.size(), 1, fo);
+				
+			}
+			if ((itVec+1) != pTitleVector->end()) // cout << ",";
+			{
 				if (ISTXTFILE)
 					fwrite (",", 1, 1, fo);
+				if (ISCSVFILE) {
+					if (iMapCount != pMap->size())
+						fwrite (",\n", 2, 1, fo);
+				}
 			}
 		}
-		else
+		else // cout << "-";
 		{
-			cout << "-";
-			if ((itVec+1) != pTitleVector->end())
+			if ((itVec+1) != pTitleVector->end()) // cout << ",";
 			{
-				cout << ",";
 				if (ISTXTFILE)
 					fwrite (",", 1, 1, fo);
 			}
 		}
 
-#else
-		cout << (*itVec) << endl;
-		for (itMap = pMap->begin(); itMap != pMap->end(); itMap++)
-		{
-			cout << endl << itMap->first << ":" << itMap->second << endl;
-		}
-#endif
 	}
-	cout << endl;
-	if (ISTXTFILE)
-		fwrite ("\n", 1, 1, fo);
-
+	if (ISCSVFILE) // cout << endl;
+		fwrite ("\n};", 3, 1, fo);
+	fwrite ("\n", 1, 1, fo);
 }
-#endif
+
 void outKvTable (void)
 {
+	string STR_ARRAYSIZE = "[";
+	char cStr[32];
+	memset (cStr, 0x00, sizeof (cStr));
+	int iArrayIndex = 0;
+
 	KeyValueTable::iterator ittab;
 	map<string, string> ::iterator it;
+
 	for (ittab = kvTable.begin(); ittab != kvTable.end(); ittab++)
 	{
-		outKvMap (&(ittab->second));
-#if 0
-		cout << "----" << endl << "index:" << ittab->first << endl;
-		for (it = ittab->second.begin(); it!=ittab->second.end(); it++)
+		if (ISCSVFILE)
 		{
-			cout << it->first << ":" << it->second << endl;
-		}
+			STR_ARRAYSIZE = "[";
+			memset (cStr, 0x00, sizeof (cStr));
+			fwrite (flags.sArrayName.c_str(), flags.sArrayName.size(), 1, fo);
+#ifdef _WIN32
+			sprintf_s (cStr, "%d", ittab->first);
+#else
+			sprintf (cStr, "%d", ittab->first);
 #endif
+			STR_ARRAYSIZE += cStr;
+			STR_ARRAYSIZE += "] = {\n";
+			fwrite (STR_ARRAYSIZE.c_str(), STR_ARRAYSIZE.size(), 1, fo);
+		}
+		outKvMap (&(ittab->second));
 	}
 }
 
-void printTitleVector ()
+void outTitleVector ()
 {
 	TitleVector::iterator vit;
 	if (pTitleVector == NULL) {
@@ -290,153 +387,123 @@ void printTitleVector ()
 	string sName;
 	for (vit = pTitleVector->begin(); vit != pTitleVector->end(); vit++)
 	{
-		cout << *vit;
 		sName = *vit;
 		if (ISTXTFILE)
 			fwrite (sName.c_str(), sName.size(), 1, fo);
 		if ((vit+1) != pTitleVector->end())
 		{
-			cout << ",";
 			if (ISTXTFILE)
 				fwrite (",", 1, 1, fo);
 		}
 	}
-	cout << endl;
+
 	if (ISTXTFILE)
 		fwrite ("\n", 1, 1, fo);
 }
-/*
-void printKVMap (void)
+
+void outCommon  (void)
 {
-	TitleVector::iterator vit;
-
-	KeyValueMap::iterator it;
-
-	for (vit = titleVector.begin(); vit != titleVector.end(); vit++)
+	if (flags.sArrayName.size())
 	{
-		it =  (kvMap.find (*vit));
-		if (it != kvMap.end())
+		if (ISTXTFILE)
 		{
-			cout << it->second;
-			if ((vit+1) != titleVector.end())
-				cout << ",";
+			fwrite (flags.sArrayName.c_str(), flags.sArrayName.size(), 1, fo);
+			fwrite ("\n", 1, 1, fo);
 		}
-		else
+		if (ISCSVFILE)
 		{
-			titleVector.push_back(it->first);
-			--vit;
+			fwrite (STR_IMPORT.c_str(), STR_IMPORT.size(), 1, fo);
+			fwrite (STR_VAR1.c_str(), STR_VAR1.size(), 1, fo);
+			fwrite (flags.sArrayName.c_str(), flags.sArrayName.size(), 1, fo);
+			fwrite (STR_VAR2.c_str(), STR_VAR2.size(), 1, fo);
 		}
 	}
-	cout << endl;
 }
 
-void clearKVMap (void)
-{
-	KeyValueMap::iterator it;
-	for (it = kvMap.begin(); it != kvMap.end(); it)
-	{
-		kvMap.erase (it++);
-	}
-}
-*/
-int getLine(FILE* f, string& line);
 int main (int argc, char** argv)
 {
 	(void) memset (&flags, 0x00, sizeof (sFlags));
-#if 0
-	if (argc != 2)
-	{
-		cout << "Usage: " << argv[0] << "<FileName>" << endl;
-		return (1);
-	}
-	cout << "FILENAME: " << argv[1] << endl;
 
-	FILE* fd;
-	char sssss[1000];
-	memset (sssss, 0x00, 1000);
-	char idx = 0;
-	int  ii = 0;
-	int jj = 0;
-	while ((idx = argv[1][jj++]) != 0x00)
-	{
-		sssss[ii++] = idx;
-		if (idx == '\\')
-		sssss[ii++] = '\\';
-	}
-
-	if ((fd = fopen("outoutout.txt", "r+")) < 0)
-	{
-		cout << "can't " << endl;
-	}
-	fwrite (sssss, strlen(sssss), 1, fd);
-	if (fd) fclose (fd);
-#endif
 	int iargc = 1;
 	unsigned int iargcPos;
-	string strArgv, dstName;
+	
 	for (;iargc < argc; iargc++)
 	{
 		strArgv.append (argv[iargc]);
 	}
 
-		iargcPos = strArgv.rfind ('.');
-		if (iargcPos < strArgv.size())
+	iargcPos = strArgv.rfind ('.');
+	if (iargcPos < strArgv.size())
+	{
+		dstName = strArgv.substr(0, iargcPos);
+		if (ISTXTFILE)
+			dstName.append(".csv");
+		else if (ISCSVFILE)
+			dstName.append(".txt");
+	}
+
+#if 1
+	string line;
+#ifdef _WIN32
+	FILE* f;
+	fopen_s(&f, strArgv.c_str(), "r");
+#else
+	FILE* f = fopen(strArgv.c_str(), "r");
+#endif
+	if (!f) {
+		cout << "can't open src file: '" << strArgv.c_str() << "'" << endl;
+		return 1;
+	} 
+	while (getLine (f, line))
+	{
+		if (line == "\r\n" || line == "\r" || line =="\n")
+			continue;
+
+		//delete '\n' of end of line
+		if (line[line.size()-1] == '\n')
 		{
-			dstName = strArgv.substr(0, iargcPos);
-			if (ISTXTFILE)
-				dstName.append(".csv");
-			else if (ISCSVFILE)
-				dstName.append(".txt");
+			line[line.size()-1] = 0x00;
+			line.resize(line.size()-1);
 		}
 
-		cout << strArgv << endl << dstName << endl ;
-		getchar();
-	#if 1
-		string line;
-		///fstream fin(strArgv.c_str());
-		FILE* f = fopen(strArgv.c_str(), "r");
-		if (!f) {
-			cout << "can't open src file" << endl;
-			return 1;
-		} 
-		while (getLine (f, line))
+		if (ISTXTFILE)
 		{
-			//line.c_str[line.size()] = '\n';
-			if (ISTXTFILE)
+			if (ConvertTxtToCsv(line) == false)
 			{
-				if (ConvertTxtToCsv(line) == false)
-				{
-					cout << "ERROR - line: '" << line << "'" << endl;
-					return (1);
-				}
+				cout << "ERROR - line: '" << line << "'" << endl;
+				return (1);
 			}
-			else
-			{
-				cout << "-------------" << endl;
-				if (ConvertCsvToTxt(line) == false)
-				{
-					cout << "ERROR - line: '" << line << "'" << endl;
-					return (1);
-				}
-			}
-			line = "";
-			//cout << "Size: " << line.size() << "Line: " << line << endl;
 		}
+		else
+		{
+			if (ConvertCsvToTxt(line) == false)
+			{
+				cout << "ERROR - line: '" << line << "'" << endl;
+				return (1);
+			}
+		}
+		line = "";
+	}
 
-		fo = fopen(dstName.c_str(), "w");
-		if (!fo) {
-			cout << "can't open dst file" << endl;
-			getchar();
-			return 1;
-		}
-		printTitleVector();
-		outKvTable();
+#ifdef _WIN32
+	fopen_s (&fo, dstName.c_str(), "w");
+#else
+	fo = fopen (dstName.c_str(), "w");
+#endif
+	if (!fo) {
+		cout << "can't open dst file: '" << dstName.c_str() << "'" << endl;
 		getchar();
-	#endif
-		if (f)
-			fclose(f);
-		if (fo)
-			fclose (fo);
+		return 1;
+	}
+	outCommon ();
+	outTitleVector ();
+	outKvTable ();
+
+#endif
+	if (f)
+		fclose(f);
+	if (fo)
+		fclose (fo);
 
 	return (0);
 }
@@ -444,10 +511,9 @@ int main (int argc, char** argv)
 
 int getLine(FILE* f, string& line)
 {
-	int c;
-	char buf[1024];
-	int i;
-
+	int  c;
+	int  i;
+	char buf[BUFF_SIZE];
 
 	line.clear();
 	memset(buf, 0, sizeof(buf));
@@ -455,10 +521,12 @@ int getLine(FILE* f, string& line)
 	while ((c = fgetc(f)) != EOF && c != '\n') {
 		buf[i++] = c;
 	}
+
+	if (c == '\n')
+		buf[i++] = '\n';
 	buf[i] = '\0';
+	
 	line.append(buf);
 
-	if (c == EOF)
-		return 0;
-	return 1;
+	return (i);
 }
