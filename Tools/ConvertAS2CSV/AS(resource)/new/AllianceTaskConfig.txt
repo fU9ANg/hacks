@@ -1,0 +1,53 @@
+import flash.utils.Dictionary;
+var AllianceTaskConfig:Dictionary = new Dictionary();
+AllianceTaskConfig[50001] = {
+id:50001,
+name:'帮派耳目',
+acceptNpc:132,
+submitNpc:132,
+acceptDialogue:[{up:"我们帮派耳目遍布江湖各地，资讯决定一切，现在劳烦你多走动走动！",down:"这是我应该做的！"}],
+unFinishDialogue:[{up:"少侠，帮派靠你了！",down:"我去去就回！"}],
+unSubmitDialogue:[{up:"江湖还是那么多腥风血雨，哪一天才到头呀，这次辛苦你了。",down:"没事，这次也让我长了见识。"}],
+taskDescription:'向帮派布置在江湖中的耳目索取江湖最新信息。',
+condition1:'1_122_1',
+content:'找$para1聊聊',
+completeCount:10,
+step1:'对话',
+donate:4,
+exp:'Math.floor(2*n1*n1+10*n1+100)',
+allianceSilver:'1000'
+};
+AllianceTaskConfig[50002] = {
+id:50002,
+name:'帮资补充',
+acceptNpc:132,
+submitNpc:132,
+acceptDialogue:[{up:"帮派斗争一直持续不停，要保持药资、物资的充足，以备不时之需。",down:"好!这只是小事一桩。"}],
+unFinishDialogue:[{up:"少侠，帮派靠你了！",down:"我去去就回！"}],
+unSubmitDialogue:[{up:"不错不错，这下子物资有充足了许多。",down:"哈哈，那就行。"}],
+taskDescription:'帮忙获取帮派急需的资源。',
+condition1:'10_901003_3',
+content:'采集$para1',
+completeCount:5,
+step1:'采集',
+donate:8,
+exp:'Math.floor(2*n1*n1+10*n1+100)',
+allianceSilver:'2000'
+};
+AllianceTaskConfig[50003] = {
+id:50003,
+name:'惩恶扬善',
+acceptNpc:132,
+submitNpc:132,
+acceptDialogue:[{up:"江湖恩仇多，侠士情义长。我们要多为老百姓做些事!",down:"是的，能力越大，责任越大"}],
+unFinishDialogue:[{up:"少侠，帮派靠你了！",down:"我去去就回！"}],
+unSubmitDialogue:[{up:"那附近应该安定了不少了，有劳少侠操心了。",down:"没事，保家卫国只是分内事。"}],
+taskDescription:'少侠赶紧去试试身手吧!',
+condition1:'3_3022_100',
+content:'杀死$para1名$para2',
+completeCount:5,
+step1:'杀怪',
+donate:9,
+exp:'Math.floor(2*n1*n1+10*n1+100)',
+allianceSilver:'2500'
+};

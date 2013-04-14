@@ -1,0 +1,1465 @@
+import flash.utils.Dictionary;
+var SkillEffectConfig:Dictionary = new Dictionary();
+SkillEffectConfig[1] = {
+id:1,
+skillId:1000,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'mj00_sj'
+};
+SkillEffectConfig[2] = {
+id:2,
+skillId:1004,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gb00_sj'
+};
+SkillEffectConfig[3] = {
+id:3,
+skillId:1005,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'tm00_sj'
+};
+SkillEffectConfig[4] = {
+id:4,
+skillId:1006,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'cy00_sj'
+};
+SkillEffectConfig[10000] = {
+id:10000,
+skillId:1007,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[10001] = {
+id:10001,
+skillId:1008,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[10002] = {
+id:10002,
+skillId:1009,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[10003] = {
+id:10003,
+skillId:1010,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[5] = {
+id:5,
+skillId:1,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'mj00_sj'
+};
+SkillEffectConfig[6] = {
+id:6,
+skillId:2,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'mj00_sj'
+};
+SkillEffectConfig[7] = {
+id:7,
+skillId:3,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'mj00_sj'
+};
+SkillEffectConfig[8] = {
+id:8,
+skillId:3,
+name:'中毒',
+effectType:204,
+description:'当前效果每2秒给予自身受到一定的伤害，效果持续6秒。',
+damageType:3,
+effect:'4',
+effectHit:'buff_zhongdu'
+};
+SkillEffectConfig[9] = {
+id:9,
+skillId:4,
+effectType:400,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'mj06_sj'
+};
+SkillEffectConfig[10] = {
+id:10,
+skillId:4,
+name:'定身',
+effectType:207,
+description:'当前效果使目标眩晕，持续2秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[11] = {
+id:11,
+skillId:5,
+name:'正气诀',
+effectType:108,
+description:'目标外功攻击力提升，持续3分钟',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[12] = {
+id:12,
+skillId:6,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'mj00_sj'
+};
+SkillEffectConfig[13] = {
+id:13,
+skillId:6,
+name:'虚弱',
+effectType:206,
+description:'当前效果减少目标移动速度，效果持续6秒。',
+damageType:0,
+effect:'4',
+effectHit:'buff_xuruo'
+};
+SkillEffectConfig[14] = {
+id:14,
+skillId:7,
+name:'猛虎式',
+effectType:108,
+description:'目标外功提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[15] = {
+id:15,
+skillId:8,
+name:'凝血诀',
+effectType:121,
+description:'目标生命上限提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[16] = {
+id:16,
+skillId:9,
+name:'金刚法',
+effectType:112,
+description:'目标外功暴击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[20] = {
+id:20,
+skillId:10,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'2',
+effectHit:'tm01_sj'
+};
+SkillEffectConfig[21] = {
+id:21,
+skillId:11,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'2',
+effectHit:'tm03_sj'
+};
+SkillEffectConfig[22] = {
+id:22,
+skillId:12,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'2',
+effectHit:'tm02_sj'
+};
+SkillEffectConfig[23] = {
+id:23,
+skillId:12,
+name:'中毒',
+effectType:204,
+description:'当前效果每2秒给予自身受到一定的伤害，效果持续6秒。',
+damageType:3,
+effect:'4',
+effectHit:'buff_yizhi'
+};
+SkillEffectConfig[24] = {
+id:24,
+skillId:13,
+effectType:402,
+description:'我是效果',
+damageType:1,
+effect:'5',
+effectHit:'tm06_sj'
+};
+SkillEffectConfig[25] = {
+id:25,
+skillId:13,
+name:'眩晕',
+effectType:207,
+description:'当前效果使目标眩晕，持续2秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuruo'
+};
+SkillEffectConfig[26] = {
+id:26,
+skillId:14,
+name:'般若',
+effectType:108,
+description:'目标外功提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[27] = {
+id:27,
+skillId:15,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'2',
+effectHit:'tm05_sj'
+};
+SkillEffectConfig[28] = {
+id:28,
+skillId:16,
+name:'般若禅',
+effectType:108,
+description:'目标外功提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[29] = {
+id:29,
+skillId:17,
+name:'化血典',
+effectType:121,
+description:'目标生命上限提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[30] = {
+id:30,
+skillId:18,
+name:'聚神印',
+effectType:112,
+description:'目标外功暴击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[34] = {
+id:34,
+skillId:19,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'cy00_sj'
+};
+SkillEffectConfig[35] = {
+id:35,
+skillId:20,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'cy00_sj'
+};
+SkillEffectConfig[36] = {
+id:36,
+skillId:21,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'2',
+effectHit:'cy02_sj'
+};
+SkillEffectConfig[37] = {
+id:37,
+skillId:21,
+name:'毒风阵',
+effectType:204,
+description:'当前目标每2秒受到一定的伤害，持续6秒',
+damageType:3,
+effect:'4',
+effectHit:'buff_zhongdu'
+};
+SkillEffectConfig[38] = {
+id:38,
+skillId:22,
+effectType:401,
+description:'我是效果',
+damageType:1,
+effect:'7',
+effectHit:'cy06_sj'
+};
+SkillEffectConfig[39] = {
+id:39,
+skillId:22,
+name:'定身',
+effectType:207,
+description:'当前效果给自身造成持续眩晕效果，效果持续2秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[40] = {
+id:40,
+skillId:23,
+name:'昆岗诀',
+effectType:110,
+description:'目标内功攻击力提升，持续3分钟',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[41] = {
+id:41,
+skillId:24,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'cy05_sj'
+};
+SkillEffectConfig[42] = {
+id:42,
+skillId:24,
+name:'虚弱',
+effectType:206,
+description:'当前效果减少目标移动速度，效果持续6秒。',
+damageType:0,
+effect:'4',
+effectHit:'buff_xuruo'
+};
+SkillEffectConfig[43] = {
+id:43,
+skillId:25,
+name:'万毒经',
+effectType:110,
+description:'目标内功攻击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[44] = {
+id:44,
+skillId:26,
+name:'神照诀',
+effectType:121,
+description:'目标生命上限提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[45] = {
+id:45,
+skillId:27,
+name:'错花印',
+effectType:113,
+description:'目标内功暴击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[49] = {
+id:49,
+skillId:28,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'2',
+effectHit:'gb01_sj'
+};
+SkillEffectConfig[50] = {
+id:50,
+skillId:29,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'2',
+effectHit:'gb00_sj'
+};
+SkillEffectConfig[51] = {
+id:51,
+skillId:30,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'2',
+effectHit:'gb02_sj'
+};
+SkillEffectConfig[52] = {
+id:52,
+skillId:30,
+name:'落雷剑',
+effectType:204,
+description:'当前效果每2秒给予自身受到一定的伤害，持续6秒。',
+damageType:3,
+effect:'4',
+effectHit:'buff_zhongdu'
+};
+SkillEffectConfig[53] = {
+id:53,
+skillId:31,
+effectType:402,
+description:'我是效果',
+damageType:1,
+effect:'5',
+effectHit:'gb06_sj'
+};
+SkillEffectConfig[55] = {
+id:55,
+skillId:31,
+name:'眩晕',
+effectType:207,
+description:'当前效果给自身造成持续眩晕效果，效果持续2秒。',
+damageType:1,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[56] = {
+id:56,
+skillId:32,
+name:'混元功',
+effectType:110,
+description:'目标内功攻击提升',
+damageType:1,
+effect:'4'
+};
+SkillEffectConfig[57] = {
+id:57,
+skillId:33,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'2',
+effectHit:'gb04_sj'
+};
+SkillEffectConfig[58] = {
+id:58,
+skillId:34,
+name:'太极典',
+effectType:110,
+description:'目标内功攻击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[59] = {
+id:59,
+skillId:35,
+name:'九华诀',
+effectType:121,
+description:'目标生命上限提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[60] = {
+id:60,
+skillId:36,
+name:'游龙式',
+effectType:113,
+description:'目标内功暴击提升',
+damageType:0,
+effect:'2'
+};
+SkillEffectConfig[67] = {
+id:67,
+skillId:101,
+effectType:202,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'jia01_sj'
+};
+SkillEffectConfig[68] = {
+id:68,
+skillId:101,
+effectType:210,
+description:'我是效果',
+damageType:2,
+effect:'1',
+effectHit:'cy04_sj'
+};
+SkillEffectConfig[70] = {
+id:70,
+skillId:102,
+effectType:202,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'jia02_sj'
+};
+SkillEffectConfig[71] = {
+id:71,
+skillId:102,
+name:'中毒',
+effectType:204,
+description:'当前效果每2秒给予自身受到一定的伤害，持续12秒。',
+damageType:3,
+effect:'4',
+effectHit:'buff_zhongdu'
+};
+SkillEffectConfig[72] = {
+id:72,
+skillId:103,
+effectType:202,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'jia03_sj'
+};
+SkillEffectConfig[73] = {
+id:73,
+skillId:103,
+name:'虚弱',
+effectType:206,
+description:'目标防御力和移动速度降低',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[74] = {
+id:74,
+skillId:104,
+effectType:202,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'jia04_sj'
+};
+SkillEffectConfig[75] = {
+id:75,
+skillId:104,
+name:'连击',
+effectType:205,
+description:'目标有一定几率连续攻击2次',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[76] = {
+id:76,
+skillId:105,
+effectType:202,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'jia05_sj'
+};
+SkillEffectConfig[77] = {
+id:77,
+skillId:105,
+name:'降龙十八掌',
+effectType:211,
+description:'目标受到伤害增加',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[201] = {
+id:201,
+skillId:201,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[202] = {
+id:202,
+skillId:202,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[203] = {
+id:203,
+skillId:202,
+name:'血滴子',
+effectType:204,
+description:'当前效果每2秒给予自身受到一定的伤害，持续12秒。',
+damageType:3,
+effect:'4',
+effectHit:'buff_zhongdu'
+};
+SkillEffectConfig[204] = {
+id:204,
+skillId:203,
+name:'九喇嘛',
+effectType:108,
+description:'目标外功提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[205] = {
+id:205,
+skillId:203,
+name:'九喇嘛',
+effectType:110,
+description:'目标内功攻击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[206] = {
+id:206,
+skillId:203,
+name:'九喇嘛',
+effectType:112,
+description:'目标外功暴击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[207] = {
+id:207,
+skillId:203,
+name:'九喇嘛',
+effectType:113,
+description:'目标内功暴击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[208] = {
+id:208,
+skillId:204,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[209] = {
+id:209,
+skillId:204,
+name:'定身',
+effectType:207,
+description:'当前效果给自身造成持续眩晕，持续3秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[210] = {
+id:210,
+skillId:205,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[211] = {
+id:211,
+skillId:205,
+name:'中毒',
+effectType:204,
+description:'当前效果每2秒给予自身受到一定的伤害，持续20秒。',
+damageType:3,
+effect:'4',
+effectHit:'buff_zhongdu'
+};
+SkillEffectConfig[212] = {
+id:212,
+skillId:206,
+effectType:202,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'PJ_sj'
+};
+SkillEffectConfig[213] = {
+id:213,
+skillId:206,
+name:'虚弱',
+effectType:206,
+description:'当前效果给目标造成虚弱效果，持续6秒。',
+damageType:0,
+effect:'4',
+effectHit:'buff_xuruo'
+};
+SkillEffectConfig[214] = {
+id:214,
+skillId:207,
+effectType:202,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'XXDF_sj'
+};
+SkillEffectConfig[215] = {
+id:215,
+skillId:207,
+effectType:210,
+description:'我是效果',
+damageType:2,
+effect:'1',
+effectHit:'cy04_sj'
+};
+SkillEffectConfig[216] = {
+id:216,
+skillId:208,
+effectType:202,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[217] = {
+id:217,
+skillId:208,
+name:'虚弱',
+effectType:206,
+description:'目标内功攻击和外功降低',
+damageType:0,
+effect:'4',
+effectHit:'buff_xuruo'
+};
+SkillEffectConfig[218] = {
+id:218,
+skillId:209,
+name:'狂暴',
+effectType:108,
+description:'目标外功提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[219] = {
+id:219,
+skillId:209,
+name:'狂暴',
+effectType:110,
+description:'目标内功攻击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[220] = {
+id:220,
+skillId:209,
+name:'狂暴',
+effectType:112,
+description:'目标外功暴击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[221] = {
+id:221,
+skillId:209,
+name:'狂暴',
+effectType:113,
+description:'目标内功暴击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[222] = {
+id:222,
+skillId:210,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[223] = {
+id:223,
+skillId:210,
+name:'定身',
+effectType:207,
+description:'我是效果',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[224] = {
+id:224,
+skillId:211,
+name:'摘星功',
+effectType:108,
+description:'目标外功提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[225] = {
+id:225,
+skillId:211,
+name:'摘星功',
+effectType:110,
+description:'目标内功攻击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[226] = {
+id:226,
+skillId:212,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[227] = {
+id:227,
+skillId:212,
+name:'中毒',
+effectType:204,
+description:'当前效果每2秒给予自身受到一定的伤害，持续20秒。',
+damageType:3,
+effect:'4',
+effectHit:'CCZ_sj'
+};
+SkillEffectConfig[228] = {
+id:228,
+skillId:213,
+name:'飞星术',
+effectType:109,
+description:'目标外功防御提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[229] = {
+id:229,
+skillId:213,
+name:'飞星术',
+effectType:111,
+description:'目标内功防御提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[230] = {
+id:230,
+skillId:214,
+name:'中毒',
+effectType:204,
+description:'当前效果每2秒给予自身受到一定的伤害，持续20秒。',
+damageType:3,
+effect:'4',
+effectHit:'FSG_sj'
+};
+SkillEffectConfig[231] = {
+id:231,
+skillId:215,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'LSZ_sj'
+};
+SkillEffectConfig[232] = {
+id:232,
+skillId:215,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'LSZ_sj'
+};
+SkillEffectConfig[233] = {
+id:233,
+skillId:216,
+name:'连击',
+effectType:205,
+description:'50%机会连续对目标造成两次攻击，效果持续20秒。',
+damageType:0,
+effect:'4',
+effectHit:'SYWGZ_sj'
+};
+SkillEffectConfig[234] = {
+id:234,
+skillId:217,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[235] = {
+id:235,
+skillId:217,
+name:'中毒',
+effectType:204,
+description:'当前效果每2秒给予自身受到一定的伤害，持续20秒，每次伤害给予施法者一定的回血。',
+damageType:3,
+effect:'4',
+effectHit:'buff_zhongdu'
+};
+SkillEffectConfig[236] = {
+id:236,
+skillId:217,
+effectType:210,
+description:'我是效果',
+damageType:2,
+effect:'1',
+effectHit:'cy04_sj'
+};
+SkillEffectConfig[237] = {
+id:237,
+skillId:218,
+effectType:202,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'YMSZ_sj'
+};
+SkillEffectConfig[238] = {
+id:238,
+skillId:218,
+name:'定身',
+effectType:207,
+description:'当前效果给自身造成持续眩晕，持续6秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[239] = {
+id:239,
+skillId:219,
+name:'天山奇峰',
+effectType:108,
+description:'目标外功提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[240] = {
+id:240,
+skillId:219,
+name:'天山奇峰',
+effectType:110,
+description:'目标内功攻击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[241] = {
+id:241,
+skillId:219,
+name:'天山奇峰',
+effectType:109,
+description:'目标外功防御提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[242] = {
+id:242,
+skillId:219,
+name:'天山奇峰',
+effectType:111,
+description:'目标内功防御提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[243] = {
+id:243,
+skillId:220,
+effectType:202,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[244] = {
+id:244,
+skillId:220,
+name:'虚弱',
+effectType:206,
+description:'当前效果给自造成虚弱效果，持续6秒。',
+damageType:0,
+effect:'4',
+effectHit:'buff_xuruo'
+};
+SkillEffectConfig[245] = {
+id:245,
+skillId:221,
+effectType:208,
+description:'我是效果',
+damageType:2,
+effect:'1',
+effectHit:'cy04_sj'
+};
+SkillEffectConfig[246] = {
+id:246,
+skillId:221,
+effectType:210,
+description:'我是效果',
+damageType:2,
+effect:'1',
+effectHit:'cy04_sj'
+};
+SkillEffectConfig[247] = {
+id:247,
+skillId:222,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'mj00_sj'
+};
+SkillEffectConfig[248] = {
+id:248,
+skillId:223,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'mj00_sj'
+};
+SkillEffectConfig[249] = {
+id:249,
+skillId:224,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'cy01_gj'
+};
+SkillEffectConfig[250] = {
+id:250,
+skillId:225,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'cy00_sj'
+};
+SkillEffectConfig[251] = {
+id:251,
+skillId:226,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'mj06_sj'
+};
+SkillEffectConfig[252] = {
+id:252,
+skillId:226,
+name:'定身',
+effectType:207,
+description:'当前效果给自身造成持续眩晕效果，效果持续3秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[253] = {
+id:253,
+skillId:227,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gb01_sj'
+};
+SkillEffectConfig[254] = {
+id:254,
+skillId:228,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gb02_sj'
+};
+SkillEffectConfig[255] = {
+id:255,
+skillId:228,
+name:'一字电杖',
+effectType:204,
+description:'当前效果每2秒给予自身受到一定的伤害，持续6秒。',
+damageType:3,
+effect:'4',
+effectHit:'buff_zhongdu'
+};
+SkillEffectConfig[256] = {
+id:256,
+skillId:229,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gb00_sj'
+};
+SkillEffectConfig[257] = {
+id:257,
+skillId:230,
+effectType:201,
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[258] = {
+id:258,
+skillId:230,
+name:'眩晕',
+effectType:207,
+description:'当前效果给自身造成持续眩晕，持续2秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[259] = {
+id:259,
+skillId:231,
+effectType:201,
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[260] = {
+id:260,
+skillId:231,
+name:'中毒',
+effectType:203,
+description:'当前效果每2秒给予自身受到一定的伤害，持续6秒。',
+damageType:3,
+effect:'4',
+effectHit:'buff_zhongdu'
+};
+SkillEffectConfig[261] = {
+id:261,
+skillId:232,
+effectType:402,
+damageType:1,
+effect:'5',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[262] = {
+id:262,
+skillId:232,
+name:'眩晕',
+effectType:207,
+description:'当前效果给自身造成持续眩晕，持续5秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[263] = {
+id:263,
+skillId:233,
+effectType:401,
+damageType:1,
+effect:'7',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[264] = {
+id:264,
+skillId:233,
+name:'眩晕',
+effectType:207,
+description:'当前效果给自身造成持续眩晕，持续5秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[265] = {
+id:265,
+skillId:234,
+effectType:201,
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[266] = {
+id:266,
+skillId:235,
+name:'必杀',
+effectType:202,
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[267] = {
+id:267,
+skillId:236,
+name:'补血',
+effectType:208,
+damageType:2,
+effect:'1'
+};
+SkillEffectConfig[268] = {
+id:268,
+skillId:237,
+effectType:202,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'jiajiang_sj'
+};
+SkillEffectConfig[269] = {
+id:269,
+skillId:237,
+name:'连击',
+effectType:205,
+description:'目标有一定几率连续攻击2次',
+damageType:0,
+effect:'4',
+effectHit:'SYWGZ_sj'
+};
+SkillEffectConfig[270] = {
+id:270,
+skillId:238,
+name:'狂暴',
+effectType:108,
+description:'目标外功提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[271] = {
+id:271,
+skillId:238,
+name:'狂暴',
+effectType:110,
+description:'目标内功攻击提升',
+damageType:0,
+effect:'4'
+};
+SkillEffectConfig[272] = {
+id:272,
+skillId:239,
+effectType:402,
+damageType:1,
+effect:'5',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[273] = {
+id:273,
+skillId:240,
+effectType:401,
+damageType:1,
+effect:'7',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[274] = {
+id:274,
+skillId:241,
+effectType:201,
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[275] = {
+id:275,
+skillId:242,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[276] = {
+id:276,
+skillId:242,
+name:'中毒',
+effectType:203,
+description:'当前效果每2秒给予自身受到一定的伤害，持续12秒。',
+damageType:3,
+effect:'4',
+effectHit:'buff_zhongdu'
+};
+SkillEffectConfig[277] = {
+id:277,
+skillId:243,
+name:'补血',
+effectType:208,
+damageType:2,
+effect:'1'
+};
+SkillEffectConfig[278] = {
+id:278,
+skillId:244,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[279] = {
+id:279,
+skillId:244,
+name:'定身',
+effectType:207,
+description:'当前效果给自身造成持续眩晕，持续1秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[280] = {
+id:280,
+skillId:245,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'mj00_sj'
+};
+SkillEffectConfig[281] = {
+id:281,
+skillId:246,
+effectType:201,
+description:'我是效果',
+damageType:1,
+effect:'1',
+effectHit:'gb00_sj'
+};
+SkillEffectConfig[282] = {
+id:282,
+skillId:247,
+effectType:402,
+damageType:1,
+effect:'5',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[283] = {
+id:283,
+skillId:247,
+name:'定身',
+effectType:207,
+description:'当前效果给自身造成持续眩晕，持续2秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[284] = {
+id:284,
+skillId:248,
+effectType:401,
+damageType:1,
+effect:'7',
+effectHit:'gw00_sj'
+};
+SkillEffectConfig[285] = {
+id:285,
+skillId:248,
+name:'定身',
+effectType:207,
+description:'当前效果给自身造成持续眩晕，持续2秒。',
+damageType:0,
+effect:'3',
+effectHit:'buff_xuanyun'
+};
+SkillEffectConfig[1001] = {
+id:1001,
+skillId:0,
+name:'外攻',
+effectType:108,
+description:'让角色外功提升100点，持续30分钟',
+damageType:0,
+effect:'0',
+image:'props_wg'
+};
+SkillEffectConfig[1002] = {
+id:1002,
+skillId:0,
+name:'外防',
+effectType:109,
+description:'让角色外功防御提升100点，持续30分钟',
+damageType:0,
+effect:'0',
+image:'props_wf'
+};
+SkillEffectConfig[1003] = {
+id:1003,
+skillId:0,
+name:'内攻',
+effectType:110,
+description:'让角色内功攻击提升100点，持续30分钟',
+damageType:0,
+effect:'0',
+image:'props_fg'
+};
+SkillEffectConfig[1004] = {
+id:1004,
+skillId:0,
+name:'内防',
+effectType:111,
+description:'让角色内功防御提升100点，持续30分钟',
+damageType:0,
+effect:'0',
+image:'props_ff'
+};
+SkillEffectConfig[1005] = {
+id:1005,
+skillId:0,
+name:'1.25倍经验丹',
+effectType:301,
+description:'让角色击杀怪物时获得额外25%经验，持续60分钟',
+damageType:0,
+effect:'0',
+image:'props_mexp'
+};
+SkillEffectConfig[1006] = {
+id:1006,
+skillId:0,
+name:'1.5倍经验丹',
+effectType:301,
+description:'让角色击杀怪物时获得额外50%经验，持续60分钟',
+damageType:0,
+effect:'0',
+image:'props_mexp'
+};
+SkillEffectConfig[1007] = {
+id:1007,
+skillId:0,
+name:'2倍经验丹',
+effectType:301,
+description:'让角色击杀怪物时获得额外100%经验，持续60分钟',
+damageType:0,
+effect:'0',
+image:'props_mexp'
+};
+SkillEffectConfig[1010] = {
+id:1010,
+skillId:0,
+name:'打坐1.5倍经验丹',
+effectType:302,
+description:'让角色打坐时获得额外50%经验，持续60分钟',
+damageType:0,
+effect:'0',
+image:'props_exp'
+};
+SkillEffectConfig[1011] = {
+id:1011,
+skillId:0,
+name:'打坐2倍经验丹',
+effectType:302,
+description:'让角色打坐时获得额外100%经验，持续60分钟',
+damageType:0,
+effect:'0',
+image:'props_exp'
+};
+SkillEffectConfig[1012] = {
+id:1012,
+skillId:0,
+name:'打坐2倍真气丹',
+effectType:303,
+description:'让角色打坐时获得额外100%真气，持续60分钟',
+damageType:0,
+effect:'0',
+image:'props_gas'
+};
