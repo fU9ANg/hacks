@@ -15,10 +15,10 @@ CXX         = ccache g++
 BIN         = ConvertAS2CSV
 
 # Objects
-OBJS        = as2csv.o
+OBJS        = src/as2csv.o
 
 CXXFLAGS    = -Wall -Werror -g
-INCLUDES    = -I.
+INCLUDES    = -I. -I./src
 LIB_PATH    = -L.
 
 all:$(BIN)

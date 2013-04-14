@@ -34,7 +34,7 @@ bool ConvertCsvToTxt (string line);
 bool ConvertTxtToCsv (string line);
 
 typedef vector<string> TitleVector;
-typedef map<int, map<string, string>> KeyValueTable;
+typedef map<int, map<string, string> > KeyValueTable;
 
 string STR_IMPORT("import flash.utils.Dictionary;\n");
 string STR_VAR1("var ");
@@ -185,7 +185,7 @@ bool ConvertCsvToTxt (string line)
 	else
 	{
 		iRecord++;
-		kvTable.insert (pair<int, map<string, string>> \
+		kvTable.insert (pair<int, map<string, string> > \
 			(idxArray ? idxArray : iRecord, kvMap));
 		kvMap.clear ();
 	}
@@ -232,7 +232,7 @@ bool ConvertTxtToCsv (string line)
 				titleVector.clear();
 			}
 			
-			kvTable.insert(pair<int, map<string, string>>(atoi(strIndex.c_str()), kvMap));
+			kvTable.insert(pair<int, map<string, string> >(atoi(strIndex.c_str()), kvMap));
 // 			cout << "}; kvTable.size(): " << kvTable.size() << endl;
 // 			getchar();
 			kvMap.clear();
@@ -352,7 +352,7 @@ void outKvTable (void)
 	string STR_ARRAYSIZE = "[";
 	char cStr[32];
 	memset (cStr, 0x00, sizeof (cStr));
-	int iArrayIndex = 0;
+	//int iArrayIndex = 0;
 
 	KeyValueTable::iterator ittab;
 	map<string, string> ::iterator it;
