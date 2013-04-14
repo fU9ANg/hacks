@@ -1,0 +1,452 @@
+import flash.utils.Dictionary;
+var PetTrainConfig:Dictionary = new Dictionary();
+PetTrainConfig[0] = {
+id:0,
+levelLimit:20,
+savvyProps:100002,
+number:1,
+savvyRate:1000,
+trainfullRate:1000,
+needSilver:0
+};
+PetTrainConfig[1] = {
+id:1,
+levelLimit:20,
+savvyProps:100002,
+number:1,
+savvyRate:900,
+trainfullRate:1000,
+needSilver:10000
+};
+PetTrainConfig[2] = {
+id:2,
+levelLimit:20,
+savvyProps:100002,
+number:1,
+savvyRate:800,
+trainfullRate:1000,
+needSilver:13200
+};
+PetTrainConfig[3] = {
+id:3,
+levelLimit:20,
+savvyProps:100002,
+number:1,
+savvyRate:700,
+trainfullRate:1000,
+needSilver:18000
+};
+PetTrainConfig[4] = {
+id:4,
+levelLimit:20,
+savvyProps:100002,
+number:1,
+savvyRate:600,
+trainfullRate:1000,
+needSilver:24400
+};
+PetTrainConfig[5] = {
+id:5,
+levelLimit:20,
+savvyProps:100002,
+number:2,
+savvyRate:500,
+trainfullRate:1000,
+needSilver:32400
+};
+PetTrainConfig[6] = {
+id:6,
+levelLimit:20,
+savvyProps:100002,
+number:2,
+savvyRate:500,
+trainfullRate:1000,
+needSilver:42000
+};
+PetTrainConfig[7] = {
+id:7,
+levelLimit:20,
+savvyProps:100002,
+number:2,
+savvyRate:500,
+trainfullRate:1000,
+needSilver:53200
+};
+PetTrainConfig[8] = {
+id:8,
+levelLimit:20,
+savvyProps:100002,
+number:2,
+savvyRate:500,
+trainfullRate:1000,
+needSilver:66000
+};
+PetTrainConfig[9] = {
+id:9,
+levelLimit:20,
+savvyProps:100002,
+number:2,
+savvyRate:500,
+trainfullRate:1000,
+needSilver:80400
+};
+PetTrainConfig[10] = {
+id:10,
+levelLimit:20,
+savvyProps:100002,
+number:3,
+savvyRate:400,
+trainfullRate:1000,
+needSilver:96400
+};
+PetTrainConfig[11] = {
+id:11,
+levelLimit:25,
+savvyProps:100002,
+number:3,
+savvyRate:400,
+trainfullRate:1000,
+needSilver:114000
+};
+PetTrainConfig[12] = {
+id:12,
+levelLimit:25,
+savvyProps:100002,
+number:3,
+savvyRate:400,
+trainfullRate:1000,
+needSilver:133200
+};
+PetTrainConfig[13] = {
+id:13,
+levelLimit:25,
+savvyProps:100002,
+number:3,
+savvyRate:400,
+trainfullRate:1000,
+needSilver:154000
+};
+PetTrainConfig[14] = {
+id:14,
+levelLimit:25,
+savvyProps:100002,
+number:3,
+savvyRate:400,
+trainfullRate:1000,
+needSilver:176400
+};
+PetTrainConfig[15] = {
+id:15,
+levelLimit:25,
+savvyProps:100002,
+number:5,
+savvyRate:400,
+trainfullRate:1000,
+needSilver:200400
+};
+PetTrainConfig[16] = {
+id:16,
+levelLimit:25,
+savvyProps:100002,
+number:5,
+savvyRate:400,
+trainfullRate:1000,
+needSilver:226000
+};
+PetTrainConfig[17] = {
+id:17,
+levelLimit:25,
+savvyProps:100002,
+number:5,
+savvyRate:400,
+trainfullRate:1000,
+needSilver:253200
+};
+PetTrainConfig[18] = {
+id:18,
+levelLimit:25,
+savvyProps:100002,
+number:5,
+savvyRate:400,
+trainfullRate:1000,
+needSilver:282000
+};
+PetTrainConfig[19] = {
+id:19,
+levelLimit:25,
+savvyProps:100002,
+number:5,
+savvyRate:400,
+trainfullRate:1000,
+needSilver:312400
+};
+PetTrainConfig[20] = {
+id:20,
+levelLimit:25,
+savvyProps:100002,
+number:8,
+savvyRate:300,
+trainfullRate:1000,
+needSilver:344400
+};
+PetTrainConfig[21] = {
+id:21,
+levelLimit:30,
+savvyProps:100002,
+number:8,
+savvyRate:300,
+trainfullRate:1000,
+needSilver:378000
+};
+PetTrainConfig[22] = {
+id:22,
+levelLimit:30,
+savvyProps:100002,
+number:8,
+savvyRate:300,
+trainfullRate:1000,
+needSilver:413200
+};
+PetTrainConfig[23] = {
+id:23,
+levelLimit:30,
+savvyProps:100002,
+number:8,
+savvyRate:300,
+trainfullRate:1000,
+needSilver:450000
+};
+PetTrainConfig[24] = {
+id:24,
+levelLimit:30,
+savvyProps:100002,
+number:8,
+savvyRate:300,
+trainfullRate:1000,
+needSilver:488400
+};
+PetTrainConfig[25] = {
+id:25,
+levelLimit:30,
+savvyProps:100002,
+number:10,
+savvyRate:300,
+trainfullRate:1000,
+needSilver:528400
+};
+PetTrainConfig[26] = {
+id:26,
+levelLimit:30,
+savvyProps:100002,
+number:10,
+savvyRate:300,
+trainfullRate:1000,
+needSilver:570000
+};
+PetTrainConfig[27] = {
+id:27,
+levelLimit:30,
+savvyProps:100002,
+number:10,
+savvyRate:300,
+trainfullRate:1000,
+needSilver:613200
+};
+PetTrainConfig[28] = {
+id:28,
+levelLimit:30,
+savvyProps:100002,
+number:10,
+savvyRate:300,
+trainfullRate:1000,
+needSilver:658000
+};
+PetTrainConfig[29] = {
+id:29,
+levelLimit:30,
+savvyProps:100002,
+number:10,
+savvyRate:300,
+trainfullRate:1000,
+needSilver:704400
+};
+PetTrainConfig[30] = {
+id:30,
+levelLimit:30,
+savvyProps:100002,
+number:15,
+savvyRate:150,
+trainfullRate:1000,
+needSilver:752400
+};
+PetTrainConfig[31] = {
+id:31,
+levelLimit:35,
+savvyProps:100002,
+number:15,
+savvyRate:150,
+trainfullRate:1000,
+needSilver:802000
+};
+PetTrainConfig[32] = {
+id:32,
+levelLimit:35,
+savvyProps:100002,
+number:15,
+savvyRate:150,
+trainfullRate:1000,
+needSilver:853200
+};
+PetTrainConfig[33] = {
+id:33,
+levelLimit:35,
+savvyProps:100002,
+number:15,
+savvyRate:150,
+trainfullRate:1000,
+needSilver:906000
+};
+PetTrainConfig[34] = {
+id:34,
+levelLimit:35,
+savvyProps:100002,
+number:15,
+savvyRate:150,
+trainfullRate:1000,
+needSilver:960400
+};
+PetTrainConfig[35] = {
+id:35,
+levelLimit:35,
+savvyProps:100002,
+number:20,
+savvyRate:150,
+trainfullRate:1000,
+needSilver:1016400
+};
+PetTrainConfig[36] = {
+id:36,
+levelLimit:35,
+savvyProps:100002,
+number:20,
+savvyRate:150,
+trainfullRate:1000,
+needSilver:1074000
+};
+PetTrainConfig[37] = {
+id:37,
+levelLimit:35,
+savvyProps:100002,
+number:20,
+savvyRate:150,
+trainfullRate:1000,
+needSilver:1133200
+};
+PetTrainConfig[38] = {
+id:38,
+levelLimit:35,
+savvyProps:100002,
+number:20,
+savvyRate:150,
+trainfullRate:1000,
+needSilver:1194000
+};
+PetTrainConfig[39] = {
+id:39,
+levelLimit:35,
+savvyProps:100002,
+number:20,
+savvyRate:150,
+trainfullRate:1000,
+needSilver:1256400
+};
+PetTrainConfig[40] = {
+id:40,
+levelLimit:35,
+savvyProps:100002,
+number:25,
+savvyRate:100,
+trainfullRate:1000,
+needSilver:1320400
+};
+PetTrainConfig[41] = {
+id:41,
+levelLimit:40,
+savvyProps:100002,
+number:25,
+savvyRate:100,
+trainfullRate:1000,
+needSilver:1386000
+};
+PetTrainConfig[42] = {
+id:42,
+levelLimit:40,
+savvyProps:100002,
+number:25,
+savvyRate:100,
+trainfullRate:1000,
+needSilver:1453200
+};
+PetTrainConfig[43] = {
+id:43,
+levelLimit:40,
+savvyProps:100002,
+number:25,
+savvyRate:100,
+trainfullRate:1000,
+needSilver:1522000
+};
+PetTrainConfig[44] = {
+id:44,
+levelLimit:40,
+savvyProps:100002,
+number:25,
+savvyRate:100,
+trainfullRate:1000,
+needSilver:1592400
+};
+PetTrainConfig[45] = {
+id:45,
+levelLimit:40,
+savvyProps:100002,
+number:30,
+savvyRate:100,
+trainfullRate:1000,
+needSilver:1664400
+};
+PetTrainConfig[46] = {
+id:46,
+levelLimit:40,
+savvyProps:100002,
+number:30,
+savvyRate:100,
+trainfullRate:1000,
+needSilver:1738000
+};
+PetTrainConfig[47] = {
+id:47,
+levelLimit:40,
+savvyProps:100002,
+number:30,
+savvyRate:100,
+trainfullRate:1000,
+needSilver:1813200
+};
+PetTrainConfig[48] = {
+id:48,
+levelLimit:40,
+savvyProps:100002,
+number:30,
+savvyRate:100,
+trainfullRate:1000,
+needSilver:1890000
+};
+PetTrainConfig[49] = {
+id:49,
+levelLimit:40,
+savvyProps:100002,
+number:30,
+savvyRate:100,
+trainfullRate:1000,
+needSilver:1968400
+};

@@ -1,0 +1,34 @@
+import flash.utils.Dictionary;
+var LoopShowConfig:Dictionary = new Dictionary();
+LoopShowConfig[1] = {
+id:1,
+name:'江湖疑惑',
+content:'找$para1聊聊',
+acceptDialogue:[{up:" 生在乱世，其实我一直有一个问题不明白，江湖到底是什么？何谓江湖？",down:"的确是很深奥的问题，我还是帮你去问问别人吧。"}],
+unSubmitDialogue:[{up:"所为江湖路，其实就是心中所想而已，人在江湖身不由己，理那么多做什么？",down:"果然有点意思……"}],
+unFinishDialogue:[{up:"无须多想了，脚踏实地做好你目前该做的，才是正途。",down:"多谢前辈教诲，我知晓了。"}]
+};
+LoopShowConfig[3] = {
+id:3,
+name:'江湖行侠',
+content:'杀死$para1名$para2',
+acceptDialogue:[{up:"啊！那些令人恐惧的存在又出现了！你快帮我去击溃他们！",down:"好，我这就过去！"}],
+unSubmitDialogue:[{up:"终于平复动荡了，真是多亏了你。",down:"举手之劳而已，算不得什么。"}],
+unFinishDialogue:[{up:"你还没去吗？那种浑身杀气的模样，真是让人心生胆寒。",down:"您放心，我这就去。"}]
+};
+LoopShowConfig[11] = {
+id:11,
+name:'江湖扶贫',
+content:'购买$para1件$para2装备',
+acceptDialogue:[{up:"最近天寒地冻，你去帮我买一些装备来吧！",down:"好，我这就去。"}],
+unSubmitDialogue:[{up:"多谢你了，大恩大德实在难以回报！",down:"小事一桩，不必客气。"}],
+unFinishDialogue:[{up:"你还没去买吗？",down:"我这就去呢。"}]
+};
+LoopShowConfig[12] = {
+id:12,
+name:'江湖救弱',
+content:'去买$para1个$para2道具',
+acceptDialogue:[{up:"少侠，我最近又病了，麻烦你去买一些药给我。",down:"你稍等，我这就去。"}],
+unSubmitDialogue:[{up:"救人一命胜造七级浮屠，有了这些药，我又能安然度过一段时间了。",down:"唉，是啊。"}],
+unFinishDialogue:[{up:"我都快病死了，你还没去买药吗？",down:"我这就去啊……药店好像没开门呢。"}]
+};
