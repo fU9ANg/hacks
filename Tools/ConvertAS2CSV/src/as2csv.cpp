@@ -32,6 +32,7 @@ void outCommon  (void);
 int  getLine (FILE* f, string& line);
 bool ConvertCsvToTxt (string line);
 bool ConvertTxtToCsv (string line);
+void createEnChMap (string file);
 
 typedef vector<string> TitleVector;
 typedef map<int, map<string, string>> KeyValueTable;
@@ -48,6 +49,7 @@ KeyValueTable kvTable;
 int isUpdateTitle = 1;
 string strIndex = "";
 FILE* fo = NULL;
+map<string, string> nameEnChMap;
 
 #define ISCSVFILE  strstr (strArgv.c_str(), ".csv")
 #define ISTXTFILE  strstr (strArgv.c_str(), ".txt")
@@ -379,6 +381,7 @@ void outKvTable (void)
 
 void outTitleVector ()
 {
+#if 0
 	TitleVector::iterator vit;
 	if (pTitleVector == NULL) {
 		cout << "out memory" << endl;
@@ -399,6 +402,28 @@ void outTitleVector ()
 
 	if (ISTXTFILE)
 		fwrite ("\n", 1, 1, fo);
+#else
+	TitleVector::iterator vit;
+	if (pTitleVector == NULL) {
+		cout << "out memory" << endl;
+		return;
+	}
+	string sName;
+	for (vit = pTitleVector->begin(); vit != pTitleVector->end(); vit++)
+	{
+		sName = *vit;
+		if (ISTXTFILE)
+			fwrite (sName.c_str(), sName.size(), 1, fo);
+		if ((vit+1) != pTitleVector->end())
+		{
+			if (ISTXTFILE)
+				fwrite (",", 1, 1, fo);
+		}
+	}
+
+	if (ISTXTFILE)
+		fwrite ("\n", 1, 1, fo);
+#endif
 }
 
 void outCommon  (void)
@@ -437,9 +462,14 @@ int main (int argc, char** argv)
 	{
 		dstName = strArgv.substr(0, iargcPos);
 		if (ISTXTFILE)
+		{
+			createEnChMap(dstName);
 			dstName.append(".csv");
+		}
 		else if (ISCSVFILE)
+		{
 			dstName.append(".txt");
+		}
 	}
 
 #if 1
@@ -508,7 +538,53 @@ int main (int argc, char** argv)
 	return (0);
 }
 
+void createEnChMap (string file)
+{
+	file.append ("_Config.csv");
+	string line;
+	string nameEn, nameCh;
+	unsigned int iPos = 0;
+#ifdef _WIN32
+	FILE* f;
+	fopen_s(&f, file.c_str(), "r");
+#else
+	FILE* f = fopen(file.c_str(), "r");
+#endif
+	if (!f) {
+		cout << "can't open config file: '" << file.c_str() << "'" << endl;
+		return;
+	}
+	while (getLine (f, line))
+	{
+		if (line == "\r\n" || line == "\r" || line =="\n")
+			continue;
 
+		//delete '\n' of end of line
+		if (line[line.size()-1] == '\n')
+		{
+			line[line.size()-1] = 0x00;
+			line.resize(line.size()-1);
+		}
+
+		iPos = line.find (',');
+		if (iPos > line.size())
+		{
+			cout << "ERROR: ipos > line.size()\n";
+			goto OUT;
+		}
+		nameEn = line.substr (0, iPos);
+		nameCh = line.substr (iPos, line.size() - iPos);
+		nameEnChMap.insert(pair<string, string>(nameEn, nameCh));
+		cout << "en:" << nameEn << "ch:" << nameCh << endl;
+	}
+
+// 	cout << "HRERE";
+// 	getchar();
+OUT:
+	if (f)
+		fclose (f);
+	
+}
 int getLine(FILE* f, string& line)
 {
 	int  c;
