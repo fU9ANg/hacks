@@ -11,7 +11,7 @@
 #
 
 #  Auto ssh login
-set timeout 30
+set timeout 10
 spawn ssh $argv -l root
 expect "password:"
 send "111111\r"
