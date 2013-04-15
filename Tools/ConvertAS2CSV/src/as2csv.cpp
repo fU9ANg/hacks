@@ -404,11 +404,40 @@ void outTitleVector ()
 		fwrite ("\n", 1, 1, fo);
 #else
 	TitleVector::iterator vit;
+	map<string, string>::iterator mit;
+	unsigned findFlags = 0;
 	if (pTitleVector == NULL) {
 		cout << "out memory" << endl;
 		return;
 	}
 	string sName;
+	// print chinese name, such as "标示,名称,类型,描述,效果类型"
+#if 1
+	if (ISTXTFILE)
+	{
+		for (vit = pTitleVector->begin(); vit != pTitleVector->end(); vit++)
+		{
+			findFlags = 0;
+			for (mit = nameEnChMap.begin(); mit != nameEnChMap.end(); mit++)
+			{
+				
+				if (*vit == mit->first)
+				{
+					findFlags = 1;
+					sName = mit->second;
+					break;
+				}
+			}
+			if (findFlags == 1)
+				fwrite (sName.c_str(), sName.size(), 1, fo);
+
+			if ((vit+1) != pTitleVector->end())
+				fwrite (",", 1, 1, fo);
+		}
+		fwrite ("\n", 1, 1, fo);
+	}
+#endif
+	// print english name, such as "id,name,type,desc,effect_type"
 	for (vit = pTitleVector->begin(); vit != pTitleVector->end(); vit++)
 	{
 		sName = *vit;
@@ -540,7 +569,7 @@ int main (int argc, char** argv)
 
 void createEnChMap (string file)
 {
-	file.append ("_Config.csv");
+	file.append ("_Config.txt");
 	string line;
 	string nameEn, nameCh;
 	unsigned int iPos = 0;
@@ -573,9 +602,10 @@ void createEnChMap (string file)
 			goto OUT;
 		}
 		nameEn = line.substr (0, iPos);
-		nameCh = line.substr (iPos, line.size() - iPos);
+		nameCh = line.substr (iPos+1, line.size() - iPos);
 		nameEnChMap.insert(pair<string, string>(nameEn, nameCh));
-		cout << "en:" << nameEn << "ch:" << nameCh << endl;
+// 		cout << "en: " << nameEn << "ch: " << nameCh << endl;
+// 		cout << "en.size(): " << nameEn.size() << "ch.size(): " << nameCh.size() << endl;
 	}
 
 // 	cout << "HRERE";
