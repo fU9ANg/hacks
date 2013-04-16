@@ -38,3 +38,11 @@ test:
 // first, must start daytime server
 hacking @ LINUX$ ./getdate
 hacking @ LINUX$ ./getdate localhost
+
+// example6:
+// description: support multi-clients (used fork() function on the linux)
+server4.c
+test:
+hacking @ LINUX$ ./server4 &
+hacking @ LINUX$ ./client3 & ./client3 & ./client3 & ./client3 & ./client3
+hacking @ LINUX$ killall server4
