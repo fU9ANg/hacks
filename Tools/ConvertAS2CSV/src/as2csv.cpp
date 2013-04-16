@@ -61,6 +61,7 @@ int isFirstLine  = 1;
 int isArrayName  = 1;
 int iRecord = 0;
 int idxArray = 0;
+int isEnChName = 0;
 
 bool ConvertCsvToTxt (string line)
 {
@@ -83,6 +84,13 @@ bool ConvertCsvToTxt (string line)
 		else
 			flags.sArrayName += line;
 		isArrayName = 0;
+		isEnChName = 1;
+		return (true);
+	}
+
+	if (isEnChName == 1)
+	{
+		isEnChName = 0;
 		return (true);
 	}
 	// process format "'xxkjdfk,skdfjksdkfjskf', 1, 100" ->
@@ -581,6 +589,7 @@ void createEnChMap (string file)
 #endif
 	if (!f) {
 		cout << "can't open config file: '" << file.c_str() << "'" << endl;
+		getchar ();
 		return;
 	}
 	while (getLine (f, line))
@@ -607,9 +616,6 @@ void createEnChMap (string file)
 // 		cout << "en: " << nameEn << "ch: " << nameCh << endl;
 // 		cout << "en.size(): " << nameEn.size() << "ch.size(): " << nameCh.size() << endl;
 	}
-
-// 	cout << "HRERE";
-// 	getchar();
 OUT:
 	if (f)
 		fclose (f);
