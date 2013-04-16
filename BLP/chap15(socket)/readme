@@ -25,3 +25,16 @@ test:
 hacking @ LINUX$ ./server3 &
 hacking @ LINUX$ ./client3 & ./client3 & ./client3 & ./client3 & ./client3
 hacking @ LINUX$ killall server3
+
+// example4:
+gethostname.c   
+test:
+hacking @ LINUX$ ./gethostname
+hacking @ LINUX$ ./gethostname localhost
+
+// example5:
+getdate.c   
+test:
+// first, must start daytime server
+hacking @ LINUX$ ./getdate
+hacking @ LINUX$ ./getdate localhost
