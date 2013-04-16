@@ -1,0 +1,27 @@
+
+// by fU9ANg
+// @2013
+
+// example1:
+client1.c   
+server1.c
+test:
+hacking @ LINUX$ ./server1 &
+hacking @ LINUX$ ./client1 & ./client1 & ./client1 & ./client1 & ./client1 
+hacking @ LINUX$ killall server1
+
+// example2:
+client2.c   
+server2.c
+test:
+hacking @ LINUX$ ./server2 &
+hacking @ LINUX$ ./client2 & ./client2 & ./client2 & ./client2 & ./client2
+hacking @ LINUX$ killall server2
+
+// example3:
+client3.c   
+server3.c
+test:
+hacking @ LINUX$ ./server3 &
+hacking @ LINUX$ ./client3 & ./client3 & ./client3 & ./client3 & ./client3
+hacking @ LINUX$ killall server3
