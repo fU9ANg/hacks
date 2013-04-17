@@ -46,3 +46,16 @@ test:
 hacking @ LINUX$ ./server4 &
 hacking @ LINUX$ ./client3 & ./client3 & ./client3 & ./client3 & ./client3
 hacking @ LINUX$ killall server4
+
+// example7:
+// description: use select() system call
+select.c
+test:
+// execute ./select and waiting 2.5 second, so
+hacking @ LINUX$ ./select
+timeout
+// input some character from keyboard
+hello world
+read 12 from keyboard: hello world
+// to exit program
+^+D
