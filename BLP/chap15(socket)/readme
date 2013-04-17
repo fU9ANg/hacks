@@ -59,3 +59,11 @@ hello world
 read 12 from keyboard: hello world
 // to exit program
 ^+D
+
+// example8:
+// description: support multi-clients (used select() syscall on the linux)
+server5.c
+test:
+hacking @ LINUX$ ./server5 &
+hacking @ LINUX$ ./client3 & ./client3 & ./client3 & ./client3 & ./client3 & ps -ax
+hacking @ LINUX$ killall server5
