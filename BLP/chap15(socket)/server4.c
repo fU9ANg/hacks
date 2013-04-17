@@ -1,6 +1,6 @@
 
 // by fU9ANg
-// @2013
+// @2012, 2013
 
 #include <sys/types.h>
 #include <sys/socket.h>

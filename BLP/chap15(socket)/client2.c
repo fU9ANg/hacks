@@ -1,6 +1,6 @@
 
 
-// 2013 by fU9ANg
+// 2012, 2013 by fU9ANg
 
 #include <stdio.h>
 #include <stdlib.h>
