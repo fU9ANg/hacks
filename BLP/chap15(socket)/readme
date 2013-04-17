@@ -67,3 +67,10 @@ test:
 hacking @ LINUX$ ./server5 &
 hacking @ LINUX$ ./client3 & ./client3 & ./client3 & ./client3 & ./client3 & ps -ax
 hacking @ LINUX$ killall server5
+
+// example9:
+getdate_udp.c   
+test:
+// call UDP daytime service (based getdate.c example)
+hacking @ LINUX$ ./getdate_udp
+hacking @ LINUX$ ./getdate_udp localhost

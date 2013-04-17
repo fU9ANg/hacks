@@ -7,7 +7,7 @@ CFLAGS      =   -Wall -Werror
 DEBUG       =   -g
 INCLUDES    =   -I.
 LIBRARYS    =   -L.
-BIN			= 	server1 client1 server2 client2 server3 client3 gethostname getdate server4 select server5
+BIN			= 	server1 client1 server2 client2 server3 client3 gethostname getdate getdate_udp server4 select server5
 
 all:$(BIN)
 
@@ -33,6 +33,9 @@ gethostname:gethostname.o
 	$(CC) $(CFLAGS) $(DEBUG) $(INCLUDES) -o $@ $< $(LIBRARYS)
 
 getdate:getdate.o
+	$(CC) $(CFLAGS) $(DEBUG) $(INCLUDES) -o $@ $< $(LIBRARYS)
+
+getdate_udp:getdate_udp.o
 	$(CC) $(CFLAGS) $(DEBUG) $(INCLUDES) -o $@ $< $(LIBRARYS)
 
 select:select.o
