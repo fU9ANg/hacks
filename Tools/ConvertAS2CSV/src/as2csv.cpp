@@ -59,9 +59,9 @@ string strArgv, dstName;
 
 int isFirstLine  = 1;
 int isArrayName  = 1;
+int isEnChName = 0;
 int iRecord = 0;
 int idxArray = 0;
-int isEnChName = 0;
 
 bool ConvertCsvToTxt (string line)
 {
@@ -87,7 +87,6 @@ bool ConvertCsvToTxt (string line)
 		isEnChName = 1;
 		return (true);
 	}
-
 	if (isEnChName == 1)
 	{
 		isEnChName = 0;
@@ -241,7 +240,7 @@ bool ConvertTxtToCsv (string line)
 				isUpdateTitle = 1;
 				titleVector.clear();
 			}
-			
+
 			kvTable.insert(pair<int, map<string, string> >(atoi(strIndex.c_str()), kvMap));
 // 			cout << "}; kvTable.size(): " << kvTable.size() << endl;
 // 			getchar();
@@ -262,7 +261,7 @@ bool ConvertTxtToCsv (string line)
 			strValue[strValue.size()-1] = 0x00;
 			strValue.resize(strValue.size()-1);
 		}
-		
+
 		if (isUpdateTitle == 1)
 		{
 			titleVector.push_back(strName);
@@ -285,7 +284,7 @@ bool ConvertTxtToCsv (string line)
 // 		getchar();
 
 		kvMap.insert(pair<string,string>(strName,strValue));
-		
+
 
 		return (true);
 	}
@@ -330,7 +329,7 @@ void outKvMap (map<string,string>* pMap)
 				sName += ":";
 				sName += itMap->second;
 				fwrite (sName.c_str(), sName.size(), 1, fo);
-				
+
 			}
 			if ((itVec+1) != pTitleVector->end()) // cout << ",";
 			{
@@ -428,7 +427,7 @@ void outTitleVector ()
 			findFlags = 0;
 			for (mit = nameEnChMap.begin(); mit != nameEnChMap.end(); mit++)
 			{
-				
+
 				if (*vit == mit->first)
 				{
 					findFlags = 1;
@@ -488,7 +487,7 @@ int main (int argc, char** argv)
 
 	int iargc = 1;
 	unsigned int iargcPos;
-	
+
 	for (;iargc < argc; iargc++)
 	{
 		strArgv.append (argv[iargc]);
@@ -577,7 +576,7 @@ int main (int argc, char** argv)
 
 void createEnChMap (string file)
 {
-	file.append ("_Config.txt");
+	file.append ("_Config.csv");
 	string line;
 	string nameEn, nameCh;
 	unsigned int iPos = 0;
@@ -589,7 +588,7 @@ void createEnChMap (string file)
 #endif
 	if (!f) {
 		cout << "can't open config file: '" << file.c_str() << "'" << endl;
-		getchar ();
+		getchar();
 		return;
 	}
 	while (getLine (f, line))
@@ -613,13 +612,16 @@ void createEnChMap (string file)
 		nameEn = line.substr (0, iPos);
 		nameCh = line.substr (iPos+1, line.size() - iPos);
 		nameEnChMap.insert(pair<string, string>(nameEn, nameCh));
-// 		cout << "en: " << nameEn << "ch: " << nameCh << endl;
-// 		cout << "en.size(): " << nameEn.size() << "ch.size(): " << nameCh.size() << endl;
+  		//cout << "en: " << nameEn << "ch: " << nameCh << endl;
+  		//cout << "en.size(): " << nameEn.size() << "ch.size(): " << nameCh.size() << endl;
 	}
+
+// 	cout << "HRERE";
+// 	getchar();
 OUT:
 	if (f)
 		fclose (f);
-	
+
 }
 int getLine(FILE* f, string& line)
 {
@@ -637,7 +639,7 @@ int getLine(FILE* f, string& line)
 	if (c == '\n')
 		buf[i++] = '\n';
 	buf[i] = '\0';
-	
+
 	line.append(buf);
 
 	return (i);
