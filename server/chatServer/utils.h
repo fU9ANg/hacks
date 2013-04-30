@@ -13,20 +13,21 @@ void outLog (char* buf, ...);
 DWORD   getTime ();
 #endif
 
-void  PutByte    (char* pPacket, BYTE  value, int& nPos);
-BYTE  GetByte    (char* pPacket, int& nPos);
-void  PutWord    (char* pPacket, WORD  value, int& nPos);
-WORD  GetWord    (char* pPacket, int& nPos);
+/* prototype */
+void  putByte    (char* pPacket, BYTE  value, int& nPos);
+BYTE  getByte    (char* pPacket, int& nPos);
+void  putWord    (char* pPacket, WORD  value, int& nPos);
+WORD  getWord    (char* pPacket, int& nPos);
 
-void  PutDWord   (char* pPacket, DWORD value, int& nPos);
-DWORD GetDWord   (char* pPacket, int& nPos);
-void  PutInteger (char* pPacket, int   value, int& nPos);
-int   GetInteger (char* pPacket, int& nPos);
-void  PutShort   (char* pPacket, short value, int& nPos);
-short GetShort   (char* pPacket, int& nPos);
-void  PutString  (char* pPacket, char* value, int& nPos);
-void  GetString  (char* pPacket, char* value, int& nPos);
+void  putDWord   (char* pPacket, DWORD value, int& nPos);
+DWORD getDWord   (char* pPacket, int& nPos);
+void  putInteger (char* pPacket, int   value, int& nPos);
+int   getInteger (char* pPacket, int& nPos);
+void  putShort   (char* pPacket, short value, int& nPos);
+short getShort   (char* pPacket, int& nPos);
+void  putString  (char* pPacket, char* value, int& nPos);
+void  getString  (char* pPacket, char* value, int& nPos);
 
-void  PutSize(char* pPacket, WORD nPos);
+void  putSize(char* pPacket, WORD nPos);
 
 #endif  //_CHAT_UTILS_H

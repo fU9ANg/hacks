@@ -34,6 +34,7 @@
 #define TRUE  1
 #define FALSE 0
 
+/* redefine data type */
 typedef int      SOCKET;
 typedef int      BOOL;
 typedef unsigned char  BYTE;

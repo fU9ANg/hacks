@@ -24,6 +24,11 @@ void DestroySignal (int sigNum)
     g_ProcessLife = FALSE;
 }
 
+/*
+====================
+ initialize signal on the un*x
+====================
+*/
 void initSignal (void)
 {
     struct sigaction act;
@@ -45,16 +50,31 @@ int main ()
     return (TRUE);
 }
 
+/*
+====================
+ initialize server data
+====================
+*/
 void initServerData ()
 {
     // TODO:
 }
 
+/*
+====================
+ destroy server data
+====================
+*/
 void destroyServerData ()
 {
     // TODO:
 }
 
+/*
+====================
+ Let's rock
+====================
+*/
 void processLoop ()
 {
     g_Socket = initServerSock (SERVER_PORT, MAX_LISTEN);

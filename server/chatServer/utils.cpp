@@ -3,6 +3,11 @@
 #include "utils.h"
 #include <stdarg.h>
 
+/*
+====================
+ printf logging to file
+====================
+*/
 void outLog (char* buf, ...)
 {
     char tmp_buf[1024], tmp_buf2[1024];
@@ -45,6 +50,11 @@ void outLog (char* buf, ...)
 
 #ifndef WIN32
 
+/*
+====================
+ get current time of system
+====================
+*/
 DWORD getTime ()
 {
     struct timeval tv;
@@ -53,13 +63,13 @@ DWORD getTime ()
     return (value);
 }
 
-void  PutByte (char* pPacket, BYTE  value, int& nPos)
+void  putByte (char* pPacket, BYTE  value, int& nPos)
 {
     *(BYTE*) (pPacket + nPos) = value;
     nPos += sizeof (BYTE);
 }
 
-BYTE  GetByte (char* pPacket, int& nPos)
+BYTE  getByte (char* pPacket, int& nPos)
 {
     BYTE value = *(BYTE*) (pPacket + nPos);
     nPos += sizeof (BYTE);
@@ -67,13 +77,13 @@ BYTE  GetByte (char* pPacket, int& nPos)
     return (value);
 }
 
-void  PutWord (char* pPacket, WORD  value, int& nPos)
+void  putWord (char* pPacket, WORD  value, int& nPos)
 {
     *(WORD*) (pPacket + nPos) = value;
     nPos += sizeof (WORD);
 }
 
-WORD  GetWord (char* pPacket, int& nPos)
+WORD  getWord (char* pPacket, int& nPos)
 {
     WORD value = *(WORD*) (pPacket + nPos);
     nPos += sizeof (WORD);
@@ -81,13 +91,13 @@ WORD  GetWord (char* pPacket, int& nPos)
     return (value);
 }
 
-void  PutDWord (char* pPacket, DWORD value, int& nPos)
+void  putDWord (char* pPacket, DWORD value, int& nPos)
 {
     *(DWORD*) (pPacket + nPos) = value;
     nPos += sizeof (DWORD);
 }
 
-DWORD GetDWord (char* pPacket, int& nPos)
+DWORD getDWord (char* pPacket, int& nPos)
 {
     DWORD value = *(DWORD*) (pPacket + nPos);
     nPos += sizeof (DWORD);
@@ -95,13 +105,13 @@ DWORD GetDWord (char* pPacket, int& nPos)
     return (value);
 }
 
-void  PutInteger (char* pPacket, int   value, int& nPos)
+void  putInteger (char* pPacket, int   value, int& nPos)
 {
     *(int*) (pPacket + nPos) = value;
     nPos += sizeof (int);
 }
 
-int   GetInteger (char* pPacket, int& nPos)
+int   getInteger (char* pPacket, int& nPos)
 {
     int value = *(int*) (pPacket + nPos);
     nPos += sizeof (int);
@@ -109,13 +119,13 @@ int   GetInteger (char* pPacket, int& nPos)
     return (value);
 }
 
-void  PutShort (char* pPacket, short value, int& nPos)
+void  putShort (char* pPacket, short value, int& nPos)
 {
     *(short*) (pPacket + nPos) = value;
     nPos += sizeof (short);
 }
 
-short GetShort (char* pPacket, int& nPos)
+short getShort (char* pPacket, int& nPos)
 {
     short value = *(short*) (pPacket + nPos);
     nPos += sizeof (short);
@@ -123,7 +133,7 @@ short GetShort (char* pPacket, int& nPos)
     return (value);
 }
 
-void  PutString (char* pPacket, char* value, int& nPos)
+void  putString (char* pPacket, char* value, int& nPos)
 {
     *(WORD*) (pPacket + nPos) = strlen (value);
 
@@ -133,7 +143,7 @@ void  PutString (char* pPacket, char* value, int& nPos)
     nPos += strlen (value);
 }
 
-void  GetString (char* pPacket, char* value, int& nPos)
+void  getString (char* pPacket, char* value, int& nPos)
 {
     WORD buff_len;
 
@@ -144,7 +154,7 @@ void  GetString (char* pPacket, char* value, int& nPos)
     nPos += buff_len;
 }
 
-void  PutSize (char* pPacket, WORD nPos)
+void  putSize (char* pPacket, WORD nPos)
 {
     *(WORD*) pPacket = nPos;
 }

@@ -9,6 +9,11 @@ extern SOCKET          g_Socket;
 extern struct sPacket* g_ClientList;
 extern int             g_TotalClient;
 
+/*
+====================
+ set socket fd to nonblock
+====================
+*/
 void setNonblock (SOCKET fd)
 {
     int flags;
@@ -18,6 +23,11 @@ void setNonblock (SOCKET fd)
         outLog ((char*)" * nonblock Error\r\n");
 }
 
+/*
+====================
+ initialize server socket
+====================
+*/
 SOCKET initServerSock (int port, int backLog)
 {
     struct sockaddr_in sa;
@@ -62,6 +72,11 @@ SOCKET initServerSock (int port, int backLog)
     return (sock);
 }
 
+/*
+====================
+ acppet a new client fd
+====================
+*/
 void acceptNewClient (SOCKET listenfd)
 {
     SOCKET newDesc;
@@ -110,6 +125,11 @@ void acceptNewClient (SOCKET listenfd)
     outLog ((char*)"accept new connection: %d [%s]\r\n", newDesc, newClient->m_ip);
 }
 
+/*
+====================
+ dis-connection client fd
+====================
+*/
 void disconnectClient (struct sPacket* pClient)
 {
     REMOVE_FROM_LIST (g_ClientList, pClient, m_prev, m_next);
@@ -120,6 +140,11 @@ void disconnectClient (struct sPacket* pClient)
     pClient = NULL;
 }
 
+/*
+====================
+ send data to buffer
+====================
+*/
 void sendData (struct sPacket* pClient, const char* data, int size)
 {
     if ((pClient->m_sendSize + size) > MAX_SOCK_BUFF)
@@ -130,6 +155,11 @@ void sendData (struct sPacket* pClient, const char* data, int size)
     pClient->m_sendSize += size;
 }
 
+/*
+====================
+ send data to all client
+====================
+*/
 void sendToAll (const char* data, int size)
 {
     struct sPacket* client = NULL;
@@ -139,6 +169,11 @@ void sendToAll (const char* data, int size)
     LIST_WHILEEND (g_ClientList, client, next_client);
 }
 
+/*
+====================
+ flush send queue (buffers)
+====================
+*/
 int flushSendBuff (struct sPacket* pClient)
 {
     int sendSize;
@@ -164,6 +199,11 @@ int flushSendBuff (struct sPacket* pClient)
     return (sendSize);
 }
 
+/*
+====================
+ recv data from a client
+====================
+*/
 BOOL recvFromClient (struct sPacket* pClient)
 {
     int recvSize;

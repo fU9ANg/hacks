@@ -6,36 +6,56 @@
 #include "utils.h"
 #include "handler.h"
 
-void PACKET_AliveCheck (struct sPacket* pClient)
+/*
+====================
+ check client is alive?
+====================
+ */
+void handleAliveCheck (struct sPacket* pClient)
 {
 }
 
-void PACKET_ChangeNick (struct sPacket* pClient)
+/*
+====================
+ change nick of client
+====================
+ */
+void handleChangeNick (struct sPacket* pClient)
 {
     char nick[64];
-    GetString (pClient->m_recvBuff, nick, pClient->m_recvPos);
+    getString (pClient->m_recvBuff, nick, pClient->m_recvPos);
     strcpy (pClient->m_name, nick);
 }
 
-void PACKET_RecvMsg (struct sPacket* pClient)
+/*
+====================
+ receive client message packet
+====================
+ */
+void handleRecvMsg (struct sPacket* pClient)
 {
     char msg[MAX_SOCK_BUFF];
 
-    GetString (pClient->m_recvBuff, msg, pClient->m_recvPos);
-    int packetPos;
+    getString (pClient->m_recvBuff, msg, pClient->m_recvPos);
+    int  packetPos;
     char packet[MAX_SOCK_BUFF];
     char tmp[MAX_SOCK_BUFF];
 
     sprintf (tmp, "%s : %s\r\n", pClient->m_name, msg);
 
     packetPos = 2;
-    PutWord (packet, PACKET_SEND_MSG, packetPos);
-    PutString (packet, tmp, packetPos);
-    PutSize (packet, packetPos);
+    putWord (packet, PACKET_SEND_MSG, packetPos);
+    putString (packet, tmp, packetPos);
+    putSize (packet, packetPos);
 
     sendToAll (packet, packetPos);
 }
 
+/*
+====================
+ handle receive buffer
+====================
+ */
 BOOL readRecvBuff (struct sPacket* pClient)
 {
     WORD msgSize;
@@ -45,8 +65,8 @@ BOOL readRecvBuff (struct sPacket* pClient)
     {
         pClient->m_recvPos = 0;
 
-        msgSize = GetWord (pClient->m_recvBuff, pClient->m_recvPos);
-        tag = GetWord (pClient->m_recvBuff, pClient->m_recvPos);
+        msgSize = getWord (pClient->m_recvBuff, pClient->m_recvPos);
+        tag     = getWord (pClient->m_recvBuff, pClient->m_recvPos);
 
         if (pClient->m_recvSize < msgSize)
             return (1);
@@ -54,13 +74,13 @@ BOOL readRecvBuff (struct sPacket* pClient)
         switch (tag)
         {
             case PACKET_ALIVE_CHECK:
-                PACKET_AliveCheck (pClient);
+                handleAliveCheck (pClient);
                 break;
             case PACKET_CHANGE_NICK:
-                PACKET_ChangeNick (pClient);
+                handleChangeNick (pClient);
                 break;
             case PACKET_RECV_MSG:
-                PACKET_RecvMsg (pClient);
+                handleRecvMsg (pClient);
                 break;
             case PACKET_SEND_MSG:
                 break;
