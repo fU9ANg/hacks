@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "building ... Server"
+cc -o Server Server.c
+
+echo "building ... Client"
+cc -o Client Client.c
