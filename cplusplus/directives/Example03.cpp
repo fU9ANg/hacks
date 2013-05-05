@@ -13,8 +13,10 @@ using namespace std;
 #undef  __cplusplus
 #endif
 
+#if 0
 #ifndef __cplusplus
 #error "Need a cplusplus compiler."
+#endif
 #endif
 
 int main (void)

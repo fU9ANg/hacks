@@ -22,9 +22,13 @@ main (void)
         f = 1.0f;
         try
         {
+#ifdef _VARABLE_CHAR
             throw c;
-            // throw i; -- or
-            // throw f; -- or
+#elif  _VARABLE_INT
+            throw i;
+#elif  _VARABLE_FLOAT
+            throw f;
+#endif
         }
         catch (int e)
         {

@@ -47,6 +47,7 @@ public:
     {
         X += x;
         Y += y;
+        return (0);
     }
 };
 
@@ -57,6 +58,7 @@ public:
     {
         X -= x;
         Y -= y;
+        return (0);
     }
 };
 

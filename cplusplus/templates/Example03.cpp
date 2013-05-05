@@ -243,9 +243,9 @@ inline void d2Vector<type> :: Resize (int nSize)
             tmp = data;
             data = alloc;
             if (capacity > nSize)
-                memcpy (data, tmp, sizeof (type) * nSize);
+                (void) memcpy (data, tmp, sizeof (type) * nSize);
             else
-                memcpy (data, tmp, sizeof (type) * capacity);
+                (void) memcpy (data, tmp, sizeof (type) * capacity);
         }
         capacity = nSize;
     }
