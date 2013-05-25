@@ -13,15 +13,15 @@
 #  Auto ssh login
 set timeout 10
 #spawn ssh $argv -l sxkj20 -p 2222 
-spawn ssh xxx.xxx.xxx -l username -p port
+spawn ssh xxx.xxx.xxx.xxx -l username -p port
 expect {
     "(yes/no)?" {
         send "yes\r"
         expect "password:"
-        send "******\r"
+        send "*****\r"
     }
     "password:" {
-        send "******\r"
+        send "*****\r"
     }
 }
 expect "]*"
@@ -29,8 +29,9 @@ send "date\r"
 send "cd ecServer\r"
 send "killall server\r"
 send "killall uploadfile.py\r"
+send "sleep 1\r"
 send "./server -d &\r"
-send "./uploadfile.py &\r"
+send "nohup ./uploadfile.py &\r"
 send "exit\r"
 interact
 
