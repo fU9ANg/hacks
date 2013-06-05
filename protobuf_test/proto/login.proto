@@ -1,0 +1,8 @@
+message Login
+{
+    required int32  clientid = 1;
+    required int32  clienttype = 2;
+    required float  quality = 3;
+    required string username = 4;
+    required string password = 5;
+}
