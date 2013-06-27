@@ -1,0 +1,17 @@
+
+// README
+在任一时刻只能有一个执行线程访问代码的临界区域，可以在使用线程的程序中通过互斥量或信号量来控制对临界区域的访问。
+
+信号量  ：用于管理对资源的访问。
+PV操作伪代码：
+semaphore sv = 1;
+loop forever
+{
+    P (sv);
+    critical code section;
+    V (sv);
+    noncritical code section;
+}
+
+共享内存：用于在程序之间高效的共享数据。
+消息队列：在程序之间传递数据的一种简单的方法。
