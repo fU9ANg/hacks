@@ -13,5 +13,48 @@ loop forever
     noncritical code section;
 }
 
+// sem1:
+sem1.c
+test:
+hacking @ LINUX$ ./sem1 1 &
+hacking @ LINUX$ ./sem1
+--------------------------------------------------------------------------------
+
 共享内存：用于在程序之间高效的共享数据。
+// shm
+shm_send.c
+shm_recv.c
+test:
+hacking @ LINUX$ ./shm_recv &
+[1] 22646
+Memory attached at 53A61000
+hacking @ LINUX$ ./shm_send
+Memory attached at 515A9000
+Enter some text: hello
+You wrote: hello
+waitting for client ...
+Enter some text: world
+You wrote: world
+waitting for client ...
+waitting for client ...
+Enter some text: how are U!
+You wrote: how are U!
+waitting for client ...
+Enter some text: end
+You wrote: end
+--------------------------------------------------------------------------------
+
 消息队列：在程序之间传递数据的一种简单的方法。
+// msg queue
+msg_send.c
+msg_recv.c
+test:
+hacking @ LINUX$ ./msg_send
+Enter some text: hello msg queue!
+Enter some text: test for msgQ
+Enter some text: end
+hacking @ LINUX$ ./msg_recv
+You wrote: hello msg queue!
+You wrote: test for msgQ
+You wrote: end
+--------------------------------------------------------------------------------

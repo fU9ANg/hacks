@@ -33,7 +33,7 @@ int main ()
         exit (EXIT_FAILURE);
     }
 
-    printf ("Memory attached at %X\n", (int) shared_memory);
+    printf ("Memory attached at %X\n", (unsigned int) shared_memory);
 
     shared_stuff = (struct shared_use_st*) shared_memory;
 
