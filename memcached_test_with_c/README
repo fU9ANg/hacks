@@ -1,0 +1,39 @@
+fu9ang@Kalinux:~/hacks$ memcached -d -m 2048 -l 172.16.10.103 -p 11211
+fu9ang@Kalinux:~/hacks$ ./tst_memcached
+fu9ang@Kalinux:~/hacks$ telnet 172.16.10.103 11211
+telnet 172.16.10.103 11211
+Trying 172.16.10.103...
+Connected to 172.16.10.103.
+Escape character is '^]'.
+get account
+END
+get account
+VALUE account 0 6
+fU9ANg
+END
+get account
+END
+get password
+END
+get e-maol
+END
+get e-mail
+END
+get password
+VALUE password 0 6
+******
+END
+get e-mail
+VALUE e-mail 0 20
+bb.newlife@gmail.com
+END
+get password
+END
+get e-mail
+VALUE e-mail 0 20
+bb.newlife@gmail.com
+END
+get e-mail
+END
+quit
+Connection closed by foreign host.

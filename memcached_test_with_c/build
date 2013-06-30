@@ -1,0 +1,4 @@
+#!/bin/bash 
+
+echo "compiling ... tst_memcached"
+g++ -o tst_memcached Main.cc -lmemcached
