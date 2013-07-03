@@ -1,0 +1,22 @@
+env = Environment (CXX = 'ccache g++')
+env = Environment (CC  = 'ccache gcc')
+
+Program ('upfile',
+        ['upload_file.cc',
+        ],
+
+        LIBS    = ['curl'],
+        LIBPATH = ['/usr/lib','/usr/local/lib'],
+        CXXFLAGS= ['-Wall','-Werror'],
+        CPPPATH = ['-I.']
+        )
+
+Program ('downfile',
+        ['download_file.cc',
+        ],
+
+        LIBS    = ['curl'],
+        LIBPATH = ['/usr/lib','/usr/local/lib'],
+        CXXFLAGS= ['-Wall','-Werror'],
+        CPPPATH = ['-I.']
+        )

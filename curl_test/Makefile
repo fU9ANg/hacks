@@ -1,4 +1,3 @@
-
 #
 # makefile
 #
@@ -35,12 +34,8 @@ upfile:$(UPLOADOBJS)
 downfile:$(DOWNLOADOBJS)
 	$(CPP) $(CFLAGS) $(CDEBUG) -o $@ $(DOWNLOADOBJS) $(LINK)
 
-%.o:%.cpp
-	$(CPP) $(CFLAGS) $(CDEBUG) $(INC) -o $@ -c $<
 %.o:%.cc
 	$(CPP) $(CFLAGS) $(CDEBUG) $(INC) -o $@ -c $<
-%.o:%.c
-	$(CC)  $(CFLAGS) $(CDEBUG) $(INC) -o $@ -c $<
 
 .PHONY: clean
 

@@ -1,0 +1,16 @@
+
+compile:
+select one of the following three methods
+-------
+1. make and clean
+$ make
+$ make clean
+
+2. used cmake auto-tools
+$ mkdir -pv build
+$ cd build
+$ cmake ..
+
+3. used scons auto-tools
+$ scons
+$ scons -c
