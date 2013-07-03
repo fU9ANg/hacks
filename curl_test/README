@@ -14,3 +14,7 @@ $ cmake ..
 3. used scons auto-tools
 $ scons
 $ scons -c
+
+test:
+$ ./upload xxx.png http://www.xxx.com/xxx.png
+$ ./download xxx.png http://www.xxx.com/upload

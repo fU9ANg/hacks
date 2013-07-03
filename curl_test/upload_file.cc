@@ -1,61 +1,86 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 #include <curl/curl.h>
 
-static size_t write_data (void *buffer, size_t size, size_t num, void *server_data);
-
-
-static CURLcode get_data (const char *filename,char *url)
+static int send_data (char *filename, char *url)
 {
+    CURL *curl;
     CURLcode rc;
+
+    struct curl_httppost *formpost = NULL;
+    struct curl_httppost *lastptr  = NULL;
+    struct curl_slist *headerlist  = NULL;
+    static const char buf[] = "Expect:";
 
     rc = curl_global_init (CURL_GLOBAL_ALL);
     if (rc != CURLE_OK) {
         printf ("[ERROR]: init libcurl failed.");
         return (CURLE_FAILED_INIT);
     }
-    CURL* handler = curl_easy_init ();
-    if (handler == NULL) {
-        printf ("[ERROR]: init curl easy handler failed.");
-        curl_global_cleanup ();
-        return (CURLE_FAILED_INIT);
+
+    /* Fill in the file upload field */
+    curl_formadd (&formpost,
+                  &lastptr,
+                  CURLFORM_COPYNAME, "myfile",
+                  CURLFORM_FILE, filename,
+                  CURLFORM_END);
+
+    /* Fill in the filename field */
+    curl_formadd (&formpost,
+                  &lastptr,
+                  CURLFORM_COPYNAME, "filename",
+                  CURLFORM_COPYCONTENTS, filename,
+                  CURLFORM_END);
+
+
+    /* Fill in the submit field too, even if this is rarely needed */
+    curl_formadd (&formpost,
+                  &lastptr,
+                  CURLFORM_COPYNAME, "submit",
+                  CURLFORM_COPYCONTENTS, "send",
+                  CURLFORM_END);
+
+    curl = curl_easy_init ();
+    /* initalize custom header list (stating that Expect: 100-continue is not
+       wanted */
+    headerlist = curl_slist_append (headerlist, buf);
+    if (curl)
+    {
+        /* what URL that receives this POST */
+        curl_easy_setopt (curl, CURLOPT_URL, url);
+        curl_easy_setopt (curl, CURLOPT_HTTPHEADER, headerlist);
+        curl_easy_setopt (curl, CURLOPT_HTTPPOST, formpost);
+
+        /* Perform the request, rc will get the return code */
+        rc = curl_easy_perform (curl);
+
+        /* Check for errors */
+        if (rc != CURLE_OK) {
+            fprintf (stderr, "curl_easy_perform() failed: %s\n",
+                curl_easy_strerror (rc));
+            return (CURLE_FAILED_INIT);
+        }
+
+        /* always cleanup */
+        curl_easy_cleanup (curl);
+
+        /* then cleanup the formpost chain */
+        curl_formfree (formpost);
+
+        /* free server list */
+        curl_slist_free_all (headerlist);
     }
-    FILE *fp = fopen (filename, "wb");
-
-    
-    curl_easy_setopt (handler,CURLOPT_URL, url);
-    curl_easy_setopt (handler,CURLOPT_WRITEFUNCTION, &write_data);
-    curl_easy_setopt (handler, CURLOPT_WRITEDATA, fp);
-    //curl_easy_setopt (handler, CURLOPT_TIMEOUT_MS, 3000); // Set timeout by ms
-    
-    // execute request
-    rc = curl_easy_perform(handler);
-
-    // free resources
-    fclose (fp);
-    curl_easy_cleanup (handler);
-    curl_global_cleanup ();
-
-    return (rc);
+    return (0);
 }
 
-int main (int argc, char** argv)
+int main (int argc, char* argv[])
 {
     if (argc != 3) {
         printf ("usage: %s 'filename', 'server address'\n", argv[0]);
         exit (1);
     }
 
-    get_data (argv[1], argv[2]);
+    send_data (argv[1], argv[2]);
     exit (0);
-}
-
-size_t write_data (void *buffer, size_t size, size_t num, void *server_data)
-{
-    FILE  *fp = (FILE *) server_data;
-    size_t n = fwrite (buffer, size, num, fp);
-
-    return (n);
 }
