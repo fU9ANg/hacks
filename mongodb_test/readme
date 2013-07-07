@@ -1,0 +1,6 @@
+
+compiling with scons:
+
+$ scons         # single-thread compiling
+$ scons -j 4    # with multi-thread compiling
+$ scons -c      # clean

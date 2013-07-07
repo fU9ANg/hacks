@@ -1,0 +1,54 @@
+env = Environment (CXX = 'ccache g++')
+env = Environment (CC  = 'ccache gcc')
+
+lib = File('/usr/local/lib64/libmongoclient.a')
+
+Program ('tst_connect',
+        ['connect_db_test.cc',
+        ],
+
+        LIBS    = [lib,'boost_system','boost_thread','boost_program_options','boost_filesystem'],
+        LIBPATH = ['/usr/lib','/usr/local/lib','/usr/local/lib64'],
+        CXXFLAGS= ['-Wall','-Werror'],
+        CPPPATH = ['-I.']
+        )
+
+Program ('tst_insert',
+        ['insert_data_test.cc',
+        ],
+
+        LIBS    = [lib,'boost_system','boost_thread','boost_program_options','boost_filesystem'],
+        LIBPATH = ['/usr/lib','/usr/local/lib','/usr/local/lib64'],
+        CXXFLAGS= ['-Wall','-Werror'],
+        CPPPATH = ['-I.']
+        )
+
+Program ('tst_delete',
+        ['delete_data_test.cc',
+        ],
+
+        LIBS    = [lib,'boost_system','boost_thread','boost_program_options','boost_filesystem'],
+        LIBPATH = ['/usr/lib','/usr/local/lib','/usr/local/lib64'],
+        CXXFLAGS= ['-Wall','-Werror'],
+        CPPPATH = ['-I.']
+        )
+
+Program ('tst_update',
+        ['update_data_test.cc',
+        ],
+
+        LIBS    = [lib,'boost_system','boost_thread','boost_program_options','boost_filesystem'],
+        LIBPATH = ['/usr/lib','/usr/local/lib','/usr/local/lib64'],
+        CXXFLAGS= ['-Wall','-Werror'],
+        CPPPATH = ['-I.']
+        )
+
+Program ('tst_select',
+        ['select_data_test.cc',
+        ],
+
+        LIBS    = [lib,'boost_system','boost_thread','boost_program_options','boost_filesystem'],
+        LIBPATH = ['/usr/lib','/usr/local/lib','/usr/local/lib64'],
+        CXXFLAGS= ['-Wall','-Werror'],
+        CPPPATH = ['-I.']
+        )
