@@ -1,0 +1,22 @@
+README:
+
+build certificate and privatekey
+--------------------------------
+$ openssl genrsa -out privatekey.pem 4096 
+$ openssl req -new -x509 -key privatekey.pem -out certificate.pem -days 10
+
+
+compiling server and client
+---------------------------
+$ make
+$ make clean
+
+
+setup server
+-------------
+$ ./server 192.168.0.254 12350 certificate.pem privatekey.pem
+
+
+execute client for test
+-----------------------
+$ ./client 192.168.0.254 12350 
