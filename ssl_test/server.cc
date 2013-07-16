@@ -85,7 +85,7 @@ int main(int argc, char **argv)
     printf ("[INFO]: listen...\n");
 
     for (;;) {
-        SSL *ssl;
+        SSL *ssl = NULL;
         len = sizeof (struct sockaddr);
 
         // accept client request of socket

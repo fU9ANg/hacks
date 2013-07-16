@@ -1,0 +1,22 @@
+env = Environment (CXX = 'ccache g++')
+env = Environment (CC  = 'ccache gcc')
+
+Program ('server',
+        ['server.cc','utils.cc'
+        ],
+
+        LIBS    = ['ssl','crypto','dl'],
+        LIBPATH = ['/usr/local/ssl/lib','/usr/ssl/lib'],
+        CXXFLAGS= ['-Wall','-Werror','-g','-D_ENABLED_SSL'],
+        CPPPATH = ['-I.']
+        )
+
+Program ('client',
+        ['client.cc','utils.cc'
+        ],
+
+        LIBS    = ['ssl','crypto','dl'],
+        LIBPATH = ['/usr/local/ssl/lib','/usr/ssl/lib'],
+        CXXFLAGS= ['-Wall','-Werror','-g','-D_ENABLED_SSL'],
+        CPPPATH = ['-I.']
+        )
