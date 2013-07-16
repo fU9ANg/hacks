@@ -1,0 +1,11 @@
+env = Environment (CXX = 'ccache g++')
+env = Environment (CC  = 'ccache gcc')
+
+Program ('tst_tinyxml',
+        ['main.cpp','tinystr.cpp','tinyxml.cpp','tinyxmlerror.cpp','tinyxmlparser.cpp'
+        ],
+
+        LIBPATH = ['/usr/lib','/usr/local/lib'],
+        CXXFLAGS= ['-Wall','-Werror','-g','-Wno-unknown-pragmas','-Wno-format'],
+        CPPPATH = ['-I.']
+        )
