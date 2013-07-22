@@ -1,0 +1,8 @@
+message updater
+{
+    required int32  major = 1;
+    required int32  minor = 2;
+    required int32  size  = 3;
+    required string date  = 4;
+    required string addr  = 5;
+}
