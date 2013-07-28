@@ -63,6 +63,39 @@ int isEnChName = 0;
 int iRecord = 0;
 int idxArray = 0;
 
+void convertS (char* pstr1, char* pstr2)
+{
+	int idx=0, flag = 0, old_pos = 0;
+
+	char *p1 = pstr1;
+	char *p2 = pstr2;
+
+	while (p1[idx])
+	{
+		if (p1[idx] == '"') {
+			if (flag == 0) {
+				flag = 1;
+				old_pos = idx;
+				idx++;
+				continue;
+			}
+			else if (flag == 1) {
+				flag = 0;
+			}
+		}
+		
+		if (!(p1[idx+1] == 0x00 && p1[idx] == '"')) {
+			*p2 = p1[idx];
+			p2++;
+		}
+		idx++;
+	}
+	*p2 = 0x00;
+
+	cout << "ptr1: " << pstr1 << endl;
+	cout << "ptr2: " << pstr2 << endl;
+}
+
 bool ConvertCsvToTxt (string line)
 {
 	char Line[BUFF_SIZE];
@@ -140,9 +173,11 @@ bool ConvertCsvToTxt (string line)
 // 	getchar();
 	// split string format is "xxx,xxx,xxx,xxxxx"
 	char token[BUFF_SIZE];
+	char temp_token[BUFF_SIZE];
 	unsigned int i = 0;
 	int  j = 0;
 	(void) memset (token, 0x00, sizeof (token));
+	(void) memset (temp_token, 0x00, sizeof (temp_token));
 	for (i=0; i<line.size(); )
 	{
 		if (line[i] == ',')
@@ -160,9 +195,17 @@ bool ConvertCsvToTxt (string line)
 				// set field id to index of array
 				if (titleVector[idex] == "id")
 					idxArray = atoi (token);
-				kvMap.insert(pair<string,string>(titleVector[idex++], token));
+
+				convertS (token, temp_token);
+#if 0
+				cout << "TOKEN: " << token << endl;
+				cout << "TEMP_TOKEN: " << temp_token << endl;
+				getchar ();
+#endif
+				kvMap.insert(pair<string,string>(titleVector[idex++], temp_token));
 			}
 			(void) memset (token, 0x00, sizeof (token));
+			(void) memset (temp_token, 0x00, sizeof (temp_token));
 			j = -1;
 		}
 		else
@@ -173,7 +216,7 @@ bool ConvertCsvToTxt (string line)
 		i++;
 		j++;
 	}
-	if (token[0] != 0x00)
+	if (token[0] != 0x00 && token[0] != ' ')
 	{
 		if (isFirstLine == 1)
 			titleVector.push_back(token);
