@@ -1,0 +1,42 @@
+<RESOURCES>
+
+    <resource name="建筑" encoding=001>
+        <type name="室外" encoding=01>
+            <reference encoding=100>buildhouse/屋顶.png</reference>
+            <reference encoding=101>buildhouse/窗户.png</reference>
+        </type>
+        <type name="室内" encoding=02>
+            <reference encoding=100>buildhouse/木床.png</reference>
+            <reference encoding=101>buildhouse/椅子.png</reference>
+            <reference encoding=102>buildhouse/桌子.png</reference>
+        </type>
+    </resource>
+
+    <resource name="动物" encoding=002>
+        <type name="哺乳动物" encoding=01>
+            <reference encoding=100>buildhouse/小猪猪.png</reference>
+            <reference encoding=101>buildhouse/小狗狗.png</reference>
+            <reference encoding=102>buildhouse/小猫猫.plist</reference>
+        </type>
+        <type name="爬行动物" encoding=02>
+        </type>
+        <type name="昆虫" encoding=03>
+            <reference encoding=100>buildhouse/小蜜蜂.plist</reference>
+            <reference encoding=101>buildhouse/小蝴蝶.png</reference>
+        </type>
+        <type name="鱼类" encoding=04>
+        </type>
+        <type name="鸟类" encoding=05>
+        </type>
+    </resource>
+
+    <resource name="植物" encoding=003>
+        <type name="被子植物" encoding=01>
+        </type>
+        <type name="蕨类植物" encoding=02>
+        </type>
+        <type name="裸子植物" encoding=03>
+        </type>
+    </resource>
+
+</RESOURCES>
