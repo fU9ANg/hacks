@@ -1,0 +1,433 @@
+[-- Run for Testing --]
+
+    fu9ang@Kalinux:~/hacks/XMLReader$ ./XMLReader 
+
+    [Name]qnx
+    [ATTRIBUTE]xmlns: http://www.qnx.com/schemas/application/1.0
+
+    [Name]id
+    [Value]org.cocos2dx.BBTemplateProject
+    [Name]name
+    [Value]BBTemplateProject
+    [Name]versionNumber
+    [Value]1.0.0
+    [Name]buildId
+    [Value]1
+    [Name]description
+    [Value]The BBTemplateProject application
+    [Name]author
+    [Value]Cocos2d-x
+    [Name]icon
+    [Name]image
+    [Value]icon.png
+    [Name]initialWindow
+    [Name]systemChrome
+    [Value]none
+    [Name]transparent
+    [Value]false
+    [Name]category
+    [Value]core.games
+    [Name]asset
+    [Value]icon.png
+    [ATTRIBUTE]path: icon.png
+
+    [Name]asset
+    [Value]Resources
+    [ATTRIBUTE]path: ../Resources
+
+    [Name]configuration
+    [ATTRIBUTE]id: com.qnx.qcc.configuration.exe.debug.446234419
+
+    [ATTRIBUTE]name: Device-Debug
+
+    [Name]platformArchitecture
+    [Value]armle-v7
+    [Name]asset
+    [Value]lib/libCocosDenshion.so
+    [ATTRIBUTE]path: empty/../../../../CocosDenshion/proj.blackberry/Device-Debug/libCocosDenshion.so
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]asset
+    [Value]BBTemplateProject
+    [ATTRIBUTE]path: Device-Debug/BBTemplateProject
+
+    [ATTRIBUTE]entry: true
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]configuration
+    [ATTRIBUTE]id: com.qnx.qcc.configuration.exe.release.1265921422
+
+    [ATTRIBUTE]name: Device-Release
+
+    [Name]platformArchitecture
+    [Value]armle-v7
+    [Name]asset
+    [Value]lib/libCocosDenshion.so
+    [ATTRIBUTE]path: empty/../../../../CocosDenshion/proj.blackberry/Device-Release/libCocosDenshion.so
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]asset
+    [Value]BBTemplateProject
+    [ATTRIBUTE]path: Device-Release/BBTemplateProject
+
+    [ATTRIBUTE]entry: true
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]configuration
+    [ATTRIBUTE]id: com.qnx.qcc.configuration.exe.profile.1761000041
+
+    [ATTRIBUTE]name: Device-Profile
+
+    [Name]platformArchitecture
+    [Value]armle-v7
+    [Name]asset
+    [Value]lib/libCocosDenshion.so
+    [ATTRIBUTE]path: empty/../../../../CocosDenshion/proj.blackberry/Device-Profile/libCocosDenshion.so
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]asset
+    [Value]BBTemplateProject
+    [ATTRIBUTE]path: Device-Profile/BBTemplateProject
+
+    [ATTRIBUTE]entry: true
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]configuration
+    [ATTRIBUTE]id: com.qnx.qcc.configuration.exe.profile.coverage.1771167181
+
+    [ATTRIBUTE]name: Device-Coverage
+
+    [Name]platformArchitecture
+    [Value]armle-v7
+    [Name]asset
+    [Value]lib/libCocosDenshion.so
+    [ATTRIBUTE]path: empty/../../../../CocosDenshion/proj.blackberry/Device-Coverage/libCocosDenshion.so
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]asset
+    [Value]BBTemplateProject
+    [ATTRIBUTE]path: Device-Coverage/BBTemplateProject
+
+    [ATTRIBUTE]entry: true
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]configuration
+    [ATTRIBUTE]id: com.qnx.qcc.configuration.exe.debug.660208940
+
+    [ATTRIBUTE]name: Simulator
+
+    [Name]platformArchitecture
+    [Value]x86
+    [Name]asset
+    [Value]lib/libCocosDenshion.so
+    [ATTRIBUTE]path: empty/../../../../CocosDenshion/proj.blackberry/Simulator/libCocosDenshion.so
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]asset
+    [Value]BBTemplateProject
+    [ATTRIBUTE]path: Simulator/BBTemplateProject
+
+    [ATTRIBUTE]entry: true
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]configuration
+    [ATTRIBUTE]id: com.qnx.qcc.configuration.exe.profile.1237484173
+
+    [ATTRIBUTE]name: Simulator-Profile
+
+    [Name]platformArchitecture
+    [Value]x86
+    [Name]asset
+    [Value]lib/libCocosDenshion.so
+    [ATTRIBUTE]path: empty/../../../../CocosDenshion/proj.blackberry/Simulator-Profile/libCocosDenshion.so
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]asset
+    [Value]BBTemplateProject
+    [ATTRIBUTE]path: Simulator-Profile/BBTemplateProject
+
+    [ATTRIBUTE]entry: true
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]configuration
+    [ATTRIBUTE]id: com.qnx.qcc.configuration.exe.profile.coverage.181538713
+
+    [ATTRIBUTE]name: Simulator-Coverage
+
+    [Name]platformArchitecture
+    [Value]x86
+    [Name]asset
+    [Value]lib/libCocosDenshion.so
+    [ATTRIBUTE]path: empty/../../../../CocosDenshion/proj.blackberry/Simulator-Coverage/libCocosDenshion.so
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]asset
+    [Value]BBTemplateProject
+    [ATTRIBUTE]path: Simulator-Coverage/BBTemplateProject
+
+    [ATTRIBUTE]entry: true
+
+    [ATTRIBUTE]type: Qnx/Elf
+
+    [Name]action
+    [Value]run_native
+    [ATTRIBUTE]system: true
+
+    [Name]env
+    [ATTRIBUTE]var: LD_LIBRARY_PATH
+
+    [ATTRIBUTE]value: app/native/lib
+
+
+
+
+    [------- DUMPING XML NODE INFORMATION -------]
+
+    Name: qnx
+    Text: 
+    [ATTRIBUTES]
+    xmlns=http://www.qnx.com/schemas/application/1.0
+
+    Name: id
+    Text: org.cocos2dx.BBTemplateProject
+    [ATTRIBUTES]
+
+    Name: name
+    Text: BBTemplateProject
+    [ATTRIBUTES]
+
+    Name: versionNumber
+    Text: 1.0.0
+    [ATTRIBUTES]
+
+    Name: buildId
+    Text: 1
+    [ATTRIBUTES]
+
+    Name: description
+    Text: The BBTemplateProject application
+    [ATTRIBUTES]
+
+    Name: author
+    Text: Cocos2d-x
+    [ATTRIBUTES]
+
+    Name: icon
+    Text: 
+    [ATTRIBUTES]
+
+    Name: image
+    Text: icon.png
+    [ATTRIBUTES]
+
+    Name: initialWindow
+    Text: 
+    [ATTRIBUTES]
+
+    Name: systemChrome
+    Text: none
+    [ATTRIBUTES]
+
+    Name: transparent
+    Text: false
+    [ATTRIBUTES]
+
+    Name: category
+    Text: core.games
+    [ATTRIBUTES]
+
+    Name: asset
+    Text: icon.png
+    [ATTRIBUTES]
+    path=icon.png
+
+    Name: asset
+    Text: Resources
+    [ATTRIBUTES]
+    path=../Resources
+
+    Name: configuration
+    Text: 
+    [ATTRIBUTES]
+    id=com.qnx.qcc.configuration.exe.debug.446234419
+    name=Device-Debug
+
+    Name: platformArchitecture
+    Text: armle-v7
+    [ATTRIBUTES]
+
+    Name: asset
+    Text: lib/libCocosDenshion.so
+    [ATTRIBUTES]
+    path=empty/../../../../CocosDenshion/proj.blackberry/Device-Debug/libCocosDenshion.so
+    type=Qnx/Elf
+
+    Name: asset
+    Text: BBTemplateProject
+    [ATTRIBUTES]
+    path=Device-Debug/BBTemplateProject
+    entry=true
+    type=Qnx/Elf
+
+    Name: configuration
+    Text: 
+    [ATTRIBUTES]
+    id=com.qnx.qcc.configuration.exe.release.1265921422
+    name=Device-Release
+
+    Name: platformArchitecture
+    Text: armle-v7
+    [ATTRIBUTES]
+
+    Name: asset
+    Text: lib/libCocosDenshion.so
+    [ATTRIBUTES]
+    path=empty/../../../../CocosDenshion/proj.blackberry/Device-Release/libCocosDenshion.so
+    type=Qnx/Elf
+
+    Name: asset
+    Text: BBTemplateProject
+    [ATTRIBUTES]
+    path=Device-Release/BBTemplateProject
+    entry=true
+    type=Qnx/Elf
+
+    Name: configuration
+    Text: 
+    [ATTRIBUTES]
+    id=com.qnx.qcc.configuration.exe.profile.1761000041
+    name=Device-Profile
+
+    Name: platformArchitecture
+    Text: armle-v7
+    [ATTRIBUTES]
+
+    Name: asset
+    Text: lib/libCocosDenshion.so
+    [ATTRIBUTES]
+    path=empty/../../../../CocosDenshion/proj.blackberry/Device-Profile/libCocosDenshion.so
+    type=Qnx/Elf
+
+    Name: asset
+    Text: BBTemplateProject
+    [ATTRIBUTES]
+    path=Device-Profile/BBTemplateProject
+    entry=true
+    type=Qnx/Elf
+
+    Name: configuration
+    Text: 
+    [ATTRIBUTES]
+    id=com.qnx.qcc.configuration.exe.profile.coverage.1771167181
+    name=Device-Coverage
+
+    Name: platformArchitecture
+    Text: armle-v7
+    [ATTRIBUTES]
+
+    Name: asset
+    Text: lib/libCocosDenshion.so
+    [ATTRIBUTES]
+    path=empty/../../../../CocosDenshion/proj.blackberry/Device-Coverage/libCocosDenshion.so
+    type=Qnx/Elf
+
+    Name: asset
+    Text: BBTemplateProject
+    [ATTRIBUTES]
+    path=Device-Coverage/BBTemplateProject
+    entry=true
+    type=Qnx/Elf
+
+    Name: configuration
+    Text: 
+    [ATTRIBUTES]
+    id=com.qnx.qcc.configuration.exe.debug.660208940
+    name=Simulator
+
+    Name: platformArchitecture
+    Text: x86
+    [ATTRIBUTES]
+
+    Name: asset
+    Text: lib/libCocosDenshion.so
+    [ATTRIBUTES]
+    path=empty/../../../../CocosDenshion/proj.blackberry/Simulator/libCocosDenshion.so
+    type=Qnx/Elf
+
+    Name: asset
+    Text: BBTemplateProject
+    [ATTRIBUTES]
+    path=Simulator/BBTemplateProject
+    entry=true
+    type=Qnx/Elf
+
+    Name: configuration
+    Text: 
+    [ATTRIBUTES]
+    id=com.qnx.qcc.configuration.exe.profile.1237484173
+    name=Simulator-Profile
+
+    Name: platformArchitecture
+    Text: x86
+    [ATTRIBUTES]
+
+    Name: asset
+    Text: lib/libCocosDenshion.so
+    [ATTRIBUTES]
+    path=empty/../../../../CocosDenshion/proj.blackberry/Simulator-Profile/libCocosDenshion.so
+    type=Qnx/Elf
+
+    Name: asset
+    Text: BBTemplateProject
+    [ATTRIBUTES]
+    path=Simulator-Profile/BBTemplateProject
+    entry=true
+    type=Qnx/Elf
+
+    Name: configuration
+    Text: 
+    [ATTRIBUTES]
+    id=com.qnx.qcc.configuration.exe.profile.coverage.181538713
+    name=Simulator-Coverage
+
+    Name: platformArchitecture
+    Text: x86
+    [ATTRIBUTES]
+
+    Name: asset
+    Text: lib/libCocosDenshion.so
+    [ATTRIBUTES]
+    path=empty/../../../../CocosDenshion/proj.blackberry/Simulator-Coverage/libCocosDenshion.so
+    type=Qnx/Elf
+
+    Name: asset
+    Text: BBTemplateProject
+    [ATTRIBUTES]
+    path=Simulator-Coverage/BBTemplateProject
+    entry=true
+    type=Qnx/Elf
+
+    Name: action
+    Text: run_native
+    [ATTRIBUTES]
+    system=true
+
+    Name: env
+    Text: 
+    [ATTRIBUTES]
+    var=LD_LIBRARY_PATH
+    value=app/native/lib
+

@@ -1,4 +1,7 @@
 
+// written by fU9ANg
+// bb.newlife@gmail.com
+
 #ifndef _XML_PARSER_H
 #define _XML_PARSER_H
 
@@ -11,18 +14,19 @@
 
 using namespace std;
 
+// PROTOTYPES
 class CXmlNode;
 class CXmlAttribute;
 class CXmlParser;
 
-#if 1
 class CXmlNode
 {
 private:
     string name;
     string text;
     TiXmlElement*  element;
-    CXmlNode* parent;
+    CXmlNode*      parent;
+
 public:
     vector<CXmlNode*> children;
     vector<CXmlAttribute*> attributes;
@@ -59,11 +63,17 @@ public:
     string getValue ()  { return value;}
     TiXmlAttribute* getXmlAttribute () { return attribute; }
 
-    void setName (string& s) { this->name = s; }
-    void setValue (string& v) { this->value = v; }
-    void setXmlAttribute (TiXmlAttribute* a) { this->attribute = a; }
+    void   setName (string& s) { this->name = s; }
+    void   setValue (string& v) { this->value = v; }
+    void   setXmlAttribute (TiXmlAttribute* a) { this->attribute = a; }
+
+    bool   getBoolValue ();
+    int    getIntValue ();
+    int    getIntValue (int min, int max);
+    float  getFloatValue ();
+    float  getFloatValue (float min, float max);
+    string getRestrictedValue ();
 };
-#endif
 
 class CXmlParser
 {
@@ -72,21 +82,12 @@ class CXmlParser
         static CXmlParser* instance ();
 
         bool Load ();
-        bool Dump ();
-        //bool Dump2 (TiXmlElement* parent, TiXmlElement* node);
-        bool Dump2 (CXmlNode* root, CXmlNode* node);
-        bool Dump3 ();
+        bool Init ();
 
         bool DumpXML (CXmlNode* root);
-        string getResourceByEncoding (string res_encoding, string type_encoding, string refer_encoding);
-        string getResourceByName (string s_resource, string s_type, string s_reference);
-        bool getEncodingByResource (string name, \
-            string& res_encoding, string& type_encoding, string& refer_encoding);
 
     private:
-        string getResource (string s1, string s2, string s3, int flags);
-        bool getEncoding (string s1, string& s2, string& s3, string& s4, int flags);
-
+        bool Loading (CXmlNode* root, CXmlNode* node);
         CXmlParser (string sFile);
         static CXmlParser* pInstance;
         TiXmlDocument* m_doc;

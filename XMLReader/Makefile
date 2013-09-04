@@ -1,22 +1,21 @@
 #
-# makefile
+# makefile for XML reader
 #
 
 # which c plus plus compiler
 CPP     = ccache g++
 
 # options for compiler
-CFLAGS  = 
-#-Wall -Werror
+CFLAGS  = -Wall -Werror
 
 # is debug? (for development)
 CDEBUG  = -g -Wno-unknown-pragmas -Wno-format
 
 # objects
-OBJS	= main.o xml_parser.o tinystr.o tinyxmlerror.o tinyxml.o tinyxmlparser.o
+OBJS	= XMLReader.o xml_parser.o tinystr.o tinyxmlerror.o tinyxml.o tinyxmlparser.o converType.o
 
 # binary
-BIN	    = main 
+BIN	    = XMLReader
 
 # rock..
 all: clean $(BIN)
