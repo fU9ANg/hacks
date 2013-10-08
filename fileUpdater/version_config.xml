@@ -1,0 +1,24 @@
+<xml>
+    <version major="1" minor="1">
+        <file size="100" md5="f58e76ef7e1bd0b9650292aabbf7fc59" datetime="2013/3/4 12:34:32">xxx.jpg</file>
+        <file>...</file>
+        ...
+        <file>...</file>
+    </version>
+
+    <version major="1" minor="2">
+        <file size="101" md5="15ff3262f8623c6eeb582367c504eb73" datetime="2013/3/4 12:34:32">info.xml</file>
+        <file>...</file>
+        ...
+        <file>...</file>
+    </version>
+
+    ...
+
+    <version major="1" minor="3">
+        <file size="102" md5="787dd5545c9cf44a6b82785d335d962b" datetime="2013/3/4 12:34:32">INFO.xml</file>
+        <file>...</file>
+        ...
+        <file>...</file>
+    </version>
+</xml>

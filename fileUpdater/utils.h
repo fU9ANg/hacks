@@ -11,8 +11,8 @@
 
 #include <curl/curl.h>
 
-#define MAX_VERSION_NUMBER  5
-#define MAX_FILE_NUMBER     3
+#define MAX_VERSION_NUMBER  2
+#define MAX_FILE_NUMBER     1
 #define FILENAME(i)    "http://222.186.50.76:9090/static/test"".zip"
 
 using namespace std;

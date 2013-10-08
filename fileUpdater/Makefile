@@ -58,4 +58,4 @@ Client:$(CLIOBJS) $(COMMOBJS) $(PROTOBJS)
 .PHONY: clean
 
 clean:
-	-rm -rf $(OBJS) $(BIN) protocol/updater.pb.cc protocol/updater.pb.h *~
+	-rm -rf $(OBJS) $(BIN) ./*.o protocol/*.cc protocol/*.h *~

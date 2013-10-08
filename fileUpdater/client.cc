@@ -65,8 +65,9 @@ int main (int argc, char** argv)
         cout << "addr =" << update.addr () << endl;
 
     char s1[] = "server-7.13.tar.gz";
-    cout << "[info]: down-loading files!" << endl;
+    cout << "[INFO]: down-loading files!" << endl;
     get_data (s1, update.addr().c_str());    // 'filename', 'server address'
+    cout << "---------DOWNLOADED-------------" << endl;
     }
 #if 0
     write (sock_fd, &ch, 1);
@@ -86,6 +87,7 @@ int main (int argc, char** argv)
         cout << "addr =" << update.addr () << endl;
 
 #endif
+    cout << "herere" << endl;
     char s1[] = "server-7.13.tar.gz";
     char s2[] = "http://222.186.50.76:9090/static/server-7.13.tar.gz";
     cout << "[info]: down-loading files!" << endl;

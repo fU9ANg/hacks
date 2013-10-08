@@ -1,0 +1,5 @@
+#!/bin/sh
+g++ -o md5_calc.o -c md5_calc.cc
+g++ -o read_dir.o -c read_dir.cpp
+g++ -o read_dir md5_calc.o read_dir.o -lcrypto -lssl
+rm -rf md5_calc.o read_dir.o
