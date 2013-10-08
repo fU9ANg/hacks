@@ -14,16 +14,17 @@
 
 using namespace std;
 
-#define BUFF_SIZE   4096
+#define BUFF_SIZE   8192
 
-int calcmd5 (string filename)
+string calcmd5 (string filename)
 {
     MD5_CTX ctx;
     unsigned char outmd[16] = {0};
-    int i = 0;
+    int i  = 0;
     int fd = 0;
-    char block[BUFF_SIZE];
     int nread = 0;
+    char block[BUFF_SIZE];
+    string sresult;
 
     if ((fd = open (filename.c_str(), O_RDONLY)) <= 0)
     {
@@ -37,19 +38,12 @@ int calcmd5 (string filename)
     }
     MD5_Final (outmd, &ctx);
 
-    if (fd) close (fd);
+    if (fd)
+        close (fd);
     for (i = 0; i < 16; i++)
-        printf ("%02x", outmd[i]);
+    {
+        sprintf (&sresult[2*i], "%02x", outmd[i]);
+    }
 
-    //printf ("\n");
-
-    return (0);
+    return (sresult);
 }
-
-#if 0
-int main ()
-{
-    return (calcmd5 ("/home/sxkj7/hacks/fileUpdater/build/server-7.13.tar.gz"));
-    
-}
-#endif

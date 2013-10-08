@@ -7,6 +7,7 @@
 #include <sys/stat.h>
 #include <string>
 
+#include "utils.h"
 #include "md5_calc.h"
 
 using namespace std;
@@ -52,6 +53,7 @@ void dir_scan (string path, string file)
     struct   dirent *dt;
     string   dirname;
     string   dirfile;
+    string   md5string;
 
     dirname = path;
 
@@ -94,11 +96,13 @@ void dir_scan (string path, string file)
     }
     else
     {
-        //printf ("%s__%s\n", dirname.c_str(), file.c_str());
         dirfile = dirname + file;
-        calcmd5 (dirfile);
-        printf ("\t%s", dirfile.c_str());
-        printf ("\n");
+        md5string = calcmd5 (dirfile);
+        string xmlfile = "./text.xml";
+        string major = "1";
+        string minor = "10";
+        printf ("MD5: %s\tFile: %s\n", md5string.c_str(), dirfile.c_str());
+        autoCreateXML (xmlfile, major, minor, md5string, dirfile);
         count++;
     }
 }

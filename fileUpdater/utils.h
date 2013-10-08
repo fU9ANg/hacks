@@ -22,6 +22,7 @@ extern void setreuseaddr(int fd);
 extern void setnodelay  (int fd);
 
 // parser xml file 
+extern bool autoCreateXML (string& fname, string& major, string& minor, string& md5, string& filename);
 extern bool buildXML (string& fname);
 extern bool dumpXML (string& fname);
 

@@ -13,6 +13,6 @@
 #include <openssl/md5.h>
 using namespace std;
 
-extern int calcmd5 (string filename);
+extern string calcmd5 (string filename);
 
 #endif  //_MD5_CALC_H

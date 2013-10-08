@@ -17,6 +17,7 @@ Attribute	tinyxml.cpp	/^const char* TiXmlElement::Attribute( const char* name, i
 Attribute	tinyxml.cpp	/^const std::string* TiXmlElement::Attribute( const std::string& name ) const$/;"	f	class:TiXmlElement
 Attribute	tinyxml.cpp	/^const std::string* TiXmlElement::Attribute( const std::string& name, double* d ) const$/;"	f	class:TiXmlElement
 Attribute	tinyxml.cpp	/^const std::string* TiXmlElement::Attribute( const std::string& name, int* i ) const$/;"	f	class:TiXmlElement
+BUFF_SIZE	md5_calc.cc	17;"	d	file:
 Blank	tinyxmlparser.cpp	/^bool TiXmlText::Blank() const$/;"	f	class:TiXmlText
 CDATA	tinyxml.h	/^	bool CDATA() const				{ return cdata; }$/;"	f	class:TiXmlText
 CStr	tinyxml.h	/^	const char* CStr()								{ return buffer.c_str(); }$/;"	f	class:TiXmlPrinter
@@ -47,6 +48,7 @@ CopyTo	tinyxml.cpp	/^void TiXmlText::CopyTo( TiXmlText* target ) const$/;"	f	cla
 CopyTo	tinyxml.cpp	/^void TiXmlUnknown::CopyTo( TiXmlUnknown* target ) const$/;"	f	class:TiXmlUnknown
 Cursor	tinyxmlparser.cpp	/^	const TiXmlCursor& Cursor() const	{ return cursor; }$/;"	f	class:TiXmlParsingData
 DEBUG	tinyxml.h	43;"	d
+DIRNAME_SIZE	read_dir.cpp	14;"	d	file:
 DoIndent	tinyxml.h	/^	void DoIndent()	{$/;"	f	class:TiXmlPrinter
 DoLineBreak	tinyxml.h	/^	void DoLineBreak() {$/;"	f	class:TiXmlPrinter
 DoubleValue	tinyxml.cpp	/^double  TiXmlAttribute::DoubleValue() const$/;"	f	class:TiXmlAttribute
@@ -407,6 +409,7 @@ VisitExit	tinyxml.cpp	/^bool TiXmlPrinter::VisitExit( const TiXmlDocument& )$/;"
 VisitExit	tinyxml.cpp	/^bool TiXmlPrinter::VisitExit( const TiXmlElement& element )$/;"	f	class:TiXmlPrinter
 VisitExit	tinyxml.h	/^	virtual bool VisitExit( const TiXmlDocument& \/*doc*\/ )			{ return true; }$/;"	f	class:TiXmlVisitor
 VisitExit	tinyxml.h	/^	virtual bool VisitExit( const TiXmlElement& \/*element*\/ )		{ return true; }$/;"	f	class:TiXmlVisitor
+_MD5_CALC_H	md5_calc.h	3;"	d
 _UTILS_H	utils.h	3;"	d
 append	tinystr.cpp	/^TiXmlString& TiXmlString::append(const char* str, size_type len)$/;"	f	class:TiXmlString
 assign	tinystr.cpp	/^TiXmlString& TiXmlString::assign(const char* str, size_type len)$/;"	f	class:TiXmlString
@@ -415,6 +418,7 @@ attributeSet	tinyxml.h	/^	TiXmlAttributeSet attributeSet;$/;"	m	class:TiXmlEleme
 buffer	tinyxml.h	/^	TIXML_STRING buffer;$/;"	m	class:TiXmlPrinter
 buildXML	utils.cc	/^bool buildXML (string& fname)$/;"	f
 c_str	tinystr.h	/^	const char * c_str () const { return rep_->str; }$/;"	f	class:TiXmlString
+calcmd5	md5_calc.cc	/^int calcmd5 (string filename)$/;"	f
 capacity	tinystr.h	/^		size_type size, capacity;$/;"	m	struct:TiXmlString::Rep
 capacity	tinystr.h	/^	size_type capacity () const { return rep_->capacity; }$/;"	f	class:TiXmlString
 cdata	tinyxml.h	/^	bool cdata;			\/\/ true if this should be input and output as a CDATA style text element$/;"	m	class:TiXmlText
@@ -423,9 +427,11 @@ clear	tinystr.h	/^	void clear ()$/;"	f	class:TiXmlString
 col	tinyxml.h	/^	int col;	\/\/ 0 based.$/;"	m	struct:TiXmlCursor
 condenseWhiteSpace	tinyxml.cpp	/^bool TiXmlBase::condenseWhiteSpace = true;$/;"	m	class:TiXmlBase	file:
 condenseWhiteSpace	tinyxml.h	/^	static bool condenseWhiteSpace;$/;"	m	class:TiXmlBase
+count	read_dir.cpp	/^int count = 0;$/;"	v
 cursor	tinyxmlparser.cpp	/^	TiXmlCursor		cursor;$/;"	m	class:TiXmlParsingData	file:
 data	tinystr.h	/^	const char * data () const { return rep_->str; }$/;"	f	class:TiXmlString
 depth	tinyxml.h	/^	int depth;$/;"	m	class:TiXmlPrinter
+dir_scan	read_dir.cpp	/^void dir_scan (string path, string file)$/;"	f
 document	tinyxml.h	/^	TiXmlDocument*	document;	\/\/ A pointer back to a document, for error reporting.$/;"	m	class:TiXmlAttribute
 dumpXML	utils.cc	/^bool dumpXML (string& fname)$/;"	f
 empty	tinystr.h	/^	bool empty () const { return rep_->size == 0; }$/;"	f	class:TiXmlString
@@ -451,6 +457,7 @@ length	tinystr.h	/^	size_type length () const { return rep_->size; }$/;"	f	class
 lineBreak	tinyxml.h	/^	TIXML_STRING lineBreak;$/;"	m	class:TiXmlPrinter
 location	tinyxml.h	/^	TiXmlCursor location;$/;"	m	class:TiXmlBase
 main	client.cc	/^int main (int argc, char** argv)$/;"	f
+main	read_dir.cpp	/^int main (int argc, char **argv)$/;"	f
 main	server.cc	/^int main (int argc, char** argv)$/;"	f
 name	tinyxml.h	/^	TIXML_STRING name;$/;"	m	class:TiXmlAttribute
 next	tinyxml.h	/^	TiXmlAttribute*	next;$/;"	m	class:TiXmlAttribute

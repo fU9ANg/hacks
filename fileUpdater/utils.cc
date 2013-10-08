@@ -36,6 +36,38 @@ void setnodelay (int fd)
 
 // XML
 
+bool autoCreateXML (string& fname, string& major, string& minor, string& md5, string& filename)
+{
+    int i, j;
+    try {
+        TiXmlDocument* doc = new TiXmlDocument ();
+        TiXmlElement* root = new TiXmlElement ("xml");
+        doc->LinkEndChild (root);
+
+        for (i = 0; i < MAX_VERSION_NUMBER; i++) {
+            TiXmlElement* version = new TiXmlElement ("version");
+            version->SetAttribute ("major", major.c_str());
+            version->SetAttribute ("minor", minor.c_str());
+            root->LinkEndChild (version);
+
+            for (j = 0; j < MAX_FILE_NUMBER; j++) {
+                TiXmlElement* file = new TiXmlElement ("File");
+                file->SetAttribute ("md5sum", md5.c_str ());
+                version->LinkEndChild (file);
+
+                TiXmlText* file_content = new TiXmlText (filename.c_str ());
+                file->LinkEndChild (file_content);
+            }
+        }
+        doc->SaveFile (fname.c_str());
+    }
+    catch (string& e) {
+        return (false);
+    }
+
+    return (true);
+}
+
 bool buildXML (string& fname)
 {
     int i, j;
