@@ -11,7 +11,7 @@
 
 #include <curl/curl.h>
 
-#define MAX_VERSION_NUMBER  2
+#define MAX_VERSION_NUMBER  1
 #define MAX_FILE_NUMBER     1
 #define FILENAME(i)    "http://222.186.50.76:9090/static/test"".zip"
 
@@ -22,7 +22,7 @@ extern void setreuseaddr(int fd);
 extern void setnodelay  (int fd);
 
 // parser xml file 
-extern bool autoCreateXML (string& fname, string& major, string& minor, string& md5, string& filename);
+extern bool autoCreateXML (string& fname, string& major, string& minor, string& md5, string& filename, int flag);
 extern bool buildXML (string& fname);
 extern bool dumpXML (string& fname);
 

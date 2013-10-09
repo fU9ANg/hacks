@@ -48,6 +48,7 @@ int main (int argc, char **argv)
 
 void dir_scan (string path, string file)
 {
+    static   int flag = 1;
     struct   stat s;
     DIR*     dir;
     struct   dirent *dt;
@@ -100,9 +101,11 @@ void dir_scan (string path, string file)
         md5string = calcmd5 (dirfile);
         string xmlfile = "./text.xml";
         string major = "1";
-        string minor = "10";
-        printf ("MD5: %s\tFile: %s\n", md5string.c_str(), dirfile.c_str());
-        autoCreateXML (xmlfile, major, minor, md5string, dirfile);
+        string minor = "19";
+        printf ("MD5:%s\tFile:%s\n", md5string.c_str(), dirfile.c_str());
+        autoCreateXML (xmlfile, major, minor, md5string, dirfile, flag);
+        if (flag)
+            flag = 0;
         count++;
     }
 }

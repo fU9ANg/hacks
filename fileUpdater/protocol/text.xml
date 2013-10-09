@@ -1,8 +1,108 @@
 <xml>
     <version major="1" minor="10">
         <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
+        <File md5sum="1c06fbf24f0d44be8268a24c1b4b6b76">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</File>
+        <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
+        <file md5sum="9fb7f22816a0d1d7f3be3b61d3317fe2">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</file>
+        <file md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</file>
+        <file md5sum="8eb80287ce30f4be68a481383ddd560b">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</file>
+        <file md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</file>
+        <file md5sum="d65622a726565d004bedcb1bf9b8fb3e">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</file>
+        <file md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</file>
+        <file md5sum="7bc82d9ef2242a87f97768802516fba4">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</file>
+        <file md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</file>
     </version>
     <version major="1" minor="10">
+        <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="0c4edd82268a0d6589acf8e9284ed8c9">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.h</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="0c4edd82268a0d6589acf8e9284ed8c9">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.h</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="f13f762de42cb3815df5c3a985220138">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.o</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="f13f762de42cb3815df5c3a985220138">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.o</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="eb81f455042739920e6c3ee45fd2aabb">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="eb81f455042739920e6c3ee45fd2aabb">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="4733b401c0c213f74e2eb2ea33d48659">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.cc</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="4733b401c0c213f74e2eb2ea33d48659">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.cc</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="0c4edd82268a0d6589acf8e9284ed8c9">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.h</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="0c4edd82268a0d6589acf8e9284ed8c9">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.h</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="f13f762de42cb3815df5c3a985220138">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.o</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="f13f762de42cb3815df5c3a985220138">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.o</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="588ac008fc08d228dae8dd397c4e9ff9">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="588ac008fc08d228dae8dd397c4e9ff9">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="4733b401c0c213f74e2eb2ea33d48659">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.cc</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="4733b401c0c213f74e2eb2ea33d48659">/home/sxkj7/hacks/fileUpdater/protocol/updater.pb.cc</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="9b1d60bebde51334362fbdc79a2b2011">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="9b1d60bebde51334362fbdc79a2b2011">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="fb74749e36f936882317305f04a3f714">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="fb74749e36f936882317305f04a3f714">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
+    </version>
+    <version major="1" minor="19">
+        <File md5sum="6127f751e94b36b16e2151d717919e08">/home/sxkj7/hacks/fileUpdater/protocol/text.xml</File>
+    </version>
+    <version major="1" minor="19">
         <File md5sum="8d358f8df2ef69741ea5eb788528c62f">/home/sxkj7/hacks/fileUpdater/protocol/updater.proto</File>
     </version>
 </xml>

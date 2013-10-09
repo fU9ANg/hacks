@@ -115,7 +115,7 @@ int main (int argc, char** argv)
         update.set_date  ("2013/01/12 12:01:02");
         update.set_addr  ("http://222.186.50.76:9090/static/server-7.13.tar.gz");
 
-        string s_update;
+        string  s_update;
         update.SerializeToString (&s_update);
 
         //cout << "string = " << s_update << endl;

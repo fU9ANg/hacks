@@ -1,10 +1,10 @@
 #!/bin/sh
-g++ -o md5_calc.o -c md5_calc.cc &&
-g++ -o read_dir.o -c read_dir.cpp &&
-g++ -o utils.o -c utils.cc &&
+g++ -g -o md5_calc.o -c md5_calc.cc &&
+g++ -g -o read_dir.o -c read_dir.cpp &&
+g++ -g -o utils.o -c utils.cc &&
 g++ -Wall -Werror -g -Wno-unknown-pragmas -Wno-format -o tinystr.o -c tinystr.cpp &&
 g++ -Wall -Werror -g -Wno-unknown-pragmas -Wno-format -o tinyxmlerror.o -c tinyxmlerror.cpp &&
 g++ -Wall -Werror -g -Wno-unknown-pragmas -Wno-format -o tinyxml.o -c tinyxml.cpp &&
 g++ -Wall -Werror -g -Wno-unknown-pragmas -Wno-format -o tinyxmlparser.o -c tinyxmlparser.cpp &&
-g++ -o read_dir md5_calc.o read_dir.o utils.o tinystr.o tinyxmlerror.o tinyxml.o tinyxmlparser.o -lcrypto -lssl -lcurl &&
-rm -rf md5_calc.o read_dir.o
+g++ -g -o read_dir md5_calc.o read_dir.o utils.o tinystr.o tinyxmlerror.o tinyxml.o tinyxmlparser.o -lcrypto -lssl -lcurl &&
+rm -rf *.o

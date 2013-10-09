@@ -35,7 +35,7 @@ void setnodelay (int fd)
 }
 
 // XML
-
+#if 0
 bool autoCreateXML (string& fname, string& major, string& minor, string& md5, string& filename)
 {
     int i, j;
@@ -67,6 +67,49 @@ bool autoCreateXML (string& fname, string& major, string& minor, string& md5, st
 
     return (true);
 }
+#else
+bool autoCreateXML (string& fname, string& major, string& minor, string& md5, string& filename, int flag)
+{
+    int i, j;
+    TiXmlDocument* doc = NULL;
+    TiXmlElement * root = NULL;
+    TiXmlElement * version = NULL;
+    try {
+        if (flag == 1) {
+            doc = new TiXmlDocument ();
+            root = new TiXmlElement ("xml");
+            doc->LinkEndChild (root);
+        } else {
+            doc = new TiXmlDocument ();
+            doc->LoadFile (fname.c_str ());
+            root = doc->RootElement ();
+        }
+
+        if (flag == 1) {
+            version = new TiXmlElement ("version");
+            version->SetAttribute ("major", major.c_str ());
+            version->SetAttribute ("minor", minor.c_str ());
+            root->LinkEndChild (version);
+        } else {
+            version = root->FirstChildElement ();
+        }
+
+        TiXmlElement* file = new TiXmlElement ("file");
+        file->SetAttribute ("md5sum", md5.c_str ());
+        version->LinkEndChild (file);
+
+        TiXmlText* file_content = new TiXmlText (filename.c_str ());
+        file->LinkEndChild (file_content);
+
+        doc->SaveFile (fname.c_str());
+    }
+    catch (string& e) {
+        return (false);
+    }
+
+    return (true);
+}
+#endif
 
 bool buildXML (string& fname)
 {

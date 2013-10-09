@@ -1,8 +1,23 @@
 <xml>
-    <version major="1" minor="10">
-        <File md5sum="12d2a317769cfea870072af45a2ee665">/home/sxkj7/hacks/fileUpdater/tinyxmlparser.o</File>
-    </version>
-    <version major="1" minor="10">
-        <File md5sum="12d2a317769cfea870072af45a2ee665">/home/sxkj7/hacks/fileUpdater/tinyxmlparser.o</File>
+    <version major="1" minor="19">
+        <file md5sum="514a31777549979e599dcf1c3362cec9">/home/sxkj7/hacks/fileUpdater/version_config.xml</file>
+        <file md5sum="3814ac7ac424899700d033c2854004f1">/home/sxkj7/hacks/fileUpdater/tinystr.h</file>
+        <file md5sum="8ed2b2abc26d123254b12b5fe22ed7f2">/home/sxkj7/hacks/fileUpdater/utils.h</file>
+        <file md5sum="c9cc0d0f0fbee7c8bed82a4666715d60">/home/sxkj7/hacks/fileUpdater/read_dir</file>
+        <file md5sum="9fcc9a7a8e4005c2e2bd4bea886cd707">/home/sxkj7/hacks/fileUpdater/tinystr.cpp</file>
+        <file md5sum="a82158fa0da307fef31ad207162b4ff3">/home/sxkj7/hacks/fileUpdater/tinyxmlparser.cpp</file>
+        <file md5sum="7f14e12e97d4b382589b4d982549c69b">/home/sxkj7/hacks/fileUpdater/tinyxml.h</file>
+        <file md5sum="0e44342e09bd3e8979e4ab9dcd167e9d">/home/sxkj7/hacks/fileUpdater/tags</file>
+        <file md5sum="e4831d5652e96688881fd63428fcb76d">/home/sxkj7/hacks/fileUpdater/md5_calc.cc</file>
+        <file md5sum="9d0263d560f444082c7135ad5c91cc02">/home/sxkj7/hacks/fileUpdater/utils.cc</file>
+        <file md5sum="e4a672452799abb4deba9bd72492e79e">/home/sxkj7/hacks/fileUpdater/tinyxmlerror.cpp</file>
+        <file md5sum="5783471ba30a092b1570563ddc360666">/home/sxkj7/hacks/fileUpdater/client.cc</file>
+        <file md5sum="54408bd8ca5a5ec1603a2e6df75fae2d">/home/sxkj7/hacks/fileUpdater/Makefile</file>
+        <file md5sum="6d8ae54d2c123cdce718f2e929d23b9f">/home/sxkj7/hacks/fileUpdater/tinyxml.cpp</file>
+        <file md5sum="dd8e425d4d43213d9cc3fe4c2479519d">/home/sxkj7/hacks/fileUpdater/read_dir.cpp</file>
+        <file md5sum="760bd2c2e0d9a5590b1e96b9b04c7adc">/home/sxkj7/hacks/fileUpdater/server.cc</file>
+        <file md5sum="105952605c2cfe61bfe1e5cccbe6edc4">/home/sxkj7/hacks/fileUpdater/make</file>
+        <file md5sum="cf753266ff3f7a2bae173ada0114f6ad">/home/sxkj7/hacks/fileUpdater/update.xml</file>
+        <file md5sum="b7021ea78bfdab5698cbfcb81aaaa3a8">/home/sxkj7/hacks/fileUpdater/md5_calc.h</file>
     </version>
 </xml>

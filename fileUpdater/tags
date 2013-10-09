@@ -48,7 +48,7 @@ CopyTo	tinyxml.cpp	/^void TiXmlText::CopyTo( TiXmlText* target ) const$/;"	f	cla
 CopyTo	tinyxml.cpp	/^void TiXmlUnknown::CopyTo( TiXmlUnknown* target ) const$/;"	f	class:TiXmlUnknown
 Cursor	tinyxmlparser.cpp	/^	const TiXmlCursor& Cursor() const	{ return cursor; }$/;"	f	class:TiXmlParsingData
 DEBUG	tinyxml.h	43;"	d
-DIRNAME_SIZE	read_dir.cpp	14;"	d	file:
+DIRNAME_SIZE	read_dir.cpp	15;"	d	file:
 DoIndent	tinyxml.h	/^	void DoIndent()	{$/;"	f	class:TiXmlPrinter
 DoLineBreak	tinyxml.h	/^	void DoLineBreak() {$/;"	f	class:TiXmlPrinter
 DoubleValue	tinyxml.cpp	/^double  TiXmlAttribute::DoubleValue() const$/;"	f	class:TiXmlAttribute
@@ -415,10 +415,11 @@ append	tinystr.cpp	/^TiXmlString& TiXmlString::append(const char* str, size_type
 assign	tinystr.cpp	/^TiXmlString& TiXmlString::assign(const char* str, size_type len)$/;"	f	class:TiXmlString
 at	tinystr.h	/^	const char& at (size_type index) const$/;"	f	class:TiXmlString
 attributeSet	tinyxml.h	/^	TiXmlAttributeSet attributeSet;$/;"	m	class:TiXmlElement
+autoCreateXML	utils.cc	/^bool autoCreateXML (string& fname, string& major, string& minor, string& md5, string& filename, int flag)$/;"	f
 buffer	tinyxml.h	/^	TIXML_STRING buffer;$/;"	m	class:TiXmlPrinter
 buildXML	utils.cc	/^bool buildXML (string& fname)$/;"	f
 c_str	tinystr.h	/^	const char * c_str () const { return rep_->str; }$/;"	f	class:TiXmlString
-calcmd5	md5_calc.cc	/^int calcmd5 (string filename)$/;"	f
+calcmd5	md5_calc.cc	/^string calcmd5 (string filename)$/;"	f
 capacity	tinystr.h	/^		size_type size, capacity;$/;"	m	struct:TiXmlString::Rep
 capacity	tinystr.h	/^	size_type capacity () const { return rep_->capacity; }$/;"	f	class:TiXmlString
 cdata	tinyxml.h	/^	bool cdata;			\/\/ true if this should be input and output as a CDATA style text element$/;"	m	class:TiXmlText
