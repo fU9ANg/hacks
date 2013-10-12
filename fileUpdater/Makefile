@@ -33,7 +33,7 @@ CLIOBJS = client.o
 OBJS    = $(SRVOBJS) $(CLIOBJS) $(COMMOBJS) $(PROTOBJS)
 
 # binary
-BIN	    = Server Client
+BIN	    = server client
 
 # libraries
 LIBS	= -lcurl -lprotobuf
@@ -45,9 +45,9 @@ precompile_protobuf:
 	$(PROTOC) $(PBFLAGS)=$(PBDST) $(PBSRC)/updater.proto
 
 # how to compiling programs
-Server:$(SRVOBJS) $(COMMOBJS) $(PROTOBJS)
+server:$(SRVOBJS) $(COMMOBJS) $(PROTOBJS)
 	$(CPP) $(CFLAGS) $(CDEBUG) -o $@ $(SRVOBJS) $(COMMOBJS) $(PROTOBJS) $(LINK) $(LIBS)
-Client:$(CLIOBJS) $(COMMOBJS) $(PROTOBJS)
+client:$(CLIOBJS) $(COMMOBJS) $(PROTOBJS)
 	$(CPP) $(CFLAGS) $(CDEBUG) -o $@ $(CLIOBJS) $(COMMOBJS) $(PROTOBJS) $(LINK) $(LIBS)
 
 %.o:%.cpp

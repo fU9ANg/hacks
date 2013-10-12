@@ -18,6 +18,8 @@
 #include <netinet/tcp.h>
 #include <sys/epoll.h>
 #include <sys/ioctl.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 #include <iostream>
 #include <string>
@@ -57,7 +59,7 @@ int main (int argc, char** argv)
     listen (listenfd, 5);
 
     FD_ZERO (&readfds);
-    //FD_ZERO (&writefds);
+    // FD_ZERO (&writefds);
     //FD_ZERO (&exceptfds);
     FD_SET (listenfd, &readfds);
     while (1) {
@@ -103,22 +105,42 @@ int main (int argc, char** argv)
                         ch++;
                         // TODO:
                         cout << "operator xml file" << endl;
-                        string fileName = "./info.xml";
-                        buildXML (fileName);
-                        dumpXML (fileName);
+                        string fileName = "./outoutout.xml";
+                        //buildXML (fileName);
+                        //dumpXML (fileName);
 
         updater update;
-
+#if 0
         update.set_major (1);
         update.set_minor (10);
         update.set_size  (100);  // default xxx KB
         update.set_date  ("2013/01/12 12:01:02");
         update.set_addr  ("http://222.186.50.76:9090/static/server-7.13.tar.gz");
+#endif
+
+        int ffd, nread = 0;
+        string fcontent;
+        char buffer[MAX_BUFF_SIZE];
+        if ((ffd = open (fileName.c_str(), O_RDONLY)) < 0)
+        {
+            cout << "[Error]: can't open outoutout.xml" << endl;
+            exit (1);
+        }
+        (void) memset (buffer, 0x00, sizeof (buffer));
+        while ((nread = read (ffd, &buffer[0], MAX_BUFF_SIZE)) > 0)
+        {
+            string tmpStr = buffer;
+            fcontent += tmpStr;
+            (void) memset (buffer, 0x00, sizeof (buffer));
+            
+        }
+
+        update.set_content (fcontent.c_str());
 
         string  s_update;
         update.SerializeToString (&s_update);
 
-        //cout << "string = " << s_update << endl;
+        cout << fcontent.c_str() << endl;
         cout << "writing ... s_update string." << endl;
         write (fd, s_update.c_str(), s_update.size());
                         

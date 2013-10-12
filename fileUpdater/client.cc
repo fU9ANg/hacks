@@ -17,7 +17,7 @@
 #include "utils.h"
 #include "updater.pb.h"
 
-#define     MAXBUFF 2048
+#define     MAXBUFF 8192
 
 int main (int argc, char** argv)
 {
@@ -57,36 +57,23 @@ int main (int argc, char** argv)
             << endl;
         //s_update = recvbuf;
         update.ParseFromString (s_update);
-
+        WriteToFile (update.content (), "OUTOUTOUT.xml");
+        cout << "content: " << update.content ();
+        getchar ();
+#if 0
         cout << "major=" << update.major() << endl;
         cout << "minor=" << update.minor() << endl;
         cout << "size =" << update.size () << endl;
         cout << "date =" << update.date () << endl;
         cout << "addr =" << update.addr () << endl;
-
+#endif
     char s1[] = "server-7.13.tar.gz";
+    (void) s1;
     cout << "[INFO]: down-loading files!" << endl;
-    get_data (s1, update.addr().c_str());    // 'filename', 'server address'
+    //get_data (s1, update.addr().c_str());    // 'filename', 'server address'
     cout << "---------DOWNLOADED-------------" << endl;
     }
-#if 0
-    write (sock_fd, &ch, 1);
-    read (sock_fd, &ch, 1);
 
-
-        string s_update;
-        updater update;
-
-        //s_update = recvbuf;
-        update.ParseFromString (s_update);
-
-        cout << "major=" << update.major() << endl;
-        cout << "minor=" << update.minor() << endl;
-        cout << "size =" << update.size () << endl;
-        cout << "date =" << update.date () << endl;
-        cout << "addr =" << update.addr () << endl;
-
-#endif
     cout << "herere" << endl;
     char s1[] = "server-7.13.tar.gz";
     char s2[] = "http://222.186.50.76:9090/static/server-7.13.tar.gz";

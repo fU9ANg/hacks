@@ -15,7 +15,8 @@ using namespace std;
 #define DIRNAME_SIZE    100
 
 void dir_scan (string path, string file);
-int count = 0;
+int  count = 0;
+string xmlpath;
 
 int main (int argc, char **argv)
 {
@@ -29,7 +30,7 @@ int main (int argc, char **argv)
 
     if (lstat (argv[1], &s) < 0)
     {
-        printf ("[error]: lstat function.\n");
+        printf ("[error]: lstat function.\n" );
         exit (2);
     }
 
@@ -39,6 +40,7 @@ int main (int argc, char **argv)
         exit (3);
     }
 
+    xmlpath = (char*) argv[1];
     dir_scan ("", (char*) argv[1]);
 
     printf ("total: %d files\n", count);
@@ -98,12 +100,13 @@ void dir_scan (string path, string file)
     else
     {
         dirfile = dirname + file;
+        string xxx = dirfile.substr (xmlpath.size()+1);
         md5string = calcmd5 (dirfile);
-        string xmlfile = "./text.xml";
+        string xmlfile = xmlpath + "/text.xml";
         string major = "1";
         string minor = "19";
-        printf ("MD5:%s\tFile:%s\n", md5string.c_str(), dirfile.c_str());
-        autoCreateXML (xmlfile, major, minor, md5string, dirfile, flag);
+        printf ("MD5:%s\tFile:%s\n", md5string.c_str(), xxx.c_str());
+        autoCreateXML (xmlfile, major, minor, md5string, xxx, flag);
         if (flag)
             flag = 0;
         count++;

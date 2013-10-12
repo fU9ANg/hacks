@@ -14,6 +14,7 @@
 #include <sys/epoll.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
+#include <fstream>
 
 #include <curl/curl.h>
 
@@ -25,13 +26,36 @@ void setnonblock (int fd)
 void setreuseaddr (int fd)
 {
     int reuse = 1;
-    setsockopt (fd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof (reuse));
+    setsockopt (fd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof (reuse) );
 }
 
 void setnodelay (int fd)
 {
     int nodelay = 1;
     setsockopt (fd, IPPROTO_TCP, TCP_NODELAY, &nodelay, sizeof (nodelay));
+}
+
+bool WriteToFile (const string content, const string file)
+{
+    std::ofstream outfile (file.c_str ());
+    if (outfile) {
+        outfile.write (content.c_str (), content.size ());
+        outfile.close ();
+    }
+#if 0
+    FILE* fd;
+    ifstream is (file.c_str());
+
+    if (is)
+    //if ((fd = fopen (file.c_str(), "w+")) == NULL)
+    {
+        cout << "[Error]: can't open '" << file.c_str() << "'" << endl;
+        exit (1);
+    }
+
+    fwrite (content.c_str(), content.size (), 1, fd);
+#endif
+    return (true);
 }
 
 // XML
@@ -70,7 +94,6 @@ bool autoCreateXML (string& fname, string& major, string& minor, string& md5, st
 #else
 bool autoCreateXML (string& fname, string& major, string& minor, string& md5, string& filename, int flag)
 {
-    int i, j;
     TiXmlDocument* doc = NULL;
     TiXmlElement * root = NULL;
     TiXmlElement * version = NULL;

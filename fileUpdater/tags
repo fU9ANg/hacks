@@ -61,7 +61,7 @@ ErrorCol	tinyxml.h	/^	int ErrorCol() const	{ return errorLocation.col+1; }	\/\/\
 ErrorDesc	tinyxml.h	/^	const char * ErrorDesc() const	{ return errorDesc.c_str (); }$/;"	f	class:TiXmlDocument
 ErrorId	tinyxml.h	/^	int ErrorId()	const				{ return errorId; }$/;"	f	class:TiXmlDocument
 ErrorRow	tinyxml.h	/^	int ErrorRow() const	{ return errorLocation.row+1; }$/;"	f	class:TiXmlDocument
-FILENAME	utils.h	16;"	d
+FILENAME	utils.h	17;"	d
 Find	tinyxml.cpp	/^TiXmlAttribute* TiXmlAttributeSet::Find( const char* name ) const$/;"	f	class:TiXmlAttributeSet
 Find	tinyxml.cpp	/^TiXmlAttribute* TiXmlAttributeSet::Find( const std::string& name ) const$/;"	f	class:TiXmlAttributeSet
 FindOrCreate	tinyxml.cpp	/^TiXmlAttribute* TiXmlAttributeSet::FindOrCreate( const char* _name )$/;"	f	class:TiXmlAttributeSet
@@ -128,7 +128,9 @@ LoadFile	tinyxml.cpp	/^bool TiXmlDocument::LoadFile( FILE* file, TiXmlEncoding e
 LoadFile	tinyxml.cpp	/^bool TiXmlDocument::LoadFile( TiXmlEncoding encoding )$/;"	f	class:TiXmlDocument
 LoadFile	tinyxml.cpp	/^bool TiXmlDocument::LoadFile( const char* _filename, TiXmlEncoding encoding )$/;"	f	class:TiXmlDocument
 LoadFile	tinyxml.h	/^	bool LoadFile( const std::string& filename, TiXmlEncoding encoding = TIXML_DEFAULT_ENCODING )			\/\/\/< STL std::string version.$/;"	f	class:TiXmlDocument
+LoadXml	createUpdateXML.cc	/^bool LoadXml (VECTORFILENODE* vNode, string& fname)$/;"	f
 MAXBUFF	client.cc	20;"	d	file:
+MAX_BUFF_SIZE	utils.h	16;"	d
 MAX_ENTITY_LENGTH	tinyxml.h	/^		MAX_ENTITY_LENGTH = 6$/;"	e	enum:TiXmlBase::__anon3
 MAX_FILE_NUMBER	utils.h	15;"	d
 MAX_VERSION_NUMBER	utils.h	14;"	d
@@ -203,8 +205,8 @@ ReplaceChild	tinyxml.cpp	/^TiXmlNode* TiXmlNode::ReplaceChild( TiXmlNode* replac
 RootElement	tinyxml.h	/^	TiXmlElement* RootElement()					{ return FirstChildElement(); }$/;"	f	class:TiXmlDocument
 RootElement	tinyxml.h	/^	const TiXmlElement* RootElement() const		{ return FirstChildElement(); }$/;"	f	class:TiXmlDocument
 Row	tinyxml.h	/^	int Row() const			{ return location.row + 1; }$/;"	f	class:TiXmlBase
-SERV_ADDR	server.cc	31;"	d	file:
-SERV_PORT	server.cc	30;"	d	file:
+SERV_ADDR	server.cc	33;"	d	file:
+SERV_PORT	server.cc	32;"	d	file:
 SaveFile	tinyxml.cpp	/^bool TiXmlDocument::SaveFile( FILE* fp ) const$/;"	f	class:TiXmlDocument
 SaveFile	tinyxml.cpp	/^bool TiXmlDocument::SaveFile( const char * filename ) const$/;"	f	class:TiXmlDocument
 SaveFile	tinyxml.cpp	/^bool TiXmlDocument::SaveFile() const$/;"	f	class:TiXmlDocument
@@ -387,6 +389,7 @@ ToUnknown	tinyxml.h	/^	virtual const TiXmlUnknown*     ToUnknown()     const	{ r
 ToUnknown	tinyxml.h	/^	virtual const TiXmlUnknown*     ToUnknown()     const { return 0; } \/\/\/< Cast to a more defined type. Will return null if not of the requested type.$/;"	f	class:TiXmlNode
 Type	tinyxml.h	/^	int Type() const	{ return type; }$/;"	f	class:TiXmlNode
 Unknown	tinyxml.h	/^	TiXmlUnknown* Unknown() const	{ return ToUnknown(); }$/;"	f	class:TiXmlHandle
+VECTORFILENODE	createUpdateXML.cc	/^typedef std::vector <struct sXmlFileNode*> VECTORFILENODE;$/;"	t	file:
 Value	tinyxml.h	/^	const char *Value() const { return value.c_str (); }$/;"	f	class:TiXmlNode
 Value	tinyxml.h	/^	const char*		Value() const		{ return value.c_str(); }		\/\/\/< Return the value of this attribute.$/;"	f	class:TiXmlAttribute
 ValueStr	tinyxml.h	/^	const std::string& ValueStr() const	{ return value; }				\/\/\/< Return the value of this attribute.$/;"	f	class:TiXmlAttribute
@@ -409,6 +412,7 @@ VisitExit	tinyxml.cpp	/^bool TiXmlPrinter::VisitExit( const TiXmlDocument& )$/;"
 VisitExit	tinyxml.cpp	/^bool TiXmlPrinter::VisitExit( const TiXmlElement& element )$/;"	f	class:TiXmlPrinter
 VisitExit	tinyxml.h	/^	virtual bool VisitExit( const TiXmlDocument& \/*doc*\/ )			{ return true; }$/;"	f	class:TiXmlVisitor
 VisitExit	tinyxml.h	/^	virtual bool VisitExit( const TiXmlElement& \/*element*\/ )		{ return true; }$/;"	f	class:TiXmlVisitor
+WriteToFile	utils.cc	/^bool WriteToFile (const string content, const string file)$/;"	f
 _MD5_CALC_H	md5_calc.h	3;"	d
 _UTILS_H	utils.h	3;"	d
 append	tinystr.cpp	/^TiXmlString& TiXmlString::append(const char* str, size_type len)$/;"	f	class:TiXmlString
@@ -417,6 +421,7 @@ at	tinystr.h	/^	const char& at (size_type index) const$/;"	f	class:TiXmlString
 attributeSet	tinyxml.h	/^	TiXmlAttributeSet attributeSet;$/;"	m	class:TiXmlElement
 autoCreateXML	utils.cc	/^bool autoCreateXML (string& fname, string& major, string& minor, string& md5, string& filename, int flag)$/;"	f
 buffer	tinyxml.h	/^	TIXML_STRING buffer;$/;"	m	class:TiXmlPrinter
+buildUpdateXML	createUpdateXML.cc	/^bool buildUpdateXML (string& fname, VECTORFILENODE* vNode)$/;"	f
 buildXML	utils.cc	/^bool buildXML (string& fname)$/;"	f
 c_str	tinystr.h	/^	const char * c_str () const { return rep_->str; }$/;"	f	class:TiXmlString
 calcmd5	md5_calc.cc	/^string calcmd5 (string filename)$/;"	f
@@ -424,16 +429,19 @@ capacity	tinystr.h	/^		size_type size, capacity;$/;"	m	struct:TiXmlString::Rep
 capacity	tinystr.h	/^	size_type capacity () const { return rep_->capacity; }$/;"	f	class:TiXmlString
 cdata	tinyxml.h	/^	bool cdata;			\/\/ true if this should be input and output as a CDATA style text element$/;"	m	class:TiXmlText
 chr	tinyxml.h	/^		char		    chr;$/;"	m	struct:TiXmlBase::Entity
+cleanNodes	createUpdateXML.cc	/^void cleanNodes (VECTORFILENODE* vNode)$/;"	f
 clear	tinystr.h	/^	void clear ()$/;"	f	class:TiXmlString
 col	tinyxml.h	/^	int col;	\/\/ 0 based.$/;"	m	struct:TiXmlCursor
 condenseWhiteSpace	tinyxml.cpp	/^bool TiXmlBase::condenseWhiteSpace = true;$/;"	m	class:TiXmlBase	file:
 condenseWhiteSpace	tinyxml.h	/^	static bool condenseWhiteSpace;$/;"	m	class:TiXmlBase
-count	read_dir.cpp	/^int count = 0;$/;"	v
+count	read_dir.cpp	/^int  count = 0;$/;"	v
+createUpdateNode	createUpdateXML.cc	/^void createUpdateNode (VECTORFILENODE* out, VECTORFILENODE* vNode1, VECTORFILENODE* vNode2)$/;"	f
 cursor	tinyxmlparser.cpp	/^	TiXmlCursor		cursor;$/;"	m	class:TiXmlParsingData	file:
 data	tinystr.h	/^	const char * data () const { return rep_->str; }$/;"	f	class:TiXmlString
 depth	tinyxml.h	/^	int depth;$/;"	m	class:TiXmlPrinter
 dir_scan	read_dir.cpp	/^void dir_scan (string path, string file)$/;"	f
 document	tinyxml.h	/^	TiXmlDocument*	document;	\/\/ A pointer back to a document, for error reporting.$/;"	m	class:TiXmlAttribute
+dumpNodes	createUpdateXML.cc	/^void dumpNodes (VECTORFILENODE* vNode)$/;"	f
 dumpXML	utils.cc	/^bool dumpXML (string& fname)$/;"	f
 empty	tinystr.h	/^	bool empty () const { return rep_->size == 0; }$/;"	f	class:TiXmlString
 encoding	tinyxml.h	/^	TIXML_STRING encoding;$/;"	m	class:TiXmlDeclaration
@@ -445,10 +453,12 @@ errorId	tinyxml.h	/^	int  errorId;$/;"	m	class:TiXmlDocument
 errorLocation	tinyxml.h	/^	TiXmlCursor errorLocation;$/;"	m	class:TiXmlDocument
 errorString	tinyxml.h	/^	static const char* errorString[ TIXML_ERROR_STRING_COUNT ];$/;"	m	class:TiXmlBase
 errorString	tinyxmlerror.cpp	/^const char* TiXmlBase::errorString[ TiXmlBase::TIXML_ERROR_STRING_COUNT ] =$/;"	m	class:TiXmlBase	file:
+filename	createUpdateXML.cc	/^    string  filename;$/;"	m	struct:sXmlFileNode	file:
 find	tinystr.h	/^	size_type find (char lookup) const$/;"	f	class:TiXmlString
 find	tinystr.h	/^	size_type find (char tofind, size_type offset) const$/;"	f	class:TiXmlString
 finish	tinystr.h	/^	char* finish() const { return rep_->str + rep_->size; }$/;"	f	class:TiXmlString
 firstChild	tinyxml.h	/^	TiXmlNode*		firstChild;$/;"	m	class:TiXmlNode
+flag	createUpdateXML.cc	/^    string  flag;$/;"	m	struct:sXmlFileNode	file:
 get_data	utils.cc	/^CURLcode get_data (const char *filename, const char *url)$/;"	f
 indent	tinyxml.h	/^	TIXML_STRING indent;$/;"	m	class:TiXmlPrinter
 init	tinystr.h	/^	void init(size_type sz) { init(sz, sz); }$/;"	f	class:TiXmlString
@@ -458,8 +468,10 @@ length	tinystr.h	/^	size_type length () const { return rep_->size; }$/;"	f	class
 lineBreak	tinyxml.h	/^	TIXML_STRING lineBreak;$/;"	m	class:TiXmlPrinter
 location	tinyxml.h	/^	TiXmlCursor location;$/;"	m	class:TiXmlBase
 main	client.cc	/^int main (int argc, char** argv)$/;"	f
+main	createUpdateXML.cc	/^main ()$/;"	f
 main	read_dir.cpp	/^int main (int argc, char **argv)$/;"	f
 main	server.cc	/^int main (int argc, char** argv)$/;"	f
+md5sum	createUpdateXML.cc	/^    string  md5sum;$/;"	m	struct:sXmlFileNode	file:
 name	tinyxml.h	/^	TIXML_STRING name;$/;"	m	class:TiXmlAttribute
 next	tinyxml.h	/^	TiXmlAttribute*	next;$/;"	m	class:TiXmlAttribute
 next	tinyxml.h	/^	TiXmlNode*		next;$/;"	m	class:TiXmlNode
@@ -509,6 +521,7 @@ quit	tinystr.h	/^	void quit()$/;"	f	class:TiXmlString
 rep_	tinystr.h	/^	Rep * rep_;$/;"	m	class:TiXmlString
 reserve	tinystr.cpp	/^void TiXmlString::reserve (size_type cap)$/;"	f	class:TiXmlString
 row	tinyxml.h	/^	int row;	\/\/ 0 based.$/;"	m	struct:TiXmlCursor
+sXmlFileNode	createUpdateXML.cc	/^struct sXmlFileNode$/;"	s	file:
 sentinel	tinyxml.h	/^	TiXmlAttribute sentinel;$/;"	m	class:TiXmlAttributeSet
 set_size	tinystr.h	/^	void set_size(size_type sz) { rep_->str[ rep_->size = sz ] = '\\0'; }$/;"	f	class:TiXmlString
 setnodelay	utils.cc	/^void setnodelay (int fd)$/;"	f
@@ -536,6 +549,7 @@ value	tinyxml.h	/^	TIXML_STRING	value;$/;"	m	class:TiXmlNode
 value	tinyxml.h	/^	TIXML_STRING value;$/;"	m	class:TiXmlAttribute
 version	tinyxml.h	/^	TIXML_STRING version;$/;"	m	class:TiXmlDeclaration
 write_data	utils.cc	/^size_t write_data (void *buffer, size_t size, size_t num, void *server_data)$/;"	f
+xmlpath	read_dir.cpp	/^string xmlpath;$/;"	v
 ~TiXmlAttributeSet	tinyxml.cpp	/^TiXmlAttributeSet::~TiXmlAttributeSet()$/;"	f	class:TiXmlAttributeSet
 ~TiXmlBase	tinyxml.h	/^	virtual ~TiXmlBase()			{}$/;"	f	class:TiXmlBase
 ~TiXmlComment	tinyxml.h	/^	virtual ~TiXmlComment()	{}$/;"	f	class:TiXmlComment
