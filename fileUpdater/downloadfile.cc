@@ -10,6 +10,7 @@
 #include "tinystr.h"
 #include "utils.h"
 #include "md5_calc.h"
+#include "curl_down.h"
 
 using namespace std;
 
@@ -84,15 +85,39 @@ bool LoadUpdateXml (string& fname, string& sbkserver, std::vector<string>* vServ
     return (true);
 }
 
+void cleanfile (string& file)
+{
+#if 1
+    cout << "dele file: " << file.c_str() << endl;
+    if (unlink (file.c_str()) < 0)
+    {
+        perror ("unlink:");
+    }
+#endif
+}
+
 int main ()
 {
     string f1 = "OUTOUTOUT.xml";
     string bk_server;
     VECTORFILENODE vNodes;
     VECTORSERVER vServers;
+    string srv_addr = "http://192.168.0.254:8080/static/";
 
     LoadUpdateXml (f1, bk_server, &vServers, &vNodes);
 
+    VECTORFILENODE::iterator vit;
+    for (vit = vNodes.begin (); vit != vNodes.end (); vit++)
+    {
+        if ((*vit)->flag == "ADD") {
+            string vFile = srv_addr + (*vit)->filename;
+            cout << (*vit)->filename.c_str() << "\t\t"<< vFile.c_str()<< endl;
+            get_data ((*vit)->filename.c_str(), vFile.c_str());
+        }
+        else if ((*vit)->flag == "DEL") {
+            cleanfile ((*vit)->filename);
+        }
+    }
 #ifdef __DEBUG__
     cout << "bk_Server=" << bk_server << endl; 
     VECTORSERVER::iterator it;

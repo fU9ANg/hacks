@@ -26,9 +26,11 @@ string calcmd5 (string filename)
     char block[BUFF_SIZE];
     string sresult;
 
+    //printf ("filename='%s'\n", filename.c_str()); 
     if ((fd = open (filename.c_str(), O_RDONLY)) <= 0)
     {
-        printf ("[ERROR]: open function.\n");
+        printf ("[ERROR%d]: open function.\n", fd);
+        perror ("open");
         exit (1);
     }
     MD5_Init (&ctx);

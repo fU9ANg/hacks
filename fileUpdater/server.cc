@@ -30,7 +30,7 @@
 using namespace std;
 
 #define SERV_PORT   15432
-#define SERV_ADDR   "127.0.0.1"
+#define SERV_ADDR   "192.168.0.254"
 
 
 int main (int argc, char** argv)

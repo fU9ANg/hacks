@@ -48,6 +48,7 @@ int main (int argc, char **argv)
     exit (0);
 }
 
+void scan_version (string yyy, string &major, string &minor);
 void dir_scan (string path, string file)
 {
     static   int flag = 1;
@@ -100,15 +101,27 @@ void dir_scan (string path, string file)
     else
     {
         dirfile = dirname + file;
+        //cout << "dirfile=" << dirfile.c_str() << "xmlpath=" << xmlpath.c_str() << endl;
         string xxx = dirfile.substr (xmlpath.size()+1);
+        string yyy = xmlpath.substr (xmlpath.rfind ("/")+1);
+        string zzz = yyy + "/" + xxx;
+        //cout << "yyy=" << yyy << endl << "zzz=" << zzz.c_str() << endl;
         md5string = calcmd5 (dirfile);
-        string xmlfile = xmlpath + "/text.xml";
+        string xmlfile = xmlpath.substr (0, xmlpath.rfind ("/")) + "/xml/" + yyy + ".xml";
+        //cout << "xmlfile==========" << xmlfile << endl; 
         string major = "1";
         string minor = "19";
-        printf ("MD5:%s\tFile:%s\n", md5string.c_str(), xxx.c_str());
-        autoCreateXML (xmlfile, major, minor, md5string, xxx, flag);
+        scan_version (yyy, major, minor);
+        printf ("MD5:%s\tFile:%s\n", md5string.c_str(), zzz.c_str());
+        autoCreateXML (xmlfile, major, minor, md5string, zzz, flag);
         if (flag)
             flag = 0;
         count++;
     }
+}
+
+void scan_version (string yyy, string &major, string &minor)
+{
+    major = yyy.substr (yyy.find ("v")+1, yyy.find (".")-1);
+    minor = yyy.substr (yyy.find (".")+1);
 }

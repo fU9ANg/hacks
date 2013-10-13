@@ -35,7 +35,7 @@ int main (int argc, char** argv)
 
     (void) memset (&address, 0x00, sizeof (struct sockaddr_in));
     address.sin_family = AF_INET;
-    address.sin_addr.s_addr = inet_addr ("127.0.0.1");
+    address.sin_addr.s_addr = inet_addr ("192.168.0.254");
     address.sin_port = htons (15432);
     len = sizeof (address);
 

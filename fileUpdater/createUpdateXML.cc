@@ -175,11 +175,15 @@ bool LoadXml (VECTORFILENODE* vNode, string& fname)
     return (true);
 }
 
-main ()
+int main (int argc, char** argv)
 {
-    string f1 = "/home/sxkj7/hacks/fileUpdater/text.xml";
-    //string f2 = "/home/sxkj7/hacks/XMLReader/text.xml";
-    string f2 = "/home/sxkj7/hacks/fileUpdater/test.xml";
+    if (argc != 3)
+    {
+        printf ("usage: %s <version1> <version2>.\n", argv[0]);
+        exit (1);
+    }
+    string f1 = argv[1];
+    string f2 = argv[2];
     string outfile = "./outoutout.xml";
     VECTORFILENODE vNode1, vNode2, out;
     LoadXml (&vNode1, f1);
