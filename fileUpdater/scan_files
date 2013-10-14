@@ -1,6 +1,0 @@
-#!/bin/sh
-
-./read_dir $PWD/v1.0 &&
-./read_dir $PWD/v1.1 &&
-./read_dir $PWD/v1.2 &&
-./read_dir $PWD/v1.3
