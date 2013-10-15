@@ -109,8 +109,8 @@ void dir_scan (string path, string file)
         md5string = calcmd5 (dirfile);
         string xmlfile = xmlpath.substr (0, xmlpath.rfind ("/")) + "/xml/" + yyy + ".xml";
         //cout << "xmlfile==========" << xmlfile << endl; 
-        string major = "1";
-        string minor = "19";
+        string major = "0";
+        string minor = "0";
         scan_version (yyy, major, minor);
         printf ("MD5:%s\tFile:%s\n", md5string.c_str(), zzz.c_str());
         autoCreateXML (xmlfile, major, minor, md5string, zzz, flag);
@@ -122,6 +122,6 @@ void dir_scan (string path, string file)
 
 void scan_version (string yyy, string &major, string &minor)
 {
-    major = yyy.substr (yyy.find ("v")+1, yyy.find (".")-1);
-    minor = yyy.substr (yyy.find (".")+1);
+    major = yyy.substr (yyy.find ("v") + 1, yyy.find (".") - 1);
+    minor = yyy.substr (yyy.find (".") + 1);
 }

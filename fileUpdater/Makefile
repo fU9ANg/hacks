@@ -79,4 +79,4 @@ downloadfile:$(DLFOBJS) $(COMMOBJS) $(PROTOBJS)
 .PHONY: clean
 
 clean:
-	-rm -rf $(OBJS) $(BIN) ./*.o protocol/*.cc protocol/*.h *~ ./xml/*.xml
+	-rm -rf $(OBJS) $(BIN) ./*.o protocol/*.cc protocol/*.h *~ ./xml/*.xml *.xml

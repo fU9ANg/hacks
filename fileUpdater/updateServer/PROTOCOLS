@@ -1,0 +1,1 @@
+    {CT_FLAGS, CT_Test, "CT_Test", sizeof (CT_Test), "struct", ""},
