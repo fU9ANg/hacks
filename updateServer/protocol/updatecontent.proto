@@ -1,0 +1,4 @@
+message updatecontent
+{
+    required string xmlcontent = 1;
+}

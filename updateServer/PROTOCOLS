@@ -1,0 +1,4 @@
+    {CT_FLAGS, CT_Test, "CT_Test", sizeof (CT_Test), "struct", ""},
+    {CT_FLAGS, CT_Login, "CT_Login", sizeof (CT_Login), "struct", ""},
+    {CT_FLAGS, CT_GetVersion, "CT_GetVersion", sizeof (CT_GetVersion), "struct", ""},
+    {CT_FLAGS, CT_GetUpdateContent, "CT_GetUpdateContent", sizeof (CT_GetUpdateContent), "struct", ""},

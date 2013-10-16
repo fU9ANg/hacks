@@ -1,0 +1,4 @@
+    MSGNAME (CT_Test, handleTest);
+    MSGNAME (CT_Login, handleLogin);
+    MSGNAME (CT_GetVersion, handleGetVersion);
+    MSGNAME (CT_GetUpdateContent, handleGetUpdateContent);
