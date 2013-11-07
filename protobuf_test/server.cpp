@@ -58,7 +58,7 @@ main (int argc, char **argv)
         login.set_clientid (11111);
         login.set_clienttype (123);
 #if 1
-        //login.set_quality (0.40f);     //error
+        login.set_quality (10.50);     //error  (x.5, x*5.0f)   对float类型的操作必须是 （至少两/大于两位的有效小位数, 且不能有*.50, *.500, *.5000）
 #else
         login.set_quality (.13f);     //it's ok
 #endif
