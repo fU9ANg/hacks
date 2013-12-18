@@ -69,8 +69,22 @@ int send_v(int fd,
     }
 
     int sended = 0;
+    int len = 0;
     while(0 != left) {
-            int len = send(fd, buf + sended, left, 0);
+            len = send(fd, buf + sended, left, 0);
+#if 1
+            if (len <= 0) {
+                if ((errno == EAGAIN) || (errno == EINTR)) {
+                    if (len < 0) {
+                        len = 0;
+                        continue;
+                    }
+                }
+                else {
+                    break;
+                }
+            }
+#else
             if (EAGAIN == errno) {
                 usleep (100);
                 continue;
@@ -85,6 +99,7 @@ int send_v(int fd,
             if(-1 == len){
                 return -1;
             }
+#endif
             left -= len;
             sended += len;
     }
@@ -99,8 +114,25 @@ int recv_v(int fd,
     }
 
     int recved = 0;
+    int len = 0;
     while(0 != left) {
-            int len = recv(fd, (char*)buf + recved, left, 0);
+            len = recv(fd, (char*)buf + recved, left, 0);
+#if 1
+            if (len <= 0) {
+                if ((EAGAIN == errno) || (EINTR == errno)) {
+                    if (len < 0) {
+                        len = 0;
+                        continue;
+                    }
+                }
+                else {
+                    break;
+                }
+            }
+
+            left -= len;
+            recved += len;
+#else
             if (EAGAIN == errno) {
                 usleep (100);
                 continue;
@@ -115,6 +147,7 @@ int recv_v(int fd,
             if(-1 == len){
                 return -1;
             }
+#endif
             left -= len;
             recved += len;
     }
