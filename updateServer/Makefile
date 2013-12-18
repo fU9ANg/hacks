@@ -79,4 +79,4 @@ $(BIN):$(OBJS) $(PROTOBJS)
 .PHONY: clean
 
 clean:
-	-rm -rf $(OBJS) $(BIN) *~ logs .lock
+	-rm -rf $(OBJS) $(PROTOBJS) $(BIN) *~ logs .lock
