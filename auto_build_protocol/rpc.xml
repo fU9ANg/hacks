@@ -1,0 +1,38 @@
+<rpc>
+
+    <Protocol name="CT_HELLO" number="auto" handler="HandleHello" return_protocol="Y" file="HandleHello.cpp" note="注释1。">
+         <Structure name="sHello" constructor="Y" operator="Y" note="注释2。">
+             <Member name="m_clientType" type="enum" typename="ECLIENTTYPE" note="注释3。">
+                 <Enumeration name="eLOGIN_TEA" number="auto" note="注释4。" />
+                 <Enumeration name="eLOGIN_STU" number="auto" note="注释5。" />
+             </Member>
+             <Member name="m_char40" type="char" size="40" note="注释6。"/>
+             <Member name="m_char50" type="char" size="50" note="注释7。"/>
+             <Member name="m_int" type="int" note="注释8。"/>
+             <Member name="m_posx" type="float" note="注释9。"/>
+             <Member name="m_posy" type="float" note="注释10。"/>
+             <Member name="m_dirx" type="unsigned int" note="注释11。"/>
+             <Member name="m_diry" type="unsigned int" note="注释12。"/>
+             <Member name="m_speedx" type="long" note="注释13。"/>
+             <Member name="m_speedy" type="unsigned long" note="注释14。"/>
+         </Structure>
+     </Protocol>
+
+    <Protocol name="CT_xxxx" number="19000" handler="HandleXXXX" return_protocol="Y" file="HandleXXXX.cpp" note="注释1。">
+         <Structure name="sXXXX" constructor="Y" operator="Y" note="注释2。">
+             <Member name="m_enum_member" type="enum" typename="ENUMS" note="注释3。">
+                 <Enumeration name="eENUMS_VALUE1" number="1" note="注释4。" />
+                 <Enumeration name="eENUMS_VALUE2" number="auto" note="注释5。" />
+             </Member>
+             <Member name="m_char50" type="char" size="50" note="注释7。"/>
+             <Member name="m_int" type="int" note="注释8。"/>
+             <Member name="m_posy" type="float" note="注释10。"/>
+             <Member name="m_diry" type="unsigned int" note="注释12。"/>
+             <Member name="m_speedx" type="long" note="注释13。"/>
+             <Member name="m_speedy" type="unsigned long" note="注释14。"/>
+         </Structure>
+     </Protocol>
+
+    
+    
+</rpc>
