@@ -63,7 +63,7 @@ void createUpdateNode (VECTORFILENODE* out, VECTORFILENODE* vNode1, VECTORFILENO
     }
 }
 
-bool buildUpdateXML (string& fname, VECTORFILENODE* vNode)
+bool buildUpdateXML (string& fname, VECTORFILENODE* vNode, string& argv_bk_server)
 {
     try {
         TiXmlDocument* doc = new TiXmlDocument ();
@@ -71,7 +71,7 @@ bool buildUpdateXML (string& fname, VECTORFILENODE* vNode)
         doc->LinkEndChild (root);
 
         TiXmlElement* bk_server = new TiXmlElement ("bk_server");
-        TiXmlText* bk_server_addr = new TiXmlText ("192.168.0.254");
+        TiXmlText* bk_server_addr = new TiXmlText (argv_bk_server.c_str());
         bk_server->LinkEndChild (bk_server_addr);
         root->LinkEndChild (bk_server);
 
@@ -149,7 +149,7 @@ bool LoadXml (VECTORFILENODE* vNode, string& fname)
         TiXmlDocument* doc = new TiXmlDocument (fname.c_str ());
         doc->LoadFile ();
         TiXmlElement*  root = doc->RootElement ();
-        cout << root->Value () << endl;
+        //cout << root->Value () << endl;
 
         TiXmlElement* version = root->FirstChildElement ();
         TiXmlElement* file = version->FirstChildElement ();
@@ -176,17 +176,17 @@ bool LoadXml (VECTORFILENODE* vNode, string& fname)
 
 int main (int argc, char** argv)
 {
-    if (argc != 3)
+    if (argc != 4)
     {
-        printf ("usage: %s <version1> <version2>.\n", argv[0]);
+        printf ("usage: %s <version1> <version2> <bk_server>.\n", argv[0]);
         exit (1);
     }
     string f1 = argv[1];
     string f2 = argv[2];
+    string argv_bk_server = argv[3];
 
     string outfile = f1.substr (f1.rfind ("v"), f1.rfind (".xml") - f1.rfind ("v")) + "-" + \
                      f2.substr (f2.rfind ("v"), f2.rfind (".xml") - f2.rfind ("v")) + ".xml";
-    cout << outfile << endl; getchar ();
     VECTORFILENODE vNode1, vNode2, out;
     LoadXml (&vNode1, f1);
     LoadXml (&vNode2, f2);
@@ -194,11 +194,9 @@ int main (int argc, char** argv)
 
     createUpdateNode (&out, &vNode1, &vNode2);
     // dump information
-    ///dumpNodes (&vNode1);
-    ///dumpNodes (&vNode2);
-    dumpNodes (&out);
+    ///dumpNodes (&out);
 
-    buildUpdateXML (outfile, &out);
+    buildUpdateXML (outfile, &out, argv_bk_server);
 
     // clear all node
     cleanNodes (&vNode1);

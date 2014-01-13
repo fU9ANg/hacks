@@ -29,8 +29,8 @@ username="QSV1234";
 password="RSZ4321";
 --password="password1234"
 
--- The school id (no used)
-school_id=8888;
+-- current file version
+currentversion="v1.5"
 
--- The addition game number (no used)
-game_count=7777;
+-- backup server for files download
+downloadserver="222.186.50.76"

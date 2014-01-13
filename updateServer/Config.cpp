@@ -42,23 +42,23 @@ void Config::readconfig (string file)
     return;
   }
   //数据库地址
-  lua_getglobal (lua,"db_host");
+  lua_getglobal (lua, "db_host");
   db_host = lua_tostring (lua, -1);
 
   //数据库用户名
-  lua_getglobal (lua,"db_username");
+  lua_getglobal (lua, "db_username");
   db_username = lua_tostring (lua, -1);
 
   //数据库密码
-  lua_getglobal (lua,"db_password");
+  lua_getglobal (lua, "db_password");
   db_password = lua_tostring (lua, -1);
 
   //数据库名
-  lua_getglobal (lua,"db_database");
+  lua_getglobal (lua, "db_database");
   db_database = lua_tostring (lua, -1);
 
   //IP
-  lua_getglobal (lua,"server_ip");
+  lua_getglobal (lua, "server_ip");
   server_ip = lua_tostring (lua, -1);
 
   //username
@@ -70,18 +70,18 @@ void Config::readconfig (string file)
   passwd = lua_tostring(lua, -1);
 
   //端口
-  lua_getglobal (lua,"server_port");
+  lua_getglobal (lua, "server_port");
   server_port = lua_tointeger (lua, -1);
 
-  //学校iｄ
-  lua_getglobal (lua,"school_id");
-  school_id = lua_tointeger (lua, -1);
+  //当前游戏的版本
+  lua_getglobal (lua, "currentversion");
+  curr_version = lua_tostring (lua, -1);
 
-  //游戏数量
-  lua_getglobal (lua,"game_count");
-  game_count = lua_tointeger (lua, -1);
+  //文件服务器
+  lua_getglobal (lua, "downloadserver");
+  download_server = lua_tostring (lua, -1);
 
-  lua_pop (lua,8);
+  lua_pop (lua, 10);
 
   lua_close (lua);
   return;

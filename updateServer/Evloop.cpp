@@ -47,13 +47,13 @@ int Evloop::work ()
     startlisten ();
     ev_io *ev_io_watcher =  (ev_io*)malloc (sizeof (ev_io));
     //ev_io ev_io_watcher;
-    ev_timer timer;
+    //ev_timer timer;
     Evloop::loop = ev_loop_new (EVBACKEND_EPOLL);
 
     ev_io_init (ev_io_watcher, accept_cb, m_listenfd, EV_READ);
 
     ev_io_start (Evloop::loop, ev_io_watcher); 
-#if 1
+#if 0
     //定时器
     ev_timer_init (&timer, time_cb, 5, 5);
     ev_timer_start (Evloop::loop,&timer); 
@@ -114,10 +114,8 @@ void Evloop::recv_cb (struct ev_loop *loop, ev_io *w, int revents)
         return;
     }
 
-    struct timeval tv;
-    tv.tv_usec = 1000;
     //收包头长度
-    int i = recv_n (w->fd, buf->ptr (), sizeof (int), &tv);
+    int i = recv_v (w->fd, buf->ptr (), sizeof (int));
     if  ( sizeof (int) != i) {
         LOG (ERROR) << w->fd <<":recv head error! actually received len = "<< i 
             <<" info = "<< strerror (errno)<<endl;
@@ -128,7 +126,7 @@ void Evloop::recv_cb (struct ev_loop *loop, ev_io *w, int revents)
 
     //收包体
     int *p =  (int*)buf->ptr ();
-    i = recv_n (w->fd,  (char*)buf->ptr () + sizeof (int), *p - sizeof (unsigned int), &tv);
+    i = recv_v (w->fd,  (char*)buf->ptr () + sizeof (int), *p - sizeof (unsigned int));
 
     if  (  (*p - sizeof (unsigned int)) !=  (unsigned int)i) {
         LOG (ERROR) << w->fd <<":recv body error! hope = "<< *p <<" actually received len = "<< i 
@@ -182,6 +180,7 @@ void Evloop::closefd (int fd)
     free (Evloop::ioarray[fd].io);
     Evloop::ioarray[fd].io = NULL;
     Evloop::clientcount--;
+    //ROOMMANAGER->del_client (fd);
 }
 
 void Evloop::time_cb (struct ev_loop* loop, struct ev_timer *timer, int revents)
@@ -192,7 +191,7 @@ void Evloop::time_cb (struct ev_loop* loop, struct ev_timer *timer, int revents)
             //检测超时断开
             if  (TIMEOUT < now - ioarray[i].lasttime) {
                 LOG (INFO) << i << " now: "<< now << " last recv data:" << ioarray[i].lasttime ;
-                Evloop::closefd (i);
+                //Evloop::closefd (i);
             }
         }
     }

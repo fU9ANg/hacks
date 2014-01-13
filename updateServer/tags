@@ -13,6 +13,11 @@ AuthTask	AuthTask.h	/^class AuthTask: public task$/;"	c
 Buf	Buf.h	/^    Buf (Buf& b)$/;"	f	class:Buf
 Buf	Buf.h	/^    Buf (size_t inSize = MAX_BUF)$/;"	f	class:Buf
 Buf	Buf.h	/^class Buf $/;"	c
+CClient	content/client.cpp	/^CClient::CClient ()$/;"	f	class:CClient
+CClient	content/client.h	/^	CClient (bool line) : m_onLine (line) {}$/;"	f	class:CClient
+CClient	content/client.h	/^class CClient$/;"	c
+CHandleMessage	handler/HandleMessage.h	/^class CHandleMessage$/;"	c
+CLIENTMAP	content/userlist.h	/^	typedef map<int, CClient*> CLIENTMAP;$/;"	t	class:CUserList
 CONFIG	Config.h	48;"	d
 CONFIGFILE	ProcessManager.h	28;"	d
 CT_FLAGS	task.h	11;"	d
@@ -21,6 +26,8 @@ CT_GetVersion	protocol.h	/^    CT_GetVersion,$/;"	e	enum:CommandType
 CT_Login	protocol.h	/^    CT_Login,$/;"	e	enum:CommandType
 CT_Test	protocol.h	/^    CT_Test = 1,$/;"	e	enum:CommandType
 CURRENT_VERSION	Single.h	17;"	d
+CUserList	content/userlist.cpp	/^CUserList::CUserList()$/;"	f	class:CUserList
+CUserList	content/userlist.h	/^class CUserList$/;"	c
 CommandType	protocol.h	/^enum CommandType$/;"	g
 Condition	Mutex.h	/^        Condition (MutexLock& m):mutex_ (m){$/;"	f	class:Condition
 Condition	Mutex.h	/^class Condition$/;"	c
@@ -32,6 +39,7 @@ DataBase	database.h	/^class DataBase$/;"	c
 EVLOOP_H_	Evloop.h	8;"	d
 Evloop	Evloop.cpp	/^Evloop::Evloop (string ip, int port)$/;"	f	class:Evloop
 Evloop	Evloop.h	/^class Evloop: public task$/;"	c
+HANDLEMAP	handler/HandleMessage.h	/^typedef map<int, handlefunc> HANDLEMAP;$/;"	t
 HAVE_ARPA_INET_H	config.h	5;"	d
 HAVE_FCNTL_H	config.h	8;"	d
 HAVE_FORK	config.h	11;"	d
@@ -67,7 +75,12 @@ ListLock_	ThreadPool.h	/^        MutexLock ListLock_;$/;"	m	class:ThreadPool
 MAXFD	Evloop.h	31;"	d
 MAX_BUF	Buf.h	13;"	d
 MAX_BUFF_SIZE	Single.h	16;"	d
+MAX_BUF_SIZE	test_client.cpp	23;"	d	file:
 MAX_POOL_BUF	PoolT.h	19;"	d
+MSGNAME	handler/HandleMessage.h	33;"	d
+MSGNAME	handler/HandleMessage.h	35;"	d
+MSGNAME	handler/HandleMessage.h	49;"	d
+MSGNAME	handler/HandleMessage.h	52;"	d
 MSG_HEAD	protocol.h	/^} MSG_HEAD;$/;"	t	typeref:struct:sSubmitData
 MSG_HEAD_LEN	protocol.h	34;"	d
 MutexLock	Mutex.h	/^        MutexLock ()$/;"	f	class:MutexLock
@@ -75,6 +88,7 @@ MutexLock	Mutex.h	/^class MutexLock$/;"	c
 MutexLockGuard	Mutex.h	/^        explicit MutexLockGuard (MutexLock& mutex) : mutex_ (mutex) { $/;"	f	class:MutexLockGuard
 MutexLockGuard	Mutex.h	/^class MutexLockGuard$/;"	c
 MutexLockGuard	Mutex.h	108;"	d
+NUMS_STU_OF_GROUP	content/userlist.h	23;"	d
 PACKAGE	config.h	90;"	d
 PACKAGE_BUGREPORT	config.h	93;"	d
 PACKAGE_NAME	config.h	96;"	d
@@ -94,6 +108,8 @@ RECVTASK_H_	RecvTask.h	8;"	d
 RecvTask	RecvTask.cpp	/^RecvTask::RecvTask ()$/;"	f	class:RecvTask
 RecvTask	RecvTask.h	/^class RecvTask: public task$/;"	c
 SENDTASK_H_	SendTask.h	8;"	d
+SERV_IP	test_client.cpp	20;"	d	file:
+SERV_PORT	test_client.cpp	21;"	d	file:
 SINGLE	Single.h	42;"	d
 SQL_SELECT_ALLSTU	SQL.h	22;"	d
 SQL_SELECT_CLASS	SQL.h	12;"	d
@@ -115,6 +131,7 @@ SQL_SELECT_TEACHER	SQL.h	18;"	d
 SQL_SELECT_TEACHER_DETAILINFO	SQL.h	50;"	d
 SQL_SELECT_USED_COURSE	SQL.h	25;"	d
 STDC_HEADERS	config.h	111;"	d
+STUDENT_COUNT	test_client.cpp	22;"	d	file:
 ST_FLAGS	task.h	12;"	d
 ST_GetUpdateContent	protocol.h	/^    ST_GetUpdateContent,$/;"	e	enum:CommandType
 ST_GetVersion	protocol.h	/^    ST_GetVersion,$/;"	e	enum:CommandType
@@ -130,12 +147,16 @@ ThreadPool	ThreadPool.cpp	/^ThreadPool::ThreadPool(int n):$/;"	f	class:ThreadPoo
 ThreadPool	ThreadPool.h	/^class ThreadPool{$/;"	c
 UNLOCK	ProcessManager.h	/^    UNLOCK      = LOCK_UN             \/**<解锁*\/$/;"	e	enum:__anon1
 VERSION	config.h	114;"	d
+_CCLIENT_H	content/client.h	7;"	d
+_C_USERLIST_H	content/userlist.h	6;"	d
 _ECSERVER_ATOMICT_H_	AtomicT.h	7;"	d
 _ECSERVER_BUF_H_	Buf.h	7;"	d
 _ECSERVER_CONFIG_H_	Config.h	7;"	d
 _ECSERVER_DATABASE_H_	database.h	8;"	d
 _ECSERVER_POOLT_H_	PoolT.h	10;"	d
+_EXECUTE_	handler/HandleMessage.h	24;"	d
 _GLOBAL_DATA_H_	Single.h	7;"	d
+_HANDLE_MESSAGE_H	handler/HandleMessage.h	7;"	d
 _MUTEX_LOCK_H_	Mutex.h	8;"	d
 _PROCESSMAMAGER_H_	ProcessManager.h	8;"	d
 _PROTOCOL_H	protocol.h	7;"	d
@@ -145,6 +166,8 @@ _SQL_H_	SQL.h	6;"	d
 _TASK_H_	task.h	3;"	d
 _THREADPOOL_H_	ThreadPool.h	6;"	d
 accept_cb	Evloop.cpp	/^void Evloop::accept_cb (struct ev_loop *loop, ev_io *w, int revents)$/;"	f	class:Evloop
+add_client	content/userlist.cpp	/^void CUserList::add_client (int fd)$/;"	f	class:CUserList
+add_client	content/userlist.cpp	/^void CUserList::add_client (int fd, CClient* pclient)$/;"	f	class:CUserList
 autorelease	task.h	/^        bool autorelease;$/;"	m	class:task
 bufpool	Single.h	/^        PoolT<Buf> bufpool;$/;"	m	class:Single
 cData	protocol.h	/^	void *cData() {             \/\/指向数据的指针$/;"	f	struct:sSubmitData
@@ -165,6 +188,8 @@ db_host	Config.h	/^        string  db_host;$/;"	m	class:Config
 db_password	Config.h	/^        string  db_password;$/;"	m	class:Config
 db_username	Config.h	/^        string  db_username;$/;"	m	class:Config
 debugProtocol	task.h	/^        void debugProtocol (Buf* p)$/;"	f	class:task
+del_client	content/userlist.cpp	/^void CUserList::del_client(int fd) {$/;"	f	class:CUserList
+del_client_by_fd	content/userlist.cpp	/^void CUserList::del_client_by_fd (int fd)$/;"	f	class:CUserList
 dequeue	QueueT.h	/^    int dequeue (TYPE& out, unsigned int timeout) {$/;"	f	class:QueueT
 enqueue	QueueT.h	/^    int enqueue (TYPE t) {$/;"	f	class:QueueT
 ev_in_info	Evloop.h	/^}   ev_in_info;$/;"	t	typeref:struct:ev_io_info
@@ -174,11 +199,24 @@ free_	ThreadPool.h	/^        AtomicT<int> free_;$/;"	m	class:ThreadPool
 game_count	Config.h	/^        int     game_count;$/;"	m	class:Config
 getClientCount	Evloop.cpp	/^int Evloop::getClientCount ()$/;"	f	class:Evloop
 getConnection	database.cpp	/^Connection* DataBase::getConnection ()$/;"	f	class:DataBase
+getHandler	handler/HandleMessage.h	/^    static handlefunc getHandler (int iCommandType)$/;"	f	class:CHandleMessage
+getId	content/client.cpp	/^int CClient::getId ()$/;"	f	class:CClient
+getIpAddr	content/client.cpp	/^string CClient::getIpAddr (void)$/;"	f	class:CClient
+getOnLine	content/client.cpp	/^bool CClient::getOnLine (void)$/;"	f	class:CClient
 getPthreadMutex	Mutex.h	/^        pthread_mutex_t* getPthreadMutex ()$/;"	f	class:MutexLock
+getSocket	content/client.cpp	/^int CClient::getSocket ()$/;"	f	class:CClient
 getStatement	database.cpp	/^Statement* DataBase::getStatement ()$/;"	f	class:DataBase
+getVersion	content/client.cpp	/^string CClient::getVersion (void)$/;"	f	class:CClient
+get_client_by_fd	content/userlist.cpp	/^CClient* CUserList::get_client_by_fd (int fd)$/;"	f	class:CUserList
 getcount	ThreadPool.cpp	/^int ThreadPool::getcount() {$/;"	f	class:ThreadPool
 getfd	Buf.h	/^    int getfd ()$/;"	f	class:Buf
 getid	Buf.h	/^    int getid ()$/;"	f	class:Buf
+handleGetUpdateContent	handler/HandleUpdater.cpp	/^void CHandleMessage::handleGetUpdateContent (Buf* p)$/;"	f	class:CHandleMessage
+handleGetVersion	handler/HandleUpdater.cpp	/^void CHandleMessage::handleGetVersion (Buf* p)$/;"	f	class:CHandleMessage
+handleLogin	handler/HandleUpdater.cpp	/^void CHandleMessage::handleLogin (Buf* p)$/;"	f	class:CHandleMessage
+handleTest	handler/HandleUpdater.cpp	/^void CHandleMessage::handleTest (Buf* p)$/;"	f	class:CHandleMessage
+handlefunc	handler/HandleMessage.h	/^typedef void (*handlefunc)(Buf*);$/;"	t
+initHandlers	handler/HandleMessage.h	/^    static void initHandlers (void)$/;"	f	class:CHandleMessage
 instance	Config.cpp	/^Config* Config::instance ()$/;"	f	class:Config
 instance	Single.cpp	/^Single* Single::instance() $/;"	f	class:Single
 instance	database.cpp	/^DataBase* DataBase::instance ()$/;"	f	class:DataBase
@@ -191,6 +229,12 @@ lock	Mutex.h	/^        void lock ()$/;"	f	class:MutexLock
 lock	ProcessManager.cpp	/^bool ProcessManager::lock (int mode)$/;"	f	class:ProcessManager
 loop	Evloop.cpp	/^struct ev_loop* Evloop::loop = NULL;$/;"	m	class:Evloop	typeref:struct:Evloop::	file:
 loop	Evloop.h	/^        static struct ev_loop* loop;$/;"	m	class:Evloop	typeref:struct:Evloop::ev_loop
+m_HandleMap	handler/HandleMessage.cpp	/^HANDLEMAP CHandleMessage::m_HandleMap;$/;"	m	class:CHandleMessage	file:
+m_HandleMap	handler/HandleMessage.h	/^    static HANDLEMAP m_HandleMap;$/;"	m	class:CHandleMessage
+m_Id	content/client.h	/^    int           m_Id;$/;"	m	class:CClient
+m_IpAddr	content/client.h	/^    string        m_IpAddr;$/;"	m	class:CClient
+m_Socket	content/client.h	/^    int           m_Socket;$/;"	m	class:CClient
+m_client_map	content/userlist.h	/^    CLIENTMAP m_client_map;$/;"	m	class:CUserList
 m_con	QueueT.h	/^    pthread_cond_t m_con;$/;"	m	class:QueueT
 m_config	Config.cpp	/^Config* Config::m_config = NULL;$/;"	m	class:Config	file:
 m_config	Config.h	/^        static class Config* m_config;$/;"	m	class:Config	typeref:class:Config::Config
@@ -202,10 +246,12 @@ m_ip	Evloop.h	/^        string m_ip;$/;"	m	class:Evloop
 m_listenfd	Evloop.h	/^        int    m_listenfd;$/;"	m	class:Evloop
 m_lock	AtomicT.h	/^        MutexLock m_lock;$/;"	m	class:AtomicT
 m_lock	PoolT.h	/^    MutexLock m_lock;$/;"	m	class:PoolT
+m_lock	content/userlist.h	/^    MutexLock m_lock;$/;"	m	class:CUserList
 m_lockfd	ProcessManager.h	/^        int m_lockfd;            \/**文件锁句柄*\/$/;"	m	class:ProcessManager
 m_mutex	QueueT.h	/^    pthread_mutex_t m_mutex;$/;"	m	class:QueueT
 m_mutex	database.h	/^        MutexLock m_mutex;$/;"	m	class:DataBase
 m_oldtime	AuthTask.h	/^        time_t m_oldtime;$/;"	m	class:AuthTask
+m_onLine	content/client.h	/^	bool          m_onLine;$/;"	m	class:CClient
 m_pConn	database.h	/^        Connection* m_pConn;$/;"	m	class:DataBase
 m_pDriver	database.h	/^        Driver* m_pDriver;$/;"	m	class:DataBase
 m_password	database.h	/^        string m_password;$/;"	m	class:DataBase
@@ -219,7 +265,9 @@ m_thrpool	ProcessManager.h	/^        ThreadPool* m_thrpool;   \/**线程池*\/$/
 m_used	Buf.h	/^    size_t  m_used;$/;"	m	class:Buf
 m_user_name	database.h	/^        string m_user_name;$/;"	m	class:DataBase
 m_value	AtomicT.h	/^        TYPE m_value;$/;"	m	class:AtomicT
+m_version	content/client.h	/^    string        m_version;$/;"	m	class:CClient
 main	main.cpp	/^int main (int argc, char* argv[])$/;"	f
+main	test_client.cpp	/^int main(int argc, char* argv[])$/;"	f
 malloc	PoolT.h	/^    TYPE* malloc ()$/;"	f	class:PoolT
 maxsize	Buf.h	/^    size_t maxsize ()$/;"	f	class:Buf
 mutex_	Mutex.h	/^        MutexLock& mutex_;$/;"	m	class:Condition
@@ -247,6 +295,14 @@ passwd	Config.h	/^	string  passwd;$/;"	m	class:Config
 pcond_	Mutex.h	/^        pthread_cond_t pcond_;$/;"	m	class:Condition
 pinstance	database.cpp	/^DataBase* DataBase::pinstance = NULL;$/;"	m	class:DataBase	file:
 pinstance	database.h	/^        static DataBase *pinstance;$/;"	m	class:DataBase
+postDBRecord	handler/HandleMessage.cpp	/^bool CHandleMessage::postDBRecord (Buf* buf, int iCase)$/;"	f	class:CHandleMessage
+postDBRecordCount	handler/HandleMessage.cpp	/^bool CHandleMessage::postDBRecordCount (Buf* p, int iCase)$/;"	f	class:CHandleMessage
+postMessage	handler/HandleMessage.cpp	/^bool CHandleMessage::postMessage (Buf* p, enum CommandType iCommandType, void* data, unsigned int iLen)$/;"	f	class:CHandleMessage
+postStudentToWhite	handler/HandleMessage.cpp	/^bool CHandleMessage::postStudentToWhite (Buf* p, enum CommandType iCommandType)$/;"	f	class:CHandleMessage
+postTeacherToAllStudent	handler/HandleMessage.cpp	/^bool CHandleMessage::postTeacherToAllStudent (Buf* p, enum CommandType iCommandType)$/;"	f	class:CHandleMessage
+postTeacherToStudent	handler/HandleMessage.cpp	/^bool CHandleMessage::postTeacherToStudent (Buf* p, enum CommandType iCommandType, int iStuId)$/;"	f	class:CHandleMessage
+postTeacherToWhite	handler/HandleMessage.cpp	/^bool CHandleMessage::postTeacherToWhite (Buf* p, enum CommandType iCommandType)$/;"	f	class:CHandleMessage
+postWhiteToTeacher	handler/HandleMessage.cpp	/^bool CHandleMessage::postWhiteToTeacher (Buf* p, enum CommandType iCommandType)$/;"	f	class:CHandleMessage
 preStatement	database.cpp	/^PreparedStatement* DataBase::preStatement (string sql)$/;"	f	class:DataBase
 process_logic	ProcessManager.cpp	/^int ProcessManager::process_logic (int argc, char** argv)$/;"	f	class:ProcessManager
 protocols	task.h	/^static struct sDebugProtocol protocols[] =$/;"	v	typeref:struct:sDebugProtocol
@@ -258,6 +314,7 @@ recv_n	Sock.c	/^ssize_t recv_n(int fd,$/;"	f
 recv_v	Sock.c	/^int recv_v(int fd,$/;"	f
 recvqueue	Single.h	/^        QueueT<Buf*> recvqueue;$/;"	m	class:Single
 reset	Buf.h	/^    void reset ()$/;"	f	class:Buf
+reset	content/userlist.cpp	/^int CUserList::reset ()$/;"	f	class:CUserList
 run	ProcessManager.cpp	/^int ProcessManager::run ()$/;"	f	class:ProcessManager
 sDebugProtocol	task.h	/^struct sDebugProtocol$/;"	s
 sSubmitData	protocol.h	/^typedef struct sSubmitData$/;"	s
@@ -267,6 +324,12 @@ send_v	Sock.c	/^int send_v(int fd,$/;"	f
 sendqueue	Single.h	/^        QueueT<Buf*> sendqueue;$/;"	m	class:Single
 server_ip	Config.h	/^        string  server_ip;$/;"	m	class:Config
 server_port	Config.h	/^        int     server_port;$/;"	m	class:Config
+setHandler	handler/HandleMessage.h	/^    static void setHandler (int iCommandType, handlefunc hHandler)$/;"	f	class:CHandleMessage
+setId	content/client.cpp	/^void CClient::setId (int id)$/;"	f	class:CClient
+setIpAddr	content/client.cpp	/^void CClient::setIpAddr (const string& ip)$/;"	f	class:CClient
+setOnLine	content/client.cpp	/^void CClient::setOnLine (bool b)$/;"	f	class:CClient
+setSocket	content/client.cpp	/^void CClient::setSocket (int sock)$/;"	f	class:CClient
+setVersion	content/client.cpp	/^void CClient::setVersion (const string& ver)$/;"	f	class:CClient
 setfd	Buf.h	/^    void setfd (int fd)$/;"	f	class:Buf
 setid	Buf.h	/^    void setid (int id)$/;"	f	class:Buf
 setnodelay	Evloop.cpp	/^void Evloop::setnodelay  (int fd)$/;"	f	class:Evloop
@@ -284,6 +347,8 @@ state_	ThreadPool.h	/^        AtomicT<int> state_;$/;"	m	class:ThreadPool
 stop	ThreadPool.cpp	/^int ThreadPool::stop() {$/;"	f	class:ThreadPool
 task	task.h	/^        task():autorelease(true){$/;"	f	class:task
 task	task.h	/^class task$/;"	c
+test_white_fd	handler/HandleMessage.cpp	/^int CHandleMessage::test_white_fd = 0;$/;"	m	class:CHandleMessage	file:
+test_white_fd	handler/HandleMessage.h	/^    static int    test_white_fd;$/;"	m	class:CHandleMessage
 thread	ThreadPool.cpp	/^void* ThreadPool::thread(void* p) {$/;"	f	class:ThreadPool
 threads_	ThreadPool.h	/^        list<pthread_t> threads_;$/;"	m	class:ThreadPool
 time_cb	Evloop.cpp	/^void Evloop::time_cb (struct ev_loop* loop, struct ev_timer *timer, int revents)$/;"	f	class:Evloop
@@ -301,6 +366,8 @@ work	SendTask.cpp	/^int SendTask::work ()$/;"	f	class:SendTask
 ~AtomicT	AtomicT.h	/^        ~AtomicT()$/;"	f	class:AtomicT
 ~AuthTask	AuthTask.cpp	/^AuthTask::~AuthTask ()$/;"	f	class:AuthTask
 ~Buf	Buf.h	/^    ~Buf ()$/;"	f	class:Buf
+~CClient	content/client.cpp	/^CClient::~CClient ()$/;"	f	class:CClient
+~CUserList	content/userlist.cpp	/^CUserList::~CUserList()$/;"	f	class:CUserList
 ~Condition	Mutex.h	/^        ~Condition (){$/;"	f	class:Condition
 ~Config	Config.cpp	/^Config::~Config ()$/;"	f	class:Config
 ~DataBase	database.cpp	/^DataBase::~DataBase ()$/;"	f	class:DataBase

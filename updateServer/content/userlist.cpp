@@ -119,12 +119,11 @@ void CUserList::del_client(int fd) {
 #endif
 CClient* CUserList::get_client_by_fd (int fd)
 {
-#if 0
+#if 1
     CLIENTMAP::iterator it = m_client_map.find(fd);
     if (it != m_client_map.end()) {
         return it->second;
     }
-    return NULL;
 #endif
     return (NULL);
 }

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+c_compiler="ccache gcc"
+cpp_compiler="ccache g++"
+
+$cpp_compiler -Wall -Werror -g -DDEBUG   -I. -I./includes -I./handler -I./protocol -I./content -o protocol/version.pb.o -c protocol/version.pb.cc
+$cpp_compiler -Wall -Werror -g -DDEBUG   -I. -I./includes -I./handler -I./protocol -I./content -o protocol/updatecontent.pb.o -c protocol/updatecontent.pb.cc
+$cpp_compiler -Wall -Werror -g -DDEBUG   -I. -I./includes -I./handler -I./protocol -I./content -o test_client.o -c test_client.cpp
+$c_compiler -Wall -Werror -g -DDEBUG   -I. -I./includes -I./handler -I./protocol -I./content -o Sock.o -c Sock.c 
+$cpp_compiler -Wall -Werror -g -DDEBUG   -o test_client test_client.o protocol/version.pb.o protocol/updatecontent.pb.o Sock.o -lprotobuf

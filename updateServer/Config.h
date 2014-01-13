@@ -33,8 +33,11 @@ class Config
         string  db_password;
         string  db_database;
         string  server_ip;
-	string  username;
-	string  passwd;
+	    string  username;
+	    string  passwd;
+
+        string  curr_version;
+        string  download_server;
 
         int     server_port;
         int     school_id;

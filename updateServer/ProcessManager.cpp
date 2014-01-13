@@ -56,7 +56,7 @@ int ProcessManager::process_logic (int argc, char** argv)
             google::SetStderrLogging  (google::ERROR + 1);
             //配置输出到标准错误的最低日志级别,使error日志不打屏
             CONFIG->readconfig (CONFIGFILE);
-
+#if 0
             {
                 if (Confirm().confirm())
                     //cout << "auth success" << endl;
@@ -66,7 +66,7 @@ int ProcessManager::process_logic (int argc, char** argv)
                     exit (-1);
                 }
             }
-
+#endif
             cout << "-------------------------" << endl;
 
             if (!DATABASE->Init(CONFIG->db_host, \
