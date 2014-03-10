@@ -20,6 +20,8 @@ typedef struct FTP_OPT
     char *file;     /*filepath*/
 }FTP_OPT;
  
+extern size_t local_file_size;
+
 #ifdef __cplusplus
     extern "C" {
 #endif
