@@ -1,0 +1,10 @@
+#!/bin/sh 
+
+echo "compiling ... MD5ChecksumDefines.o"
+g++ -o MD5ChecksumDefines.o -c MD5ChecksumDefines.cpp
+
+echo "compiling ... test.o"
+g++ -o test.o -c test.cpp
+
+echo "compiling ... test"
+g++ -o test test.o MD5ChecksumDefines.o
