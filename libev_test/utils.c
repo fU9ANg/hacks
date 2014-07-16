@@ -1,7 +1,7 @@
 
 #include "utils.h"
 
-ssize_t send_with_select (int fd, void *buf, ssize_t left, struct timeval *time)
+ssize_t send_with_io_multiplexing (int fd, void *buf, ssize_t left, struct timeval *time)
 {
     if (buf == NULL || time == NULL) {
         return (-1);
@@ -36,7 +36,7 @@ ssize_t send_with_select (int fd, void *buf, ssize_t left, struct timeval *time)
     return (sended);
 }
 
-ssize_t recv_with_select (int fd, void* buf, ssize_t left, struct timeval *time)
+ssize_t recv_with_io_multiplexing (int fd, void* buf, ssize_t left, struct timeval *time)
 {
     if (buf == NULL || time == NULL) {
         return (-1);
@@ -70,7 +70,7 @@ ssize_t recv_with_select (int fd, void* buf, ssize_t left, struct timeval *time)
     return (recved);
 }
 
-ssize_t send_with_check_errno (int fd, void *buf, ssize_t left)
+ssize_t send_with_polling (int fd, void *buf, ssize_t left)
 {
     if (buf == NULL) {
         return (-1);
@@ -105,7 +105,7 @@ ssize_t send_with_check_errno (int fd, void *buf, ssize_t left)
     return (sended);
 }
 
-ssize_t recv_with_check_errno (int fd, void *buf, ssize_t left)
+ssize_t recv_with_polling (int fd, void *buf, ssize_t left)
 {
     if (buf == NULL) {
         return (-1);

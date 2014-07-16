@@ -13,10 +13,10 @@
 extern "C" {
 #endif
 
-extern ssize_t send_with_select (int fd, void *buf, ssize_t left, struct timeval *time);
-extern ssize_t recv_with_select (int fd, void* buf, ssize_t left, struct timeval *time);
-extern ssize_t send_with_check_errno (int fd, void *buf, ssize_t left);
-extern ssize_t recv_with_check_errno (int fd, void *buf, ssize_t left);
+extern ssize_t send_with_io_multiplexing (int fd, void *buf, ssize_t left, struct timeval *time);
+extern ssize_t recv_with_io_multiplexing (int fd, void* buf, ssize_t left, struct timeval *time);
+extern ssize_t send_with_polling (int fd, void *buf, ssize_t left);
+extern ssize_t recv_with_polling (int fd, void *buf, ssize_t left);
 
 #ifdef __cplusplus
 }
