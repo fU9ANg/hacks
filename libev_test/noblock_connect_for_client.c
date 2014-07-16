@@ -11,7 +11,8 @@
 #include <netinet/in.h>	
 #include <arpa/inet.h>
 
-#define PEER_IP	 "192.168.0.254"
+//#define PEER_IP	 "192.168.0.254"
+#define PEER_IP	 "222.186.50.76"
 #define PEER_PORT   9887
 
 int main (int argc, char **argv)	
