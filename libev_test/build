@@ -1,0 +1,5 @@
+#!/bin/sh 
+
+gcc -o noblock_connect_for_client noblock_connect_for_client.c
+gcc -o server1 server1.c -lev
+gcc -o client client.c -lev
