@@ -14,6 +14,12 @@
 using namespace pugi;
 using namespace std;
 
+enum InstFlag
+{
+    BEFORE = 1,
+    AFTER  = 2,
+};
+
 #define     SHEETBASEDATA   "SheetBaseData"
 #define     SHEETBASE       "SheetBase"
 #define     TAB             "\t"
@@ -27,7 +33,7 @@ using namespace std;
     "};\n\n"
 
 #define     STRUCTURE_SHEET     \
-    "class Sheetxxxx : public SheetBase\n"              \
+    "class Sheetxxxxx : public SheetBase\n"              \
     "{\n"                                               \
     "private:\n"                                        \
     "\tSheetxxxxxData *data;\n"                         \
@@ -45,7 +51,7 @@ using namespace std;
     "};\n\n"
 
 #define     STRUCTURE_SHEET_GETROW \
-    "SheetxxxxData* Sheetxxxx::getRow (int n)\n"        \
+    "SheetxxxxxData* Sheetxxxxx::getRow (int n)\n"        \
     "{\n"                                               \
     "\tif (n<0 || n>row_num)\n"                         \
     "\t\treturn (NULL);\n"                              \
@@ -54,7 +60,7 @@ using namespace std;
     "};\n\n"
 
 #define     STRUCTURE_SHEET_GETALL \
-    "vector<SheetxxxxxData*> Sheetxxxx::getAll ()\n"    \
+    "vector<SheetxxxxxData*> Sheetxxxxx::getAll ()\n"    \
     "{\n"                                               \
     "\tvector<SheetxxxxxData*> res;\n"                  \
     "\tfor (int i=0; i<row_num; i++) {\n"               \
@@ -99,6 +105,12 @@ using namespace std;
     "};\n\n"
 
 typedef pair<string, string> nameValue;
+
+namespace ExcelUtils
+{
+    string findAndReplace (string sCode, string subStr, string repStr);
+    string findAndInsert  (string sCode, string subStr, string repStr, enum InstFlag);
+};
 
 class ExcelField
 {
@@ -157,8 +169,9 @@ public:
     vector<nameValue> Properties;
 
     void dump ();
-    string ProductSheetInH (string sCode);
-    string ProductSheetDataInH (string sCode);
+
+    string productSheetDataInH (string sCode);
+    string productSheetData (string sCode);
 };
 
 class ExcelSheet
@@ -198,14 +211,19 @@ public:
         _useTip = s;
     }
 
-    int convert ();
-public:
+    int convert (); public:
     vector<ExcelField> Fields;
     vector<nameValue> Properties;
 
     void dump ();
-    string ProductSheetInH ();
-    string ProductSheetDataInH ();
+
+    string productSheetData     (void);
+    string productSheetDataInH  (void);
+    string productSheetInH      (void);
+    string productSheetGetRow   (void);
+    string productSheetGetAll   (void);
+    string productSheetInit     (void);
+    string productSheetInitLink (void);
 };
 
 class ExcelTable
@@ -215,7 +233,7 @@ public:
 
     void dumpSheets ();
     int convertSheets ();
-    int Product ();
+    int product ();
 };
 
 #endif  // __EXCELDATA_H

@@ -66,9 +66,9 @@ int main (int argc, char** argv)
     //table.dumpSheets ();
 
     // TODO:
-#if 0
+#if 1
     table.convertSheets ();
-    table.Product ();
+    table.product ();
 #else
     ExcelField f;
     string s;
