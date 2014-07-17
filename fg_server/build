@@ -1,0 +1,12 @@
+#!/bin/sh 
+
+echo "compiling ... SheetBase.cpp"
+g++ -o SheetBase.o -c SheetBase.cpp &&
+
+echo "compiling ... Sheet.cpp"
+g++ -o Sheet.o -c Sheet.cpp && 
+
+echo "compiling ... Test.cpp"
+g++ -o Test.o -c Test.cpp && 
+
+g++ -o TestSheet SheetBase.o Sheet.o Test.o

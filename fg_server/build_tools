@@ -1,0 +1,13 @@
+#!/bin/sh 
+
+
+echo "compiling ... Tools.cpp"
+g++ -o Tools.o -c Tools.cpp -I./pugixml
+
+echo "compiling ... ExcelData.cpp"
+g++ -o ExcelData.o -c ExcelData.cpp -I./pugixml
+
+echo "compiling ... pugixml/pugixml.cpp"
+g++ -o pugixml/pugixml.o -c pugixml/pugixml.cpp && 
+
+g++ -o Tools ExcelData.o Tools.o pugixml/pugixml.o
