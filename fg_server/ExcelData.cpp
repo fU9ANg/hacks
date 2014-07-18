@@ -96,26 +96,68 @@ int ExcelTable::convertSheets ()
 
 int ExcelTable::product ()
 {
+    string sIncludeFile, sSourceFile;
+    sIncludeFile = "";
+    sSourceFile  = "";
+
+    //
+    string sCode = "";
     vector<ExcelSheet>::iterator itSheet;
     for (itSheet = Sheets.begin(); itSheet != Sheets.end(); itSheet++) {
-        string sCode = "";
+        sCode += itSheet->productSheetDefine ();
+    }
+    sCode = STRUCTURE_INCLUDES + sCode;
+    sSourceFile += sCode;
+    //printf ("%s", sCode.c_str());
+    //
+    sIncludeFile += STRUCTURE_IFNDEF_DEFINE;
+
+    for (itSheet = Sheets.begin(); itSheet != Sheets.end(); itSheet++) {
+        sCode = "";
         printf ("\n---------------product-------------\n");
         sCode = itSheet->productSheetDataInH ();
-        printf ("%s", sCode.c_str());
+        sIncludeFile += sCode;
+        //printf ("%s", sCode.c_str());
         sCode = itSheet->productSheetInH ();
-        printf ("%s", sCode.c_str());
-        sCode = itSheet->productSheetData ();
-        printf ("%s", sCode.c_str());
+        sIncludeFile += sCode;
+        //printf ("%s", sCode.c_str());
 
+        sCode = itSheet->productSheetData ();
+        sSourceFile += sCode;
+        //printf ("%s", sCode.c_str());
         sCode = itSheet->productSheetGetRow ();
-        printf ("%s", sCode.c_str());
+        sSourceFile += sCode;
+        //printf ("%s", sCode.c_str());
         sCode = itSheet->productSheetGetAll ();
-        printf ("%s", sCode.c_str());
+        sSourceFile += sCode;
+        //printf ("%s", sCode.c_str());
         sCode = itSheet->productSheetInit ();
-        printf ("%s", sCode.c_str());
+        sSourceFile += sCode;
+        //printf ("%s", sCode.c_str());
         sCode = itSheet->productSheetInitLink ();
-        printf ("%s", sCode.c_str());
+        sSourceFile += sCode;
+        //printf ("%s", sCode.c_str());
+
     }
+
+
+    //
+    sCode = "";
+    for (itSheet = Sheets.begin(); itSheet != Sheets.end(); itSheet++) {
+        sCode += itSheet->productInitSheets ();
+    }
+    sCode = STRUCTURE_INITSHEETS_BEGIN + sCode + STRUCTURE_INITSHEETS_END;
+    sSourceFile += sCode;
+    //printf ("%s", sCode.c_str());
+
+
+    sIncludeFile += STRUCTURE_ENDIF;
+
+    ///
+    printf ("---------------------------------------------------\n");
+    printf ("%s", sIncludeFile.c_str ());
+    printf ("+++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+    printf ("%s", sSourceFile.c_str ());
 }
 
 
@@ -176,6 +218,31 @@ string ExcelSheet::productSheetData (void)
     return (sCode);
 }
 
+string ExcelField::productSheetInit (string sCode)
+{
+    string sInsert;
+    string sPos = "\t\toneData._row_id = row_num++;\n";
+
+    if (dataType() == "int") {
+        sInsert = "\t\tSheetUtils::readToken (fp, value);\n";
+        sInsert+= "\t\toneData.";
+        sInsert+= toName () + " = atoi (value.c_str ());\n";
+    }
+    else if (dataType() == "string") {
+        sInsert = "\t\tSheetUtils::readToken (fp, value);\n";
+        sInsert+= "\t\toneData.";
+        sInsert+= toName () + " = value;\n";
+    }
+    else {
+        //return ("");
+        sInsert = ";";
+    }
+
+    sCode = ExcelUtils::findAndInsert (sCode, sPos, sInsert, BEFORE);
+
+    return (sCode);
+}
+
 string ExcelField::productSheetDataInH (string sCode)
 {
     string sInsert = TAB + dataType() + " " + toName () + ";"+ TAB + "//" + name () + ENTER;
@@ -228,6 +295,12 @@ string ExcelSheet::productSheetInit (void)
 {
     string sCode;
     sCode = STRUCTURE_SHEET_INIT;
+
+    vector<ExcelField>::iterator itField;
+    for (itField = Fields.begin(); itField != Fields.end(); itField++) {
+        sCode = itField->productSheetInit (sCode);
+    }
+    
     sCode = ExcelUtils::findAndReplace (sCode, "xxxxx", toName ());
 
     return (sCode);
@@ -237,6 +310,24 @@ string ExcelSheet::productSheetInitLink (void)
 {
     string sCode;
     sCode = STRUCTURE_SHEET_INITLINK;
+    sCode = ExcelUtils::findAndReplace (sCode, "xxxxx", toName ());
+
+    return (sCode);
+}
+
+string ExcelSheet::productInitSheets (void)
+{
+    string sCode;
+    sCode = STRUCTURE_INITSHEETS_CONTENT;
+    sCode = ExcelUtils::findAndReplace (sCode, "xxxxx", toName ());
+
+    return (sCode);
+}
+
+string ExcelSheet::productSheetDefine (void)
+{
+    string sCode;
+    sCode = STRUCTURE_SHEETS_DEFINE;
     sCode = ExcelUtils::findAndReplace (sCode, "xxxxx", toName ());
 
     return (sCode);

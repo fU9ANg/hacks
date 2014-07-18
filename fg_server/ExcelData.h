@@ -48,7 +48,7 @@ enum InstFlag
 #define     STRUCTURE_SHEETDATA_SHEETDATA \
     "SheetxxxxxData::SheetxxxxxData ()\n"               \
     "{\n"                                               \
-    "};\n\n"
+    "}\n\n"
 
 #define     STRUCTURE_SHEET_GETROW \
     "SheetxxxxxData* Sheetxxxxx::getRow (int n)\n"        \
@@ -57,7 +57,7 @@ enum InstFlag
     "\t\treturn (NULL);\n"                              \
     "\telse\n"                                          \
     "\t\treturn (&data[n]);\n"                          \
-    "};\n\n"
+    "}\n\n"
 
 #define     STRUCTURE_SHEET_GETALL \
     "vector<SheetxxxxxData*> Sheetxxxxx::getAll ()\n"    \
@@ -67,22 +67,22 @@ enum InstFlag
     "\t\tres.push_back (&data[i]);\n"                   \
     "\t}\n\n"                                           \
     "\treturn (res);\n"                                 \
-    "};\n\n"
+    "}\n\n"
 
 #define     STRUCTURE_SHEET_INIT \
     "int Sheetxxxxx::init ()\n"                         \
     "{\n"                                               \
     "\tFILE *fp;\n"                                     \
-    "\tfp = fopen (\"./Test.txt\", \"rb\");\n"          \
+    "\tfp = fopen (\"./xxxxx.txt\", \"rb\");\n"          \
     "\tif (fp == NULL) {\n"                             \
-    "\t\tprintf (\"no sheet file [%s]\\n\", \"Test.txt\");\n" \
+    "\t\tprintf (\"no sheet file [%s]\\n\", \"xxxxx.txt\");\n" \
     "\t\treturn (-1);\n"                                \
     "\t}\n\n"                                           \
     \
     "\tSheetUtils::skipBom (fp);\n"                     \
     "\tstring value = \"\";\n"                          \
     "\trow_num = 0;\n"                                  \
-    "\tname = \"Test.txt\";\n"                          \
+    "\tname = \"xxxxx.txt\";\n"                          \
     "\tvector<SheetxxxxxData> d;\n"                     \
     "\twhile (1) {\n"                                   \
     "\t\tSheetxxxxxData oneData;\n"                     \
@@ -97,12 +97,49 @@ enum InstFlag
     "\tif (fp) fclose (fp);\n\n"                        \
     \
     "\treturn (0);\n"                                   \
-    "};\n\n"
+    "}\n\n"
 
 #define     STRUCTURE_SHEET_INITLINK \
     "int Sheetxxxxx::initLink ()\n"                     \
     "{\n"                                               \
-    "};\n\n"
+    "\treturn (0);\n"                                   \
+    "}\n\n"
+
+#define     STRUCTURE_INITSHEETS_BEGIN \
+    "int CGameManager::initSheets ()\n"                 \
+    "{\n"
+
+#define     STRUCTURE_INITSHEETS_END   \
+    "\treturn (0);\n"                                   \
+    "}\n"
+
+#define     STRUCTURE_INITSHEETS_CONTENT   \
+    "\tshxxxxx = new Sheetxxxxx;\n"                     \
+    "\tif (shxxxxx->init() != 0) return (-1);\n"        \
+    "\tif (shxxxxx->initLink() != 0) return (-1);\n"
+
+#define     STRUCTURE_INCLUDES  \
+    "\n\n"                                                \
+    "#include \"SheetBase.h\"\n"                           \
+    "#include \"Sheet.h\"\n"                           \
+    "\n"                                                \
+    "using namespace std;\n\n\n"
+
+#define     STRUCTURE_SHEETS_DEFINE     "Sheetxxxxx* shxxxxx = NULL;\n"
+
+
+#define     STRUCTURE_IFNDEF_DEFINE \
+    "\n"                                                \
+    "#ifndef __SHEET_H__\n"                             \
+    "#define __SHEET_H__\n"                             \
+    "\n"                                                \
+    "#include \"SheetBase.h\"\n"                        \
+    "\n"                                                \
+    
+
+#define     STRUCTURE_ENDIF \
+    "#endif // __SHEET_H__\n"
+
 
 typedef pair<string, string> nameValue;
 
@@ -172,6 +209,8 @@ public:
 
     string productSheetDataInH (string sCode);
     string productSheetData (string sCode);
+
+    string productSheetInit (string sCode);
 };
 
 class ExcelSheet
@@ -224,6 +263,8 @@ public:
     string productSheetGetAll   (void);
     string productSheetInit     (void);
     string productSheetInitLink (void);
+    string productInitSheets    (void);
+    string productSheetDefine   (void);
 };
 
 class ExcelTable

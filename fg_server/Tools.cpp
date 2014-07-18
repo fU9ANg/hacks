@@ -45,7 +45,7 @@ int main (int argc, char** argv)
                 nameValue nv = nameValue (attr.name(), attr.value ());
                 ef.Properties.push_back (nv);
             }
-            std::cout << std::endl;
+            //std::cout << std::endl;
             es.Fields.push_back (ef);
         }
 
@@ -56,7 +56,7 @@ int main (int argc, char** argv)
             nameValue nv = nameValue (attr.name(), attr.value ());
             es.Properties.push_back (nv);
         }
-        std::cout << std::endl;
+        //std::cout << std::endl;
 
         table.Sheets.push_back (es);
 
