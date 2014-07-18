@@ -2,10 +2,10 @@
 <!-- 静态数据表 -->
 
 <DataSheet>
-    <Sheet excelName="测试表" name="测试1" toName="Test1">
-        <Field name="ID" toName="ID1" dataType="int"/>
-        <Field name="编号" toName="Type1" dataType="int"/>
-        <Field name="名称" toName="Name1" dataType="string"/>
+    <Sheet excelName="测试表" name="测试" toName="Test">
+        <Field name="ID" toName="ID" dataType="int"/>
+        <Field name="编号" toName="Type" dataType="int"/>
+        <Field name="名称" toName="Name" dataType="string"/>
     </Sheet>
     <Sheet excelName="测试表" name="测试2" toName="Test2" useTip="C">
         <Field name="ID" toName="ID2" dataType="int"/>
@@ -17,5 +17,11 @@
         <Field name="名称" toName="Name" dataType="string"/>
         <Field name="品质" toName="Quality" dataType="int"/>
         <Field name="等级" toName="Level" dataType="int"/>
+    </Sheet>
+    <Sheet excelName="怪物表" name="怪物表" toName="Monster">
+        <Field name="怪物表ID" toName="MonsterID" dataType="int"/>
+        <Field name="怪物表名称" toName="MonsterName" dataType="string"/>
+        <Field name="怪物表品质" toName="MonsterQuality" dataType="int"/>
+        <Field name="怪物表等级" toName="MonsterLevel" dataType="int"/>
     </Sheet>
 </DataSheet>

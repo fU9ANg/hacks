@@ -44,6 +44,11 @@ int main (int argc, char** argv)
 
                 nameValue nv = nameValue (attr.name(), attr.value ());
                 ef.Properties.push_back (nv);
+                //printf ("attr.name() = %s\n", attr.name ());
+                if (string(attr.name()) == "fields") {
+                    ef.isIndexField = true;
+                    //printf ("222222222 attr.name() = %s\n", attr.name ());
+                }
             }
             //std::cout << std::endl;
             es.Fields.push_back (ef);
@@ -70,9 +75,6 @@ int main (int argc, char** argv)
     table.convertSheets ();
     table.product ();
 #else
-    ExcelField f;
-    string s;
-    f.ProductSheetInH (s);
 
 #endif
     return (0);

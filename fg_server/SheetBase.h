@@ -14,6 +14,7 @@ namespace SheetUtils {
     bool readToken (FILE* fp, string& value);
     bool skipChar (FILE* fp, char ch);
     void skipBom (FILE* fp);
+    int initSheets (void);
 };
 
 class SheetBase {

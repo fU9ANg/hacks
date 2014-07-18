@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include <fstream>
 
 #include "pugixml.hpp"
 #include "pugiconfig.hpp"
@@ -25,7 +26,7 @@ int ExcelField::convert ()
 {
     vector<nameValue>::iterator itPro;
     for (itPro = Properties.begin(); itPro != Properties.end(); itPro++) {
-        cout << " " << itPro->first << "=" <<itPro->second;
+        //cout << " " << itPro->first << "=" <<itPro->second;
         if (itPro->first == "name")
             _name = itPro->second;
         else if (itPro->first == "toName" || itPro->first == "toname")
@@ -38,6 +39,10 @@ int ExcelField::convert ()
             _defaultValue = itPro->second;
         else if (itPro->first == "useTip")
             _useTip = itPro->second;
+        else if (itPro->first == "fields")
+            _fields = itPro->second;
+        else if (itPro->first == "type")
+            _type = itPro->second;
     }
 }
 
@@ -94,6 +99,8 @@ int ExcelTable::convertSheets ()
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////
+//
 int ExcelTable::product ()
 {
     string sIncludeFile, sSourceFile;
@@ -114,7 +121,7 @@ int ExcelTable::product ()
 
     for (itSheet = Sheets.begin(); itSheet != Sheets.end(); itSheet++) {
         sCode = "";
-        printf ("\n---------------product-------------\n");
+        //printf ("\n---------------product-------------\n");
         sCode = itSheet->productSheetDataInH ();
         sIncludeFile += sCode;
         //printf ("%s", sCode.c_str());
@@ -137,6 +144,9 @@ int ExcelTable::product ()
         sCode = itSheet->productSheetInitLink ();
         sSourceFile += sCode;
         //printf ("%s", sCode.c_str());
+        //
+        sCode = itSheet->productSheetDump ();
+        sSourceFile += sCode;
 
     }
 
@@ -154,10 +164,18 @@ int ExcelTable::product ()
     sIncludeFile += STRUCTURE_ENDIF;
 
     ///
-    printf ("---------------------------------------------------\n");
-    printf ("%s", sIncludeFile.c_str ());
-    printf ("+++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-    printf ("%s", sSourceFile.c_str ());
+    ofstream outfile ("Sheet.h", std::ofstream::binary);
+    outfile.write (sIncludeFile.c_str (), sIncludeFile.size ());
+    outfile.close ();
+
+    outfile.open ("Sheet.cpp", std::ofstream::binary);
+    outfile.write (sSourceFile.c_str(), sSourceFile.size ());
+    outfile.close ();
+
+    //printf ("---------------------------------------------------\n");
+    //printf ("%s", sIncludeFile.c_str ());
+    //printf ("+++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+    //printf ("%s", sSourceFile.c_str ());
 }
 
 
@@ -195,10 +213,18 @@ string ExcelUtils::findAndInsert (string sCode, string subStr, string instStr, e
 string ExcelField::productSheetData (string sCode)
 {
     string sInsert = "";
-    if (dataType () == "int")
-        sInsert = TAB + toName () + " = 0;" + ENTER;
-    else if (dataType () == "string")
-        sInsert = TAB + toName () + " = \"\";" + ENTER;
+    if (dataType () == "int") {
+        if (defaultValue() == "")
+            sInsert = TAB + toName () + " = 0;" + ENTER;
+        else
+            sInsert = TAB + toName () + " = " + defaultValue() + ";" + ENTER;
+    }
+    else if (dataType () == "string") {
+        if (defaultValue() == "")
+            sInsert = TAB + toName () + " = \"\";" + ENTER;
+        else
+            sInsert = TAB + toName () + " = \"" + defaultValue() + "\";" + ENTER;
+    }
 
     sCode = ExcelUtils::findAndInsert (sCode, "{\n", sInsert, AFTER);
     return (sCode);
@@ -212,7 +238,8 @@ string ExcelSheet::productSheetData (void)
 
     vector<ExcelField>::reverse_iterator itField;
     for (itField = Fields.rbegin(); itField != Fields.rend(); itField++) {
-        sCode = itField->productSheetData (sCode);
+        if (!itField->isIndexField)
+            sCode = itField->productSheetData (sCode);
     }
     
     return (sCode);
@@ -258,7 +285,8 @@ string ExcelSheet::productSheetDataInH (void)
 
     vector<ExcelField>::reverse_iterator itField;
     for (itField = Fields.rbegin(); itField != Fields.rend(); itField++) {
-        sCode = itField->productSheetDataInH (sCode);
+        if (!itField->isIndexField)
+            sCode = itField->productSheetDataInH (sCode);
     }
     
     return (sCode);
@@ -298,7 +326,8 @@ string ExcelSheet::productSheetInit (void)
 
     vector<ExcelField>::iterator itField;
     for (itField = Fields.begin(); itField != Fields.end(); itField++) {
-        sCode = itField->productSheetInit (sCode);
+        if (!itField->isIndexField)
+            sCode = itField->productSheetInit (sCode);
     }
     
     sCode = ExcelUtils::findAndReplace (sCode, "xxxxx", toName ());
@@ -329,6 +358,35 @@ string ExcelSheet::productSheetDefine (void)
     string sCode;
     sCode = STRUCTURE_SHEETS_DEFINE;
     sCode = ExcelUtils::findAndReplace (sCode, "xxxxx", toName ());
+
+    return (sCode);
+}
+
+string ExcelSheet::productSheetDump (void)
+{
+    string sCode;
+
+    vector<ExcelField>::iterator itField;
+    for (itField = Fields.begin(); itField != Fields.end(); itField++) {
+        if (!itField->isIndexField)
+            sCode += itField->productSheetDump ();
+    }
+
+    sCode = STRUCTURE_DUMP_BEGIN + sCode + STRUCTURE_DUMP_END;
+    sCode = ExcelUtils::findAndReplace (sCode, "xxxxx", toName ());
+
+    return (sCode);
+}
+
+string ExcelField::productSheetDump (void)
+{
+    string sCode;
+    string sReplace;
+
+    sCode = STRUCTURE_DUMP_CONTENT;
+    sReplace += "data[i]." + toName ();
+    sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", toName ());
+    sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", sReplace);
 
     return (sCode);
 }

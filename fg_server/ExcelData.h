@@ -43,7 +43,9 @@ enum InstFlag
     "\tbool forEach (SheetxxxxxData& item);\n"          \
     "\tvirtual int init ();\n"                          \
     "\tvirtual int initLink ();\n"                      \
-    "};\n\n"
+    "\tvoid dump (void);\n"                             \
+    "};\n"                                              \
+    "extern Sheetxxxxx* shxxxxx;\n"
 
 #define     STRUCTURE_SHEETDATA_SHEETDATA \
     "SheetxxxxxData::SheetxxxxxData ()\n"               \
@@ -106,7 +108,7 @@ enum InstFlag
     "}\n\n"
 
 #define     STRUCTURE_INITSHEETS_BEGIN \
-    "int CGameManager::initSheets ()\n"                 \
+    "int SheetUtils::initSheets ()\n"                 \
     "{\n"
 
 #define     STRUCTURE_INITSHEETS_END   \
@@ -141,6 +143,27 @@ enum InstFlag
     "#endif // __SHEET_H__\n"
 
 
+#define     STRUCTURE_DUMP_BEGIN \
+    "void Sheetxxxxx::dump ()\n"                        \
+    "{\n"                                               \
+    "\tfor (int i=0; i<row_num; i++) {\n"
+
+#define     STRUCTURE_DUMP_CONTENT \
+    "\t\tcout << \"Sheetxxxxx\" << \"[\" << i << \"] :: data.\" << \"yyyyy\" << \" = \" << zzzzz << endl;\n"
+
+#define     STRUCTURE_DUMP_END \
+    "\t}\n" \
+    "}\n"
+
+#define     STRUCTURE_TRY_FIND_BY_KEY
+#define     STRUCTURE_FIND_BY_KEY
+
+#define     STRUCTURE_TRY_FIND_BY_PK
+#define     STRUCTURE_FIND_BY_PK
+
+#define     STRUCTURE_TRY_FIND_BY_UNIQUE
+#define     STRUCTURE_FIND_BY_UNIQUE
+
 typedef pair<string, string> nameValue;
 
 namespace ExcelUtils
@@ -159,7 +182,23 @@ private:
     string  _localizable;
     string  _useTip;
 
+    // for index
+    string  _fields;
+    string  _type;
+
 public:
+    ExcelField () {
+        _name = "";
+        _toName = "";
+        _dataType = "";
+        _defaultValue = "";
+        _localizable = "";
+        _useTip = "";
+        _fields = "";
+        _type = "";
+
+        isIndexField = false;
+    }
     // gets
     string  name () {
         return (_name);
@@ -178,6 +217,12 @@ public:
     }
     string  useTip () {
         return (_useTip);
+    }
+    string  fields () {
+        return (_fields);
+    }
+    string  type () {
+        return (_type);
     }
 
     // gets
@@ -199,10 +244,17 @@ public:
     void  useTip (string& s) {
         _useTip = s;
     }
+    void fields (string& s) {
+        _fields = s;
+    }
+    void type (string& s) {
+        _type = s;
+    }
 
 
     int convert ();
 public:
+    bool isIndexField;
     vector<nameValue> Properties;
 
     void dump ();
@@ -211,6 +263,7 @@ public:
     string productSheetData (string sCode);
 
     string productSheetInit (string sCode);
+    string productSheetDump     (void);
 };
 
 class ExcelSheet
@@ -265,6 +318,7 @@ public:
     string productSheetInitLink (void);
     string productInitSheets    (void);
     string productSheetDefine   (void);
+    string productSheetDump     (void);
 };
 
 class ExcelTable

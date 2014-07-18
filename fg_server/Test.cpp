@@ -10,24 +10,29 @@
 
 int main ()
 {
-    SheetTest st;
-    st.init ();
-
+    SheetUtils::initSheets ();
+#if 0
     SheetTestData* pdata;
-    pdata = st.getRow (0);
+    pdata = shTest->getRow (0);
     if (pdata) {
-        printf ("SheetTestData.value1 = %d\n", pdata->value1);
-        printf ("SheetTestData.value2 = %d\n", pdata->value2);
-        printf ("SheetTestData.value3 = %d\n", pdata->value3);
+        printf ("SheetTestData.ID   = %d\n", pdata->ID);
+        printf ("SheetTestData.Type = %d\n", pdata->Type);
+        printf ("SheetTestData.Name = %s\n", pdata->Name.c_str());
     }
 
     vector<SheetTestData*> datas;
-    datas = st.getAll ();
+    datas = shTest->getAll ();
     for (int i=0; i<datas.size(); i++) {
-        printf ("SheetTestDatas[%d].value1 = %d\n", i+1, datas[i]->value1);
-        printf ("SheetTestDatas[%d].value2 = %d\n", i+1, datas[i]->value2);
-        printf ("SheetTestDatas[%d].value3 = %d\n", i+1, datas[i]->value3);
+        printf ("SheetTestDatas[%d].ID   = %d\n", i+1, datas[i]->ID);
+        printf ("SheetTestDatas[%d].Type = %d\n", i+1, datas[i]->Type);
+        printf ("SheetTestDatas[%d].Name = %s\n", i+1, datas[i]->Name.c_str());
     }
+#endif
+
+    shTest->dump ();
+    shTest2->dump ();
+    shPlayer->dump ();
+    shMonster->dump ();
 
     return (0);
 }
