@@ -126,6 +126,8 @@ int ExcelTable::product ()
         sIncludeFile += sCode;
         //printf ("%s", sCode.c_str());
         sCode = itSheet->productSheetInH ();
+        sCode = itSheet->productTryFindByPKInH (sCode);
+        sCode = itSheet->productFindByPKInH (sCode);
         sIncludeFile += sCode;
         //printf ("%s", sCode.c_str());
 
@@ -144,6 +146,13 @@ int ExcelTable::product ()
         sCode = itSheet->productSheetInitLink ();
         sSourceFile += sCode;
         //printf ("%s", sCode.c_str());
+#if 1
+        sCode = itSheet->productTryFindByPK ();
+        sSourceFile += sCode;
+        //printf ("%s", sCode.c_str());
+        sCode = itSheet->productFindByPK ();
+        sSourceFile += sCode;
+#endif
         //
         sCode = itSheet->productSheetDump ();
         sSourceFile += sCode;
@@ -387,6 +396,121 @@ string ExcelField::productSheetDump (void)
     sReplace += "data[i]." + toName ();
     sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", toName ());
     sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", sReplace);
+
+    return (sCode);
+}
+
+// PK
+
+string ExcelField::productTryFindByPKInH ()
+{
+    string sCode = STRUCTURE_TRY_FIND_BY_PK_INH;
+
+    sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", dataType ());
+    sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", fields());
+
+    return (sCode);
+}
+
+string ExcelSheet::productTryFindByPKInH (string sCode)
+{
+    string sResult;
+    string sFind = "Data *data;\n";
+
+    sResult = "";
+
+    vector<ExcelField>::iterator itField;
+    for (itField = Fields.begin(); itField != Fields.end(); itField++) {
+        if (itField->isIndexField) {
+            sResult = ExcelUtils::findAndInsert (sCode, sFind, \
+                    itField->productTryFindByPKInH(), AFTER);
+        }
+    }
+
+    if (sResult == "")
+        return (sCode);
+    else
+        return (sResult);
+}
+string ExcelField::productFindByPKInH ()
+{
+    string sCode = STRUCTURE_FIND_BY_PK_INH;
+
+    sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", dataType ());
+    sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", fields());
+
+    return (sCode);
+}
+string ExcelSheet::productFindByPKInH   (string sCode)
+{
+    string sResult;
+    string sFind = "\tvoid dump (void);";
+
+    sResult = "";
+    vector<ExcelField>::iterator itField;
+    for (itField = Fields.begin(); itField != Fields.end(); itField++) {
+        if (itField->isIndexField) {
+            sResult += ExcelUtils::findAndInsert (sCode, sFind, \
+                    itField->productFindByPKInH(), BEFORE);
+        }
+    }
+
+    sResult = ExcelUtils::findAndReplace (sResult, "xxxxx", toName ());
+
+    if (sResult.empty())
+        return (sCode);
+    else
+        return (sResult);
+}
+
+string ExcelField::productTryFindByPK   (void)
+{
+    string sCode = STRUCTURE_TRY_FIND_BY_PK;
+
+    sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", dataType ());
+    sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", fields());
+
+    return (sCode);
+}
+
+string ExcelSheet::productTryFindByPK   (void)
+{
+    string sCode = "";
+
+
+    vector<ExcelField>::iterator itField;
+    for (itField = Fields.begin(); itField != Fields.end(); itField++) {
+        if (itField->isIndexField) {
+            sCode+= itField->productTryFindByPK ();
+            sCode = ExcelUtils::findAndReplace (sCode, "xxxxx", toName ());
+        }
+    }
+
+    return (sCode);
+}
+
+string ExcelField::productFindByPK   (void)
+{
+    string sCode = STRUCTURE_FIND_BY_PK;
+
+    sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", dataType ());
+    sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", fields());
+
+    return (sCode);
+}
+
+string ExcelSheet::productFindByPK (void)
+{
+    string sCode = "";
+
+
+    vector<ExcelField>::iterator itField;
+    for (itField = Fields.begin(); itField != Fields.end(); itField++) {
+        if (itField->isIndexField) {
+            sCode+= itField->productFindByPK ();
+            sCode = ExcelUtils::findAndReplace (sCode, "xxxxx", toName ());
+        }
+    }
 
     return (sCode);
 }

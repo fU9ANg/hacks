@@ -3,18 +3,18 @@
 <DataSheet>
   <Sheet excelName="T通用表" name="属性类型" toname="PropType" useTip="C">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="类型" toname="Type" dataType="int"/>
     <Field name="名称" toname="Name" dataType="string" localizable="1"/>
   </Sheet>
   <Sheet excelName="T通用表" name="资源类型" toname="ResourceType" useTip="C">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="名称" toname="Name" dataType="string" localizable="1"/>
   </Sheet>
   <Sheet excelName="J角色" name="角色" toname="Role">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="名称" toname="Name" dataType="string" localizable="1"/>
     <Field name="外观" toname="Shape" dataType="int"/>
     <Field name="缩放" toname="Scale" dataType="int" defaultValue="100" useTip="C"/>
@@ -56,8 +56,8 @@
   </Sheet>
   <Sheet excelName="J角色" name="技能提示" toname="PromptSpell" useTip="C">
     <Index fields="Type,ID" type="Key"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="类型" toname="Type" dataType="int"/>
-    <Field name="ID" dataType="int"/>
     <Field name="提示技能ID" toname="AttackSpell" dataType="int"/>
     <Field name="防御技能ID" toname="DefenseSpell" dataType="int"/>
   </Sheet>
@@ -119,7 +119,7 @@
   </Sheet>
   <Sheet excelName="C场景" name="场景" toname="Scene">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="名称" toname="Name" dataType="string" localizable="1"/>
     <Field name="可否战斗" toname="IsCombat" dataType="int"/>
     <Field name="场景类型" toname="SceneType" dataType="int"/>
@@ -130,13 +130,13 @@
   </Sheet>
   <Sheet excelName="C场景" name="地图" toname="Map">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="宽度" toname="Width" dataType="int" />
     <Field name="高度" toname="Height" dataType="int" />
   </Sheet>
   <Sheet excelName="C场景" name="NPC" toname="NPC" useTip="C">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="外观" toname="Shape" dataType="int"/>
     <Field name="类型" toname="Type" dataType="int"/>
     <Field name="场景ID" toname="SceneId" dataType="int"/>
@@ -149,7 +149,7 @@
   </Sheet>
   <Sheet excelName="J技能" name="技能" toname="Spell">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="名称" toname="Name" dataType="string"/>
     <Field name="是否普技" toname="IsNormal" dataType="int"/>
     <Field name="技能栏位" toname="SpellSlot" dataType="int"/>
@@ -221,7 +221,7 @@
   </Sheet>
   <Sheet excelName="J技能" name="Buff" toname="Buff">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="类型" toname="Type" dataType="int"/>
     <Field name="分类Id" toname="classId" dataType="int" />
     <Field name="驱散等级" toname="DispelLevel" dataType="int"/>
@@ -255,7 +255,7 @@
   </Sheet>
   <Sheet excelName="J技能" name="召唤" toname="Summon">
     <Index fields="ID" type="Key" />
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="怪物Id" toname="MonsterId" dataType="int"/>
     <Field name="跑道偏移" toname="OffTrack" dataType="int"/>
     <Field name="位置偏移" toname="OffPos" dataType="int"/>
@@ -263,7 +263,7 @@
   </Sheet>
   <Sheet excelName="R任务" name="任务" toname="Quest">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="序号" toname="OrderId" dataType="int" />
     <Field name="任务名称" toname="Name" dataType="string" useTip="C"/>
     <Field name="等级要求" toname="RequireLevel" dataType="int" />
@@ -279,13 +279,13 @@
   </Sheet>
   <Sheet excelName="T特效" name="特效" toname="Effects" useTip="C" >
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="string"/>
+    <Field name="ID" toname="ID" dataType="string"/>
     <Field name="层类型" toname="Tier" dataType="int" />
     <Field name="伤害帧" toname="HurtFrame" dataType="int"/>
   </Sheet>
   <Sheet excelName="T推关" name="副本" toname="Dungeon">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="名称" toname="Name" dataType="string"/>
     <Field name="场景" toname="SceneId" dataType="int"/>
     <Field name="要求等级" toname="RequireLevel" dataType="int"/>
@@ -297,7 +297,7 @@
     <Index fields="Type" type="Key"/>
     <Index fields="DungeonId" type="Key"/>
     <Index fields="Type,DungeonId" type="Key"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="类型" toname="Type" dataType="int"/>
     <Field name="副本" toname="DungeonId" dataType="int"/>
     <Field name="名称" toname="Name" dataType="string"/>
@@ -369,7 +369,7 @@
 
   <Sheet excelName="W物品" name="物品列表" toname="Item">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="名称" toname="Name" dataType="string"/>
     <Field name="类型" toname="Type" dataType="int"/>
     <Field name="类型参数" toname="TypeArg" dataType="int"/>
@@ -399,7 +399,7 @@
     <Index fields="ID" type="PK"/>
     <Index fields="Level,PropId" type="Unique"/>
     <Index fields="Level" type="Key"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="名称" toname="Name" dataType="string"/>
     <Field name="等级" toname="Level" dataType="int"/>
     <Field name="品质" toname="Quality" dataType="int" useTip="C"/>
@@ -472,7 +472,7 @@
   </Sheet>
   <Sheet excelName="J奖励" name="奖励表" toname="Reward">
     <Index fields="ID" type="Key" />
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="组Id" toname="GroupId" dataType="int" useTip="S"/>
     <Field name="奖励类型" toname="rewardType" dataType="int"/>
     <Field name="奖励Id" toname="RewardId" dataType="int"/>
@@ -496,7 +496,7 @@
   </Sheet>
   <Sheet excelName="S商店" name="商店物品" toname="Shop">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="资源类型" toname="ResourceType" dataType="int"/>
     <Field name="资源Id" toname="ResourceId" dataType="int"/>
     <Field name="资源数量" toname="ResourceNum" dataType="int"/>
@@ -506,7 +506,7 @@
   </Sheet>
   <Sheet excelName="Z坐骑" name="坐骑" toname="Mount">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="名称" toname="Name" dataType="string"/>
     <Field name="技能" toname="SpellId" dataType="int"/>
     <Field name="资质" toname="Aptitude" dataType="int"/>
@@ -532,7 +532,7 @@
   </Sheet>
   <Sheet excelName="J剧情" name="剧情动画" toname="Drama" useTip="C">
     <Index fields="ID" type="Key"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="类型" toname="Type" dataType="int"/>
     <Field name="参数1" toname="Arg1" dataType="int"/>
     <Field name="参数2" toname="Arg2" dataType="int"/>
@@ -542,13 +542,14 @@
   </Sheet>
   <Sheet excelName="C成长UI" name="功能列表" toname="OpenAction" useTip="C">
     <Index fields="ID" type="PK"/>
-    <Field name="功能ID" toname="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
+    <Field name="功能ID" toname="FunctionID" dataType="int"/>
     <Field name="开启等级" toname="OpenLevel" dataType="int"/>
     <Field name="开启怪点" toname="OpenDungeonId" dataType="int"/>
   </Sheet>
   <Sheet excelName="T特殊关卡" name="关卡目标" toname="LevelTarget" useTip="C">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="内容" toname="Content" dataType="string"/>
   </Sheet>
   <Sheet excelName="T特殊关卡" name="对应关卡" toname="LevelCorresponding" useTip="C">
@@ -620,7 +621,7 @@
   </Sheet>
   <Sheet excelName="G怪物掉落" name="资源类型" toname="DropResourceType">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="怪物分类1" toname="MonsterCategory1" dataType="int"/>
     <Field name="怪物分类2" toname="MonsterCategory2" dataType="int"/>
     <Field name="怪物分类3" toname="MonsterCategory3" dataType="int"/>
@@ -647,7 +648,7 @@
   </Sheet>
   <Sheet excelName="Y运营活动" name="在线奖励" toname="OnlineReward">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="间隔时间" toname="Interval" dataType="int"/>
     <Field name="资源类型" toname="ResType" dataType="int"/>
     <Field name="资源ID" toname="ResId" dataType="int"/>
@@ -655,7 +656,7 @@
   </Sheet>
   <Sheet excelName="Y运营活动" name="登录奖励" toname="LoginReward">
     <Index fields="ID" type="PK"/>
-    <Field name="ID" dataType="int"/>
+    <Field name="ID" toname="ID" dataType="int"/>
     <Field name="符石" toname="Gold" dataType="int"/>
     <Field name="金币" toname="Money" dataType="int"/>
     <Field name="体力" toname="Power" dataType="int"/>

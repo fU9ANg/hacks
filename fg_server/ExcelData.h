@@ -136,7 +136,12 @@ enum InstFlag
     "#define __SHEET_H__\n"                             \
     "\n"                                                \
     "#include \"SheetBase.h\"\n"                        \
+    "#include <iostream>\n" \
+    "#include <vector>\n" \
+    "#include <map>\n" \
     "\n"                                                \
+    "using namespace std;\n"
+
     
 
 #define     STRUCTURE_ENDIF \
@@ -155,14 +160,50 @@ enum InstFlag
     "\t}\n" \
     "}\n"
 
-#define     STRUCTURE_TRY_FIND_BY_KEY
-#define     STRUCTURE_FIND_BY_KEY
 
-#define     STRUCTURE_TRY_FIND_BY_PK
-#define     STRUCTURE_FIND_BY_PK
+#define     STRUCTURE_TRY_FIND_BY_PK_INH \
+    "\tstd::map<yyyyy, int> index_zzzzz;\n"
 
-#define     STRUCTURE_TRY_FIND_BY_UNIQUE
-#define     STRUCTURE_FIND_BY_UNIQUE
+#define     STRUCTURE_FIND_BY_PK_INH \
+    "\tSheetxxxxxData* findByzzzzz (yyyyy _zzzzz);\n" \
+    "\tSheetxxxxxData* tryFindByzzzzz (yyyyy _zzzzz);\n"
+
+#define     STRUCTURE_TRY_FIND_BY_PK \
+    "SheetxxxxxData* Sheetxxxxx::tryFindByzzzzz (yyyyy _zzzzz)\n"          \
+    "{\n" \
+    "\tmap<yyyyy, int>::iterator itor = index_zzzzz.find (_zzzzz);\n"   \
+    "\tif (itor != index_zzzzz.end()) {\n" \
+    "\t\treturn (&data[itor->second]);\n"   \
+    "\t}\n" \
+    "\telse {\n" \
+    "\t\treturn (NULL);\n" \
+    "\t}\n}\n\n"
+
+#define     STRUCTURE_FIND_BY_PK \
+    "SheetxxxxxData* Sheetxxxxx::findByzzzzz (yyyyy _zzzzz)\n" \
+    "{\n" \
+    "\tSheetxxxxxData* retVal = tryFindByzzzzz (_zzzzz);\n" \
+    "\tif (NULL == retVal)\n" \
+    "\t\tcout << \"Sheet [xxxxx] Key [\" << _zzzzz << \"] not exists\\n\";\n" \
+    "\treturn (retVal);\n" \
+    "}\n\n"
+/*
+#define     STRUCTURE_FIND_BY_KEY_INH \
+    "\tstd::vector<SheetxxxxxData*> findByzzzzz (int _zzzzz);\n"
+
+#define     STRUCTURE_FIND_BY_KEY \
+    "vector<SheetxxxxxData*> Sheetxxxxx::findByzzzzz (int _zzzzz)\n" \
+    "{\n"                                                           \
+    "\tpair<multimap<int,int>::iterator, multimap<int, int>::iterator> i_f;\n" \
+    "\ti_f = index_zzzzz.equal_range (_zzzzz);\n" \
+    "\tvector<SheetxxxxxData*> res;\n\n" \
+    "\tfor (multimap<int, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {\n" \
+    "\t\tres.push_back (&data[itor->second]);\n" \
+    "\t}\n\n" \
+    "\treturn (res);\n" \
+    "}\n"
+*/
+
 
 typedef pair<string, string> nameValue;
 
@@ -264,6 +305,11 @@ public:
 
     string productSheetInit (string sCode);
     string productSheetDump     (void);
+
+    string productFindByPK    (void);
+    string productTryFindByPK (void);
+    string productTryFindByPKInH ();
+    string productFindByPKInH ();
 };
 
 class ExcelSheet
@@ -319,6 +365,12 @@ public:
     string productInitSheets    (void);
     string productSheetDefine   (void);
     string productSheetDump     (void);
+
+    // PK
+    string productTryFindByPKInH(string);
+    string productFindByPKInH   (string);
+    string productTryFindByPK   (void);
+    string productFindByPK      (void);
 };
 
 class ExcelTable
