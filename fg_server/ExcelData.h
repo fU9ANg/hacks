@@ -309,10 +309,10 @@ public:
     string productSheetInit (string sCode);
     string productSheetDump     (void);
 
-    string productFindByPK    (void);
-    string productTryFindByPK (void);
-    string productTryFindByPKInH ();
-    string productFindByPKInH ();
+    string productFindByPK    (string, string);
+    string productTryFindByPK (string, string);
+    string productTryFindByPKInH (string, string);
+    string productFindByPKInH (string, string);
 };
 
 class ExcelSheet
