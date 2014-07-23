@@ -81,7 +81,8 @@ extern SheetPlayer* shPlayer;
 class SheetMonsterData : public SheetBaseData
 {
 public:
-	int ID;	//怪物表ID
+	int ID;	//ID
+	int MonsterID;	//怪物表ID
 	string MonsterName;	//怪物表名称
 	int MonsterQuality;	//怪物表品质
 	int MonsterLevel;	//怪物表等级
@@ -92,6 +93,7 @@ class SheetMonster : public SheetBase
 {
 private:
 	SheetMonsterData *data;
+	std::multimap<int, int> index_MonsterID;
 	std::map<int, int> index_ID;
 public:
 	vector<SheetMonsterData*> getAll ();
@@ -101,6 +103,7 @@ public:
 	virtual int initLink ();
 	SheetMonsterData* findByID (int _ID);
 	SheetMonsterData* tryFindByID (int _ID);
+	std::vector<SheetMonsterData*> findByMonsterID (int _MonsterID);
 	void dump (void);
 };
 extern SheetMonster* shMonster;

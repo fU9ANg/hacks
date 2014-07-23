@@ -258,6 +258,7 @@ void SheetPlayer::dump ()
 SheetMonsterData::SheetMonsterData ()
 {
 	ID = 0;
+	MonsterID = 0;
 	MonsterName = "";
 	MonsterQuality = 0;
 	MonsterLevel = 0;
@@ -299,6 +300,8 @@ int SheetMonster::init ()
 		SheetMonsterData oneData;
 		SheetUtils::readToken (fp, value);
 		oneData.ID = atoi (value.c_str ());
+		SheetUtils::readToken (fp, value);
+		oneData.MonsterID = atoi (value.c_str ());
 		SheetUtils::readToken (fp, value);
 		oneData.MonsterName = value;
 		SheetUtils::readToken (fp, value);
@@ -343,10 +346,23 @@ SheetMonsterData* SheetMonster::findByID (int _ID)
 	return (retVal);
 }
 
+vector<SheetMonsterData*> SheetMonster::findByMonsterID (int _MonsterID)
+{
+	pair<multimap<int, int>::iterator, multimap<int, int>::iterator> i_f;
+	i_f = index_MonsterID.equal_range (_MonsterID);
+	vector<SheetMonsterData*> res;
+
+	for (multimap<int, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
+		res.push_back (&data[itor->second]);
+	}
+
+	return (res);
+}
 void SheetMonster::dump ()
 {
 	for (int i=0; i<row_num; i++) {
 		cout << "SheetMonster" << "[" << i << "] :: data." << "ID" << " = " << data[i].ID << endl;
+		cout << "SheetMonster" << "[" << i << "] :: data." << "MonsterID" << " = " << data[i].MonsterID << endl;
 		cout << "SheetMonster" << "[" << i << "] :: data." << "MonsterName" << " = " << data[i].MonsterName << endl;
 		cout << "SheetMonster" << "[" << i << "] :: data." << "MonsterQuality" << " = " << data[i].MonsterQuality << endl;
 		cout << "SheetMonster" << "[" << i << "] :: data." << "MonsterLevel" << " = " << data[i].MonsterLevel << endl;

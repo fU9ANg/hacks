@@ -1,7 +1,6 @@
 
 #ifndef __EXCELDATA_H
-#define __EXCELDATA_H
-
+#define __EXCELDATA_H 
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -187,22 +186,26 @@ enum InstFlag
     "\t\tcout << \"Sheet [xxxxx] Key [\" << _zzzzz << \"] not exists\\n\";\n" \
     "\treturn (retVal);\n" \
     "}\n\n"
-/*
+
+
+// Key
+#define     STRUCTURE_TRY_FIND_BY_KEY_INH \
+    "\tstd::multimap<yyyyy, int> index_zzzzz;\n"
+
 #define     STRUCTURE_FIND_BY_KEY_INH \
-    "\tstd::vector<SheetxxxxxData*> findByzzzzz (int _zzzzz);\n"
+    "\tstd::vector<SheetxxxxxData*> findByzzzzz (yyyyy _zzzzz);\n"
 
 #define     STRUCTURE_FIND_BY_KEY \
-    "vector<SheetxxxxxData*> Sheetxxxxx::findByzzzzz (int _zzzzz)\n" \
+    "vector<SheetxxxxxData*> Sheetxxxxx::findByzzzzz (yyyyy _zzzzz)\n" \
     "{\n"                                                           \
-    "\tpair<multimap<int,int>::iterator, multimap<int, int>::iterator> i_f;\n" \
+    "\tpair<multimap<yyyyy, int>::iterator, multimap<yyyyy, int>::iterator> i_f;\n" \
     "\ti_f = index_zzzzz.equal_range (_zzzzz);\n" \
     "\tvector<SheetxxxxxData*> res;\n\n" \
-    "\tfor (multimap<int, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {\n" \
+    "\tfor (multimap<yyyyy, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {\n" \
     "\t\tres.push_back (&data[itor->second]);\n" \
     "\t}\n\n" \
     "\treturn (res);\n" \
     "}\n"
-*/
 
 
 typedef pair<string, string> nameValue;

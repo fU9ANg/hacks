@@ -49,6 +49,13 @@ int main (int argc, char** argv)
                     ef.isIndexField = true;
                     //printf ("222222222 attr.name() = %s\n", attr.name ());
                 }
+                if (string(attr.name()) == "type") {
+                    string attr_value = attr.value ();
+                    ef.type (attr_value);
+                    printf ("222222222 attr.name() = %s, attr.value() = %s\n", \
+                            attr.name (), \
+                            attr.value ());
+                }
             }
             //std::cout << std::endl;
             es.Fields.push_back (ef);

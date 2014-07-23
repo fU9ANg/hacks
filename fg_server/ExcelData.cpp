@@ -404,7 +404,12 @@ string ExcelField::productSheetDump (void)
 
 string ExcelField::productTryFindByPKInH ()
 {
-    string sCode = STRUCTURE_TRY_FIND_BY_PK_INH;
+    string sCode;
+
+    if (type() == "PK")
+        sCode = STRUCTURE_TRY_FIND_BY_PK_INH;
+    else if (type() == "KEY")
+        sCode = STRUCTURE_TRY_FIND_BY_KEY_INH;
 
     sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", dataType ());
     sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", fields());
@@ -414,50 +419,55 @@ string ExcelField::productTryFindByPKInH ()
 
 string ExcelSheet::productTryFindByPKInH (string sCode)
 {
-    string sResult;
+    string sResult = sCode;
     string sFind = "Data *data;\n";
 
-    sResult = "";
 
     vector<ExcelField>::iterator itField;
     for (itField = Fields.begin(); itField != Fields.end(); itField++) {
         if (itField->isIndexField) {
-            sResult = ExcelUtils::findAndInsert (sCode, sFind, \
+            sResult = ExcelUtils::findAndInsert (sResult, sFind, \
                     itField->productTryFindByPKInH(), AFTER);
         }
     }
 
-    if (sResult == "")
+    if (sResult == sCode)
         return (sCode);
     else
         return (sResult);
 }
 string ExcelField::productFindByPKInH ()
 {
-    string sCode = STRUCTURE_FIND_BY_PK_INH;
+    string sCode;
+
+    if (type() == "PK")
+        sCode = STRUCTURE_FIND_BY_PK_INH;
+    else if (type() == "KEY")
+        sCode = STRUCTURE_FIND_BY_KEY_INH;
 
     sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", dataType ());
     sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", fields());
+
 
     return (sCode);
 }
 string ExcelSheet::productFindByPKInH   (string sCode)
 {
-    string sResult;
+    string sResult = sCode;
     string sFind = "\tvoid dump (void);";
 
-    sResult = "";
     vector<ExcelField>::iterator itField;
     for (itField = Fields.begin(); itField != Fields.end(); itField++) {
         if (itField->isIndexField) {
-            sResult += ExcelUtils::findAndInsert (sCode, sFind, \
+            sResult = ExcelUtils::findAndInsert (sResult, sFind, \
                     itField->productFindByPKInH(), BEFORE);
         }
     }
 
     sResult = ExcelUtils::findAndReplace (sResult, "xxxxx", toName ());
 
-    if (sResult.empty())
+
+    if (sResult == sCode)
         return (sCode);
     else
         return (sResult);
@@ -465,10 +475,13 @@ string ExcelSheet::productFindByPKInH   (string sCode)
 
 string ExcelField::productTryFindByPK   (void)
 {
-    string sCode = STRUCTURE_TRY_FIND_BY_PK;
+    string sCode = "";
 
-    sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", dataType ());
-    sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", fields());
+    if (type() == "PK") {
+        sCode = STRUCTURE_TRY_FIND_BY_PK;
+        sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", dataType ());
+        sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", fields());
+    }
 
     return (sCode);
 }
@@ -491,7 +504,12 @@ string ExcelSheet::productTryFindByPK   (void)
 
 string ExcelField::productFindByPK   (void)
 {
-    string sCode = STRUCTURE_FIND_BY_PK;
+    string sCode;
+
+    if (type() == "PK")
+        sCode = STRUCTURE_FIND_BY_PK;
+    else if (type() == "KEY")
+        sCode = STRUCTURE_FIND_BY_KEY;
 
     sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", dataType ());
     sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", fields());

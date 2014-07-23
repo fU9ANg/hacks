@@ -21,7 +21,9 @@
     </Sheet>
     <Sheet excelName="怪物表" name="怪物表" toName="Monster">
         <Index fields="ID" dataType="int" type="PK"/>
-        <Field name="怪物表ID" toName="ID" dataType="int"/>
+        <Index fields="MonsterID" dataType="int" type="KEY"/>
+        <Field name="ID" toName="ID" dataType="int"/>
+        <Field name="怪物表ID" toName="MonsterID" dataType="int"/>
         <Field name="怪物表名称" toName="MonsterName" dataType="string"/>
         <Field name="怪物表品质" toName="MonsterQuality" dataType="int"/>
         <Field name="怪物表等级" toName="MonsterLevel" dataType="int"/>
