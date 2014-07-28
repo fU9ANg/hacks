@@ -52,25 +52,74 @@ main (int argc, char **argv)
             perror ("accept");
             exit (1);
         }
-
+#if 0
         Login login;
-
         login.set_clientid (11111);
         login.set_clienttype (123);
-#if 1
-        login.set_quality (10.50);     //error  (x.5, x*5.0f)   对float类型的操作必须是 （至少两/大于两位的有效小位数, 且不能有*.50, *.500, *.5000）
-#else
-        login.set_quality (.13f);     //it's ok
-#endif
+        login.set_quality (10.50);
         cout << "quality = " << login.quality() << endl;
         login.set_username ("zhangsan");
         login.set_password ("zhangsan123456");
-
         string sLogin;
         login.SerializeToString (&sLogin);
         cout << "string = " << sLogin << endl;
-
         write (connfd, sLogin.c_str(), sLogin.size());
+#else
+#if 0
+        cVector3 vec3;
+        vec3.set_x ("111.11");
+        vec3.set_y ("222.22");
+        vec3.set_z ("333.33");
+        string sVector3;
+        vec3.SerializeToString (&sVector3);
+        cout << "string = " << sVector3 << endl;
+        write (connfd, sVector3.c_str(), sVector3.size());
+#else
+#if 0
+        cBufferNode node;
+        node.set_id (100);
+        node.set_type (2);
+        node.set_value (6);
+        string sNode;
+        node.SerializeToString (&sNode);
+        write (connfd, sNode.c_str(), sNode.size ());
+#else
+
+        cTankNode node;
+        cVector3 *vec3 = NULL;
+        node.set_id (1000);
+        //cVector3 *vec3 = node.mutable_position();
+        vec3 = new cVector3;
+        vec3->set_x ("111.11");
+        vec3->set_y ("222.22");
+        vec3->set_z ("333.33");
+        node.set_allocated_position (vec3);
+       
+        vec3 = new cVector3;
+        vec3->set_x ("444.44");
+        vec3->set_y ("555.55");
+        vec3->set_z ("666.66");
+        node.set_allocated_direction (vec3);
+       
+        node.set_hp (100);
+        
+        
+        cBufferNode* bn;
+        for (int i=0; i<2; i++) {
+            bn = node.add_list ();
+            bn->set_id (801);
+            bn->set_type (5);
+            bn->set_value (900);
+        }
+        
+
+        string sNode;
+        node.SerializeToString (&sNode);
+        write (connfd, sNode.c_str(), sNode.size ());
+#endif
+#endif
+#endif
+
         
         close (connfd);
     }
