@@ -112,7 +112,6 @@ main (int argc, char **argv)
             bn->set_value (900);
         }
         
-
         string sNode;
         node.SerializeToString (&sNode);
         write (connfd, sNode.c_str(), sNode.size ());
