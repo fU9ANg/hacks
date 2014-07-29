@@ -14,6 +14,11 @@
         <Field name="名称" toName="Name2" dataType="string"/>
     </Sheet>
     <Sheet excelName="人物表" name="人物" toName="Player">
+        <Index fields="ID,  Name, Quality, Level" type="KEY"/>
+        <Index fields="ID,  Name, Quality" type="KEY"/>
+        <Index fields="ID,  Name" type="KEY"/>
+        <!-- <Index fields="ID" type="KEY"/> -->
+        <Index fields="ID" type="PK"/>
         <Field name="ID" toName="ID" dataType="int"/>
         <Field name="名称" toName="Name" dataType="string"/>
         <Field name="品质" toName="Quality" dataType="int"/>
@@ -22,6 +27,7 @@
     <Sheet excelName="怪物表" name="怪物表" toName="Monster">
         <Index fields="ID" type="PK"/>
         <Index fields="MonsterID" type="KEY"/>
+        <!-- <Index fields="MonsterID, MonsterQuality" type="KEY"/> -->
         <Field name="ID" toName="ID" dataType="int"/>
         <Field name="怪物表ID" toName="MonsterID" dataType="int"/>
         <Field name="怪物表名称" toName="MonsterName" dataType="string"/>

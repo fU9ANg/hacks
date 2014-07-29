@@ -246,6 +246,25 @@ int SheetPlayer::initLink ()
 	return (0);
 }
 
+SheetPlayerData* SheetPlayer::tryFindByID (int _ID)
+{
+	map<int, int>::iterator itor = index_ID.find (_ID);
+	if (itor != index_ID.end()) {
+		return (&data[itor->second]);
+	}
+	else {
+		return (NULL);
+	}
+}
+
+SheetPlayerData* SheetPlayer::findByID (int _ID)
+{
+	SheetPlayerData* retVal = tryFindByID (_ID);
+	if (NULL == retVal)
+		cout << "Sheet [Player] Key [" << _ID << "] not exists\n";
+	return (retVal);
+}
+
 void SheetPlayer::dump ()
 {
 	for (int i=0; i<row_num; i++) {
@@ -254,6 +273,42 @@ void SheetPlayer::dump ()
 		cout << "SheetPlayer" << "[" << i << "] :: data." << "Quality" << " = " << data[i].Quality << endl;
 		cout << "SheetPlayer" << "[" << i << "] :: data." << "Level" << " = " << data[i].Level << endl;
 	}
+}
+vector<SheetPlayerData*> SheetPlayer::findByIDNameQualityLevel (int _ID,string _Name,int _Quality,int _Level)
+{
+	pair<multimap<_SheetIndexTypePlayerIDNameQualityLevel, int>::iterator, multimap<_SheetIndexTypePlayerIDNameQualityLevel, int>::iterator> i_f;
+	i_f = index_ID_Name_Quality_Level.equal_range (_SheetIndexTypePlayerIDNameQualityLevel(_ID,_Name,_Quality,_Level));
+	vector<SheetPlayerData*> res;
+
+	for (multimap<_SheetIndexTypePlayerIDNameQualityLevel, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
+		res.push_back (&data[itor->second]);
+	}
+
+	return (res);
+}
+vector<SheetPlayerData*> SheetPlayer::findByIDNameQuality (int _ID,string _Name,int _Quality)
+{
+	pair<multimap<_SheetIndexTypePlayerIDNameQuality, int>::iterator, multimap<_SheetIndexTypePlayerIDNameQuality, int>::iterator> i_f;
+	i_f = index_ID_Name_Quality.equal_range (_SheetIndexTypePlayerIDNameQuality(_ID,_Name,_Quality));
+	vector<SheetPlayerData*> res;
+
+	for (multimap<_SheetIndexTypePlayerIDNameQuality, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
+		res.push_back (&data[itor->second]);
+	}
+
+	return (res);
+}
+vector<SheetPlayerData*> SheetPlayer::findByIDName (int _ID,string _Name)
+{
+	pair<multimap<_SheetIndexTypePlayerIDName, int>::iterator, multimap<_SheetIndexTypePlayerIDName, int>::iterator> i_f;
+	i_f = index_ID_Name.equal_range (_SheetIndexTypePlayerIDName(_ID,_Name));
+	vector<SheetPlayerData*> res;
+
+	for (multimap<_SheetIndexTypePlayerIDName, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
+		res.push_back (&data[itor->second]);
+	}
+
+	return (res);
 }
 SheetMonsterData::SheetMonsterData ()
 {

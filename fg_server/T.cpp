@@ -248,10 +248,21 @@ string getMultiKeyStruct (string& structName, char* fmt, ...) {
     return ("");
 }
 
+std::string& trim(std::string &s)   
+{  
+    if (s.empty()) {  
+        return s;
+    }
+
+    s.erase(0,s.find_first_not_of(" "));
+    s.erase(s.find_last_not_of(" ") + 1); 
+    return s;
+}
+
 int main ()
 {
+#if 0
     string name;
-
     name = "COMBATMONSTERPLAYER";
     printf ("-------------------------------------------------------------\n");
     getMultiKeyStruct (name, "%s %s %s %s %s %s", "string", "CombatId", "int", "MonsterId", "int", "PlayerId");
@@ -271,4 +282,32 @@ int main ()
     name = "COMBATMONSTERPLAYER";
     printf ("-------------------------------------------------------------\n");
     //printf ("name = %s\n", name.c_str());
+#else
+    string sFields = "CombatId, PlayerId,   MonsterId";
+    string sField = "";
+    printf ("sFields=%s\n", sFields.c_str ());
+
+    while (1) {
+        int pos = sFields.find (',');
+        if (pos == 0) {
+            sFields = sFields.substr (1);
+            continue;
+        }
+        if (pos < 0) {
+            trim (sFields);
+            sField = sFields;
+            sFields = "";
+            goto success;
+            break;
+        }
+        sField = sFields.substr (0, pos);
+        sFields= sFields.substr (pos+1);
+success:
+        trim (sField);
+        printf ("[DEBUG2]:'%s'\n", sField.c_str ());
+        if (sFields.empty ()) {
+            break;
+        }
+    }
+#endif
 }

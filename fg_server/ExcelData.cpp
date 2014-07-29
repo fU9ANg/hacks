@@ -126,6 +126,7 @@ int ExcelTable::product ()
     for (itSheet = Sheets.begin(); itSheet != Sheets.end(); itSheet++) {
         sCode = "";
         //printf ("\n---------------product-------------\n");
+        sIncludeFile += STRUCTURE_CLASS_DEFINE;
         sCode = itSheet->productSheetDataInH ();
         sIncludeFile += sCode;
         //printf ("%s", sCode.c_str());
@@ -133,6 +134,7 @@ int ExcelTable::product ()
         sCode = itSheet->productTryFindByPKInH (sCode);
         sCode = itSheet->productFindByPKInH (sCode);
         sIncludeFile += sCode;
+        itSheet->productMultiKeyINH (sIncludeFile);
         //printf ("%s", sCode.c_str());
 
         sCode = itSheet->productSheetData ();
@@ -161,6 +163,7 @@ int ExcelTable::product ()
         sCode = itSheet->productSheetDump ();
         sSourceFile += sCode;
 
+        itSheet->productMultiKey (sSourceFile);
     }
 
 
@@ -196,7 +199,7 @@ int ExcelTable::product ()
 
 ///////////////////////////////// MULTIKEYUTILS /////////////////////////////
 
-string MultiKeyUtils::getMultiKeyDefine (string& sClassName, char* fmt, ...)
+string MultiKeyUtils::getMultiKeyDefine (string& sClassName, const char* fmt, ...)
 {
     va_list ap;
     string  type;
@@ -234,7 +237,7 @@ string MultiKeyUtils::getMultiKeyDefine (string& sClassName, char* fmt, ...)
     return (sCode);
 }
 
-string MultiKeyUtils::getFindByMultiKeyINH (string& sClassName, char* fmt, ...)
+string MultiKeyUtils::getFindByMultiKeyINH (string& sClassName, const char* fmt, ...)
 {
     va_list ap;
     string  type;
@@ -271,7 +274,7 @@ string MultiKeyUtils::getFindByMultiKeyINH (string& sClassName, char* fmt, ...)
     return (sCode);
 }
 
-string MultiKeyUtils::getFindByMultiKey (string& sClassName, char* fmt, ...)
+string MultiKeyUtils::getFindByMultiKey (string& sClassName, const char* fmt, ...)
 {
     va_list ap;
     string  type;
@@ -318,7 +321,7 @@ string MultiKeyUtils::getFindByMultiKey (string& sClassName, char* fmt, ...)
     return (sCode);
 }
 
-string MultiKeyUtils::getMultiKeyStruct (string& structName, char* fmt, ...)
+string MultiKeyUtils::getMultiKeyStruct (string& structName, const char* fmt, ...)
 {
     va_list ap;
     string  type;
@@ -366,6 +369,20 @@ string MultiKeyUtils::getMultiKeyStruct (string& structName, char* fmt, ...)
 }
 
 ///////////////////////////////// MULTIKEYUTILS END /////////////////////////////
+
+///////////////////////////////// EXCELSTRINGUTILS /////////////////////////////
+std::string& ExcelStringUtils::trim (std::string &s) 
+{
+    if (s.empty()) {  
+        return s;
+    }
+
+    s.erase(0,s.find_first_not_of(" "));
+    s.erase(s.find_last_not_of(" ") + 1); 
+    return s;
+}
+
+///////////////////////////////// EXCELSTRINGUTILS END /////////////////////////////
 
 string ExcelUtils::findAndReplace (string sCode, string subStr, string repStr)
 {
@@ -732,6 +749,358 @@ string ExcelSheet::productFindByPK (void)
                     break;
                 }
             }
+        }
+    }
+
+    return (sCode);
+}
+
+string ExcelSheet::productMultiKeyINH (string& sMainCode)
+{
+    string sCode = "";
+    string sFields = "";
+    string sField = "";
+    string sClassName = toName ();
+
+    //std::map<string, string> datatypeName_;
+    vector<string> sDatatypeName;
+
+    vector<ExcelField>::iterator itField;
+    for (itField = Fields.begin(); itField != Fields.end(); itField++) {
+        if ((itField->isIndexField) && \
+            (itField->type() == "KEY") && \
+            (itField->fields().find (',') != string::npos)) {
+            // find multikey fields.
+            sFields = itField->fields ();
+            while (1) {
+                int pos = sFields.find (',');
+                if (pos == 0) {
+                    sFields = sFields.substr (1);
+                    continue;
+                }
+                if (pos < 0) {
+                    ExcelStringUtils::trim (sFields);
+                    sField = sFields;
+                    sFields = "";
+                    goto success;
+                    break;
+                }
+                sField = sFields.substr (0, pos);
+                sFields= sFields.substr (pos+1);
+success:
+                ExcelStringUtils::trim (sField);
+                //printf ("[DEBUG2]:'%s'\n", sField.c_str ());
+
+                vector<ExcelField>::iterator itf;
+                for (itf = Fields.begin(); itf != Fields.end(); itf++) {
+                    if (itf->isIndexField)  continue;
+
+                    if (itf->toName () == sField) {
+                        // TODO:
+                        //printf ("[MULTIKEY]: datatype=%s, name=%s\n", itf->dataType ().c_str(), itf->toName ().c_str());
+                        sDatatypeName.push_back (itf->dataType ());
+                        sDatatypeName.push_back (itf->toName ());
+                    }
+                }
+
+                if (sFields.empty ()) {
+                    break;
+                }
+            }
+            // TODO:      bool forEach (SheetPlayerData& item);
+            /*
+            printf ("sDatatypeName.size() = %ld\n", sDatatypeName.size());
+            for (unsigned int i=0; i<sDatatypeName.size(); i++) {
+                printf ("%s\n", sDatatypeName[i].c_str());
+            }
+            */
+            if (sDatatypeName.size () == 4) {
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getMultiKeyDefine (sClassName, "%s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str());
+                string sReplace = string ("\tSheet") + sClassName + string ("Data *data;\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getMultiKeyStruct (sClassName, "%s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str());
+                sReplace = string ("class Sheet") + toName () + string (" : public SheetBase\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getFindByMultiKeyINH (sClassName, "%s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str());
+                sReplace = string ("\tbool forEach (Sheet") + toName () + string ("Data& item);\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+            }
+            else if (sDatatypeName.size () == 6) {
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getMultiKeyDefine (sClassName, "%s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str());
+                string sReplace = string ("\tSheet") + sClassName + string ("Data *data;\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getMultiKeyStruct (sClassName, "%s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str());
+                sReplace = string ("class Sheet") + toName () + string (" : public SheetBase\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getFindByMultiKeyINH (sClassName, "%s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str());
+                sReplace = string ("\tbool forEach (Sheet") + toName () + string ("Data& item);\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+            }
+            else if (sDatatypeName.size () == 8) {
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getMultiKeyDefine (sClassName, "%s %s %s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str(), \
+                        sDatatypeName[6].c_str(), \
+                        sDatatypeName[7].c_str());
+                string sReplace = string ("\tSheet") + sClassName + string ("Data *data;\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getMultiKeyStruct (sClassName, "%s %s %s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str(), \
+                        sDatatypeName[6].c_str(), \
+                        sDatatypeName[7].c_str());
+                sReplace = string ("class Sheet") + toName () + string (" : public SheetBase\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getFindByMultiKeyINH (sClassName, "%s %s %s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str(), \
+                        sDatatypeName[6].c_str(), \
+                        sDatatypeName[7].c_str());
+                sReplace = string ("\tbool forEach (Sheet") + toName () + string ("Data& item);\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+            }
+            else if (sDatatypeName.size () == 10) {
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getMultiKeyDefine (sClassName, "%s %s %s %s %s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str(), \
+                        sDatatypeName[6].c_str(), \
+                        sDatatypeName[7].c_str(), \
+                        sDatatypeName[8].c_str(), \
+                        sDatatypeName[9].c_str());
+                string sReplace = string ("\tSheet") + sClassName + string ("Data *data;\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getMultiKeyStruct (sClassName, "%s %s %s %s %s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str(), \
+                        sDatatypeName[6].c_str(), \
+                        sDatatypeName[7].c_str(), \
+                        sDatatypeName[8].c_str(), \
+                        sDatatypeName[9].c_str());
+                sReplace = string ("class Sheet") + toName () + string (" : public SheetBase\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getFindByMultiKeyINH (sClassName, "%s %s %s %s %s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str(), \
+                        sDatatypeName[6].c_str(), \
+                        sDatatypeName[7].c_str(), \
+                        sDatatypeName[8].c_str(), \
+                        sDatatypeName[9].c_str());
+                sReplace = string ("\tbool forEach (Sheet") + toName () + string ("Data& item);\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+            }
+            sDatatypeName.clear ();
+        }
+    }
+
+    return (sCode);
+}
+
+string ExcelSheet::productMultiKey (string& sMainCode)
+{
+    string sCode = "";
+    string sFields = "";
+    string sField = "";
+    string sClassName = toName ();
+
+    //std::map<string, string> datatypeName_;
+    vector<string> sDatatypeName;
+
+    vector<ExcelField>::iterator itField;
+    for (itField = Fields.begin(); itField != Fields.end(); itField++) {
+        if ((itField->isIndexField) && \
+            (itField->type() == "KEY") && \
+            (itField->fields().find (',') != string::npos)) {
+            // find multikey fields.
+            sFields = itField->fields ();
+            while (1) {
+                int pos = sFields.find (',');
+                if (pos == 0) {
+                    sFields = sFields.substr (1);
+                    continue;
+                }
+                if (pos < 0) {
+                    ExcelStringUtils::trim (sFields);
+                    sField = sFields;
+                    sFields = "";
+                    goto success;
+                    break;
+                }
+                sField = sFields.substr (0, pos);
+                sFields= sFields.substr (pos+1);
+success:
+                ExcelStringUtils::trim (sField);
+                //printf ("[DEBUG2]:'%s'\n", sField.c_str ());
+
+                vector<ExcelField>::iterator itf;
+                for (itf = Fields.begin(); itf != Fields.end(); itf++) {
+                    if (itf->isIndexField)  continue;
+
+                    if (itf->toName () == sField) {
+                        // TODO:
+                        //printf ("[MULTIKEY]: datatype=%s, name=%s\n", itf->dataType ().c_str(), itf->toName ().c_str());
+                        sDatatypeName.push_back (itf->dataType ());
+                        sDatatypeName.push_back (itf->toName ());
+                    }
+                }
+
+                if (sFields.empty ()) {
+                    break;
+                }
+            }
+            // TODO:      bool forEach (SheetPlayerData& item);
+            /*
+            printf ("sDatatypeName.size() = %ld\n", sDatatypeName.size());
+            for (unsigned int i=0; i<sDatatypeName.size(); i++) {
+                printf ("%s\n", sDatatypeName[i].c_str());
+            }
+            */
+            if (sDatatypeName.size () == 4) {
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getFindByMultiKey (sClassName, "%s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str());
+                sMainCode += sCode;
+                //sReplace = string ("class Sheet") + toName () + string (" : public SheetBase\n");
+                //sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+            }
+            else if (sDatatypeName.size () == 6) {
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getFindByMultiKey (sClassName, "%s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str());
+                sMainCode += sCode;
+                //sReplace = string ("\tbool forEach (Sheet") + toName () + string ("Data& item);\n");
+                //sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+            }
+            else if (sDatatypeName.size () == 8) {
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getFindByMultiKey (sClassName, "%s %s %s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str(), \
+                        sDatatypeName[6].c_str(), \
+                        sDatatypeName[7].c_str());
+                sMainCode += sCode;
+                //sReplace = string ("\tbool forEach (Sheet") + toName () + string ("Data& item);\n");
+                //sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+            }
+            else if (sDatatypeName.size () == 10) {
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = MultiKeyUtils::getFindByMultiKey (sClassName, "%s %s %s %s %s %s %s %s %s %s", \
+                        sDatatypeName[0].c_str(), \
+                        sDatatypeName[1].c_str(), \
+                        sDatatypeName[2].c_str(), \
+                        sDatatypeName[3].c_str(), \
+                        sDatatypeName[4].c_str(), \
+                        sDatatypeName[5].c_str(), \
+                        sDatatypeName[6].c_str(), \
+                        sDatatypeName[7].c_str(), \
+                        sDatatypeName[8].c_str(), \
+                        sDatatypeName[9].c_str());
+                sMainCode += sCode;
+                //sReplace = string ("\tbool forEach (Sheet") + toName () + string ("Data& item);\n");
+                //sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
+            }
+            sDatatypeName.clear ();
         }
     }
 

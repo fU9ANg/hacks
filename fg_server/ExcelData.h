@@ -25,6 +25,9 @@ enum InstFlag
 #define     TAB             "\t"
 #define     ENTER           "\n"
 
+#define     STRUCTURE_CLASS_DEFINE \
+    "\n//////////////////////////////////////////////\n"
+
 #define     STRUCTURE_SHEETDATA \
     "class SheetxxxxxData : public SheetBaseData\n"     \
     "{\n"                                               \
@@ -242,12 +245,18 @@ enum InstFlag
 
 typedef pair<string, string> nameValue;
 
+
+namespace ExcelStringUtils
+{
+    string& trim (std::string &s);
+};
+
 namespace MultiKeyUtils
 {
-    string getMultiKeyStruct (string& structName, char* fmt, ...);
-    string getFindByMultiKey (string& sClassName, char* fmt, ...);
-    string getFindByMultiKeyINH (string& sClassName, char* fmt, ...);
-    string getMultiKeyDefine (string& sClassName, char* fmt, ...);
+    string getMultiKeyStruct (string& structName, const char* fmt, ...);
+    string getFindByMultiKey (string& sClassName, const char* fmt, ...);
+    string getFindByMultiKeyINH (string& sClassName, const char* fmt, ...);
+    string getMultiKeyDefine (string& sClassName, const char* fmt, ...);
 };
 
 namespace ExcelUtils
@@ -414,6 +423,10 @@ public:
     string productFindByPKInH   (string);
     string productTryFindByPK   (void);
     string productFindByPK      (void);
+
+    // MULTIKEY
+    string productMultiKeyINH   (string&);
+    string productMultiKey      (string&);
 };
 
 class ExcelTable

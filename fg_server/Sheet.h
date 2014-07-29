@@ -8,6 +8,8 @@
 #include <map>
 
 using namespace std;
+
+//////////////////////////////////////////////
 class SheetTestData : public SheetBaseData
 {
 public:
@@ -33,6 +35,8 @@ public:
 	void dump (void);
 };
 extern SheetTest* shTest;
+
+//////////////////////////////////////////////
 class SheetTest2Data : public SheetBaseData
 {
 public:
@@ -55,6 +59,8 @@ public:
 	void dump (void);
 };
 extern SheetTest2* shTest2;
+
+//////////////////////////////////////////////
 class SheetPlayerData : public SheetBaseData
 {
 public:
@@ -65,19 +71,90 @@ public:
 	SheetPlayerData ();
 };
 
+struct _SheetIndexTypePlayerIDNameQualityLevel {
+	int ID;
+	string Name;
+	int Quality;
+	int Level;
+	_SheetIndexTypePlayerIDNameQualityLevel();
+	_SheetIndexTypePlayerIDNameQualityLevel(int _ID,string _Name,int _Quality,int _Level) {
+		ID = _ID;
+		Name = _Name;
+		Quality = _Quality;
+		Level = _Level;
+	}
+	bool operator<(const _SheetIndexTypePlayerIDNameQualityLevel& s) const {
+		if (this->ID<s.ID) return (true);
+		if (this->ID>s.ID) return (false);
+		if (this->Name<s.Name) return (true);
+		if (this->Name>s.Name) return (false);
+		if (this->Quality<s.Quality) return (true);
+		if (this->Quality>s.Quality) return (false);
+		if (this->Level<s.Level) return (true);
+		if (this->Level>s.Level) return (false);
+		return (false);
+	}
+};
+struct _SheetIndexTypePlayerIDNameQuality {
+	int ID;
+	string Name;
+	int Quality;
+	_SheetIndexTypePlayerIDNameQuality();
+	_SheetIndexTypePlayerIDNameQuality(int _ID,string _Name,int _Quality) {
+		ID = _ID;
+		Name = _Name;
+		Quality = _Quality;
+	}
+	bool operator<(const _SheetIndexTypePlayerIDNameQuality& s) const {
+		if (this->ID<s.ID) return (true);
+		if (this->ID>s.ID) return (false);
+		if (this->Name<s.Name) return (true);
+		if (this->Name>s.Name) return (false);
+		if (this->Quality<s.Quality) return (true);
+		if (this->Quality>s.Quality) return (false);
+		return (false);
+	}
+};
+struct _SheetIndexTypePlayerIDName {
+	int ID;
+	string Name;
+	_SheetIndexTypePlayerIDName();
+	_SheetIndexTypePlayerIDName(int _ID,string _Name) {
+		ID = _ID;
+		Name = _Name;
+	}
+	bool operator<(const _SheetIndexTypePlayerIDName& s) const {
+		if (this->ID<s.ID) return (true);
+		if (this->ID>s.ID) return (false);
+		if (this->Name<s.Name) return (true);
+		if (this->Name>s.Name) return (false);
+		return (false);
+	}
+};
 class SheetPlayer : public SheetBase
 {
 private:
 	SheetPlayerData *data;
+	std::multimap<_SheetIndexTypePlayerIDName, int> index_ID_Name;
+	std::multimap<_SheetIndexTypePlayerIDNameQuality, int> index_ID_Name_Quality;
+	std::multimap<_SheetIndexTypePlayerIDNameQualityLevel, int> index_ID_Name_Quality_Level;
+	std::map<int, int> index_ID;
 public:
 	vector<SheetPlayerData*> getAll ();
 	SheetPlayerData* getRow (int n);
+	std::vector<SheetPlayerData*> findByIDNameQualityLevel (int _ID,string _Name,int _Quality,int _Level);
+	std::vector<SheetPlayerData*> findByIDNameQuality (int _ID,string _Name,int _Quality);
+	std::vector<SheetPlayerData*> findByIDName (int _ID,string _Name);
 	bool forEach (SheetPlayerData& item);
 	virtual int init ();
 	virtual int initLink ();
+	SheetPlayerData* findByID (int _ID);
+	SheetPlayerData* tryFindByID (int _ID);
 	void dump (void);
 };
 extern SheetPlayer* shPlayer;
+
+//////////////////////////////////////////////
 class SheetMonsterData : public SheetBaseData
 {
 public:
