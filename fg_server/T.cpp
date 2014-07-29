@@ -57,7 +57,150 @@ string findAndInsert (string sCode, string subStr, string instStr, enum InstFlag
     "\t\treturn (false);\n" \
     "\t}\n};\n"
 
-string getsCode (string& structName, char* fmt, ...) {
+#define     STRUCTURE_MULTI_KEY_DEFINE \
+    "\tstd::multimap<aaaaa, int> index_bbbbb;\n"
+
+#define     STRUCTURE_FIND_BY_MULTI_KEY_INH \
+    "\tstd::vector<SheetxxxxxData*> findByaaaaa (bbbbb);\n"
+
+#define     STRUCTURE_FIND_BY_MULTI_KEY \
+    "vector<SheetxxxxxData*> Sheetxxxxx::findByaaaaa (bbbbb)\n" \
+    "{\n"                                                           \
+    "\tpair<multimap<ccccc, int>::iterator, multimap<ccccc, int>::iterator> i_f;\n" \
+    "\ti_f = index_ddddd.equal_range (eeeee);\n" \
+    "\tvector<SheetxxxxxData*> res;\n\n" \
+    "\tfor (multimap<ccccc, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {\n" \
+    "\t\tres.push_back (&data[itor->second]);\n" \
+    "\t}\n\n" \
+    "\treturn (res);\n" \
+    "}\n"
+
+string getMultiKeyDefine (string& sClassName, char* fmt, ...) {
+    va_list ap;
+    int     p;
+    int     i;
+    string  type;
+    string  name;
+    string  str1, str2;
+
+    str1 = "_SheetIndexType" + sClassName;
+
+    va_start (ap, fmt);
+    while (*fmt) {
+        if (*fmt == '%' && *(fmt+1) == 's') {
+            if (type.empty ()) {
+                type = va_arg (ap, char*);
+            }
+            else {
+                name = va_arg (ap, char*);
+
+                str1 += name;
+                str2 += name + "_";
+                type.clear ();
+            }
+        }
+
+        fmt++;
+    }
+    va_end (ap);
+
+    str2 = str2.substr (0, str2.size() -1);
+    string sCode = STRUCTURE_MULTI_KEY_DEFINE;
+    sCode = findAndReplace (sCode, "aaaaa", str1);
+    sCode = findAndReplace (sCode, "bbbbb", str2);
+
+    printf ("%s", sCode.c_str());
+
+    return ("");
+}
+
+string getFindByMultiKeyINH (string& sClassName, char* fmt, ...) {
+    va_list ap;
+    int     p;
+    int     i;
+    string  type;
+    string  name;
+    string  str1, str2;
+
+    va_start (ap, fmt);
+    while (*fmt) {
+        if (*fmt == '%' && *(fmt+1) == 's') {
+            if (type.empty ()) {
+                type = va_arg (ap, char*);
+            }
+            else {
+                name = va_arg (ap, char*);
+
+                str1 += name;
+                str2 += type + " _" + name + ",";
+                type.clear ();
+            }
+        }
+
+        fmt++;
+    }
+    va_end (ap);
+
+    str2 = str2.substr (0, str2.size() -1);
+    string sCode = STRUCTURE_FIND_BY_MULTI_KEY_INH;
+    sCode = findAndReplace (sCode, "xxxxx", sClassName);
+    sCode = findAndReplace (sCode, "aaaaa", str1);
+    sCode = findAndReplace (sCode, "bbbbb", str2);
+
+    printf ("%s", sCode.c_str());
+
+    return ("");
+}
+
+string getFindByMultiKey (string& sClassName, char* fmt, ...) {
+    va_list ap;
+    int     p;
+    int     i;
+    string  type;
+    string  name;
+    string  str1, str2, str3, str4, str5;
+
+    str3 = "_SheetIndexType" + sClassName;
+
+    va_start (ap, fmt);
+    while (*fmt) {
+        if (*fmt == '%' && *(fmt+1) == 's') {
+            if (type.empty ()) {
+                type = va_arg (ap, char*);
+            }
+            else {
+                name = va_arg (ap, char*);
+
+                str1 += name;
+                str2 += type + " _" + name + ",";
+                str3 += name;
+                str4 += name + "_";
+                str5 += "_" + name + ",";
+                type.clear ();
+            }
+        }
+
+        fmt++;
+    }
+    va_end (ap);
+
+    str2 = str2.substr (0, str2.size() -1);
+    str4 = str4.substr (0, str4.size() -1);
+    str5 = str5.substr (0, str5.size() -1);
+    string sCode = STRUCTURE_FIND_BY_MULTI_KEY;
+    sCode = findAndReplace (sCode, "xxxxx", sClassName);
+    sCode = findAndReplace (sCode, "aaaaa", str1);
+    sCode = findAndReplace (sCode, "bbbbb", str2);
+    sCode = findAndReplace (sCode, "ccccc", str3);
+    sCode = findAndReplace (sCode, "ddddd", str4);
+    sCode = findAndReplace (sCode, "eeeee", str3 + "(" + str5 + ")");
+
+    printf ("%s", sCode.c_str());
+
+    return ("");
+}
+
+string getMultiKeyStruct (string& structName, char* fmt, ...) {
     va_list ap;
     int     p;
     int     i;
@@ -92,6 +235,7 @@ string getsCode (string& structName, char* fmt, ...) {
     }
     va_end (ap);
 
+    str2 = str2.substr (0, str2.size() -1);
     string sCode = _SheetIndexTypexxxxxArg;
     sCode = findAndReplace (sCode, "aaaaa", structName);
     sCode = findAndReplace (sCode, "bbbbb", str1);
@@ -106,7 +250,25 @@ string getsCode (string& structName, char* fmt, ...) {
 
 int main ()
 {
-    string name = "CombatMonster";
-    getsCode (name, "%s %s, %s %s", "string", "CombatId", "int", "MonsterId");
-    printf ("name = %s\n", name.c_str());
+    string name;
+
+    name = "COMBATMONSTERPLAYER";
+    printf ("-------------------------------------------------------------\n");
+    getMultiKeyStruct (name, "%s %s %s %s %s %s", "string", "CombatId", "int", "MonsterId", "int", "PlayerId");
+    name.clear();
+    name = "COMBATMONSTERPLAYER";
+    printf ("-------------------------------------------------------------\n");
+    getMultiKeyDefine (name, "%s %s %s %s %s %s", "string", "CombatId", "int", "MonsterId", "int", "PlayerId");
+    name.clear();
+    name = "COMBATMONSTERPLAYER";
+    printf ("-------------------------------------------------------------\n");
+    getFindByMultiKeyINH (name, "%s %s %s %s %s %s", "string", "CombatId", "int", "MonsterId", "int", "PlayerId");
+    name.clear();
+    name = "COMBATMONSTERPLAYER";
+    printf ("-------------------------------------------------------------\n");
+    getFindByMultiKey (name, "%s %s %s %s %s %s", "string", "CombatId", "int", "MonsterId", "int", "PlayerId");
+    name.clear();
+    name = "COMBATMONSTERPLAYER";
+    printf ("-------------------------------------------------------------\n");
+    //printf ("name = %s\n", name.c_str());
 }

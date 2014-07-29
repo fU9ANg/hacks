@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include <stdarg.h>
 
 #include "pugixml.hpp"
 #include "pugiconfig.hpp"
@@ -207,8 +208,47 @@ enum InstFlag
     "\treturn (res);\n" \
     "}\n"
 
+// Multi-Key
+#define     STRUCTURE_MULTI_KEY_STRUCT \
+    "struct aaaaa {\n"    \
+    "bbbbb" \
+    "\taaaaa();\n" \
+    "\taaaaa(ccccc) {\n" \
+    "ddddd" \
+    "\t}\n" \
+    "\tbool operator<(const aaaaa& s) const {\n" \
+    "eeeee" \
+    "\t\treturn (false);\n" \
+    "\t}\n};\n"
+
+#define     STRUCTURE_MULTI_KEY_DEFINE \
+    "\tstd::multimap<aaaaa, int> index_bbbbb;\n"
+
+#define     STRUCTURE_FIND_BY_MULTI_KEY_INH \
+    "\tstd::vector<SheetxxxxxData*> findByaaaaa (bbbbb);\n"
+
+#define     STRUCTURE_FIND_BY_MULTI_KEY \
+    "vector<SheetxxxxxData*> Sheetxxxxx::findByaaaaa (bbbbb)\n" \
+    "{\n"                                                           \
+    "\tpair<multimap<ccccc, int>::iterator, multimap<ccccc, int>::iterator> i_f;\n" \
+    "\ti_f = index_ddddd.equal_range (eeeee);\n" \
+    "\tvector<SheetxxxxxData*> res;\n\n" \
+    "\tfor (multimap<ccccc, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {\n" \
+    "\t\tres.push_back (&data[itor->second]);\n" \
+    "\t}\n\n" \
+    "\treturn (res);\n" \
+    "}\n"
+
 
 typedef pair<string, string> nameValue;
+
+namespace MultiKeyUtils
+{
+    string getMultiKeyStruct (string& structName, char* fmt, ...);
+    string getFindByMultiKey (string& sClassName, char* fmt, ...);
+    string getFindByMultiKeyINH (string& sClassName, char* fmt, ...);
+    string getMultiKeyDefine (string& sClassName, char* fmt, ...);
+};
 
 namespace ExcelUtils
 {
