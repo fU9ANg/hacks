@@ -242,6 +242,45 @@ enum InstFlag
     "\treturn (res);\n" \
     "}\n"
 
+// Unique
+#define     STRUCTURE_UNIQUE_STRUCT \
+    "struct aaaaa {\n"    \
+    "bbbbb" \
+    "\taaaaa();\n" \
+    "\taaaaa(ccccc) {\n" \
+    "ddddd" \
+    "\t}\n" \
+    "\tbool operator<(const aaaaa& s) const {\n" \
+    "eeeee" \
+    "\t\treturn (false);\n" \
+    "\t}\n};\n"
+
+#define     STRUCTURE_UNIQUE_DEFINE \
+    "\tstd::map<aaaaa, int> index_bbbbb;\n"
+
+#define     STRUCTURE_FIND_BY_UNIQUE_INH \
+    "\tSheetxxxxxData* findByaaaaa (bbbbb);\n" \
+    "\tSheetxxxxxData* tryFindByaaaaa (bbbbb);\n"
+
+#define     STRUCTURE_FIND_BY_UNIQUE  \
+    "SheetxxxxxData* Sheetxxxxx::tryFindByaaaaa (bbbbb)\n" \
+    "{\n" \
+    "\tmap<ccccc, int>::iterator itor;\n" \
+    "\titor = index_ddddd.find (eeeee);\n" \
+    "\tif (itor != index_ddddd.end ()) {\n" \
+    "\t\treturn (&data[itor->second]);\n" \
+    "\t}\n" \
+    "\telse {\n" \
+    "\t\treturn (NULL);\n" \
+    "\t}\n" \
+    "}\n\n" \
+    "SheetxxxxxData* Sheetxxxxx::findByaaaaa (bbbbb)\n" \
+    "{\n" \
+    "\tSheetxxxxxData* retVal = tryFindByaaaaa (yyyyy);\n" \
+    "\tif (NULL == retVal)\n" \
+    "\t\tprintf (\"Sheet [xxxxx] Key [ddddd] not exists (zzzzz)\", wwwww);\n" \
+    "\treturn (retVal);\n" \
+    "}\n";
 
 typedef pair<string, string> nameValue;
 
@@ -251,12 +290,21 @@ namespace ExcelStringUtils
     string& trim (std::string &s);
 };
 
+namespace UniqueUtils
+{
+    string getUniqueStruct (string& sClassName, const char* fmt, ...);
+    string getUniqueDefine (string& sClassName, const char* fmt, ...);
+    string getFindByUniqueINH (string& sClassName, const char* fmt, ...);
+    string getFindByUnique (string& sClassName, const char* fmt, ...);
+};
+
 namespace MultiKeyUtils
 {
     string getMultiKeyStruct (string& structName, const char* fmt, ...);
     string getFindByMultiKey (string& sClassName, const char* fmt, ...);
     string getFindByMultiKeyINH (string& sClassName, const char* fmt, ...);
     string getMultiKeyDefine (string& sClassName, const char* fmt, ...);
+
 };
 
 namespace ExcelUtils
@@ -427,6 +475,11 @@ public:
     // MULTIKEY
     string productMultiKeyINH   (string&);
     string productMultiKey      (string&);
+
+    // UNIQUE
+    string productUniqueINH     (string&);
+    string productUnique        (string&);
+    
 };
 
 class ExcelTable

@@ -4,20 +4,21 @@
 <DataSheet>
     <Sheet excelName="测试表" name="测试" toName="Test">
         <Index fields="ID" type="PK"/>
+        <Index fields="Type, Name" type="UNIQUE"/>
         <Field name="ID" toName="ID" dataType="int"/>
         <Field name="编号" toName="Type" dataType="int"/>
         <Field name="名称" toName="Name" dataType="string"/>
     </Sheet>
     <Sheet excelName="测试表" name="测试2" toName="Test2" useTip="C">
+        <Index fields="ID2, Name2" type="UNIQUE"/>
+        <Index fields="ID2, Type2" type="UNIQUE"/>
         <Field name="ID" toName="ID2" dataType="int"/>
         <Field name="编号" toName="Type2" dataType="int"/>
         <Field name="名称" toName="Name2" dataType="string"/>
     </Sheet>
     <Sheet excelName="人物表" name="人物" toName="Player">
-        <Index fields="ID,  Name, Quality, Level" type="KEY"/>
-        <Index fields="ID,  Name, Quality" type="KEY"/>
-        <Index fields="ID,  Name" type="KEY"/>
-        <!-- <Index fields="ID" type="KEY"/> -->
+        <Index fields="Name, Level" type="KEY"/>
+        <Index fields="ID, Name" type="UNIQUE"/>
         <Index fields="ID" type="PK"/>
         <Field name="ID" toName="ID" dataType="int"/>
         <Field name="名称" toName="Name" dataType="string"/>
@@ -25,9 +26,8 @@
         <Field name="等级" toName="Level" dataType="int"/>
     </Sheet>
     <Sheet excelName="怪物表" name="怪物表" toName="Monster">
+        <Index fields="MonsterQuality" type="KEY"/>
         <Index fields="ID" type="PK"/>
-        <Index fields="MonsterID" type="KEY"/>
-        <!-- <Index fields="MonsterID, MonsterQuality" type="KEY"/> -->
         <Field name="ID" toName="ID" dataType="int"/>
         <Field name="怪物表ID" toName="MonsterID" dataType="int"/>
         <Field name="怪物表名称" toName="MonsterName" dataType="string"/>

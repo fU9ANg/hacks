@@ -103,6 +103,25 @@ void SheetTest::dump ()
 		cout << "SheetTest" << "[" << i << "] :: data." << "Name" << " = " << data[i].Name << endl;
 	}
 }
+SheetTestData* SheetTest::tryFindByTypeName (int _Type,string _Name)
+{
+	map<_SheetIndexTypeTestTypeName, int>::iterator itor;
+	itor = index_Type_Name.find (_SheetIndexTypeTestTypeName(_Type,_Name));
+	if (itor != index_Type_Name.end ()) {
+		return (&data[itor->second]);
+	}
+	else {
+		return (NULL);
+	}
+}
+
+SheetTestData* SheetTest::findByTypeName (int _Type,string _Name)
+{
+	SheetTestData* retVal = tryFindByTypeName (_Type,_Name);
+	if (NULL == retVal)
+		printf ("Sheet [Test] Key [Type_Name] not exists (%d,%s)", _Type,_Name.c_str());
+	return (retVal);
+}
 SheetTest2Data::SheetTest2Data ()
 {
 	ID2 = 0;
@@ -176,6 +195,44 @@ void SheetTest2::dump ()
 		cout << "SheetTest2" << "[" << i << "] :: data." << "Type2" << " = " << data[i].Type2 << endl;
 		cout << "SheetTest2" << "[" << i << "] :: data." << "Name2" << " = " << data[i].Name2 << endl;
 	}
+}
+SheetTest2Data* SheetTest2::tryFindByID2Name2 (int _ID2,string _Name2)
+{
+	map<_SheetIndexTypeTest2ID2Name2, int>::iterator itor;
+	itor = index_ID2_Name2.find (_SheetIndexTypeTest2ID2Name2(_ID2,_Name2));
+	if (itor != index_ID2_Name2.end ()) {
+		return (&data[itor->second]);
+	}
+	else {
+		return (NULL);
+	}
+}
+
+SheetTest2Data* SheetTest2::findByID2Name2 (int _ID2,string _Name2)
+{
+	SheetTest2Data* retVal = tryFindByID2Name2 (_ID2,_Name2);
+	if (NULL == retVal)
+		printf ("Sheet [Test2] Key [ID2_Name2] not exists (%d,%s)", _ID2,_Name2.c_str());
+	return (retVal);
+}
+SheetTest2Data* SheetTest2::tryFindByID2Type2 (int _ID2,int _Type2)
+{
+	map<_SheetIndexTypeTest2ID2Type2, int>::iterator itor;
+	itor = index_ID2_Type2.find (_SheetIndexTypeTest2ID2Type2(_ID2,_Type2));
+	if (itor != index_ID2_Type2.end ()) {
+		return (&data[itor->second]);
+	}
+	else {
+		return (NULL);
+	}
+}
+
+SheetTest2Data* SheetTest2::findByID2Type2 (int _ID2,int _Type2)
+{
+	SheetTest2Data* retVal = tryFindByID2Type2 (_ID2,_Type2);
+	if (NULL == retVal)
+		printf ("Sheet [Test2] Key [ID2_Type2] not exists (%d,%d)", _ID2,_Type2);
+	return (retVal);
 }
 SheetPlayerData::SheetPlayerData ()
 {
@@ -274,41 +331,36 @@ void SheetPlayer::dump ()
 		cout << "SheetPlayer" << "[" << i << "] :: data." << "Level" << " = " << data[i].Level << endl;
 	}
 }
-vector<SheetPlayerData*> SheetPlayer::findByIDNameQualityLevel (int _ID,string _Name,int _Quality,int _Level)
+vector<SheetPlayerData*> SheetPlayer::findByNameLevel (string _Name,int _Level)
 {
-	pair<multimap<_SheetIndexTypePlayerIDNameQualityLevel, int>::iterator, multimap<_SheetIndexTypePlayerIDNameQualityLevel, int>::iterator> i_f;
-	i_f = index_ID_Name_Quality_Level.equal_range (_SheetIndexTypePlayerIDNameQualityLevel(_ID,_Name,_Quality,_Level));
+	pair<multimap<_SheetIndexTypePlayerNameLevel, int>::iterator, multimap<_SheetIndexTypePlayerNameLevel, int>::iterator> i_f;
+	i_f = index_Name_Level.equal_range (_SheetIndexTypePlayerNameLevel(_Name,_Level));
 	vector<SheetPlayerData*> res;
 
-	for (multimap<_SheetIndexTypePlayerIDNameQualityLevel, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
+	for (multimap<_SheetIndexTypePlayerNameLevel, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
 		res.push_back (&data[itor->second]);
 	}
 
 	return (res);
 }
-vector<SheetPlayerData*> SheetPlayer::findByIDNameQuality (int _ID,string _Name,int _Quality)
+SheetPlayerData* SheetPlayer::tryFindByIDName (int _ID,string _Name)
 {
-	pair<multimap<_SheetIndexTypePlayerIDNameQuality, int>::iterator, multimap<_SheetIndexTypePlayerIDNameQuality, int>::iterator> i_f;
-	i_f = index_ID_Name_Quality.equal_range (_SheetIndexTypePlayerIDNameQuality(_ID,_Name,_Quality));
-	vector<SheetPlayerData*> res;
-
-	for (multimap<_SheetIndexTypePlayerIDNameQuality, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
-		res.push_back (&data[itor->second]);
+	map<_SheetIndexTypePlayerIDName, int>::iterator itor;
+	itor = index_ID_Name.find (_SheetIndexTypePlayerIDName(_ID,_Name));
+	if (itor != index_ID_Name.end ()) {
+		return (&data[itor->second]);
 	}
-
-	return (res);
+	else {
+		return (NULL);
+	}
 }
-vector<SheetPlayerData*> SheetPlayer::findByIDName (int _ID,string _Name)
+
+SheetPlayerData* SheetPlayer::findByIDName (int _ID,string _Name)
 {
-	pair<multimap<_SheetIndexTypePlayerIDName, int>::iterator, multimap<_SheetIndexTypePlayerIDName, int>::iterator> i_f;
-	i_f = index_ID_Name.equal_range (_SheetIndexTypePlayerIDName(_ID,_Name));
-	vector<SheetPlayerData*> res;
-
-	for (multimap<_SheetIndexTypePlayerIDName, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
-		res.push_back (&data[itor->second]);
-	}
-
-	return (res);
+	SheetPlayerData* retVal = tryFindByIDName (_ID,_Name);
+	if (NULL == retVal)
+		printf ("Sheet [Player] Key [ID_Name] not exists (%d,%s)", _ID,_Name.c_str());
+	return (retVal);
 }
 SheetMonsterData::SheetMonsterData ()
 {
@@ -393,18 +445,10 @@ SheetMonsterData* SheetMonster::tryFindByID (int _ID)
 	}
 }
 
-SheetMonsterData* SheetMonster::findByID (int _ID)
-{
-	SheetMonsterData* retVal = tryFindByID (_ID);
-	if (NULL == retVal)
-		cout << "Sheet [Monster] Key [" << _ID << "] not exists\n";
-	return (retVal);
-}
-
-vector<SheetMonsterData*> SheetMonster::findByMonsterID (int _MonsterID)
+vector<SheetMonsterData*> SheetMonster::findByMonsterQuality (int _MonsterQuality)
 {
 	pair<multimap<int, int>::iterator, multimap<int, int>::iterator> i_f;
-	i_f = index_MonsterID.equal_range (_MonsterID);
+	i_f = index_MonsterQuality.equal_range (_MonsterQuality);
 	vector<SheetMonsterData*> res;
 
 	for (multimap<int, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
@@ -413,6 +457,14 @@ vector<SheetMonsterData*> SheetMonster::findByMonsterID (int _MonsterID)
 
 	return (res);
 }
+SheetMonsterData* SheetMonster::findByID (int _ID)
+{
+	SheetMonsterData* retVal = tryFindByID (_ID);
+	if (NULL == retVal)
+		cout << "Sheet [Monster] Key [" << _ID << "] not exists\n";
+	return (retVal);
+}
+
 void SheetMonster::dump ()
 {
 	for (int i=0; i<row_num; i++) {

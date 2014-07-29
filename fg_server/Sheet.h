@@ -19,14 +19,33 @@ public:
 	SheetTestData ();
 };
 
+struct _SheetIndexTypeTestTypeName {
+	int Type;
+	string Name;
+	_SheetIndexTypeTestTypeName();
+	_SheetIndexTypeTestTypeName(int _Type,string _Name) {
+		Type = _Type;
+		Name = _Name;
+	}
+	bool operator<(const _SheetIndexTypeTestTypeName& s) const {
+		if (this->Type<s.Type) return (true);
+		if (this->Type>s.Type) return (false);
+		if (this->Name<s.Name) return (true);
+		if (this->Name>s.Name) return (false);
+		return (false);
+	}
+};
 class SheetTest : public SheetBase
 {
 private:
 	SheetTestData *data;
+	std::map<_SheetIndexTypeTestTypeName, int> index_Type_Name;
 	std::map<int, int> index_ID;
 public:
 	vector<SheetTestData*> getAll ();
 	SheetTestData* getRow (int n);
+	SheetTestData* findByTypeName (int _Type,string _Name);
+	SheetTestData* tryFindByTypeName (int _Type,string _Name);
 	bool forEach (SheetTestData& item);
 	virtual int init ();
 	virtual int initLink ();
@@ -46,13 +65,51 @@ public:
 	SheetTest2Data ();
 };
 
+struct _SheetIndexTypeTest2ID2Name2 {
+	int ID2;
+	string Name2;
+	_SheetIndexTypeTest2ID2Name2();
+	_SheetIndexTypeTest2ID2Name2(int _ID2,string _Name2) {
+		ID2 = _ID2;
+		Name2 = _Name2;
+	}
+	bool operator<(const _SheetIndexTypeTest2ID2Name2& s) const {
+		if (this->ID2<s.ID2) return (true);
+		if (this->ID2>s.ID2) return (false);
+		if (this->Name2<s.Name2) return (true);
+		if (this->Name2>s.Name2) return (false);
+		return (false);
+	}
+};
+struct _SheetIndexTypeTest2ID2Type2 {
+	int ID2;
+	int Type2;
+	_SheetIndexTypeTest2ID2Type2();
+	_SheetIndexTypeTest2ID2Type2(int _ID2,int _Type2) {
+		ID2 = _ID2;
+		Type2 = _Type2;
+	}
+	bool operator<(const _SheetIndexTypeTest2ID2Type2& s) const {
+		if (this->ID2<s.ID2) return (true);
+		if (this->ID2>s.ID2) return (false);
+		if (this->Type2<s.Type2) return (true);
+		if (this->Type2>s.Type2) return (false);
+		return (false);
+	}
+};
 class SheetTest2 : public SheetBase
 {
 private:
 	SheetTest2Data *data;
+	std::map<_SheetIndexTypeTest2ID2Type2, int> index_ID2_Type2;
+	std::map<_SheetIndexTypeTest2ID2Name2, int> index_ID2_Name2;
 public:
 	vector<SheetTest2Data*> getAll ();
 	SheetTest2Data* getRow (int n);
+	SheetTest2Data* findByID2Name2 (int _ID2,string _Name2);
+	SheetTest2Data* tryFindByID2Name2 (int _ID2,string _Name2);
+	SheetTest2Data* findByID2Type2 (int _ID2,int _Type2);
+	SheetTest2Data* tryFindByID2Type2 (int _ID2,int _Type2);
 	bool forEach (SheetTest2Data& item);
 	virtual int init ();
 	virtual int initLink ();
@@ -71,47 +128,19 @@ public:
 	SheetPlayerData ();
 };
 
-struct _SheetIndexTypePlayerIDNameQualityLevel {
-	int ID;
+struct _SheetIndexTypePlayerNameLevel {
 	string Name;
-	int Quality;
 	int Level;
-	_SheetIndexTypePlayerIDNameQualityLevel();
-	_SheetIndexTypePlayerIDNameQualityLevel(int _ID,string _Name,int _Quality,int _Level) {
-		ID = _ID;
+	_SheetIndexTypePlayerNameLevel();
+	_SheetIndexTypePlayerNameLevel(string _Name,int _Level) {
 		Name = _Name;
-		Quality = _Quality;
 		Level = _Level;
 	}
-	bool operator<(const _SheetIndexTypePlayerIDNameQualityLevel& s) const {
-		if (this->ID<s.ID) return (true);
-		if (this->ID>s.ID) return (false);
+	bool operator<(const _SheetIndexTypePlayerNameLevel& s) const {
 		if (this->Name<s.Name) return (true);
 		if (this->Name>s.Name) return (false);
-		if (this->Quality<s.Quality) return (true);
-		if (this->Quality>s.Quality) return (false);
 		if (this->Level<s.Level) return (true);
 		if (this->Level>s.Level) return (false);
-		return (false);
-	}
-};
-struct _SheetIndexTypePlayerIDNameQuality {
-	int ID;
-	string Name;
-	int Quality;
-	_SheetIndexTypePlayerIDNameQuality();
-	_SheetIndexTypePlayerIDNameQuality(int _ID,string _Name,int _Quality) {
-		ID = _ID;
-		Name = _Name;
-		Quality = _Quality;
-	}
-	bool operator<(const _SheetIndexTypePlayerIDNameQuality& s) const {
-		if (this->ID<s.ID) return (true);
-		if (this->ID>s.ID) return (false);
-		if (this->Name<s.Name) return (true);
-		if (this->Name>s.Name) return (false);
-		if (this->Quality<s.Quality) return (true);
-		if (this->Quality>s.Quality) return (false);
 		return (false);
 	}
 };
@@ -135,16 +164,15 @@ class SheetPlayer : public SheetBase
 {
 private:
 	SheetPlayerData *data;
-	std::multimap<_SheetIndexTypePlayerIDName, int> index_ID_Name;
-	std::multimap<_SheetIndexTypePlayerIDNameQuality, int> index_ID_Name_Quality;
-	std::multimap<_SheetIndexTypePlayerIDNameQualityLevel, int> index_ID_Name_Quality_Level;
+	std::map<_SheetIndexTypePlayerIDName, int> index_ID_Name;
+	std::multimap<_SheetIndexTypePlayerNameLevel, int> index_Name_Level;
 	std::map<int, int> index_ID;
 public:
 	vector<SheetPlayerData*> getAll ();
 	SheetPlayerData* getRow (int n);
-	std::vector<SheetPlayerData*> findByIDNameQualityLevel (int _ID,string _Name,int _Quality,int _Level);
-	std::vector<SheetPlayerData*> findByIDNameQuality (int _ID,string _Name,int _Quality);
-	std::vector<SheetPlayerData*> findByIDName (int _ID,string _Name);
+	std::vector<SheetPlayerData*> findByNameLevel (string _Name,int _Level);
+	SheetPlayerData* findByIDName (int _ID,string _Name);
+	SheetPlayerData* tryFindByIDName (int _ID,string _Name);
 	bool forEach (SheetPlayerData& item);
 	virtual int init ();
 	virtual int initLink ();
@@ -170,17 +198,17 @@ class SheetMonster : public SheetBase
 {
 private:
 	SheetMonsterData *data;
-	std::multimap<int, int> index_MonsterID;
 	std::map<int, int> index_ID;
+	std::multimap<int, int> index_MonsterQuality;
 public:
 	vector<SheetMonsterData*> getAll ();
 	SheetMonsterData* getRow (int n);
 	bool forEach (SheetMonsterData& item);
 	virtual int init ();
 	virtual int initLink ();
+	std::vector<SheetMonsterData*> findByMonsterQuality (int _MonsterQuality);
 	SheetMonsterData* findByID (int _ID);
 	SheetMonsterData* tryFindByID (int _ID);
-	std::vector<SheetMonsterData*> findByMonsterID (int _MonsterID);
 	void dump (void);
 };
 extern SheetMonster* shMonster;
