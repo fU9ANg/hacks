@@ -3,8 +3,8 @@
 
 <DataSheet>
     <Sheet excelName="测试表" name="测试" toName="Test">
-        <Index fields="ID" type="PK"/>
-        <Index fields="Type, Name" type="UNIQUE"/>
+        <!-- <Index fields="ID" type="PK"/>
+        <Index fields="Type, Name" type="UNIQUE"/> -->
         <Field name="ID" toName="ID" dataType="int"/>
         <Field name="编号" toName="Type" dataType="int"/>
         <Field name="名称" toName="Name" dataType="string"/>
