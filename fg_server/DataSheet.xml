@@ -26,12 +26,25 @@
         <Field name="等级" toName="Level" dataType="int"/>
     </Sheet>
     <Sheet excelName="怪物表" name="怪物表" toName="Monster">
-        <Index fields="MonsterQuality" type="KEY"/>
+        <Index fields="MonsterQuality,  MonsterLevel" type="KEY"/>
         <Index fields="ID" type="PK"/>
         <Field name="ID" toName="ID" dataType="int"/>
         <Field name="怪物表ID" toName="MonsterID" dataType="int"/>
         <Field name="怪物表名称" toName="MonsterName" dataType="string"/>
         <Field name="怪物表品质" toName="MonsterQuality" dataType="int"/>
         <Field name="怪物表等级" toName="MonsterLevel" dataType="int"/>
+    </Sheet>
+    <Sheet excelName="NPC表" name="NPC表" toName="NPC">
+        <Index fields="NPCPosX,  NPCPosY, npcPosZ" type="KEY"/>
+        <Index fields="ID" type="PK"/>
+        <Index fields="Name" type="KEY"/>
+        <Field name="ID" toName="ID" dataType="int"/>
+        <Field name="NPC表ID" toName="NPCID" dataType="int"/>
+        <Field name="NPC名称" toName="NPCName" dataType="string"/>
+        <Field name="NPC品质" toName="NPCQuality" dataType="int"/>
+        <Field name="NPC位置x" toName="NPCPosX" dataType="int"/>
+        <Field name="NPC位置y" toName="NPCPosY" dataType="int"/>
+        <Field name="NPC位置z" toName="NPCPosZ" dataType="int"/>
+        <Field name="NPC等级" toName="NPCLevel" dataType="int"/>
     </Sheet>
 </DataSheet>

@@ -283,7 +283,8 @@ int main ()
     printf ("-------------------------------------------------------------\n");
     //printf ("name = %s\n", name.c_str());
 #else
-    string sFields = "CombatId, PlayerId,   MonsterId";
+    //string sFields = "CombatId, PlayerId,   MonsterId";
+    string sFields = "CombatId   ";
     string sField = "";
     printf ("sFields=%s\n", sFields.c_str ());
 

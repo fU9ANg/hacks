@@ -194,22 +194,88 @@ public:
 	SheetMonsterData ();
 };
 
+struct _SheetIndexTypeMonsterMonsterQualityMonsterLevel {
+	int MonsterQuality;
+	int MonsterLevel;
+	_SheetIndexTypeMonsterMonsterQualityMonsterLevel();
+	_SheetIndexTypeMonsterMonsterQualityMonsterLevel(int _MonsterQuality,int _MonsterLevel) {
+		MonsterQuality = _MonsterQuality;
+		MonsterLevel = _MonsterLevel;
+	}
+	bool operator<(const _SheetIndexTypeMonsterMonsterQualityMonsterLevel& s) const {
+		if (this->MonsterQuality<s.MonsterQuality) return (true);
+		if (this->MonsterQuality>s.MonsterQuality) return (false);
+		if (this->MonsterLevel<s.MonsterLevel) return (true);
+		if (this->MonsterLevel>s.MonsterLevel) return (false);
+		return (false);
+	}
+};
 class SheetMonster : public SheetBase
 {
 private:
 	SheetMonsterData *data;
+	std::multimap<_SheetIndexTypeMonsterMonsterQualityMonsterLevel, int> index_MonsterQuality_MonsterLevel;
 	std::map<int, int> index_ID;
-	std::multimap<int, int> index_MonsterQuality;
 public:
 	vector<SheetMonsterData*> getAll ();
 	SheetMonsterData* getRow (int n);
+	std::vector<SheetMonsterData*> findByMonsterQualityMonsterLevel (int _MonsterQuality,int _MonsterLevel);
 	bool forEach (SheetMonsterData& item);
 	virtual int init ();
 	virtual int initLink ();
-	std::vector<SheetMonsterData*> findByMonsterQuality (int _MonsterQuality);
 	SheetMonsterData* findByID (int _ID);
 	SheetMonsterData* tryFindByID (int _ID);
 	void dump (void);
 };
 extern SheetMonster* shMonster;
+
+//////////////////////////////////////////////
+class SheetNPCData : public SheetBaseData
+{
+public:
+	int ID;	//ID
+	int NPCID;	//NPC表ID
+	string NPCName;	//NPC名称
+	int NPCQuality;	//NPC品质
+	int NPCPosX;	//NPC位置x
+	int NPCPosY;	//NPC位置y
+	int NPCPosZ;	//NPC位置z
+	int NPCLevel;	//NPC等级
+	SheetNPCData ();
+};
+
+struct _SheetIndexTypeNPCNPCPosXNPCPosY {
+	int NPCPosX;
+	int NPCPosY;
+	_SheetIndexTypeNPCNPCPosXNPCPosY();
+	_SheetIndexTypeNPCNPCPosXNPCPosY(int _NPCPosX,int _NPCPosY) {
+		NPCPosX = _NPCPosX;
+		NPCPosY = _NPCPosY;
+	}
+	bool operator<(const _SheetIndexTypeNPCNPCPosXNPCPosY& s) const {
+		if (this->NPCPosX<s.NPCPosX) return (true);
+		if (this->NPCPosX>s.NPCPosX) return (false);
+		if (this->NPCPosY<s.NPCPosY) return (true);
+		if (this->NPCPosY>s.NPCPosY) return (false);
+		return (false);
+	}
+};
+class SheetNPC : public SheetBase
+{
+private:
+	SheetNPCData *data;
+	std::multimap<_SheetIndexTypeNPCNPCPosXNPCPosY, int> index_NPCPosX_NPCPosY;
+	std::map<int, int> index_ID;
+public:
+	vector<SheetNPCData*> getAll ();
+	SheetNPCData* getRow (int n);
+	std::vector<SheetNPCData*> findByNPCPosXNPCPosY (int _NPCPosX,int _NPCPosY);
+	bool forEach (SheetNPCData& item);
+	virtual int init ();
+	virtual int initLink ();
+	SheetNPCData* findByID (int _ID);
+	SheetNPCData* tryFindByID (int _ID);
+	void dump (void);
+};
+extern SheetNPC* shNPC;
 #endif // __SHEET_H__

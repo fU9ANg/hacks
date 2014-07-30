@@ -138,6 +138,7 @@ int ExcelTable::product ()
         itSheet->productUniqueINH (sIncludeFile);
         //printf ("%s", sCode.c_str());
 
+
         sCode = itSheet->productSheetData ();
         sSourceFile += sCode;
         //printf ("%s", sCode.c_str());
@@ -166,6 +167,7 @@ int ExcelTable::product ()
 
         itSheet->productMultiKey (sSourceFile);
         itSheet->productUnique (sSourceFile);
+        itSheet->productAssignInFunction (sSourceFile);
     }
 
 
@@ -198,6 +200,189 @@ int ExcelTable::product ()
     return (0);
 }
 
+
+///////////////////////////////// ASSIGNUTILS /////////////////////////////
+string AssignUtils::getInitKey (string& sClassName, const char* fmt, ...)
+{
+    va_list ap;
+    string  type;
+    string  name;
+    string  str1, str2;
+
+    va_start (ap, fmt);
+    while (*fmt) {
+        if (*fmt == '%' && *(fmt+1) == 's') {
+            if (type.empty ()) {
+                type = va_arg (ap, char*);
+            }
+            else {
+                name = va_arg (ap, char*);
+
+                str1 = type;
+                str2 = name;
+
+                type.clear ();
+            }
+        }
+
+        fmt++;
+    }
+    va_end (ap);
+
+    string sCode = STRUCTURE_INIT_KEY_ONLY;
+    sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", str1);
+    sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", str2);
+
+    //printf ("%s", sCode.c_str());
+
+    return (sCode);
+}
+
+string AssignUtils::getInitMultiKey (string& sClassName, const char* fmt, ...)
+{
+    va_list ap;
+    string  type;
+    string  name;
+    string  str1, str2, str3, str4;
+
+    str2 = "_SheetIndexType" + sClassName;
+    va_start (ap, fmt);
+    while (*fmt) {
+        if (*fmt == '%' && *(fmt+1) == 's') {
+            if (type.empty ()) {
+                type = va_arg (ap, char*);
+            }
+            else {
+                name = va_arg (ap, char*);
+
+                str1 += name + "_";
+                str2 += name;
+                str3 += "d[i]." + name + ",";
+                type.clear ();
+            }
+        }
+
+        fmt++;
+    }
+    va_end (ap);
+
+
+    str1 = str1.substr (0, str1.size() -1);
+    str3 = str3.substr (0, str3.size() -1);
+    string sCode = STRUCTURE_INIT_KEY_MULTI;
+    sCode = ExcelUtils::findAndReplace (sCode, "aaaaa", str1);
+    sCode = ExcelUtils::findAndReplace (sCode, "bbbbb", str2);
+    sCode = ExcelUtils::findAndReplace (sCode, "ccccc", str3);
+
+    //printf ("%s", sCode.c_str());
+
+    return (sCode);
+}
+
+string AssignUtils::getInitPK (string& sClassName, const char* fmt, ...)
+{
+    va_list ap;
+    string  type;
+    string  name;
+    string  str1, str2, str3, str4;
+
+    va_start (ap, fmt);
+    while (*fmt) {
+        if (*fmt == '%' && *(fmt+1) == 's') {
+            if (type.empty ()) {
+                type = va_arg (ap, char*);
+            }
+            else {
+                name = va_arg (ap, char*);
+
+                str1 = type;
+                str2 = name;
+
+                if (type == "int") {
+                    str3 = "%d";
+                    str4 = "";
+                }
+                else if (type == "string") {
+                    str3 = "%s";
+                    str4 = ".c_str()";
+                }
+
+                type.clear ();
+            }
+        }
+
+        fmt++;
+    }
+    va_end (ap);
+
+    string sCode = STRUCTURE_INIT_PK;
+    sCode = ExcelUtils::findAndReplace (sCode, "yyyyy", str1);
+    sCode = ExcelUtils::findAndReplace (sCode, "zzzzz", str2);
+    sCode = ExcelUtils::findAndReplace (sCode, "xxxxx", sClassName);
+    sCode = ExcelUtils::findAndReplace (sCode, "aaaaa", str3);
+    sCode = ExcelUtils::findAndReplace (sCode, "bbbbb", str4);
+
+    //printf ("%s", sCode.c_str());
+
+    return (sCode);
+}
+
+string AssignUtils::getInitUnique (string& sClassName, const char* fmt, ...)
+{
+    va_list ap;
+    string  type;
+    string  name;
+    string  str1, str2, str3, str4, str5;
+
+    str2 = "_SheetIndexType" + sClassName;
+    va_start (ap, fmt);
+    while (*fmt) {
+        if (*fmt == '%' && *(fmt+1) == 's') {
+            if (type.empty ()) {
+                type = va_arg (ap, char*);
+            }
+            else {
+                name = va_arg (ap, char*);
+
+                str1 += name + "_";
+                str2 += name;
+                str3 += "d[i]." + name + ",";
+                
+                if (type == "int") {
+                    str4 += name + "=%d,";
+                    str5 += "d[i]." + name + ",";
+                }
+                else if (type == "string") {
+                    str4 += name + "=%s,";
+                    str5 += "d[i]." + name + ".c_str(),";
+                }
+                type.clear ();
+            }
+        }
+
+        fmt++;
+    }
+    va_end (ap);
+
+
+    str1 = str1.substr (0, str1.size() -1);
+    str3 = str3.substr (0, str3.size() -1);
+    str4 = str4.substr (0, str4.size() -1);
+    str5 = str5.substr (0, str5.size() -1);
+    string sCode = STRUCTURE_INIT_UNIQUE;
+    sCode = ExcelUtils::findAndReplace (sCode, "aaaaa", str1);
+    sCode = ExcelUtils::findAndReplace (sCode, "bbbbb", str2);
+    sCode = ExcelUtils::findAndReplace (sCode, "ccccc", str3);
+    sCode = ExcelUtils::findAndReplace (sCode, "xxxxx", sClassName);
+    sCode = ExcelUtils::findAndReplace (sCode, "ddddd", str4);
+    sCode = ExcelUtils::findAndReplace (sCode, "eeeee", str5);
+
+    //printf ("%s", sCode.c_str());
+
+    return (sCode);
+}
+
+///////////////////////////////// ASSIGNUTILS END /////////////////////////////
 
 ///////////////////////////////// UNIQUEUTILS /////////////////////////////
 string UniqueUtils::getUniqueStruct (string& sClassName, const char* fmt, ...)
@@ -1644,6 +1829,216 @@ success:
                 //sReplace = string ("\tbool forEach (Sheet") + toName () + string ("Data& item);\n");
                 //sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, BEFORE);
             }
+            sDatatypeName.clear ();
+        }
+    }
+
+    return (sCode);
+}
+
+string ExcelSheet::productAssignInFunction (string& sMainCode)
+{
+    string sCode = "";
+    string sFields = "";
+    string sField = "";
+    string sClassName = toName ();
+
+    vector<string> sDatatypeName;
+
+    vector<ExcelField>::iterator itField;
+    for (itField = Fields.begin(); itField != Fields.end(); itField++) {
+#if 0
+        if ((itField->isIndexField) && \
+            (itField->type() == "UNIQUE") && \
+            (itField->fields().find (',') != string::npos)) {
+#else
+        if (itField->isIndexField) {
+#endif
+            // find fields.
+            sFields = itField->fields ();
+            while (1) {
+                int pos = sFields.find (',');
+                if (pos == 0) {
+                    sFields = sFields.substr (1);
+                    continue;
+                }
+                if (pos < 0) {
+                    ExcelStringUtils::trim (sFields);
+                    sField = sFields;
+                    sFields = "";
+                    goto success;
+                    break;
+                }
+                sField = sFields.substr (0, pos);
+                sFields= sFields.substr (pos+1);
+success:
+                ExcelStringUtils::trim (sField);
+                //printf ("[DEBUG2]:'%s'\n", sField.c_str ());
+
+                vector<ExcelField>::iterator itf;
+                for (itf = Fields.begin(); itf != Fields.end(); itf++) {
+                    if (itf->isIndexField)  continue;
+
+                    if (itf->toName () == sField) {
+                        // TODO:
+                        //printf ("[FIELDS]: datatype=%s, name=%s\n", itf->dataType ().c_str(), itf->toName ().c_str());
+                        sDatatypeName.push_back (itf->dataType ());
+                        sDatatypeName.push_back (itf->toName ());
+                    }
+                }
+
+                if (sFields.empty ()) {
+                    break;
+                }
+            }
+
+            // TODO: output
+            /*
+            printf ("sDatatypeName.size() = %ld\n", sDatatypeName.size());
+            for (unsigned int i=0; i<sDatatypeName.size(); i++) {
+                printf ("%s\n", sDatatypeName[i].c_str());
+            }
+            */
+            string sReplace;
+            /*
+            if (sDatatypeName.size() > 0) {
+                sReplace = string ("\t\tdata[i] = d[i]; // Sheet") + toName () + string ("\n\n");
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, STRUCTURE_INIT_FOR_END, AFTER);
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, STRUCTURE_INIT_FOR_BEGIN, AFTER);
+            }
+            */
+#if 1
+            sReplace = string ("\t\tdata[i] = d[i]; // Sheet") + toName () + string ("\n\n") +
+                STRUCTURE_INIT_FOR_BEGIN;
+
+            if (itField->type() == "PK") {
+                sClassName.clear ();
+                sClassName = toName ();
+                sCode = AssignUtils::getInitPK (sClassName, "%s %s", \
+                        sDatatypeName[0].c_str (), \
+                        sDatatypeName[1].c_str ());
+                sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+            }
+            else if (itField->type() == "UNIQUE") {
+                if (sDatatypeName.size() == 4) {
+                    sClassName.clear ();
+                    sClassName = toName ();
+                    sCode = AssignUtils::getInitUnique (sClassName, "%s %s %s %s", \
+                            sDatatypeName[0].c_str (), \
+                            sDatatypeName[1].c_str (), \
+                            sDatatypeName[2].c_str (), \
+                            sDatatypeName[3].c_str ());
+                    sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+                }
+                else if (sDatatypeName.size() == 6) {
+                    sClassName.clear ();
+                    sClassName = toName ();
+                    sCode = AssignUtils::getInitUnique (sClassName, "%s %s %s %s %s %s", \
+                            sDatatypeName[0].c_str (), \
+                            sDatatypeName[1].c_str (), \
+                            sDatatypeName[2].c_str (), \
+                            sDatatypeName[3].c_str (), \
+                            sDatatypeName[4].c_str (), \
+                            sDatatypeName[5].c_str ());
+                    sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+                }
+                else if (sDatatypeName.size() == 8) {
+                    sClassName.clear ();
+                    sClassName = toName ();
+                    sCode = AssignUtils::getInitUnique (sClassName, "%s %s %s %s %s %s %s %s", \
+                            sDatatypeName[0].c_str (), \
+                            sDatatypeName[1].c_str (), \
+                            sDatatypeName[2].c_str (), \
+                            sDatatypeName[3].c_str (), \
+                            sDatatypeName[4].c_str (), \
+                            sDatatypeName[5].c_str (), \
+                            sDatatypeName[6].c_str (), \
+                            sDatatypeName[7].c_str ());
+                    sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+                }
+                else if (sDatatypeName.size() ==10) {
+                    sClassName.clear ();
+                    sClassName = toName ();
+                    sCode = AssignUtils::getInitUnique (sClassName, "%s %s %s %s %s %s %s %s %s %s", \
+                            sDatatypeName[0].c_str (), \
+                            sDatatypeName[1].c_str (), \
+                            sDatatypeName[2].c_str (), \
+                            sDatatypeName[3].c_str (), \
+                            sDatatypeName[4].c_str (), \
+                            sDatatypeName[5].c_str (), \
+                            sDatatypeName[6].c_str (), \
+                            sDatatypeName[7].c_str (), \
+                            sDatatypeName[8].c_str (), \
+                            sDatatypeName[9].c_str ());
+                    sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+                }
+            }
+            else if (itField->type() == "KEY") {
+                // only one key
+                if (sDatatypeName.size() == 2) {
+                    sClassName.clear ();
+                    sClassName = toName ();
+                    sCode = AssignUtils::getInitKey (sClassName, "%s %s", \
+                            sDatatypeName[0].c_str (), \
+                            sDatatypeName[1].c_str ());
+                    sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+                }
+
+                // multi-key
+                else if (sDatatypeName.size() == 4) {
+                    sClassName.clear ();
+                    sClassName = toName ();
+                    sCode = AssignUtils::getInitMultiKey (sClassName, "%s %s %s %s", \
+                            sDatatypeName[0].c_str (), \
+                            sDatatypeName[1].c_str (), \
+                            sDatatypeName[2].c_str (), \
+                            sDatatypeName[3].c_str ());
+                    sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+                }
+                else if (sDatatypeName.size() == 6) {
+                    sClassName.clear ();
+                    sClassName = toName ();
+                    sCode = AssignUtils::getInitMultiKey (sClassName, "%s %s %s %s %s %s", \
+                            sDatatypeName[0].c_str (), \
+                            sDatatypeName[1].c_str (), \
+                            sDatatypeName[2].c_str (), \
+                            sDatatypeName[3].c_str (), \
+                            sDatatypeName[4].c_str (), \
+                            sDatatypeName[5].c_str ());
+                    sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+                }
+                else if (sDatatypeName.size() == 8) {
+                    sClassName.clear ();
+                    sClassName = toName ();
+                    sCode = AssignUtils::getInitMultiKey (sClassName, "%s %s %s %s %s %s %s %s", \
+                            sDatatypeName[0].c_str (), \
+                            sDatatypeName[1].c_str (), \
+                            sDatatypeName[2].c_str (), \
+                            sDatatypeName[3].c_str (), \
+                            sDatatypeName[4].c_str (), \
+                            sDatatypeName[5].c_str (), \
+                            sDatatypeName[6].c_str (), \
+                            sDatatypeName[7].c_str ());
+                    sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+                }
+                else if (sDatatypeName.size() ==10) {
+                    sClassName.clear ();
+                    sClassName = toName ();
+                    sCode = AssignUtils::getInitMultiKey (sClassName, "%s %s %s %s %s %s %s %s %s %s", \
+                            sDatatypeName[0].c_str (), \
+                            sDatatypeName[1].c_str (), \
+                            sDatatypeName[2].c_str (), \
+                            sDatatypeName[3].c_str (), \
+                            sDatatypeName[4].c_str (), \
+                            sDatatypeName[5].c_str (), \
+                            sDatatypeName[6].c_str (), \
+                            sDatatypeName[7].c_str (), \
+                            sDatatypeName[8].c_str (), \
+                            sDatatypeName[9].c_str ());
+                    sMainCode = ExcelUtils::findAndInsert (sMainCode, sReplace, sCode, AFTER);
+                }
+            }
+#endif
             sDatatypeName.clear ();
         }
     }

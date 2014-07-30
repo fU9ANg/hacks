@@ -10,6 +10,7 @@ SheetTest* shTest = NULL;
 SheetTest2* shTest2 = NULL;
 SheetPlayer* shPlayer = NULL;
 SheetMonster* shMonster = NULL;
+SheetNPC* shNPC = NULL;
 SheetTestData::SheetTestData ()
 {
 	ID = 0;
@@ -64,8 +65,18 @@ int SheetTest::init ()
 
 	data = new SheetTestData[d.size()];
 	for (size_t i=0; i<d.size(); i++)
-		data[i] = d[i];
+		data[i] = d[i]; // SheetTest
 
+	for (int i=0; i<row_num; i++) {
+		if (!index_Type_Name.insert ( 
+			std::pair <_SheetIndexTypeTestTypeName, int> (_SheetIndexTypeTestTypeName (d[i].Type,d[i].Name), d[i]._row_id)).second) {
+				printf ("Index repeat Sheet[Test](Type=%d,Name=%s)",
+					d[i].Type,d[i].Name.c_str());
+		}
+		if (!index_ID.insert (std::pair<int, int> (d[i].ID, d[i]._row_id)).second) {
+			printf ("Index repeat Sheet[Test] (ID=%d)", d[i].ID);
+		}
+	}
 	if (fp) fclose (fp);
 
 	return (0);
@@ -176,8 +187,20 @@ int SheetTest2::init ()
 
 	data = new SheetTest2Data[d.size()];
 	for (size_t i=0; i<d.size(); i++)
-		data[i] = d[i];
+		data[i] = d[i]; // SheetTest2
 
+	for (int i=0; i<row_num; i++) {
+		if (!index_ID2_Type2.insert ( 
+			std::pair <_SheetIndexTypeTest2ID2Type2, int> (_SheetIndexTypeTest2ID2Type2 (d[i].ID2,d[i].Type2), d[i]._row_id)).second) {
+				printf ("Index repeat Sheet[Test2](ID2=%d,Type2=%d)",
+					d[i].ID2,d[i].Type2);
+		}
+		if (!index_ID2_Name2.insert ( 
+			std::pair <_SheetIndexTypeTest2ID2Name2, int> (_SheetIndexTypeTest2ID2Name2 (d[i].ID2,d[i].Name2), d[i]._row_id)).second) {
+				printf ("Index repeat Sheet[Test2](ID2=%d,Name2=%s)",
+					d[i].ID2,d[i].Name2.c_str());
+		}
+	}
 	if (fp) fclose (fp);
 
 	return (0);
@@ -291,8 +314,20 @@ int SheetPlayer::init ()
 
 	data = new SheetPlayerData[d.size()];
 	for (size_t i=0; i<d.size(); i++)
-		data[i] = d[i];
+		data[i] = d[i]; // SheetPlayer
 
+	for (int i=0; i<row_num; i++) {
+		if (!index_ID.insert (std::pair<int, int> (d[i].ID, d[i]._row_id)).second) {
+			printf ("Index repeat Sheet[Player] (ID=%d)", d[i].ID);
+		}
+		if (!index_ID_Name.insert ( 
+			std::pair <_SheetIndexTypePlayerIDName, int> (_SheetIndexTypePlayerIDName (d[i].ID,d[i].Name), d[i]._row_id)).second) {
+				printf ("Index repeat Sheet[Player](ID=%d,Name=%s)",
+					d[i].ID,d[i].Name.c_str());
+		}
+		index_Name_Level.insert ( 
+			std::pair <_SheetIndexTypePlayerNameLevel, int> 				(_SheetIndexTypePlayerNameLevel (d[i].Name,d[i].Level), d[i]._row_id));
+	}
 	if (fp) fclose (fp);
 
 	return (0);
@@ -422,8 +457,15 @@ int SheetMonster::init ()
 
 	data = new SheetMonsterData[d.size()];
 	for (size_t i=0; i<d.size(); i++)
-		data[i] = d[i];
+		data[i] = d[i]; // SheetMonster
 
+	for (int i=0; i<row_num; i++) {
+		if (!index_ID.insert (std::pair<int, int> (d[i].ID, d[i]._row_id)).second) {
+			printf ("Index repeat Sheet[Monster] (ID=%d)", d[i].ID);
+		}
+		index_MonsterQuality_MonsterLevel.insert ( 
+			std::pair <_SheetIndexTypeMonsterMonsterQualityMonsterLevel, int> 				(_SheetIndexTypeMonsterMonsterQualityMonsterLevel (d[i].MonsterQuality,d[i].MonsterLevel), d[i]._row_id));
+	}
 	if (fp) fclose (fp);
 
 	return (0);
@@ -445,18 +487,6 @@ SheetMonsterData* SheetMonster::tryFindByID (int _ID)
 	}
 }
 
-vector<SheetMonsterData*> SheetMonster::findByMonsterQuality (int _MonsterQuality)
-{
-	pair<multimap<int, int>::iterator, multimap<int, int>::iterator> i_f;
-	i_f = index_MonsterQuality.equal_range (_MonsterQuality);
-	vector<SheetMonsterData*> res;
-
-	for (multimap<int, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
-		res.push_back (&data[itor->second]);
-	}
-
-	return (res);
-}
 SheetMonsterData* SheetMonster::findByID (int _ID)
 {
 	SheetMonsterData* retVal = tryFindByID (_ID);
@@ -475,6 +505,150 @@ void SheetMonster::dump ()
 		cout << "SheetMonster" << "[" << i << "] :: data." << "MonsterLevel" << " = " << data[i].MonsterLevel << endl;
 	}
 }
+vector<SheetMonsterData*> SheetMonster::findByMonsterQualityMonsterLevel (int _MonsterQuality,int _MonsterLevel)
+{
+	pair<multimap<_SheetIndexTypeMonsterMonsterQualityMonsterLevel, int>::iterator, multimap<_SheetIndexTypeMonsterMonsterQualityMonsterLevel, int>::iterator> i_f;
+	i_f = index_MonsterQuality_MonsterLevel.equal_range (_SheetIndexTypeMonsterMonsterQualityMonsterLevel(_MonsterQuality,_MonsterLevel));
+	vector<SheetMonsterData*> res;
+
+	for (multimap<_SheetIndexTypeMonsterMonsterQualityMonsterLevel, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
+		res.push_back (&data[itor->second]);
+	}
+
+	return (res);
+}
+SheetNPCData::SheetNPCData ()
+{
+	ID = 0;
+	NPCID = 0;
+	NPCName = "";
+	NPCQuality = 0;
+	NPCPosX = 0;
+	NPCPosY = 0;
+	NPCPosZ = 0;
+	NPCLevel = 0;
+}
+
+SheetNPCData* SheetNPC::getRow (int n)
+{
+	if (n<0 || n>row_num)
+		return (NULL);
+	else
+		return (&data[n]);
+}
+
+vector<SheetNPCData*> SheetNPC::getAll ()
+{
+	vector<SheetNPCData*> res;
+	for (int i=0; i<row_num; i++) {
+		res.push_back (&data[i]);
+	}
+
+	return (res);
+}
+
+int SheetNPC::init ()
+{
+	FILE *fp;
+	fp = fopen ("./NPC.txt", "rb");
+	if (fp == NULL) {
+		printf ("no sheet file [%s]\n", "NPC.txt");
+		return (-1);
+	}
+
+	SheetUtils::skipBom (fp);
+	string value = "";
+	row_num = 0;
+	name = "NPC.txt";
+	vector<SheetNPCData> d;
+	while (1) {
+		SheetNPCData oneData;
+		SheetUtils::readToken (fp, value);
+		oneData.ID = atoi (value.c_str ());
+		SheetUtils::readToken (fp, value);
+		oneData.NPCID = atoi (value.c_str ());
+		SheetUtils::readToken (fp, value);
+		oneData.NPCName = value;
+		SheetUtils::readToken (fp, value);
+		oneData.NPCQuality = atoi (value.c_str ());
+		SheetUtils::readToken (fp, value);
+		oneData.NPCPosX = atoi (value.c_str ());
+		SheetUtils::readToken (fp, value);
+		oneData.NPCPosY = atoi (value.c_str ());
+		SheetUtils::readToken (fp, value);
+		oneData.NPCPosZ = atoi (value.c_str ());
+		SheetUtils::readToken (fp, value);
+		oneData.NPCLevel = atoi (value.c_str ());
+		oneData._row_id = row_num++;
+		d.push_back (oneData);
+		if (!SheetUtils::skipChar (fp, '\n')) break;
+	}
+
+	data = new SheetNPCData[d.size()];
+	for (size_t i=0; i<d.size(); i++)
+		data[i] = d[i]; // SheetNPC
+
+	for (int i=0; i<row_num; i++) {
+		if (!index_ID.insert (std::pair<int, int> (d[i].ID, d[i]._row_id)).second) {
+			printf ("Index repeat Sheet[NPC] (ID=%d)", d[i].ID);
+		}
+		index_NPCPosX_NPCPosY.insert ( 
+			std::pair <_SheetIndexTypeNPCNPCPosXNPCPosY, int> 				(_SheetIndexTypeNPCNPCPosXNPCPosY (d[i].NPCPosX,d[i].NPCPosY), d[i]._row_id));
+	}
+	if (fp) fclose (fp);
+
+	return (0);
+}
+
+int SheetNPC::initLink ()
+{
+	return (0);
+}
+
+SheetNPCData* SheetNPC::tryFindByID (int _ID)
+{
+	map<int, int>::iterator itor = index_ID.find (_ID);
+	if (itor != index_ID.end()) {
+		return (&data[itor->second]);
+	}
+	else {
+		return (NULL);
+	}
+}
+
+SheetNPCData* SheetNPC::findByID (int _ID)
+{
+	SheetNPCData* retVal = tryFindByID (_ID);
+	if (NULL == retVal)
+		cout << "Sheet [NPC] Key [" << _ID << "] not exists\n";
+	return (retVal);
+}
+
+void SheetNPC::dump ()
+{
+	for (int i=0; i<row_num; i++) {
+		cout << "SheetNPC" << "[" << i << "] :: data." << "ID" << " = " << data[i].ID << endl;
+		cout << "SheetNPC" << "[" << i << "] :: data." << "NPCID" << " = " << data[i].NPCID << endl;
+		cout << "SheetNPC" << "[" << i << "] :: data." << "NPCName" << " = " << data[i].NPCName << endl;
+		cout << "SheetNPC" << "[" << i << "] :: data." << "NPCQuality" << " = " << data[i].NPCQuality << endl;
+		cout << "SheetNPC" << "[" << i << "] :: data." << "NPCPosX" << " = " << data[i].NPCPosX << endl;
+		cout << "SheetNPC" << "[" << i << "] :: data." << "NPCPosY" << " = " << data[i].NPCPosY << endl;
+		cout << "SheetNPC" << "[" << i << "] :: data." << "NPCPosZ" << " = " << data[i].NPCPosZ << endl;
+		cout << "SheetNPC" << "[" << i << "] :: data." << "NPCLevel" << " = " << data[i].NPCLevel << endl;
+	}
+}
+vector<SheetNPCData*> SheetNPC::findByNPCPosXNPCPosY (int _NPCPosX,int _NPCPosY)
+{
+	pair<multimap<_SheetIndexTypeNPCNPCPosXNPCPosY, int>::iterator, multimap<_SheetIndexTypeNPCNPCPosXNPCPosY, int>::iterator> i_f;
+	i_f = index_NPCPosX_NPCPosY.equal_range (_SheetIndexTypeNPCNPCPosXNPCPosY(_NPCPosX,_NPCPosY));
+	vector<SheetNPCData*> res;
+
+	for (multimap<_SheetIndexTypeNPCNPCPosXNPCPosY, int>::iterator itor = i_f.first; itor != i_f.second; itor++) {
+		res.push_back (&data[itor->second]);
+	}
+
+	return (res);
+}
 int SheetUtils::initSheets ()
 {
 	shTest = new SheetTest;
@@ -489,5 +663,8 @@ int SheetUtils::initSheets ()
 	shMonster = new SheetMonster;
 	if (shMonster->init() != 0) return (-1);
 	if (shMonster->initLink() != 0) return (-1);
+	shNPC = new SheetNPC;
+	if (shNPC->init() != 0) return (-1);
+	if (shNPC->initLink() != 0) return (-1);
 	return (0);
 }

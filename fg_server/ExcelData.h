@@ -97,7 +97,9 @@ enum InstFlag
     "\t}\n\n"                                           \
     "\tdata = new SheetxxxxxData[d.size()];\n"          \
     "\tfor (size_t i=0; i<d.size(); i++)\n"             \
-    "\t\tdata[i] = d[i];\n\n"                           \
+    "\t\tdata[i] = d[i]; // Sheetxxxxx\n\n"             \
+    "\tfor (int i=0; i<row_num; i++) {\n"               \
+    "\t}\n"                                             \
     \
     "\tif (fp) fclose (fp);\n\n"                        \
     \
@@ -282,8 +284,71 @@ enum InstFlag
     "\treturn (retVal);\n" \
     "}\n";
 
+///////////////////////////// AUTO INIT ///////////////////////////
+#define     STRUCTURE_INIT_FOR_BEGIN \
+    "\tfor (int i=0; i<row_num; i++) {\n"
+
+// KEY only one-record
+#if 0
+    index_ID.insert (std::pair<int, int> (d[i].ID, d[i]._row_id));
+    
+#endif
+#define     STRUCTURE_INIT_KEY_ONLY \
+    "\t\tindex_zzzzz.insert (std::pair<yyyyy, int> (d[i].zzzzz, d[i]._row_id));\n"
+    
+// MULTI-KEY
+#if 0
+        index_ClassLeveL_RoleQuality.insert ( \
+            std::pair <_SheetIndexTypeChangeClassClassLevelRoleQuality, int> (
+                _SheetIndexTypeChangeClassClassLevelRoleQuality (d[i].ClassLevel, d[i].RoleQuality), \
+                d[i]._row_id));
+#endif
+#define     STRUCTURE_INIT_KEY_MULTI \
+    "\t\tindex_aaaaa.insert ( \n" \
+    "\t\t\tstd::pair <bbbbb, int> " \
+    "\t\t\t\t(bbbbb (ccccc), d[i]._row_id));\n"
+    
+// PK
+#if 0
+    if (!index_ID.insert (std::pair<int, int> (d[i].ID, d[i]._row_id)).second) {
+        printf ("Index repeat Sheet[xxxxx] (ID=%d)", d[i].ID);
+    }
+#endif
+#define     STRUCTURE_INIT_PK \
+    "\t\tif (!index_zzzzz.insert (std::pair<yyyyy, int> (d[i].zzzzz, d[i]._row_id)).second) {\n" \
+    "\t\t\tprintf (\"Index repeat Sheet[xxxxx] (zzzzz=aaaaa)\", d[i].zzzzzbbbbb);\n" \
+    "\t\t}\n"
+    
+// UNIQUE    
+#if 0
+        if (!index_ClassLeveL_RoleQuality.insert ( \
+            std::pair <_SheetIndexTypeChangeClassClassLevelRoleQuality, int> (
+                _SheetIndexTypeChangeClassClassLevelRoleQuality (d[i].ClassLevel, d[i].RoleQuality), \
+                d[i]._row_id)).second) {
+                    printf ("Index repeat Sheet[xxxxx](ClassLevel=%d, RoleQuality=%d)" \
+                        d[i].ClassLevel, d[i].RoleQuality);
+        }
+#endif
+#define     STRUCTURE_INIT_UNIQUE \
+    "\t\tif (!index_aaaaa.insert ( \n" \
+    "\t\t\tstd::pair <bbbbb, int> (bbbbb (ccccc), d[i]._row_id)).second) {\n" \
+    "\t\t\t\tprintf (\"Index repeat Sheet[xxxxx](ddddd)\",\n" \
+    "\t\t\t\t\teeeee);\n" \
+    "\t\t}\n"
+    
+#define     STRUCTURE_INIT_FOR_END \
+    "\t}\n"
+    
 typedef pair<string, string> nameValue;
 
+
+namespace AssignUtils
+{
+    string getInitKey (string& sClassName, const char* fmt, ...);
+    string getInitMultiKey (string& sClassName, const char* fmt, ...);
+    string getInitPK (string& sClassName, const char* fmt, ...);
+    string getInitUnique (string& sClassName, const char* fmt, ...);
+};
 
 namespace ExcelStringUtils
 {
@@ -480,6 +545,8 @@ public:
     string productUniqueINH     (string&);
     string productUnique        (string&);
     
+    // Assign in InitFunction
+    string productAssignInFunction (string&);
 };
 
 class ExcelTable
