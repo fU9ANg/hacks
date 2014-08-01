@@ -1,0 +1,124 @@
+
+RPC:
+Remote Procedure Call
+
+
+Procedure种类:
+1. return Procedure (void);         // 无参有返回值的过程
+2. return Procedure (argument);     // 有参有返回值的过程
+3. void   Procedure (argument);     // 有参无返回值的过程
+4. void   Procedure (void);         // 无参无返回值的过程
+
+
+XML定义:
+// 无参有返回值的过程
+<function name="Arguemnt_NO_Return_YES" doc="无参有返回值的过程">
+    <!-- 返回值定义 -->
+    <ret name="ret1" type="datatype1" doc="返回值1"/>
+    ...
+    <ret name="retn" type="datatypen" doc="返回值n"/>
+</function>
+
+// 有参有返回值的过程
+<function name="Argument_YES_Return_YES" doc="有参有返回值的过程">
+    <!-- 参数定义 -->
+    <arg name="arg1" type="datatype1" doc="参数1"/>
+    ...
+    <arg name="argn" type="datatypen" doc="参数n"/>
+
+    <!-- 返回值定义 -->
+    <ret name="ret1" type="datatype1" doc="返回值1"/>
+    ...
+    <ret name="retn" type="datatypen" doc="返回值n"/>
+</function>
+
+// 有参无返回值的过程
+<function name="Argument_YES_Return_NO" doc="有参无返回值的过程">
+    <!-- 参数定义 -->
+    <arg name="arg1" type="datatype1" doc="参数1"/>
+    ...
+    <arg name="argn" type="datatypen" doc="参数n"/>
+</function>
+
+// 无参无返回值的过程
+<function name="Argument_NO_Return_NO" doc="无参无返回值的过程">
+</function>
+
+
+参数(Argument)和返回值(Return)的数据类型:
+TYPE:
+    int
+    string
+    user define datatype
+SIZE:
+    one (default)
+    arraySize
+    dynamic
+
+
+
+参数(Argument)和返回值(Return)对应的protobuf定义:
+message pb<FunctionName>Arg {
+    xxxxx datatype arg1 = 1;
+    xxxxx datatype arg2 = 2;
+    ...
+    xxxxx datatype argn = n;
+}
+
+message pb<FunctionName>Ret {
+    xxxxx datatype res1 = 1;
+    xxxxx datatype res2 = 2;
+    ...
+    xxxxx datatype resn = n;
+}
+
+
+Buf* 的格式定义:
++---------------+--------------------------+
+| function idex | protobuf message data ...|
++---------------+--------------------------+
+
+
+一些rpc.xml定义的例子:
+<rpc>
+<client>
+    <function name="UpdateHP" doc="">
+        <arg name="playerId" datatype="int32" doc=""/>
+        <arg name="hp" datatype="int64" doc=""/>
+        <arg name="hit" datatype="string" doc=""/>
+    </function>
+</client>
+<server>
+    <function name="GetBufferList" doc="">
+        <arg name="playerId" datatype="int32" doc=""/>
+        <ret name="buffer" datatype="BufferDB" doc=""/>
+    </function>
+</server>
+</rpc>
+<Type name="BufferDB">
+    <Property name="bufferId" datatype="int32" doc=""/>
+    <Property name="name" datatype="string" doc=""/>
+    <Property name="value" datatype="int32" doc=""/>
+    <Property name="posX" datatype="int64" doc=""/>
+    <Property name="posY" datatype="int64" doc=""/>
+    <Property name="posZ" datatype="int64" doc=""/>
+</Type>
+message pbBufferDB {
+    required int32 bufferId = 1;
+    required string name = 2;
+    required int32 value = 3;
+    required int64 posX = 4;
+    required int64 posY = 5;
+    required int64 posZ = 6;
+}
+message pbUpdateHPArg {
+    required int32 playerId = 1;
+    required int64 hp = 2;
+    required string hit = 3;
+}
+message pbGetBufferListArg {
+    required int32 playerId = 1;
+}
+message pbGetBufferListRet {
+    required pbBufferDB buffer = 1;
+}

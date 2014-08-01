@@ -1,0 +1,16 @@
+
+message cVector3 {
+    required string x = 1;
+    required string y = 2;
+    required string z = 3;
+}
+
+message cBufferNode {
+    optional int32 id          = 1;
+    optional int32 type        = 2;
+    optional string x = 3;
+    optional string y = 4;
+    optional string z = 5;
+    optional int32 value       = 6;
+    optional int32 time        = 7;
+}

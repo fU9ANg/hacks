@@ -1,0 +1,141 @@
+
+import "proto/proto.proto";
+package TankProtocol;
+
+
+// CT_Enter and ST_Enter
+message cEnter {
+}
+
+message cTankNode{
+    required int32 id       = 1;
+    required cVector3 position1 = 2;
+    required cVector3 position2 = 3;
+    required cVector3 position3 = 4;
+    required cVector3 direction = 5;
+    optional int32 hp           = 6;
+    required int32 damage       = 7;
+    repeated cBufferNode   list = 8;
+}
+message sEnter {
+    required int32  result  = 1;
+    required string message = 2;
+}
+
+// ST_AddTank
+message sAddTank {
+    required cTankNode node = 1;
+}
+
+// CT_GetTankList and ST_GetTankList
+message cGetTankList {
+}
+
+message sGetTankList {
+    repeated cTankNode   list = 1;
+}
+
+// CT_Attack and ST_Attack
+message cAttack {
+    required int32 AttackTankId = 1;
+    required int32 beAttackedTankId = 2;
+    required int32 damage = 3;
+}
+
+message sAttack {
+    required int32 AttackTankId = 1;
+    required int32 beAttackedTankId = 2;
+    required int32 damage = 3;
+}
+
+// CT_UpdateTankPos and ST_UpdateTankPos
+message cUpdateTankPos {
+    required int32 tankId  = 1;
+    required cVector3 position1 = 2;
+    required cVector3 position2 = 3;
+    required cVector3 position3 = 4;
+    required cVector3 direction = 5;
+    optional int32 hp   = 6;
+    required int32 damage       = 7;
+    repeated cBufferNode   list = 8;
+}
+
+
+// CT_AddBuff and ST_AddBuff
+message cAddBuff {
+    required int32 tankId  = 1;
+    required int32 bufferId= 2;
+}
+
+message sAddBuff {
+    required int32 tankId  = 1;
+    required int32 bufferId= 2;
+}
+
+// ST_AddBuffToBattleField
+message sAddBuffToBattleField {
+    required cBufferNode buffer = 1;
+}
+
+// ST_CleanBuff
+message sCleanBuff {
+    required int32 id = 1;
+}
+
+// CT_GetBuffList and ST_GetBuffList
+message cGetBuffList
+{
+}
+
+message sGetBuffList
+{
+    repeated cBufferNode list = 1;
+}
+
+// CT_GetCannonList and ST_GetCannonList
+message cCannonNode {
+    required int32 cannonId  = 1;
+    required cVector3 position1 = 2;
+    required cVector3 position2 = 3;
+    required cVector3 position3 = 4;
+    required cVector3 direction = 5;
+    required int32   damage  = 6;
+    required int32   area    = 7;
+}
+
+message cGetCannonList {
+}
+
+message sGetCannonList {
+    repeated cCannonNode list = 1;
+}
+
+// ST_UpdateCannonAttack
+message sUpdateCannonAttack {
+    required int32  cannonId = 1;
+    required int32  tankId   = 2;
+    required int32    damage = 3;
+}
+
+// CT_Death and ST_Death
+message cDeath {
+    required int32 tankId = 1;
+}
+
+message sDeath {
+    required int32 tankId = 1;
+}
+
+// CT_Reborn and ST_Reborn
+message cReborn {
+    required int32 tankId = 1;
+}
+
+message sReborn {
+    required int32 tankId = 1;
+}
+
+message sLogout {
+    required int32 tankId = 1;
+}
+
