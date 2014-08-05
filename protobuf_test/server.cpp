@@ -11,8 +11,60 @@
 
 #include "message/proto/protocol.pb.h"
 
+#include "RpcManager.h"
+
 #define MAXLINE 4096
 using namespace std;
+
+string packet (void)
+{
+    ServerProtocol::pbGetTankListRet GetTankListRet_;
+    pbTank*          tank_ = NULL;
+    pbVector3*       vec3_ = NULL;
+    pbBuffer*        buffer_ = NULL;
+    for (int i=100; i<103; i++) {
+        tank_ = GetTankListRet_.add_list ();
+        if (tank_) {
+            // id
+            tank_->set_id (i);
+
+            // position
+            vec3_ = new pbVector3;
+            vec3_->set_x (2*i + i);
+            vec3_->set_y (3*i + i);
+            vec3_->set_z (1*i + i);
+            tank_->set_allocated_pos (vec3_);
+
+            // direction
+            vec3_ = new pbVector3;
+            vec3_->set_x (4*i + i);
+            vec3_->set_y (5*i + i);
+            vec3_->set_z (6*i + i);
+            tank_->set_allocated_dir (vec3_);
+
+            // hp
+            tank_->set_hp (100);
+
+            // buffer list
+            for (int j=1; j<5; j++) {
+                buffer_ = tank_->add_list ();
+                if (buffer_) {
+                    buffer_->set_id (j);
+                    vec3_ = new pbVector3;
+                    vec3_->set_x (1*j + j);
+                    vec3_->set_y (2*j + j);
+                    vec3_->set_z (3*j + j);
+                    buffer_->set_allocated_pos (vec3_);
+                    buffer_->set_type (50);
+                    buffer_->set_value (190);
+                }
+            }
+        }
+    }
+    string sStr;
+    GetTankListRet_.SerializeToString (&sStr);
+    return (sStr);
+}
 
 int
 main (int argc, char **argv)
@@ -43,6 +95,9 @@ main (int argc, char **argv)
 
     listen (listenfd, 5);
 
+
+    RPCMANAGER->InitFunctionMap();
+
     while (1)
     {
         clilen = sizeof (cliaddr);
@@ -53,86 +108,31 @@ main (int argc, char **argv)
             exit (1);
         }
 
+        // recv
+        char recvbuf[MAXLINE];
+        int n;
+        if ((n = read (connfd, recvbuf, sizeof (recvbuf))) > 0) {
+                recvbuf[n] = 0x00;
 
-        ServerProtocol::pbGetTankListRet GetTankListRet_;
-        pbTank*          tank_ = NULL;
-        pbVector3*       vec3_ = NULL;
-        pbBuffer*        buffer_ = NULL;
 
-        for (int i=100; i<103; i++) {
-            tank_ = GetTankListRet_.add_list ();
-            if (tank_) {
-                // id
-                tank_->set_id (i);
+                int index_ = *(int*) recvbuf;
+                printf ("index = %i\n", index_);
 
-                // position
-                vec3_ = new pbVector3;
-                vec3_->set_x (2*i + i);
-                vec3_->set_y (3*i + i);
-                vec3_->set_z (1*i + i);
-                tank_->set_allocated_pos (vec3_);
-
-                // direction
-                vec3_ = new pbVector3;
-                vec3_->set_x (4*i + i);
-                vec3_->set_y (5*i + i);
-                vec3_->set_z (6*i + i);
-                tank_->set_allocated_dir (vec3_);
-
-                // hp
-                tank_->set_hp (100);
-
-                // buffer list
-                for (int j=1; j<5; j++) {
-                    buffer_ = tank_->add_list ();
-                    if (buffer_) {
-                        buffer_->set_id (j);
-                        vec3_ = new pbVector3;
-                        vec3_->set_x (1*j + j);
-                        vec3_->set_y (2*j + j);
-                        vec3_->set_z (3*j + j);
-                        buffer_->set_allocated_pos (vec3_);
-                        buffer_->set_type (50);
-                        buffer_->set_value (190);
-                    }
-                }
-            }
+#if 1
+                RPCMANAGER->StartFunctionCall (recvbuf);
+#else
+#endif
         }
-        string sStr;
-        GetTankListRet_.SerializeToString (&sStr);
+
+        if (n < 0) {
+                perror ("read");
+                exit (1);
+        }
+
+        // send
+        cout << "Response Message To Client." << endl;
+        string sStr = packet ();
         write (connfd, sStr.c_str(), sStr.size ());
-/*
-        pbTank node;
-        pbVector3 *vec3 = NULL;
-
-        node.set_id (1000);
-        vec3 = new cVector3;
-        vec3->set_x ("111.11");
-        vec3->set_y ("222.22");
-        vec3->set_z ("333.33");
-        node.set_allocated_position (vec3);
-       
-        vec3 = new cVector3;
-        vec3->set_x ("444.44");
-        vec3->set_y ("555.55");
-        vec3->set_z ("666.66");
-        node.set_allocated_direction (vec3);
-       
-        node.set_hp (100);
-        
-        
-        pbBuffer* bn;
-        for (int i=0; i<2; i++) {
-            bn = node.add_list ();
-            bn->set_id (801);
-            bn->set_type (5);
-            bn->set_value (900);
-        }
-        
-        string sNode;
-        node.SerializeToString (&sNode);
-        write (connfd, sNode.c_str(), sNode.size ());
-*/
         
         close (connfd);
     }

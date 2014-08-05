@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RPC>
+    <!-- server call client function -->
+    <S2C>
+        <function name="AddTank" doc="添加一个坦克">
+            <ret name="tank" type="TankDB" doc="坦克"/>
+        </function>
+
+        <function name="BeAttack" doc="被攻击">
+            <ret name="tankId" type="int" doc="攻击者ID"/>
+            <ret name="beTankId" type="int" doc="被攻击者ID"/>
+        </function>
+
+        <function name="AddBuffToBattleField" doc="添加一个坦克到战场上">
+            <ret name "tank" type="TankDB" doc="战场坦克"/>
+        </function>
+
+        <function name="UpdateCannonAttack" doc="更新炮台攻击">
+            <ret name="cannonId" type="int" doc="炮台Id"/>
+            <ret name="tankId" type="int" doc="坦克Id"/>
+        </function>
+    </S2C>
+
+    <!-- client call server function -->
+    <C2S>
+        <function name="UpdateHeart" doc="心跳包"/>
+        <function name="LoginPlayer" doc="玩家进入">
+            <arg name="username" type="string" doc="用户名"/>
+            <arg name="password" type="string" doc="密码"/>
+            <ret name="result" type="int" doc="返回的登录码"/>
+            <ret name="message" type="string" doc="返回信息"/>
+        </function>
+
+        <function name="GetTankList" doc="获得坦克列表">
+            <ret name="tankList" type="TankDB" arraySize="Dynamic" doc="坦克列表"/>
+        </function>
+
+        <function name="GetBuffList" doc="获得Buff列表">
+            <ret name="buffList" type="BuffDB" arraySize="Dynamic" doc="Buffer列表"/>
+        </function>
+
+        <function name="GetCannonList" doc="获得炮台列表">
+            <ret name="cannonList" type="CannonDB" arraySize="Dynamic" doc="炮台列表"/>
+        </function>
+
+        <function name="Attack" doc="攻击">
+            <arg name="tankId" type="int" doc="攻击者ID"/>
+            <arg name="beTankId" type="int" doc="被攻击者ID"/>
+            <ret name="rs" type="int">
+                <errcode code="1" success="true" doc="成功"/>
+                <errcode code="2" notify="攻击者ID非法"/>
+                <errcode code="3" notify="被攻击者ID非法"/>
+                <errcode code="4" notify="其它错误"/>
+            </ret>
+        </function>
+    </C2S>
+</RPC>

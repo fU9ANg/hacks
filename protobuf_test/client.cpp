@@ -37,18 +37,32 @@ main (int argc, char ** argv)
     memset (&servaddr, 0x00, sizeof (servaddr));
     servaddr.sin_family = AF_INET;
     servaddr.sin_port   = htons (1300);
-    if (::inet_pton (AF_INET, *(argv+1), &servaddr.sin_addr.s_addr) < 0)
-    {
+    if (::inet_pton (AF_INET, *(argv+1), &servaddr.sin_addr.s_addr) < 0) {
         perror ("inet_pton");
         exit (1);
     }
 
-    if ((connect (sockfd, (struct sockaddr *) &servaddr, sizeof (servaddr))) < 0)
-    {
+    if ((connect (sockfd, (struct sockaddr *) &servaddr, sizeof (servaddr))) < 0) {
         perror ("connect");
         exit (1);
     }
 
+    // send
+    char sIndex[6];
+    char sSendBuffer[MAXLINE];
+    (void) memset (sSendBuffer, 0x00, sizeof (sSendBuffer));
+    (void) memset (sIndex, 0x00, sizeof (sIndex));
+    *(int*) sIndex = 2;
+
+    ServerProtocol::pbGetTankListArg GetTankListArg_;
+    GetTankListArg_.set_playerid (2000);
+    string sendStr;
+    GetTankListArg_.SerializeToString (&sendStr);
+    (void) memcpy (sSendBuffer, sIndex, 4);
+    (void) memcpy (sSendBuffer+4, sendStr.c_str(), sendStr.size());
+    write (sockfd, sSendBuffer, sizeof (sSendBuffer));
+
+    // recv
     while ((n = read (sockfd, recvbuf, sizeof (recvbuf))) > 0)
     {
         recvbuf[n] = 0x00;

@@ -1,0 +1,36 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+GetTankList	rpcfunctions/GetTankList.h	/^    class GetTankList : public RpcFunctionBase$/;"	c	namespace:RpcFunctions
+GetTankList_HANDLER	ServerRpc.cpp	/^RpcFunctionBase* ServerRpc::GetTankList_HANDLER (char *data)$/;"	f	class:ServerRpc
+InitFunctionMap	ServerRpc.cpp	/^void RpcManager::InitFunctionMap()$/;"	f	class:RpcManager
+Instance	RpcManager.cpp	/^RpcManager* RpcManager::Instance ()$/;"	f	class:RpcManager
+Invoke	rpcfunctions/GetTankList.cpp	/^void RpcFunctions::GetTankList::Invoke (int playerid)$/;"	f	class:RpcFunctions::GetTankList
+Invoke	rpcfunctions/Login.cpp	/^void RpcFunctions::Login::Invoke (int clientid, int clienttype, string username, string password)$/;"	f	class:RpcFunctions::Login
+Login	rpcfunctions/Login.h	/^    class Login : public RpcFunctionBase $/;"	c	namespace:RpcFunctions
+Login_HANDLER	ServerRpc.cpp	/^RpcFunctionBase* ServerRpc::Login_HANDLER (char *data)$/;"	f	class:ServerRpc
+MAXLINE	client.cpp	14;"	d	file:
+MAXLINE	server.cpp	16;"	d	file:
+RPCMANAGER	RpcManager.h	33;"	d
+RpcFunctionBase	rpcfunctions/RpcFunctionBase.h	/^class RpcFunctionBase$/;"	c
+RpcFunctions	rpcfunctions/GetTankList.h	/^namespace RpcFunctions {$/;"	n
+RpcFunctions	rpcfunctions/Login.h	/^namespace RpcFunctions {$/;"	n
+RpcManager	RpcManager.h	/^class RpcManager$/;"	c
+ServerRpc	ServerRpc.h	/^class ServerRpc$/;"	c
+StartFunctionCall	RpcManager.cpp	/^bool RpcManager::StartFunctionCall (char* buffer)$/;"	f	class:RpcManager
+_GETTANKLIST_H	rpcfunctions/GetTankList.h	3;"	d
+_RPCFUNCTIONBASE_H_	ServerRpc.h	3;"	d
+_RPC_LOGIN_	rpcfunctions/Login.h	3;"	d
+_RPC_MANAGER_H	RpcManager.h	4;"	d
+__RPCFUNCTIONBASE_H_	rpcfunctions/RpcFunctionBase.h	3;"	d
+main	client.cpp	/^main (int argc, char ** argv)$/;"	f
+main	server.cpp	/^main (int argc, char **argv)$/;"	f
+pInstance	RpcManager.cpp	/^RpcManager* RpcManager::pInstance = NULL;$/;"	m	class:RpcManager	file:
+pInstance	RpcManager.h	/^    static RpcManager *pInstance;$/;"	m	class:RpcManager
+packet	server.cpp	/^string packet (void)$/;"	f
+rpc_handler_function_t	RpcManager.h	/^    typedef std::tr1::function<RpcFunctionBase* (char* data)> rpc_handler_function_t;$/;"	t	class:RpcManager
+sHandlerMap	RpcManager.cpp	/^RpcManager::rpc_handler_function_t RpcManager::sHandlerMap[];$/;"	m	class:RpcManager	file:
+sHandlerMap	RpcManager.h	/^    static rpc_handler_function_t sHandlerMap[500];$/;"	m	class:RpcManager

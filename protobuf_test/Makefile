@@ -23,7 +23,12 @@ LIB         = -lprotobuf
 # objects
 
 MESSAGEOBJS = message/proto/protocol.pb.o message/proto/proto.pb.o
-SERVEROBJS  = server.o
+SERVEROBJS  = server.o \
+              rpcfunctions/RpcFunctionBase.o \
+              rpcfunctions/Login.o \
+              rpcfunctions/GetTankList.o \
+              ServerRpc.o \
+              RpcManager.o
 CLIENTOBJS  = client.o 
 OBJS        = $(MESSAGEOBJS) $(SERVEROBJS) $(CLIENTOBJS)
 
@@ -31,7 +36,7 @@ OBJS        = $(MESSAGEOBJS) $(SERVEROBJS) $(CLIENTOBJS)
 BIN	        = server client
 
 # where are include files kept
-INC	        = -I. -I./message
+INC	        = -I. -I./message -I./rpcfunctions
 
 # rock..
 all: clean precompile_protobuf $(BIN)
