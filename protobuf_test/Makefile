@@ -22,7 +22,7 @@ LIB         = -lprotobuf
 
 # objects
 
-MESSAGEOBJS = message/proto/login.pb.o
+MESSAGEOBJS = message/proto/protocol.pb.o message/proto/proto.pb.o
 SERVEROBJS  = server.o
 CLIENTOBJS  = client.o 
 OBJS        = $(MESSAGEOBJS) $(SERVEROBJS) $(CLIENTOBJS)

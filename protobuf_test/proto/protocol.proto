@@ -1,0 +1,38 @@
+
+import "proto/proto.proto";
+package ServerProtocol;
+
+message pbLoginArg
+{
+    required int32  clientid    = 1;
+    required int32  clienttype  = 2;
+    required float  quality     = 3;
+    required string username    = 4;
+    required string password    = 5;
+}
+
+message pbLoginRet
+{
+    required int32  rlt         = 1;
+    required string message     = 2;
+}
+
+message pbGetTankListArg
+{
+    required int32  playerid    = 1;
+}
+
+message pbGetTankListRet
+{
+    repeated pbTank list        = 1;
+}
+
+message pbLogoutArg
+{
+}
+
+message pbLogoutRet
+{
+    required int32  rlt         = 1;
+    required string message     = 2;
+}

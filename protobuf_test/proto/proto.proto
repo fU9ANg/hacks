@@ -1,0 +1,25 @@
+
+message pbVector3
+{
+    required int32     x     = 1;
+    required int32     y     = 2;
+    required int32     z     = 3;
+}
+
+message pbBuffer
+{
+    required int32     id    = 1;
+    required pbVector3 pos   = 2;
+    required int32     type  = 3;
+    required int32     value = 4;
+}
+
+message pbTank
+{
+    required int32     id    = 1;
+    required pbVector3 pos   = 2;
+    required pbVector3 dir   = 3;
+    optional int32     hp    = 4;
+    repeated pbBuffer  list  = 5;
+}
+

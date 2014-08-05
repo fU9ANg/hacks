@@ -9,7 +9,8 @@
 #include <iostream>
 #include <string>
 
-#include "message/proto/login.pb.h"
+#include "message/proto/protocol.pb.h"
+
 #define MAXLINE 4096
 
 using namespace std;
@@ -52,62 +53,37 @@ main (int argc, char ** argv)
     {
         recvbuf[n] = 0x00;
 
-#if 0
-        string sLogin;
-        Login  login;
-        sLogin = recvbuf;
-        login.ParseFromString (sLogin);
-        cout << "id = " << login.clientid () << endl; 
-        cout << "type = " << login.clienttype () << endl; 
-        cout << "login username = " << login.username () << endl;
-        cout << "login password = " << login.password () << endl;
-#else
-#if 0
-        string sVector3;
-        cVector3 vec3;
-        sVector3 = recvbuf;
-        vec3.ParseFromString (sVector3);
-        cout << "x = " << vec3.x() << endl; 
-        cout << "y = " << vec3.y() << endl; 
-        cout << "z = " << vec3.z() << endl;
-#else
-#if 0
-        string sNode;
-        cBufferNode node;
-        sNode = recvbuf;
-        node.ParseFromString (sNode);
-        cout << "id = " << node.id () << endl;
-        cout << "type = " << node.type () << endl;
-        cout << "value = " << node.value () << endl;
-#else
-        string sNode;
-        cTankNode node;
-        cVector3 vec3;
-        cBufferNode bn;
+        string sRecvStr;
+        ServerProtocol::pbGetTankListRet GetTankListRet_;
+        pbTank tank;
+        pbBuffer bn;
 
-        sNode = recvbuf;
-        node.ParseFromString (sNode);
+        sRecvStr = recvbuf;
+        GetTankListRet_.ParseFromString (sRecvStr);
 
-        cout << "id = " << node.id () << endl;
-        cout << "position.x  = " << node.position().x()  << endl;
-        cout << "position.y  = " << node.position().y()  << endl;
-        cout << "position.z  = " << node.position().z()  << endl;
-        cout << "direction.x = " << node.direction().x() << endl;
-        cout << "direction.y = " << node.direction().y() << endl;
-        cout << "direction.z = " << node.direction().z() << endl;
+        for (int i=0; i<GetTankListRet_.list_size (); i++) {
+            printf ("--------------------- Tank[%i] --------------------\n", i);
+            tank = GetTankListRet_.list (i);
+            cout << "id = " << tank.id () << endl;
+            cout << "pos.x = " << tank.pos().x() << endl;
+            cout << "pos.y = " << tank.pos().y() << endl;
+            cout << "pos.z = " << tank.pos().z() << endl;
+            cout << "dir.x = " << tank.dir().x() << endl;
+            cout << "dir.y = " << tank.dir().y() << endl;
+            cout << "dir.z = " << tank.dir().z() << endl;
 
-        int size = node.list_size ();
-        for (int i=0; i<size; i++) {
-            bn = node.list (i);
-            cout << "buffer" << i << ".id = " << bn.id () << endl;
-            cout << "buffer" << i << ".type = " << bn.type () << endl;
-            cout << "buffer" << i << ".value = " << bn.value () << endl;
+            for (int j=0; j<tank.list_size(); j++) {
+                printf ("++++ Buffer[%i] of Tank[%i] ++++\n", j, i);
+                bn = tank.list (j);
+                cout << "buffer" << i << ".id = " << bn.id () << endl;
+                cout << "pos.x = " << bn.pos().x() << endl;
+                cout << "pos.y = " << bn.pos().y() << endl;
+                cout << "pos.z = " << bn.pos().z() << endl;
+                cout << "buffer" << i << ".type = " << bn.type () << endl;
+                cout << "buffer" << i << ".value = " << bn.value () << endl;
+            }
+            cout << "hp = " << tank.hp () << endl;
         }
-
-        cout << "hp = " << node.hp () << endl;
-#endif
-#endif
-#endif
     }
 
     if (n < 0)
