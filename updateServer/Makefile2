@@ -1,0 +1,206 @@
+#
+# Makefile for the bulletLibrary
+#
+
+# which c plus plus compiler
+CPP     = ccache g++ -Wno-delete-non-virtual-dtor -Wno-unused-but-set-variable -Wno-unused-variable -Wno-reorder -Wno-int-to-pointer-cast
+
+# which c compiler
+CC      = ccache cc -Wno-delete-non-virtual-dtor -Wno-unused-but-set-variable -Wno-unused-variable -Wno-reorder -Wno-int-to-pointer-cast
+
+# which ar command
+AR		= ar -rcs
+
+# options for compiler
+CFLAGS  = -Wall -Werror
+
+# flags of buildhouse
+BHFLAGS	= -D__DEBUG_DUMP__ \
+	      -D__DEBUG__
+
+# is debug? (for development)
+CDEBUG  = -g -DDEBUG
+
+OBJS	= ./LinearMath/btAlignedAllocator.o \
+		  ./LinearMath/btConvexHull.o \
+		  ./LinearMath/btConvexHullComputer.o \
+		  ./LinearMath/btGeometryUtil.o \
+		  ./LinearMath/btPolarDecomposition.o \
+		  ./LinearMath/btQuickprof.o \
+		  ./LinearMath/btSerializer.o \
+		  ./LinearMath/btVector3.o \
+		  ./BulletDynamics/Vehicle/btRaycastVehicle.o \
+		  ./BulletDynamics/Vehicle/btWheelInfo.o \
+		  ./BulletDynamics/MLCPSolvers/btDantzigLCP.o \
+		  ./BulletDynamics/MLCPSolvers/btMLCPSolver.o \
+		  ./BulletDynamics/Featherstone/btMultiBody.o \
+		  ./BulletDynamics/Featherstone/btMultiBodyConstraint.o \
+		  ./BulletDynamics/Featherstone/btMultiBodyConstraintSolver.o \
+		  ./BulletDynamics/Featherstone/btMultiBodyDynamicsWorld.o \
+		  ./BulletDynamics/Featherstone/btMultiBodyJointLimitConstraint.o \
+		  ./BulletDynamics/Featherstone/btMultiBodyJointMotor.o \
+		  ./BulletDynamics/Featherstone/btMultiBodyPoint2Point.o \
+		  ./BulletDynamics/Dynamics/Bullet-C-API.o \
+		  ./BulletDynamics/Dynamics/btDiscreteDynamicsWorld.o \
+		  ./BulletDynamics/Dynamics/btRigidBody.o \
+		  ./BulletDynamics/Dynamics/btSimpleDynamicsWorld.o \
+		  ./BulletDynamics/ConstraintSolver/btConeTwistConstraint.o \
+		  ./BulletDynamics/ConstraintSolver/btContactConstraint.o \
+		  ./BulletDynamics/ConstraintSolver/btFixedConstraint.o \
+		  ./BulletDynamics/ConstraintSolver/btGearConstraint.o \
+		  ./BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.o \
+		  ./BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.o \
+		  ./BulletDynamics/ConstraintSolver/btHinge2Constraint.o \
+		  ./BulletDynamics/ConstraintSolver/btHingeConstraint.o \
+		  ./BulletDynamics/ConstraintSolver/btPoint2PointConstraint.o \
+		  ./BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.o \
+		  ./BulletDynamics/ConstraintSolver/btSliderConstraint.o \
+		  ./BulletDynamics/ConstraintSolver/btSolve2LinearConstraint.o \
+		  ./BulletDynamics/ConstraintSolver/btTypedConstraint.o \
+		  ./BulletDynamics/ConstraintSolver/btUniversalConstraint.o \
+		  ./BulletDynamics/Character/btKinematicCharacterController.o \
+		  ./BulletCollision/NarrowPhaseCollision/btContinuousConvexCollision.o \
+		  ./BulletCollision/NarrowPhaseCollision/btConvexCast.o \
+		  ./BulletCollision/NarrowPhaseCollision/btGjkConvexCast.o \
+		  ./BulletCollision/NarrowPhaseCollision/btGjkEpa2.o \
+		  ./BulletCollision/NarrowPhaseCollision/btGjkEpaPenetrationDepthSolver.o \
+		  ./BulletCollision/NarrowPhaseCollision/btGjkPairDetector.o \
+		  ./BulletCollision/NarrowPhaseCollision/btMinkowskiPenetrationDepthSolver.o \
+		  ./BulletCollision/NarrowPhaseCollision/btPersistentManifold.o \
+		  ./BulletCollision/NarrowPhaseCollision/btPolyhedralContactClipping.o \
+		  ./BulletCollision/NarrowPhaseCollision/btRaycastCallback.o \
+		  ./BulletCollision/NarrowPhaseCollision/btSubSimplexConvexCast.o \
+		  ./BulletCollision/NarrowPhaseCollision/btVoronoiSimplexSolver.o \
+		  ./BulletCollision/Gimpact/btContactProcessing.o \
+		  ./BulletCollision/Gimpact/btGImpactBvh.o \
+		  ./BulletCollision/Gimpact/btGImpactCollisionAlgorithm.o \
+		  ./BulletCollision/Gimpact/btGImpactQuantizedBvh.o \
+		  ./BulletCollision/Gimpact/btGImpactShape.o \
+		  ./BulletCollision/Gimpact/btGenericPoolAllocator.o \
+		  ./BulletCollision/Gimpact/btTriangleShapeEx.o \
+		  ./BulletCollision/Gimpact/gim_box_set.o \
+		  ./BulletCollision/Gimpact/gim_contact.o \
+		  ./BulletCollision/Gimpact/gim_memory.o \
+		  ./BulletCollision/Gimpact/gim_tri_collision.o \
+		  ./BulletCollision/CollisionShapes/btBox2dShape.o \
+		  ./BulletCollision/CollisionShapes/btBoxShape.o \
+		  ./BulletCollision/CollisionShapes/btBvhTriangleMeshShape.o \
+		  ./BulletCollision/CollisionShapes/btCapsuleShape.o \
+		  ./BulletCollision/CollisionShapes/btCollisionShape.o \
+		  ./BulletCollision/CollisionShapes/btCompoundShape.o \
+		  ./BulletCollision/CollisionShapes/btConcaveShape.o \
+		  ./BulletCollision/CollisionShapes/btConeShape.o \
+		  ./BulletCollision/CollisionShapes/btConvex2dShape.o \
+		  ./BulletCollision/CollisionShapes/btConvexHullShape.o \
+		  ./BulletCollision/CollisionShapes/btConvexInternalShape.o \
+		  ./BulletCollision/CollisionShapes/btConvexPointCloudShape.o \
+		  ./BulletCollision/CollisionShapes/btConvexPolyhedron.o \
+		  ./BulletCollision/CollisionShapes/btConvexShape.o \
+		  ./BulletCollision/CollisionShapes/btConvexTriangleMeshShape.o \
+		  ./BulletCollision/CollisionShapes/btCylinderShape.o \
+		  ./BulletCollision/CollisionShapes/btEmptyShape.o \
+		  ./BulletCollision/CollisionShapes/btHeightfieldTerrainShape.o \
+		  ./BulletCollision/CollisionShapes/btMinkowskiSumShape.o \
+		  ./BulletCollision/CollisionShapes/btMultiSphereShape.o \
+		  ./BulletCollision/CollisionShapes/btMultimaterialTriangleMeshShape.o \
+		  ./BulletCollision/CollisionShapes/btOptimizedBvh.o \
+		  ./BulletCollision/CollisionShapes/btPolyhedralConvexShape.o \
+		  ./BulletCollision/CollisionShapes/btScaledBvhTriangleMeshShape.o \
+		  ./BulletCollision/CollisionShapes/btShapeHull.o \
+		  ./BulletCollision/CollisionShapes/btSphereShape.o \
+		  ./BulletCollision/CollisionShapes/btStaticPlaneShape.o \
+		  ./BulletCollision/CollisionShapes/btStridingMeshInterface.o \
+		  ./BulletCollision/CollisionShapes/btTetrahedronShape.o \
+		  ./BulletCollision/CollisionShapes/btTriangleBuffer.o \
+		  ./BulletCollision/CollisionShapes/btTriangleCallback.o \
+		  ./BulletCollision/CollisionShapes/btTriangleIndexVertexArray.o \
+		  ./BulletCollision/CollisionShapes/btTriangleIndexVertexMaterialArray.o \
+		  ./BulletCollision/CollisionShapes/btTriangleMesh.o \
+		  ./BulletCollision/CollisionShapes/btTriangleMeshShape.o \
+		  ./BulletCollision/CollisionShapes/btUniformScalingShape.o \
+		  ./BulletCollision/CollisionDispatch/SphereTriangleDetector.o \
+		  ./BulletCollision/CollisionDispatch/btActivatingCollisionAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btBox2dBox2dCollisionAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btBoxBoxCollisionAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btBoxBoxDetector.o \
+		  ./BulletCollision/CollisionDispatch/btCollisionDispatcher.o \
+		  ./BulletCollision/CollisionDispatch/btCollisionObject.o \
+		  ./BulletCollision/CollisionDispatch/btCollisionWorld.o \
+		  ./BulletCollision/CollisionDispatch/btCompoundCollisionAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btCompoundCompoundCollisionAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btConvex2dConvex2dAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btConvexConcaveCollisionAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btConvexConvexAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btConvexPlaneCollisionAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.o \
+		  ./BulletCollision/CollisionDispatch/btEmptyCollisionAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btGhostObject.o \
+		  ./BulletCollision/CollisionDispatch/btHashedSimplePairCache.o \
+		  ./BulletCollision/CollisionDispatch/btInternalEdgeUtility.o \
+		  ./BulletCollision/CollisionDispatch/btManifoldResult.o \
+		  ./BulletCollision/CollisionDispatch/btSimulationIslandManager.o \
+		  ./BulletCollision/CollisionDispatch/btSphereBoxCollisionAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btSphereTriangleCollisionAlgorithm.o \
+		  ./BulletCollision/CollisionDispatch/btUnionFind.o \
+		  ./BulletCollision/BroadphaseCollision/btAxisSweep3.o \
+		  ./BulletCollision/BroadphaseCollision/btBroadphaseProxy.o \
+		  ./BulletCollision/BroadphaseCollision/btCollisionAlgorithm.o \
+		  ./BulletCollision/BroadphaseCollision/btDbvt.o \
+		  ./BulletCollision/BroadphaseCollision/btDbvtBroadphase.o \
+		  ./BulletCollision/BroadphaseCollision/btDispatcher.o \
+		  ./BulletCollision/BroadphaseCollision/btMultiSapBroadphase.o \
+		  ./BulletCollision/BroadphaseCollision/btOverlappingPairCache.o \
+		  ./BulletCollision/BroadphaseCollision/btQuantizedBvh.o \
+		  ./BulletCollision/BroadphaseCollision/btSimpleBroadphase.o
+
+
+
+# archive static library 
+BIN	    = libBulletLibrary.a
+
+# where are include files kept
+INC	    = -I. \
+		  -I./BulletCollision/BroadphaseCollision \
+		  -I./BulletCollision/NarrowPhaseCollision \
+		  -I./BulletCollision/Gimpact \
+		  -I./BulletCollision/CollisionDispatch \
+		  -I./BulletCollision/CollisionShapes \
+		  -I./BulletDynamics/ConstraintSolver \
+		  -I./BulletDynamics/MLCPSolvers \
+		  -I./BulletDynamics/Dynamics \
+		  -I./BulletDynamics/Character \
+		  -I./BulletDynamics/Featherstone \
+		  -I./BulletDynamics/Vehicle \
+		  -I./LinearMath
+
+# for Linker
+LINK        = -lpthread
+
+
+# rock..
+all:$(BIN)
+
+# how to compiling programs
+$(BIN):$(OBJS)
+	@echo -ne '\nArchiving target: $@\n'
+	$(AR) $@ $(OBJS)
+	@echo -ne 'Finished archiving target: $@\n'
+
+%.o:%.cpp
+	@echo -ne '\nBuilding target: $<\n'
+	$(CPP) $(CFLAGS) $(CDEBUG) $(CMACRO) $(INC) -o $@ -c $<
+	@echo -ne 'Finished building target: $<\n'
+%.o:%.cc
+	@echo -ne '\nBuilding target: $<\n'
+	$(CPP) $(CFLAGS) $(CDEBUG) $(CMACRO) $(INC) -o $@ -c $<
+	@echo -ne 'Finished building target: $<\n'
+%.o:%.c
+	@echo -ne '\nBuilding target: $<\n'
+	$(CC)  $(CFLAGS) $(CDEBUG) $(CMACRO) $(INC) -o $@ -c $<
+	@echo -ne 'Finished building target: $<\n'
+
+.PHONY: clean
+
+clean:
+	-rm -rf $(OBJS) $(BIN) *~ logs .lock

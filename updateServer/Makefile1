@@ -1,0 +1,150 @@
+#
+# makefile for AIServer
+#
+
+# set src, dst directory and flags for protobuf
+PROTOC      = protoc
+PBFLAGS     = --cpp_out
+PBSRC       = ./proto
+PBDST       = ./message
+
+CPPCOMPILERVERSION=`g++ --version | awk '{if (NR==1) {{print $4}}}'`
+
+ifeq ($(findstring "4.8.2", $(CPPCOMPILERVERSION)), "")
+CPP     = ccache g++ -Wno-delete-non-virtual-dtor -Wno-unused-but-set-variable -Wno-unused-variable -Wno-reorder -Wno-int-to-pointer-cast
+else
+CPP     = ccache g++ -Wno-unused-but-set-variable -Wno-unused-variable -Wno-reorder -Wno-int-to-pointer-cast
+endif
+
+# which c compiler
+CC      = ccache cc -Wno-delete-non-virtual-dtor -Wno-unused-but-set-variable -Wno-unused-variable -Wno-reorder -Wno-int-to-pointer-cast
+
+# options for compiler
+CFLAGS  = -Wall -Werror
+
+# flags of (compiler or linker)
+CPPFLAGS= \
+	  -DDEBUG \
+	  -D__DEBUG_HANDLE_HEAD_ \
+	  -D__DEBUG_DUMP__ \
+	  -D___DEBUG__ \
+	  -D__D_PROTOBUF_PACKET \
+	  -D__DEBUG_HANDLE_HEAD_
+
+
+# is debug? (for development)
+CDEBUG  = -g
+
+# objects
+OBJS    = 	main.o \
+		Config.o \
+		SendTask.o \
+		Evloop.o \
+		Sock.o \
+		Single.o \
+		ThreadPool.o \
+		RecvTask.o \
+		AuthTask.o \
+		ProcessManager.o \
+		Confirm.o \
+		AddBufferToBattleFieldTask.o \
+		CannonAutoAttackTask.o \
+		UpdateShipTask.o \
+		\
+		handler/HandleMessage.o \
+		handler/HandleSystem.o \
+		handler/HandleAddBuff.o \
+		handler/HandleAttack.o \
+		handler/HandleDeath.o \
+		handler/HandleReborn.o \
+		handler/HandleEnter.o \
+		handler/HandleGetBuffList.o \
+		handler/HandleGetCannonList.o \
+		handler/HandleGetTankList.o \
+		handler/HandleUpdateTankPos.o \
+		handler/HandleUpdateTankDir.o \
+		handler/HandleLockAndUnLockTarget.o \
+		\
+        content/tkBattlefield.o \
+        content/tkCannon.o \
+        content/tkGroup.o \
+        content/tkObject.o \
+        content/tkTank.o \
+        content/tkVector3.o \
+		content/tkBuffer.o \
+		\
+		math/C3DVector3.o \
+		\
+		message/proto/protocol.pb.o \
+		\
+		Collision/CollisionCheck.o \
+		Collision/PlayerDelegate.o \
+		\
+        tx/tinystr.o \
+        tx/tinyxml.o \
+        tx/tinyxmlerror.o \
+        tx/tinyxmlparser.o
+
+# binary
+BIN	    = AIServer
+
+# where are include files kept
+INC	    = -I. \
+		  -I./includes \
+		  -I./handler \
+		  -I./content \
+		  -I./message \
+		  -I./message/proto \
+		  -I./math \
+		  -I./Collision \
+		  -I./bulletSrc \
+		  -I./tx \
+		  -I./bulletSrc/BulletCollision/BroadphaseCollision \
+		  -I./bulletSrc/BulletCollision/NarrowPhaseCollision \
+		  -I./bulletSrc/BulletCollision/Gimpact \
+		  -I./bulletSrc/BulletCollision/CollisionDispatch \
+		  -I./bulletSrc/BulletCollision/CollisionShapes \
+		  -I./bulletSrc/BulletDynamics/ConstraintSolver \
+		  -I./bulletSrc/BulletDynamics/MLCPSolvers \
+		  -I./bulletSrc/BulletDynamics/Dynamics \
+		  -I./bulletSrc/BulletDynamics/Character \
+		  -I./bulletSrc/BulletDynamics/Featherstone \
+		  -I./bulletSrc/BulletDynamics/Vehicle \
+		  -I./bulletSrc/LinearMath
+		
+
+# for static library
+STATICLIBS	= bulletSrc/libBulletLibrary.a
+
+# for Linker
+LINK        = -lev -lmysqlcppconn -llua5.2 -lprotobuf -lpthread
+
+# rock..
+all	: precompile_protobuf $(BIN)
+
+precompile_protobuf	:
+	$(PROTOC) $(PBFLAGS)=$(PBDST) $(PBSRC)/*
+
+# how to compiling programs
+$(BIN):$(OBJS)
+	@echo -ne '\nLinking target: $@\n'
+	$(CPP) $(CFLAGS) $(CDEBUG) $(BHFLAGS) $(CMACRO) -o $@ $(OBJS) $(STATICLIBS) $(LINK)
+	@echo -ne 'Finished linking target: $@\n'
+
+%.o:%.cpp
+	@echo -ne '\nBuilding target: $<\n'
+	$(CPP) $(CFLAGS) $(CDEBUG) $(CMACRO) $(INC) -o $@ -c $<
+	@echo -ne 'Finished building target: $<\n'
+%.o:%.cc
+	@echo -ne '\nBuilding target: $<\n'
+	$(CPP) $(CFLAGS) $(CDEBUG) $(CMACRO) $(INC) -o $@ -c $<
+	@echo -ne 'Finished building target: $<\n'
+%.o:%.c
+	@echo -ne '\nBuilding target: $<\n'
+	$(CC)  $(CFLAGS) $(CDEBUG) $(CMACRO) $(INC) -o $@ -c $<
+	@echo -ne 'Finished building target: $<\n'
+
+.PHONY: clean
+
+clean:
+	-rm -rf $(OBJS) $(BIN) *~ logs .lock
